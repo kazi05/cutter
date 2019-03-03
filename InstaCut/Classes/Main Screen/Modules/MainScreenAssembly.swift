@@ -16,8 +16,13 @@ class MainScreenAssembly {
         let photoLibraryManager = PhotoLibraryManager()
         let interactor = MainScreenInteractor()
         let presenter = MainScreenPresenter()
+        
         viewController.presenter = presenter
+        
+        presenter.view = viewController
         presenter.interactor = interactor
+        
+        interactor.presenter = presenter
         interactor.photoLibraryManager = photoLibraryManager
     }
     

@@ -13,5 +13,14 @@ class UserImagesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var videoDuration: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        userImage.layer.cornerRadius = 10.0
+        userImage.clipsToBounds = true
+    }
     
+    func set(image: UIImage, durationText: String?) {
+        userImage.image = image
+        videoDuration.text = durationText
+    }
 }

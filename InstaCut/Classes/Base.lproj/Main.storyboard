@@ -72,7 +72,7 @@
                                 <rect key="frame" x="67.5" y="226.5" width="240" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyx-G9-rqo">
-                                        <rect key="frame" x="92.5" y="90.5" width="55" height="36"/>
+                                        <rect key="frame" x="92.5" y="90.5" width="55" height="36.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                         <state key="normal" title="Reload"/>
                                         <connections>
@@ -89,8 +89,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Jkc-Mr-9md" firstAttribute="top" secondItem="sna-G8-9Zh" secondAttribute="top" constant="35" id="Gy5-1f-YhS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pyx-G9-rqo" secondAttribute="bottom" constant="23" id="Nmo-P6-74s"/>
                                     <constraint firstItem="Pyx-G9-rqo" firstAttribute="top" secondItem="Jkc-Mr-9md" secondAttribute="bottom" constant="9" id="UJW-mc-FOQ"/>
-                                    <constraint firstAttribute="height" constant="150" id="X8b-Jk-99a"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="X8b-Jk-99a"/>
                                     <constraint firstItem="Pyx-G9-rqo" firstAttribute="centerX" secondItem="sna-G8-9Zh" secondAttribute="centerX" id="e5U-Li-eKY"/>
                                     <constraint firstItem="Jkc-Mr-9md" firstAttribute="leading" secondItem="sna-G8-9Zh" secondAttribute="leading" id="rWe-Fo-54B"/>
                                     <constraint firstAttribute="trailing" secondItem="Jkc-Mr-9md" secondAttribute="trailing" id="tp8-Ry-hpw"/>

@@ -26,21 +26,23 @@ class PhotoLibraryManager: PhotoLibraryProtocol {
                 
                 let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions)
                 
-                if fetchResult.count > 0 {
-                    var result = [VideoModel]()
-                    for i in 0..<fetchResult.count {
-                        let asset = fetchResult.object(at: i)
-                        let width = (viewController.view.frame.width / 3) - 10
-                        let height = (viewController.view.frame.width / 3) - 10
-                        let size = CGSize(width: width, height: height)
-                        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil, resultHandler: { (image, userInfo) in
-                            let video = VideoModel(image: image ?? #imageLiteral(resourceName: "Cutter-maska.png"), duration: asset.duration)
-                            result.append(video)
-                        })
+                DispatchQueue.main.async {
+                    if fetchResult.count > 0 {
+                        var result = [VideoModel]()
+                        for i in 0..<fetchResult.count {
+                            let asset = fetchResult.object(at: i)
+                            let width = (viewController.view.frame.width / 3) - 10
+                            let height = (viewController.view.frame.width / 3) - 10
+                            let size = CGSize(width: width, height: height)
+                            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil, resultHandler: { (image, userInfo) in
+                                let video = VideoModel(image: image ?? #imageLiteral(resourceName: "Cutter-maska.png"), duration: asset.duration)
+                                result.append(video)
+                            })
+                        }
+                        completion(nil, result)
+                    }else {
+                        completion("Нет видеофайлов в библиотеке", nil)
                     }
-                    completion(nil, result)
-                }else {
-                    completion("Нет видеофайлов в библиотеке", nil)
                 }
             }
         }
