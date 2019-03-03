@@ -6,4 +6,19 @@
 //  Copyright © 2019 Kazim Gajiev. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol MainScreenPresenterInput: MainScreenViewControllerOutput {
+    
+}
+
+class MainScreenPresenter: MainScreenPresenterInput {
+    
+    var interactor: MainScreenInteractorInput!
+    
+    //Presenter says interactor ViewController needs videos
+    func fetchVideos(_ view: UIViewController) {
+        interactor.fetchAllVideosFromPhotoLibrary(view)
+    }
+    
+}
