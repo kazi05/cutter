@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Photos
-import MobileCoreServices
 
 let sb = UIStoryboard(name: "Main", bundle: nil)
 
