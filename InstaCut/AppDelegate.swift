@@ -15,7 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+//        IAPManager.shared.setupPurchase { (succes) in
+//            if succes {
+//                print("Can make puschase")
+//                IAPManager.shared.getProduct()
+//            }else {
+//                print("Can't make purchase")
+//            }
+//        }
+//
+//        if (iCloudKeyStore?.bool(forKey: iCloudTextKey))! || UserDefaults.standard.bool(forKey: iCloudTextKey) {
+//            print("Pro version is aviable")
+//            isProVersion = true
+//        }else {
+//            print("Pro version is not aviable")
+//        }
+        
         return true
     }
 

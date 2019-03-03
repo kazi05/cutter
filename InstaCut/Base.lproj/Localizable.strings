@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  InstaCut
+
+  Created by Kazim Gajiev on 12.03.2018.
+  Copyright © 2018 Kazim Gajiev. All rights reserved.
+*/
+BUY = "Follow";
+WAIT = "Wait";
+SUCCES = "Successfully";
+MEMORY = "Not enough memory";
+POST = "for post";
+STORIES = "for stories";
+FAILED = "Failed";

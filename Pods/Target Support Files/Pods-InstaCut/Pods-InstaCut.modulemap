@@ -1,0 +1,6 @@
+framework module Pods_InstaCut {
+  umbrella header "Pods-InstaCut-umbrella.h"
+
+  export *
+  module * { export * }
+}
