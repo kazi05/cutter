@@ -13,8 +13,14 @@
 		323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF322059AE47008ABC85 /* ReceiptValidator.swift */; };
 		323CCF362059AE47008ABC85 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF342059AE47008ABC85 /* pkcs7_union_accessors.c */; };
 		325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325F0A0E2046E0BE00DF16CA /* Extensions.swift */; };
+		32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A94E222BF379002D2C06 /* MainScreenInteractor.swift */; };
+		32A9A951222BF38E002D2C06 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A950222BF38E002D2C06 /* MainScreenPresenter.swift */; };
+		32A9A953222BF3E4002D2C06 /* MainScreenRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A952222BF3E4002D2C06 /* MainScreenRouting.swift */; };
+		32A9A957222BF428002D2C06 /* CutVideoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */; };
+		32A9A959222BF436002D2C06 /* CutVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */; };
+		32A9A95B222BF441002D2C06 /* CutVideoRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */; };
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
-		32C04FED2035AA7E00C509C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEC2035AA7E00C509C7 /* ViewController.swift */; };
+		32C04FED2035AA7E00C509C7 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEC2035AA7E00C509C7 /* MainScreenViewController.swift */; };
 		32C04FF02035AA7E00C509C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FEE2035AA7E00C509C7 /* Main.storyboard */; };
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
@@ -38,9 +44,15 @@
 		326738B5205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		326738B6205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		32707E05203858C0007D6CBF /* InstaCut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaCut-Bridging-Header.h"; sourceTree = "<group>"; };
+		32A9A94E222BF379002D2C06 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
+		32A9A950222BF38E002D2C06 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		32A9A952222BF3E4002D2C06 /* MainScreenRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouting.swift; sourceTree = "<group>"; };
+		32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoInteractor.swift; sourceTree = "<group>"; };
+		32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoPresenter.swift; sourceTree = "<group>"; };
+		32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoRouting.swift; sourceTree = "<group>"; };
 		32C04FE72035AA7E00C509C7 /* InstaCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		32C04FEC2035AA7E00C509C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		32C04FEC2035AA7E00C509C7 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		32C04FEF2035AA7E00C509C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32C04FF42035AA7E00C509C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,6 +79,124 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32A9A94B222BF2A8002D2C06 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */,
+				32E8C9552053FD37001A3FA7 /* IAPManager.swift */,
+				32A9A960222BF4B3002D2C06 /* Helpres */,
+				32A9A94C222BF351002D2C06 /* Main Screen */,
+				32A9A954222BF3FC002D2C06 /* Cut Video */,
+				323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */,
+				32C04FEE2035AA7E00C509C7 /* Main.storyboard */,
+				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
+				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
+				321B9A3820569FE4008F7226 /* Localizable.strings */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		32A9A94C222BF351002D2C06 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A94D222BF35C002D2C06 /* Modules */,
+				32A9A95C222BF482002D2C06 /* Views */,
+			);
+			path = "Main Screen";
+			sourceTree = "<group>";
+		};
+		32A9A94D222BF35C002D2C06 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				32C04FEC2035AA7E00C509C7 /* MainScreenViewController.swift */,
+				32A9A94E222BF379002D2C06 /* MainScreenInteractor.swift */,
+				32A9A950222BF38E002D2C06 /* MainScreenPresenter.swift */,
+				32A9A952222BF3E4002D2C06 /* MainScreenRouting.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		32A9A954222BF3FC002D2C06 /* Cut Video */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A955222BF40B002D2C06 /* Modules */,
+				32A9A95E222BF49E002D2C06 /* Views */,
+			);
+			path = "Cut Video";
+			sourceTree = "<group>";
+		};
+		32A9A955222BF40B002D2C06 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				32C04FFE20360CD200C509C7 /* CutVideoVC.swift */,
+				32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */,
+				32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */,
+				32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		32A9A95C222BF482002D2C06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A95D222BF491002D2C06 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		32A9A95D222BF491002D2C06 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				32C04FFC2035AD4000C509C7 /* UserImagesCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		32A9A95E222BF49E002D2C06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A95F222BF4A4002D2C06 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		32A9A95F222BF4A4002D2C06 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3229E239203743EF00466E51 /* VideoPrevieCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		32A9A960222BF4B3002D2C06 /* Helpres */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A962222BF4EF002D2C06 /* IAPManagerHelper */,
+				32A9A961222BF4BA002D2C06 /* Extensions */,
+				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
+			);
+			path = Helpres;
+			sourceTree = "<group>";
+		};
+		32A9A961222BF4BA002D2C06 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				325F0A0E2046E0BE00DF16CA /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		32A9A962222BF4EF002D2C06 /* IAPManagerHelper */ = {
+			isa = PBXGroup;
+			children = (
+				323CCF342059AE47008ABC85 /* pkcs7_union_accessors.c */,
+				323CCF332059AE47008ABC85 /* pkcs7_union_accessors.h */,
+				323CCF322059AE47008ABC85 /* ReceiptValidator.swift */,
+				32707E05203858C0007D6CBF /* InstaCut-Bridging-Header.h */,
+			);
+			path = IAPManagerHelper;
+			sourceTree = "<group>";
+		};
 		32C04FDE2035AA7E00C509C7 = {
 			isa = PBXGroup;
 			children = (
@@ -89,24 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */,
-				32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */,
-				32C04FEC2035AA7E00C509C7 /* ViewController.swift */,
-				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
-				32E8C9552053FD37001A3FA7 /* IAPManager.swift */,
-				32C04FFC2035AD4000C509C7 /* UserImagesCollectionViewCell.swift */,
-				32C04FFE20360CD200C509C7 /* CutVideoVC.swift */,
-				3229E239203743EF00466E51 /* VideoPrevieCell.swift */,
-				325F0A0E2046E0BE00DF16CA /* Extensions.swift */,
-				323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */,
-				32C04FEE2035AA7E00C509C7 /* Main.storyboard */,
-				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
-				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
+				32A9A94B222BF2A8002D2C06 /* Classes */,
 				32C04FF62035AA7E00C509C7 /* Info.plist */,
-				323CCF342059AE47008ABC85 /* pkcs7_union_accessors.c */,
-				323CCF332059AE47008ABC85 /* pkcs7_union_accessors.h */,
-				323CCF322059AE47008ABC85 /* ReceiptValidator.swift */,
-				32707E05203858C0007D6CBF /* InstaCut-Bridging-Header.h */,
-				321B9A3820569FE4008F7226 /* Localizable.strings */,
 			);
 			path = InstaCut;
 			sourceTree = "<group>";
@@ -280,10 +394,16 @@
 			files = (
 				32E8C9562053FD37001A3FA7 /* IAPManager.swift in Sources */,
 				3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */,
+				32A9A953222BF3E4002D2C06 /* MainScreenRouting.swift in Sources */,
+				32A9A957222BF428002D2C06 /* CutVideoInteractor.swift in Sources */,
+				32A9A951222BF38E002D2C06 /* MainScreenPresenter.swift in Sources */,
+				32A9A959222BF436002D2C06 /* CutVideoPresenter.swift in Sources */,
 				325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */,
 				323CCF362059AE47008ABC85 /* pkcs7_union_accessors.c in Sources */,
-				32C04FED2035AA7E00C509C7 /* ViewController.swift in Sources */,
+				32C04FED2035AA7E00C509C7 /* MainScreenViewController.swift in Sources */,
 				323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */,
+				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
+				32A9A95B222BF441002D2C06 /* CutVideoRouting.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,
 				32C04FFF20360CD200C509C7 /* CutVideoVC.swift in Sources */,
@@ -452,7 +572,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "InstaCut/InstaCut-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "InstaCut/Classes/Helpres/IAPManagerHelper/InstaCut-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -474,7 +594,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "InstaCut/InstaCut-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "InstaCut/Classes/Helpres/IAPManagerHelper/InstaCut-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

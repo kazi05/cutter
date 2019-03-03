@@ -12,7 +12,7 @@ import MobileCoreServices
 
 let sb = UIStoryboard(name: "Main", bundle: nil)
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class MainScreenViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var cameraRollCollectionView: UICollectionView!
     @IBOutlet weak var noItemsView: UIView!
