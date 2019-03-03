@@ -109,6 +109,7 @@
 				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
 				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
 				321B9A3820569FE4008F7226 /* Localizable.strings */,
+				32C04FF62035AA7E00C509C7 /* Info.plist */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -240,7 +241,6 @@
 			children = (
 				32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */,
 				32A9A94B222BF2A8002D2C06 /* Classes */,
-				32C04FF62035AA7E00C509C7 /* Info.plist */,
 			);
 			path = InstaCut;
 			sourceTree = "<group>";
