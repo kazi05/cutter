@@ -6,4 +6,12 @@
 //  Copyright © 2019 Kazim Gajiev. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MainScreenRouting {
+    
+    func navigateToCutVideo() {
+        
+    }
+    
+}
