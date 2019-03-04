@@ -237,12 +237,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uZW-sF-El6">
-                        <barButtonItem key="leftBarButtonItem" image="left-arrow (4)" id="JOb-Em-AkG">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="cancel:" destination="Ogl-fQ-QEa" id="YdZ-kS-caJ"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Szu-qQ-1pC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
@@ -300,7 +294,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="left-arrow (4)" width="19.200000762939453" height="19.200000762939453"/>
         <image name="play-button" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
 </document>

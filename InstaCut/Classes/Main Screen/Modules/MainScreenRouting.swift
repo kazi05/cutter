@@ -10,16 +10,26 @@ import UIKit
 
 protocol MainScreenRoutingUnput {
     func navigateToCutVideo()
+    func passDataToCutVideo(video: VideoModel)
 }
 
-class MainScreenRouting {
+class MainScreenRouting: MainScreenRoutingUnput {
     
     weak var viewController: MainScreenViewController!
     
     func navigateToCutVideo() {
-        viewController.closure? = { (video) in
-            print("Tapped video: \(video) ")
+        viewController.closure = { video in
+            self.viewController.passDataToCutVideo(video: video)
         }
+    }
+    
+    //Navigate to another module
+    func passDataToCutVideo(video: VideoModel) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let cutVideoViewController = sb.instantiateViewController(withIdentifier: "CutVideoVC") as! CutVideoViewController
+        cutVideoViewController.presenter.saveSelectedVideoModel(video)
+        self.viewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.viewController.navigationController?.pushViewController(cutVideoViewController, animated: true)
     }
     
 }

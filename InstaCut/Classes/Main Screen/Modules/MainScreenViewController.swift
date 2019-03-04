@@ -8,10 +8,10 @@
 
 import UIKit
 
-let sb = UIStoryboard(name: "Main", bundle: nil)
-
 protocol MainScreenViewControllerOutput: class {
     func fetchVideos(_ view: UIViewController)
+    func gotoCutVideoScreen()
+    func passDataToCutVideo(video: VideoModel)
 }
 
 protocol MainScreenViewControllerInput: class {
@@ -35,6 +35,8 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
     override func awakeFromNib() {
         super.awakeFromNib()
         MainScreenAssembly.shared.configure(self)
+        self.navigationController?.navigationBar.tintColor = .white
+        
     }
     
     override func viewDidLoad() {
@@ -68,6 +70,10 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
         performVideos()
     }
     
+    //MARK:- Passing data to CutVideo
+    func passDataToCutVideo(video: VideoModel) {
+        presenter.passDataToCutVideo(video: video)
+    }
 }
 
 // MARK:- UICollectionViewDataSource
@@ -92,8 +98,8 @@ extension MainScreenViewController: UICollectionViewDataSource {
 extension MainScreenViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Tapped")
         closure?(videos[indexPath.row])
+        self.presenter.gotoCutVideoScreen()
     }
     
 }

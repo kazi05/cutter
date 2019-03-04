@@ -12,10 +12,11 @@ protocol MainScreenPresenterInput: MainScreenViewControllerOutput, MainScreenInt
     
 }
 
-class MainScreenPresenter: MainScreenPresenterInput {
+class MainScreenPresenter: MainScreenPresenterInput {  
     
     weak var view: MainScreenViewControllerInput!
     var interactor: MainScreenInteractorInput!
+    var router: MainScreenRoutingUnput!
     
     //Presenter says interactor ViewController needs videos
     func fetchVideos(_ view: UIViewController) {
@@ -34,7 +35,12 @@ class MainScreenPresenter: MainScreenPresenterInput {
     
     //Show CutVideo Screen
     func gotoCutVideoScreen() {
-        
+        router.navigateToCutVideo()
+    }
+    
+    //Passing data yo next screen
+    func passDataToCutVideo(video: VideoModel) {
+        self.router.passDataToCutVideo(video: video)
     }
     
 }

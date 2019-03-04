@@ -6,4 +6,21 @@
 //  Copyright © 2019 Kazim Gajiev. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CutVideoAssembly {
+    
+    static let shared = CutVideoAssembly()
+    
+    func configure(_ viewController: CutVideoViewController) {
+        let presenter = CutVideoPresenter()
+        let interactor = CutVideoInteractor()
+        viewController.presenter = presenter
+        
+        presenter.viewController = viewController
+        presenter.interactor = interactor
+        
+        interactor.presenter = presenter
+    }
+    
+}

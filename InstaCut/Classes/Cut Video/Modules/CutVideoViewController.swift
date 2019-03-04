@@ -8,7 +8,16 @@
 
 import UIKit
 
-class CutVideoViewController: UIViewController {
+protocol CutVideoViewControllerInput: class {
+    func addPreviewImage(_ image: UIImage)
+}
+
+protocol CutVideoViewControllerOutput: class {
+    func saveSelectedVideoModel(_ videoModel: VideoModel)
+    func loadImageFromVideo()
+}
+
+class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     @IBOutlet weak var viewPreview: UIImageView!
     @IBOutlet weak var playButton: UIButton!
@@ -17,11 +26,23 @@ class CutVideoViewController: UIViewController {
 //    @IBOutlet weak var durationTrackSlider: UISlider!
     
 //    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var presenter: CutVideoViewControllerOutput!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        CutVideoAssembly.shared.configure(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        presenter.loadImageFromVideo()
+    }
+    
+    //MARK:- Result comes from Presenter
+    func addPreviewImage(_ image: UIImage) {
+        self.viewPreview.image = image
     }
 
 }

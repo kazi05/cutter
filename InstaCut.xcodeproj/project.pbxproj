@@ -161,8 +161,8 @@
 			children = (
 				32C04FFE20360CD200C509C7 /* CutVideoVC.swift */,
 				328C969D222D4B8400142FBE /* CutVideoViewController.swift */,
-				32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */,
 				32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */,
+				32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */,
 				32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */,
 				32A4C726222BF948003616CC /* CutVideoAssembly.swift */,
 			);
