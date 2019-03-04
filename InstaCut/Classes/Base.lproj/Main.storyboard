@@ -121,10 +121,10 @@
             </objects>
             <point key="canvasLocation" x="455.19999999999999" y="68.815592203898049"/>
         </scene>
-        <!--Cut VideoVC-->
+        <!--Cut Video View Controller-->
         <scene sceneID="7DL-fi-lJQ">
             <objects>
-                <viewController storyboardIdentifier="CutVideoVC" id="Ogl-fQ-QEa" customClass="CutVideoVC" customModule="InstaCut" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CutVideoVC" id="Ogl-fQ-QEa" customClass="CutVideoViewController" customModule="InstaCut" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xnW-eG-wb1"/>
                         <viewControllerLayoutGuide type="bottom" id="zde-4e-WdG"/>
@@ -134,15 +134,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0XW-9A-GsK">
-                                <rect key="frame" x="0.0" y="50" width="375" height="403"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ex7-lk-dw5" customClass="Segmentio" customModule="Segmentio">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.11931266190000001" green="0.11931266190000001" blue="0.11931266190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="JGu-p2-YGV"/>
-                                </constraints>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PoM-bO-dzX">
                                 <rect key="frame" x="0.0" y="453" width="375" height="150"/>
                                 <color key="backgroundColor" red="0.11931266190000001" green="0.11931266190000001" blue="0.11931266190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -197,10 +190,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="Ogl-fQ-QEa" id="yNv-Si-NyK"/>
-                                    <outlet property="delegate" destination="Ogl-fQ-QEa" id="kLg-zd-aOh"/>
-                                </connections>
                             </collectionView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRT-YR-PIx">
                                 <rect key="frame" x="0.0" y="417" width="375" height="36"/>
@@ -220,7 +209,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiG-UC-rYA">
-                                <rect key="frame" x="165.5" y="229.5" width="44" height="44"/>
+                                <rect key="frame" x="165.5" y="204.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="T92-FS-Mht"/>
                                     <constraint firstAttribute="height" constant="44" id="tdN-CX-fuc"/>
@@ -233,16 +222,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.21273882769999999" green="0.21273882769999999" blue="0.21273882769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="0XW-9A-GsK" firstAttribute="top" secondItem="Ex7-lk-dw5" secondAttribute="bottom" id="4pK-Ub-FO9"/>
-                            <constraint firstItem="Ex7-lk-dw5" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="Cd6-6N-Lud"/>
                             <constraint firstItem="0XW-9A-GsK" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="HDx-xv-MqB"/>
                             <constraint firstItem="zde-4e-WdG" firstAttribute="top" secondItem="PoM-bO-dzX" secondAttribute="bottom" id="POL-O9-Sta"/>
                             <constraint firstItem="PoM-bO-dzX" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="QLe-gZ-UbP"/>
                             <constraint firstItem="pRT-YR-PIx" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="QaL-Hx-PFy"/>
-                            <constraint firstAttribute="trailing" secondItem="Ex7-lk-dw5" secondAttribute="trailing" id="X5Y-YB-whi"/>
+                            <constraint firstItem="0XW-9A-GsK" firstAttribute="top" secondItem="xnW-eG-wb1" secondAttribute="bottom" id="WeT-g2-v4g"/>
                             <constraint firstItem="KiG-UC-rYA" firstAttribute="centerX" secondItem="0XW-9A-GsK" secondAttribute="centerX" id="Z60-hF-huT"/>
                             <constraint firstItem="PoM-bO-dzX" firstAttribute="top" secondItem="0XW-9A-GsK" secondAttribute="bottom" id="ffo-cc-ASQ"/>
-                            <constraint firstItem="Ex7-lk-dw5" firstAttribute="top" secondItem="mTd-h5-yeZ" secondAttribute="top" id="g5q-w5-2do"/>
                             <constraint firstAttribute="trailing" secondItem="PoM-bO-dzX" secondAttribute="trailing" id="gDg-Dk-MV1"/>
                             <constraint firstItem="KiG-UC-rYA" firstAttribute="centerY" secondItem="0XW-9A-GsK" secondAttribute="centerY" id="hjc-TX-SwO"/>
                             <constraint firstAttribute="trailing" secondItem="0XW-9A-GsK" secondAttribute="trailing" id="jzF-xT-LYx"/>
@@ -259,17 +245,10 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Szu-qQ-1pC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="saveVideosToPhotolibary:" destination="Ogl-fQ-QEa" id="tBj-0j-vq7"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="PoM-bO-dzX" id="5ZQ-Gs-psT"/>
-                        <outlet property="durationTrackSlider" destination="60b-1a-7IV" id="6dw-Mh-lPx"/>
-                        <outlet property="durationTrackView" destination="pRT-YR-PIx" id="yBv-8n-1DG"/>
                         <outlet property="playButton" destination="KiG-UC-rYA" id="v7s-ov-ni9"/>
-                        <outlet property="segmentedControll" destination="Ex7-lk-dw5" id="EBy-Ny-3sw"/>
                         <outlet property="viewPreview" destination="0XW-9A-GsK" id="bHn-10-qSL"/>
                     </connections>
                 </viewController>

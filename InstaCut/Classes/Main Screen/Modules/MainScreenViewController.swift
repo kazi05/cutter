@@ -26,6 +26,8 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
     @IBOutlet weak var noItemsLbl: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
     
+    var closure: ((VideoModel) -> Void)?
+    
     var videos: [VideoModel] = []
     
     var presenter: MainScreenViewControllerOutput!
@@ -80,7 +82,7 @@ extension MainScreenViewController: UICollectionViewDataSource {
         
         let cell = cameraRollCollectionView.dequeueReusableCell(withReuseIdentifier: "cameraCell", for: indexPath as IndexPath) as! UserImagesCollectionViewCell
         let video = videos[indexPath.row]
-        cell.set(image: video.image, durationText: video.durationTime)
+        cell.set(image: video.originalImage, durationText: video.durationTime)
         return cell
     }
     
@@ -90,8 +92,10 @@ extension MainScreenViewController: UICollectionViewDataSource {
 extension MainScreenViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("Tapped")
+        closure?(videos[indexPath.row])
     }
+    
 }
 
 //MARK:- UICollectionViewDelegateFlowLayout

@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol MainScreenRoutingUnput {
+    func navigateToCutVideo()
+}
+
 class MainScreenRouting {
     
+    weak var viewController: MainScreenViewController!
+    
     func navigateToCutVideo() {
-        
+        viewController.closure? = { (video) in
+            print("Tapped video: \(video) ")
+        }
     }
     
 }

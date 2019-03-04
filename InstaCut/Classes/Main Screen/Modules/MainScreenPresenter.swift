@@ -32,4 +32,9 @@ class MainScreenPresenter: MainScreenPresenterInput {
         self.view.displayAccesError(error: error)
     }
     
+    //Show CutVideo Screen
+    func gotoCutVideoScreen() {
+        
+    }
+    
 }
