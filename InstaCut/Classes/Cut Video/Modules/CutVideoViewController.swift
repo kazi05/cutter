@@ -27,7 +27,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
 //    @IBOutlet weak var durationTrackView: UIView!
 //    @IBOutlet weak var durationTrackSlider: UISlider!
     
-//    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var presenter: CutVideoViewControllerOutput!
     
@@ -52,7 +52,34 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     }
     
     func applyPeriodsForVideo(_ periods: [VideoPeriods]) {
-        self.periods = periods
+        DispatchQueue.main.async {
+            self.periods = periods
+            self.collectionView.reloadData()
+        }
     }
 
+}
+
+//MARK:- UICollectionViewDataSource
+extension CutVideoViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return periods.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoPreviewCell", for: indexPath) as! VideoPrevieCell
+        
+        let period = periods[indexPath.row]
+        let startPeriod = period.timeDurationString(time: period.start)
+        let endPeriod = period.timeDurationString(time: period.end)
+        cell.set(startTime: startPeriod, and: endPeriod)
+        cell.set(previewImage: period.previewImage)
+        
+        return cell
+    }
+}
+
+//MARK:- UICollectionViewDeleagte
+extension CutVideoViewController: UICollectionViewDelegate {
+    
 }

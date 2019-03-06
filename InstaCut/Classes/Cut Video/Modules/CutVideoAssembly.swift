@@ -22,7 +22,7 @@ class CutVideoAssembly {
         presenter.interactor = interactor
         
         interactor.presenter = presenter
-        interactor.delegatingVideoHelperProtocol = delegateVideoManager
+        interactor.delegateVideoManager = delegateVideoManager
     }
     
 }

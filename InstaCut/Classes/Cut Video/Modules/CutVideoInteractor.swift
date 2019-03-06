@@ -23,7 +23,7 @@ class CutVideoInteractor: CutVideoInteractorInput {
     
     weak var presenter: CutVideoInteractorOutput!
     var video: VideoModel?
-    var delegatingVideoHelperProtocol: DelegatingVideoHelperProtocol!
+    var delegateVideoManager: DelegatingVideoHelperProtocol!
     
     func configureVideoModel(_ videoModel: VideoModel) {
         self.video = videoModel
@@ -37,9 +37,8 @@ class CutVideoInteractor: CutVideoInteractorInput {
     
     func getPeriodsForVideo() {
         if let videoAsset = video {
-            let periods = delegatingVideoHelperProtocol.cutPeriodsFromVideo(videoAsset)
-            print(periods.map { $0.start })
-            print(periods.map { $0.end })
+            let periods = delegateVideoManager.cutPeriodsFromVideo(videoAsset)
+            self.presenter.sendPeriodsFromVideo(periods)
         }
     }
         

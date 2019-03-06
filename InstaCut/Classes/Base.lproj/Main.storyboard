@@ -190,6 +190,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ogl-fQ-QEa" id="P6Y-0D-T6s"/>
+                                    <outlet property="delegate" destination="Ogl-fQ-QEa" id="7yn-Pl-Hmg"/>
+                                </connections>
                             </collectionView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRT-YR-PIx">
                                 <rect key="frame" x="0.0" y="417" width="375" height="36"/>
@@ -242,6 +246,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="PoM-bO-dzX" id="nfE-3E-YDB"/>
                         <outlet property="playButton" destination="KiG-UC-rYA" id="v7s-ov-ni9"/>
                         <outlet property="viewPreview" destination="0XW-9A-GsK" id="bHn-10-qSL"/>
                     </connections>

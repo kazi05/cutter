@@ -16,10 +16,25 @@ class VideoPrevieCell: UICollectionViewCell {
     @IBOutlet weak var startDuration: UILabel!
     @IBOutlet weak var endDuration: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        previewImage.layer.cornerRadius = 5.0
+        previewImage.clipsToBounds = true
+    }
+    
     override var isSelected : Bool {
         didSet {
             previewImage.layer.borderWidth = isSelected ? 3.0 : 0
         }
+    }
+    
+    func set(startTime: String, and endTime: String) {
+        self.startDuration.text = startTime
+        self.endDuration.text = endTime
+    }
+    
+    func set(previewImage image: UIImage) {
+        self.previewImage.image = image
     }
     
 }

@@ -20,4 +20,8 @@ class VideoPeriods {
         self.previewImage = image
     }
     
+    func timeDurationString(time: Double) -> String {
+        return String(format: "%02d:%02d",Int((time / 60)),Int(time.rounded()) % 60)
+    }
+    
 }

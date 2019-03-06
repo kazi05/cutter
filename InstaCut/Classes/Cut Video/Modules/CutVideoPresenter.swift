@@ -15,12 +15,12 @@ class CutVideoPresenter: CutVideoPresenterInput {
     weak var viewController: CutVideoViewControllerInput!
     var interactor: CutVideoInteractorInput!
     
-    //Passing data from MainScreen module to interactor
+    //MARK:- Passing data from MainScreen module to interactor
     func saveSelectedVideoModel(_ videoModel: VideoModel) {
         self.interactor.configureVideoModel(videoModel)
     }
     
-    //Call methods coming from view to interactor
+    //MARK:- Call methods coming from view to interactor
     func loadImageFromVideo() {
         self.interactor.getImageFromVideo()
     }
@@ -29,7 +29,7 @@ class CutVideoPresenter: CutVideoPresenterInput {
         self.interactor.getPeriodsForVideo()
     }
     
-    //result comes from Interactor
+    //MARK:- results comes from Interactor
     func sendImageFromVideo(_ image: UIImage) {
         self.viewController.addPreviewImage(image)
     }
