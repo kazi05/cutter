@@ -10,11 +10,13 @@ import UIKit
 
 protocol CutVideoViewControllerInput: class {
     func addPreviewImage(_ image: UIImage)
+    func applyPeriodsForVideo(_ periods: [VideoPeriods])
 }
 
 protocol CutVideoViewControllerOutput: class {
     func saveSelectedVideoModel(_ videoModel: VideoModel)
     func loadImageFromVideo()
+    func getPeriodsForVideo()
 }
 
 class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
@@ -29,7 +31,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     var presenter: CutVideoViewControllerOutput!
     
-    var periods = [[String: Any]]()
+    var periods = [VideoPeriods]()
     
     //MARK:- Configure module
     override func awakeFromNib() {
@@ -41,11 +43,16 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         super.viewDidLoad()
 
         presenter.loadImageFromVideo()
+        presenter.getPeriodsForVideo()
     }
     
     //MARK:- Result comes from Presenter
     func addPreviewImage(_ image: UIImage) {
         self.viewPreview.image = image
+    }
+    
+    func applyPeriodsForVideo(_ periods: [VideoPeriods]) {
+        self.periods = periods
     }
 
 }

@@ -14,6 +14,7 @@
 		323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF322059AE47008ABC85 /* ReceiptValidator.swift */; };
 		323CCF362059AE47008ABC85 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF342059AE47008ABC85 /* pkcs7_union_accessors.c */; };
 		325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325F0A0E2046E0BE00DF16CA /* Extensions.swift */; };
+		328AA146222FF40C008C7841 /* DelegatingVideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */; };
 		328C969E222D4B8400142FBE /* CutVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C969D222D4B8400142FBE /* CutVideoViewController.swift */; };
 		32A4C721222BF8DA003616CC /* PhotoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C720222BF8DA003616CC /* PhotoLibraryManager.swift */; };
 		32A4C723222BF8F2003616CC /* PhotoLibraryPremission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */; };
@@ -52,6 +53,7 @@
 		326738B5205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		326738B6205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		32707E05203858C0007D6CBF /* InstaCut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaCut-Bridging-Header.h"; sourceTree = "<group>"; };
+		328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatingVideoHelper.swift; sourceTree = "<group>"; };
 		328C969D222D4B8400142FBE /* CutVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoViewController.swift; sourceTree = "<group>"; };
 		32A4C720222BF8DA003616CC /* PhotoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryManager.swift; sourceTree = "<group>"; };
 		32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPremission.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				32A9A961222BF4BA002D2C06 /* Extensions */,
 				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
 				32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */,
+				328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */,
 			);
 			path = Helpres;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A4C727222BF948003616CC /* CutVideoAssembly.swift in Sources */,
+				328AA146222FF40C008C7841 /* DelegatingVideoHelper.swift in Sources */,
 				32A4C721222BF8DA003616CC /* PhotoLibraryManager.swift in Sources */,
 				32E8C9562053FD37001A3FA7 /* IAPManager.swift in Sources */,
 				3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */,

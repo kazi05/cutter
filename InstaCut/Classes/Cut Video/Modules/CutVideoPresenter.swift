@@ -20,12 +20,22 @@ class CutVideoPresenter: CutVideoPresenterInput {
         self.interactor.configureVideoModel(videoModel)
     }
     
+    //Call methods coming from view to interactor
     func loadImageFromVideo() {
         self.interactor.getImageFromVideo()
+    }
+    
+    func getPeriodsForVideo() {
+        self.interactor.getPeriodsForVideo()
     }
     
     //result comes from Interactor
     func sendImageFromVideo(_ image: UIImage) {
         self.viewController.addPreviewImage(image)
     }
+    
+    func sendPeriodsFromVideo(_ periods: [VideoPeriods]) {
+        self.viewController.applyPeriodsForVideo(periods)
+    }
+    
 }

@@ -13,6 +13,7 @@ class CutVideoAssembly {
     static let shared = CutVideoAssembly()
     
     func configure(_ viewController: CutVideoViewController) {
+        let delegateVideoManager = DelegatingVideoHelper()
         let presenter = CutVideoPresenter()
         let interactor = CutVideoInteractor()
         viewController.presenter = presenter
@@ -21,6 +22,7 @@ class CutVideoAssembly {
         presenter.interactor = interactor
         
         interactor.presenter = presenter
+        interactor.delegatingVideoHelperProtocol = delegateVideoManager
     }
     
 }
