@@ -26,23 +26,57 @@ class PhotoLibraryManager: PhotoLibraryProtocol {
                 
                 let fetchResult = PHAsset.fetchAssets(with: .video, options: fetchOptions)
                 
-                DispatchQueue.main.async {
-                    if fetchResult.count > 0 {
-                        var result = [VideoModel]()
-                        for i in 0..<fetchResult.count {
-                            let asset = fetchResult.object(at: i)
-//                            let width = (viewController.view.frame.width / 3) - 10
-//                            let height = (viewController.view.frame.width / 3) - 10
-//                            let size = CGSize(width: width, height: height)
-                            let video = VideoModel(asset: asset)
+                if fetchResult.count > 0 {
+                    var result = [VideoModel]()
+                    for i in 0..<fetchResult.count {
+                        let asset = fetchResult.object(at: i)
+                        //                            let width = (viewController.view.frame.width / 3) - 10
+                        //                            let height = (viewController.view.frame.width / 3) - 10
+                        //                            let size = CGSize(width: width, height: height)
+                        if let image = self.getImage(from: asset), let videoURL = self.getURL(from: asset) {
+                            let video = VideoModel(asset: asset, image: image, videoURL: videoURL)
                             result.append(video)
                         }
-                        completion(nil, result)
-                    }else {
-                        completion("Нет видеофайлов в библиотеке", nil)
                     }
+                    completion(nil, result)
+                }else {
+                    completion("Нет видеофайлов в библиотеке", nil)
                 }
             }
         }
+    }
+    
+    private func getImage(from asset: PHAsset) -> UIImage? {
+        var img: UIImage?
+        let manager = PHImageManager.default()
+        let options = PHImageRequestOptions()
+        options.version = .original
+        options.isSynchronous = true
+        manager.requestImageData(for: asset, options: options) { data, _, _, _ in
+            if let data = data {
+                img = UIImage(data: data)
+            }
+        }
+        return img
+    }
+    
+    private func getURL(from asset: PHAsset) -> URL? {
+        var url: URL?
+        let manager = PHImageManager.default()
+        let semaphore = DispatchSemaphore.init(value: 0)
+        let options = PHVideoRequestOptions()
+        options.version = .original
+
+        manager.requestAVAsset(forVideo: asset, options: options) { (avasset, audioMix, userInfo) in
+            if let urlAsset = avasset as? AVURLAsset {
+                let localVideoUrl: URL = urlAsset.url as URL
+                url = localVideoUrl
+                semaphore.signal()
+            }
+        }
+        
+        semaphore.wait()
+        
+        return url
     }
 }

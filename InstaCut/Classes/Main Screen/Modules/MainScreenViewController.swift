@@ -51,21 +51,22 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
     
     //MARK:- Display fethced videos or error
     func displayFetchedVideos(_ videos: [VideoModel]) {
-        cameraRollCollectionView.isHidden = false
-        noItemsView.isHidden = true
-        self.videos.append(contentsOf: videos)
-        
         DispatchQueue.main.async {
+            self.cameraRollCollectionView.isHidden = false
+            self.noItemsView.isHidden = true
+            self.videos.append(contentsOf: videos)
             self.cameraRollCollectionView.reloadData()
         }
     }
     
+    //MARK:- Display error view
     func displayAccesError(error: String?) {
         cameraRollCollectionView.isHidden = true
         noItemsView.isHidden = false
         noItemsLbl.text = error
     }
     
+    //MARK:- Reload collectionView
     @IBAction func reloadPhotolibraryData(_ sender: Any) {
         performVideos()
     }
@@ -88,7 +89,8 @@ extension MainScreenViewController: UICollectionViewDataSource {
         
         let cell = cameraRollCollectionView.dequeueReusableCell(withReuseIdentifier: "cameraCell", for: indexPath as IndexPath) as! UserImagesCollectionViewCell
         let video = videos[indexPath.row]
-        cell.set(image: video.originalImage, durationText: video.durationTime)
+        print(video.videoURL.absoluteString)
+        cell.set(image: video.originalImage, durationText: video.durationTimeString)
         return cell
     }
     
@@ -98,8 +100,8 @@ extension MainScreenViewController: UICollectionViewDataSource {
 extension MainScreenViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        closure?(videos[indexPath.row])
         self.presenter.gotoCutVideoScreen()
+        closure?(videos[indexPath.row])
     }
     
 }

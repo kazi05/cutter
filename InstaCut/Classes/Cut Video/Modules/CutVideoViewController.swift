@@ -28,7 +28,10 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
 //    @IBOutlet weak var collectionView: UICollectionView!
     
     var presenter: CutVideoViewControllerOutput!
-
+    
+    var periods = [[String: Any]]()
+    
+    //MARK:- Configure module
     override func awakeFromNib() {
         super.awakeFromNib()
         CutVideoAssembly.shared.configure(self)

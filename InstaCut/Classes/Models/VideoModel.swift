@@ -11,34 +11,20 @@ import Photos
 
 class VideoModel {
     
-//    private(set) var collectionImage: UIImage = UIImage()
     var originalImage: UIImage
     var duration: TimeInterval
+    var videoURL: URL
     
-    var durationTime: String {
+    var durationTimeString: String {
         return String(format: "%02d:%02d",Int((duration / 60)),Int(duration.rounded()) % 60)
     }
     
     let asset: PHAsset
     
-    init(asset: PHAsset) {
+    init(asset: PHAsset, image: UIImage, videoURL: URL) {
         self.asset = asset
         self.duration = asset.duration
-        self.originalImage = UIImage()
-        self.originalImage = getImage() ?? #imageLiteral(resourceName: "Cutter-maska.png")
-    }
-    
-    private func getImage() -> UIImage? {
-        var img: UIImage?
-        let manager = PHImageManager.default()
-        let options = PHImageRequestOptions()
-        options.version = .original
-        options.isSynchronous = true
-        manager.requestImageData(for: asset, options: options) { data, _, _, _ in
-            if let data = data {
-                img = UIImage(data: data)
-            }
-        }
-        return img
+        self.originalImage = image
+        self.videoURL = videoURL
     }
 }
