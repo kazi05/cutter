@@ -70,22 +70,39 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         viewPreview.addGestureRecognizer(tap)
     }
     
+    //MARK:- Image tap actions
     @objc private func handlePreviewTap(_ sender: UITapGestureRecognizer) {
         if isPlayed {
             if isShowed {
-                AnimationHelper.animateOut(duration: 0.5) {
-                    self.playButton.alpha = 0
-                    self.isShowed = false
-                }
+                hideButton()
             }else {
-                AnimationHelper.animateIn(duration: 0.5) {
-                    self.playButton.alpha = 1
-                    self.isShowed = true
-                }
+               self.showButton()
             }
         }
     }
     
+    @objc private func hideTimeDurationView() {
+        hideButton()
+    }
+    
+    private func showButton() {
+        AnimationHelper.animateIn(duration: 0.5) {
+            self.playButton.alpha = 1
+            self.isShowed = true
+            Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.hideTimeDurationView), userInfo: nil, repeats: false)
+        }
+    }
+    
+    private func hideButton() {
+        if isPlayed {
+            AnimationHelper.animateOut(duration: 0.5) {
+                self.playButton.alpha = 0
+                self.isShowed = false
+            }
+        }
+    }
+    
+    //MARK:- Configure periods
     //Apply periods of video
     func applyPeriodsForVideo(_ periods: [VideoPeriods]) {
         DispatchQueue.main.async {
@@ -98,21 +115,21 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     func passVideoURL(_ videoURL: URL) {
         self.videoURL = videoURL
         videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
+        viewPreview.layer.addSublayer(videoPlayer.playerLayer)
     }
 
+    //MARK:- Play video button action
     @IBAction func playVideo(_ sender: Any) {
         if !isPlayed {
-            AnimationHelper.animateOut(duration: 0.5) {
-                self.playButton.alpha = 0
-                self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
-            }
-            view.layer.addSublayer(videoPlayer.playerLayer)
             videoPlayer.player?.play()
             isPlayed = true
+            self.playButton.alpha = 0
+            self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
         }else {
             playButton.setImage(#imageLiteral(resourceName: "play-button.png"), for: .normal)
             videoPlayer.player?.pause()
             isPlayed = false
+            isShowed = false
         }
     }
 }

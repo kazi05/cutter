@@ -89,7 +89,6 @@ extension MainScreenViewController: UICollectionViewDataSource {
         
         let cell = cameraRollCollectionView.dequeueReusableCell(withReuseIdentifier: "cameraCell", for: indexPath as IndexPath) as! UserImagesCollectionViewCell
         let video = videos[indexPath.row]
-        print(video.asset.duration)
         cell.set(image: video.originalImage, durationText: video.durationTimeString)
         return cell
     }
