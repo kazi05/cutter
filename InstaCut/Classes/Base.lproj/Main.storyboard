@@ -195,23 +195,6 @@
                                     <outlet property="delegate" destination="Ogl-fQ-QEa" id="7yn-Pl-Hmg"/>
                                 </connections>
                             </collectionView>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRT-YR-PIx">
-                                <rect key="frame" x="0.0" y="417" width="375" height="36"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="60b-1a-7IV">
-                                        <rect key="frame" x="6" y="3" width="363" height="31"/>
-                                        <color key="minimumTrackTintColor" red="0.84313725490196079" green="0.27843137254901962" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="maximumTrackTintColor" red="0.47843137254901957" green="0.47843137254901957" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </slider>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="4Wy-5m-qtx"/>
-                                    <constraint firstItem="60b-1a-7IV" firstAttribute="leading" secondItem="pRT-YR-PIx" secondAttribute="leading" constant="8" id="Shb-81-xpi"/>
-                                    <constraint firstAttribute="trailing" secondItem="60b-1a-7IV" secondAttribute="trailing" constant="8" id="fZ8-4B-btH"/>
-                                    <constraint firstItem="60b-1a-7IV" firstAttribute="centerY" secondItem="pRT-YR-PIx" secondAttribute="centerY" id="qh3-92-xUq"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiG-UC-rYA">
                                 <rect key="frame" x="165.5" y="204.5" width="44" height="44"/>
                                 <constraints>
@@ -229,15 +212,12 @@
                             <constraint firstItem="0XW-9A-GsK" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="HDx-xv-MqB"/>
                             <constraint firstItem="zde-4e-WdG" firstAttribute="top" secondItem="PoM-bO-dzX" secondAttribute="bottom" id="POL-O9-Sta"/>
                             <constraint firstItem="PoM-bO-dzX" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="QLe-gZ-UbP"/>
-                            <constraint firstItem="pRT-YR-PIx" firstAttribute="leading" secondItem="mTd-h5-yeZ" secondAttribute="leading" id="QaL-Hx-PFy"/>
                             <constraint firstItem="0XW-9A-GsK" firstAttribute="top" secondItem="xnW-eG-wb1" secondAttribute="bottom" id="WeT-g2-v4g"/>
                             <constraint firstItem="KiG-UC-rYA" firstAttribute="centerX" secondItem="0XW-9A-GsK" secondAttribute="centerX" id="Z60-hF-huT"/>
                             <constraint firstItem="PoM-bO-dzX" firstAttribute="top" secondItem="0XW-9A-GsK" secondAttribute="bottom" id="ffo-cc-ASQ"/>
                             <constraint firstAttribute="trailing" secondItem="PoM-bO-dzX" secondAttribute="trailing" id="gDg-Dk-MV1"/>
                             <constraint firstItem="KiG-UC-rYA" firstAttribute="centerY" secondItem="0XW-9A-GsK" secondAttribute="centerY" id="hjc-TX-SwO"/>
                             <constraint firstAttribute="trailing" secondItem="0XW-9A-GsK" secondAttribute="trailing" id="jzF-xT-LYx"/>
-                            <constraint firstAttribute="trailing" secondItem="pRT-YR-PIx" secondAttribute="trailing" id="rwY-ns-rnJ"/>
-                            <constraint firstItem="pRT-YR-PIx" firstAttribute="bottom" secondItem="0XW-9A-GsK" secondAttribute="bottom" id="zlz-GD-FIX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uZW-sF-El6">

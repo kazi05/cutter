@@ -28,9 +28,20 @@ class VideoPlayerView: UIView {
         }
     }
     
-    init(viedoURL: URL) {
+    private var previewImage: UIImageView?
+    
+    init(viedoURL: URL, previewImage: UIImageView) {
         super.init(frame: .zero)
         self.player = AVPlayer(url: viedoURL)
+        self.previewImage = previewImage
+    }
+    
+    private func getFrameOfPreview() -> CGRect {
+        return previewImage!.calculateRectOfImageInImageView()
+    }
+    
+    override func layoutSubviews() {
+        playerLayer.frame = getFrameOfPreview()
     }
     
     required init?(coder aDecoder: NSCoder) {

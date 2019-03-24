@@ -69,10 +69,10 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     //Apply video URL
     func passVideoURL(_ videoURL: URL) {
-        videoPlayer = VideoPlayerView(viedoURL: videoURL)
-        view.addSubview(videoPlayer!)
-        videoPlayer?.frame = viewPreview.bounds
-        videoPlayer?.player?.play()
+        self.videoURL = videoURL
+        videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
+        view.layer.addSublayer((videoPlayer?.playerLayer)!)
+//        videoPlayer?.player?.play()
     }
 
 }
