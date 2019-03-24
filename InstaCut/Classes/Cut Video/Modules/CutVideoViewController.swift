@@ -42,6 +42,8 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     var isPlayed = false
     var isShowed = false
     
+    var cellBorder: VideoCellBorder?
+    
     //MARK:- Configure module
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,6 +56,8 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         presenter.loadImageFromVideo()
         presenter.getPeriodsForVideo()
         presenter.getVideoURL()
+        
+        
     }
     
     //MARK:- Result comes from Presenter
@@ -108,7 +112,27 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         DispatchQueue.main.async {
             self.periods = periods
             self.collectionView.reloadData()
+            self.addCellBorder()
         }
+    }
+    
+    private func addCellBorder() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        let firstCell = createCell(indexPath: indexPath)
+        cellBorder = VideoCellBorder(frame: firstCell.frame)
+        collectionView.addSubview(cellBorder!)
+    }
+    
+    private func moveCellBorder(to frame: CGRect) {
+        let x = frame.origin.x
+        let y = frame.origin.y
+        AnimationHelper.animateIn(duration: 0.2) {
+            self.cellBorder?.frame.origin = CGPoint(x: x, y: y)
+        }
+    }
+    
+    private func createCell(indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "videoPreviewCell", for: indexPath)
     }
     
     //Apply video URL
@@ -155,5 +179,9 @@ extension CutVideoViewController: UICollectionViewDataSource {
 
 //MARK:- UICollectionViewDeleagte
 extension CutVideoViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = createCell(indexPath: indexPath)
+        moveCellBorder(to: cell.frame)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
 }

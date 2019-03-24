@@ -22,12 +22,6 @@ class VideoPrevieCell: UICollectionViewCell {
         previewImage.clipsToBounds = true
     }
     
-    override var isSelected : Bool {
-        didSet {
-            previewImage.layer.borderWidth = isSelected ? 3.0 : 0
-        }
-    }
-    
     func set(startTime: String, and endTime: String) {
         self.startDuration.text = startTime
         self.endDuration.text = endTime
