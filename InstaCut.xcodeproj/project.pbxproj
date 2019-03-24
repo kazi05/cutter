@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229E239203743EF00466E51 /* VideoPrevieCell.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		1973E305E32B3767E08F462D /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				32A9A95F222BF4A4002D2C06 /* Cells */,
+				3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
 				32A9A95B222BF441002D2C06 /* CutVideoRouting.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
+				3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,
 				32C04FFF20360CD200C509C7 /* CutVideoVC.swift in Sources */,
 				32DBD4AF2052EE0F005129D5 /* DiskStatus.swift in Sources */,

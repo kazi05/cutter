@@ -37,6 +37,8 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     var videoURL: URL?
     
+    var videoPlayer: VideoPlayerView?
+    
     //MARK:- Configure module
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +51,6 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         presenter.loadImageFromVideo()
         presenter.getPeriodsForVideo()
         presenter.getVideoURL()
-        print(videoURL)
     }
     
     //MARK:- Result comes from Presenter
@@ -68,7 +69,10 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     //Apply video URL
     func passVideoURL(_ videoURL: URL) {
-        self.videoURL = videoURL
+        videoPlayer = VideoPlayerView(viedoURL: videoURL)
+        view.addSubview(videoPlayer!)
+        videoPlayer?.frame = viewPreview.bounds
+        videoPlayer?.player?.play()
     }
 
 }
