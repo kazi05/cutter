@@ -37,7 +37,10 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     var videoURL: URL?
     
-    var videoPlayer: VideoPlayerView?
+    var videoPlayer = VideoPlayerView()
+    
+    var isPlayed = false
+    var isShowed = false
     
     //MARK:- Configure module
     override func awakeFromNib() {
@@ -54,9 +57,33 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     }
     
     //MARK:- Result comes from Presenter
+    
     //Apply preview image
     func addPreviewImage(_ image: UIImage) {
         self.viewPreview.image = image
+        imagePreviewTap()
+    }
+    
+    private func imagePreviewTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handlePreviewTap(_:)))
+        viewPreview.isUserInteractionEnabled = true
+        viewPreview.addGestureRecognizer(tap)
+    }
+    
+    @objc private func handlePreviewTap(_ sender: UITapGestureRecognizer) {
+        if isPlayed {
+            if isShowed {
+                AnimationHelper.animateOut(duration: 0.5) {
+                    self.playButton.alpha = 0
+                    self.isShowed = false
+                }
+            }else {
+                AnimationHelper.animateIn(duration: 0.5) {
+                    self.playButton.alpha = 1
+                    self.isShowed = true
+                }
+            }
+        }
     }
     
     //Apply periods of video
@@ -71,10 +98,23 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     func passVideoURL(_ videoURL: URL) {
         self.videoURL = videoURL
         videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
-        view.layer.addSublayer((videoPlayer?.playerLayer)!)
-//        videoPlayer?.player?.play()
     }
 
+    @IBAction func playVideo(_ sender: Any) {
+        if !isPlayed {
+            AnimationHelper.animateOut(duration: 0.5) {
+                self.playButton.alpha = 0
+                self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
+            }
+            view.layer.addSublayer(videoPlayer.playerLayer)
+            videoPlayer.player?.play()
+            isPlayed = true
+        }else {
+            playButton.setImage(#imageLiteral(resourceName: "play-button.png"), for: .normal)
+            videoPlayer.player?.pause()
+            isPlayed = false
+        }
+    }
 }
 
 //MARK:- UICollectionViewDataSource

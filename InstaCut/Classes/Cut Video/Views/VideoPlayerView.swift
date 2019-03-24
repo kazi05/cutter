@@ -30,6 +30,10 @@ class VideoPlayerView: UIView {
     
     private var previewImage: UIImageView?
     
+    init() {
+        super.init(frame: .zero)
+    }
+    
     init(viedoURL: URL, previewImage: UIImageView) {
         super.init(frame: .zero)
         self.player = AVPlayer(url: viedoURL)

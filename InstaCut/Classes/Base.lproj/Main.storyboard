@@ -203,7 +203,7 @@
                                 </constraints>
                                 <state key="normal" image="play-button"/>
                                 <connections>
-                                    <action selector="playVideo:" destination="Ogl-fQ-QEa" eventType="touchUpInside" id="BLj-eh-wat"/>
+                                    <action selector="playVideo:" destination="Ogl-fQ-QEa" eventType="touchUpInside" id="zz9-ia-adB"/>
                                 </connections>
                             </button>
                         </subviews>

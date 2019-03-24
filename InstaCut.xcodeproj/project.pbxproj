@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */; };
+		3209D6D52247D7050007A11C /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D42247D7050007A11C /* AnimationHelper.swift */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229E239203743EF00466E51 /* VideoPrevieCell.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		1973E305E32B3767E08F462D /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		3209D6D42247D7050007A11C /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
 				32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */,
 				328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */,
+				3209D6D42247D7050007A11C /* AnimationHelper.swift */,
 			);
 			path = Helpres;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				32C04FFF20360CD200C509C7 /* CutVideoVC.swift in Sources */,
 				32DBD4AF2052EE0F005129D5 /* DiskStatus.swift in Sources */,
 				321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */,
+				3209D6D52247D7050007A11C /* AnimationHelper.swift in Sources */,
 				32A4C723222BF8F2003616CC /* PhotoLibraryPremission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
