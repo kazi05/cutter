@@ -11,12 +11,14 @@ import UIKit
 protocol CutVideoViewControllerInput: class {
     func addPreviewImage(_ image: UIImage)
     func applyPeriodsForVideo(_ periods: [VideoPeriods])
+    func passVideoURL(_ videoURL: URL)
 }
 
 protocol CutVideoViewControllerOutput: class {
     func saveSelectedVideoModel(_ videoModel: VideoModel)
     func loadImageFromVideo()
     func getPeriodsForVideo()
+    func getVideoURL()
 }
 
 class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
@@ -33,6 +35,8 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     var periods = [VideoPeriods]()
     
+    var videoURL: URL?
+    
     //MARK:- Configure module
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,18 +48,27 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
 
         presenter.loadImageFromVideo()
         presenter.getPeriodsForVideo()
+        presenter.getVideoURL()
+        print(videoURL)
     }
     
     //MARK:- Result comes from Presenter
+    //Apply preview image
     func addPreviewImage(_ image: UIImage) {
         self.viewPreview.image = image
     }
     
+    //Apply periods of video
     func applyPeriodsForVideo(_ periods: [VideoPeriods]) {
         DispatchQueue.main.async {
             self.periods = periods
             self.collectionView.reloadData()
         }
+    }
+    
+    //Apply video URL
+    func passVideoURL(_ videoURL: URL) {
+        self.videoURL = videoURL
     }
 
 }

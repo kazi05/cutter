@@ -29,6 +29,10 @@ class CutVideoPresenter: CutVideoPresenterInput {
         self.interactor.getPeriodsForVideo()
     }
     
+    func getVideoURL() {
+        self.interactor.getVideoURLFromModel()
+    }
+    
     //MARK:- results comes from Interactor
     func sendImageFromVideo(_ image: UIImage) {
         self.viewController.addPreviewImage(image)
@@ -36,6 +40,10 @@ class CutVideoPresenter: CutVideoPresenterInput {
     
     func sendPeriodsFromVideo(_ periods: [VideoPeriods]) {
         self.viewController.applyPeriodsForVideo(periods)
+    }
+    
+    func sendVideoURL(_ videoURL: URL) {
+        self.viewController.passVideoURL(videoURL)
     }
     
 }
