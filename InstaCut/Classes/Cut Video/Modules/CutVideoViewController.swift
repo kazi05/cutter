@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol CutVideoViewControllerInput: class {
     func addPreviewImage(_ image: UIImage)
@@ -141,20 +142,21 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     }
 
     //MARK:- Play video button action
+    fileprivate func pausingVideo() {
+        playButton.setImage(#imageLiteral(resourceName: "play-button.png"), for: .normal)
+        videoPlayer.pause()
+        isPlayed = false
+        isShowed = false
+    }
+    
     @IBAction func playVideo(_ sender: Any) {
         if !isPlayed {
-//            if viewPreview.layer.sublayers == nil {
-//                viewPreview.layer.addSublayer(videoPlayer.playerLayer)
-//            }
             videoPlayer.play()
             isPlayed = true
             self.playButton.alpha = 0
             self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
         }else {
-            playButton.setImage(#imageLiteral(resourceName: "play-button.png"), for: .normal)
-            videoPlayer.pause()
-            isPlayed = false
-            isShowed = false
+            pausingVideo()
         }
     }
 }
@@ -184,5 +186,10 @@ extension CutVideoViewController: UICollectionViewDelegate {
         let cell = createCell(indexPath: indexPath)
         moveCellBorder(to: cell.frame)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        pausingVideo()
+        playButton.alpha = 1
+        let start = periods[indexPath.row].start
+        let time = CMTime(seconds: start, preferredTimescale: 1000)
+        videoPlayer.player?.seek(to: time)
     }
 }
