@@ -213,6 +213,7 @@ extension CutVideoViewController: UICollectionViewDataSource {
 extension CutVideoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let start = periods[indexPath.row].start
+        index = indexPath.row
         let time = CMTime(seconds: start, preferredTimescale: 1000)
         videoPlayer.player?.seek(to: time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
         pausingVideo()
