@@ -142,22 +142,30 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     }
     
     //Apply video URL
+    var index = 0
     func passVideoURL(_ videoURL: URL) {
         self.videoURL = videoURL
         videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
         
-        let interval = CMTime(value: 1, timescale: 2)
+        let interval = CMTime(seconds: 1, preferredTimescale: 1)
         videoPlayer.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (secondsTime) in
-            let seconds = CMTimeGetSeconds(secondsTime).rounded()
-            print("Video seconds: \(seconds)")
-            for (i, period) in self.periods.enumerated() {
-                if Double(seconds) > period.start && Double(seconds) < period.end {
-                    print("Period start: \(period.start)")
-                    let indexPath = IndexPath(item: i, section: 0)
+            if self.isPlayed {
+                let seconds = CMTimeGetSeconds(secondsTime).rounded()
+                print("Video seconds: \(seconds)")
+                let start = self.periods[self.index].start
+                if Double(seconds) >= start {
+                    let indexPath = IndexPath(item: self.index, section: 0)
                     self.setupBorderCell(indexPath: indexPath)
+                    if self.index >= self.periods.count - 1 {
+                        print("More then count")
+                        self.index = self.periods.count - 1
+                    }else {
+                        self.index += 1
+                    }
                 }
             }
         })
+        
         viewPreview.layer.addSublayer(videoPlayer.playerLayer)
     }
 
@@ -171,10 +179,10 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     @IBAction func playVideo(_ sender: Any) {
         if !isPlayed {
-            videoPlayer.play()
             isPlayed = true
             self.playButton.alpha = 0
             self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
+            videoPlayer.play()
         }else {
             pausingVideo()
         }
@@ -204,11 +212,11 @@ extension CutVideoViewController: UICollectionViewDataSource {
 //MARK:- UICollectionViewDeleagte
 extension CutVideoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let start = periods[indexPath.row].start
+        let time = CMTime(seconds: start, preferredTimescale: 1000)
+        videoPlayer.player?.seek(to: time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
         pausingVideo()
         setupBorderCell(indexPath: indexPath)
         playButton.alpha = 1
-        let start = periods[indexPath.row].start
-        let time = CMTime(seconds: start + 2, preferredTimescale: 1000)
-        videoPlayer.player?.seek(to: time)
     }
 }

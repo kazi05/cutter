@@ -56,7 +56,8 @@ class DelegatingVideoHelper: DelegatingVideoHelperProtocol {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
         do {
-            let tumbnailCGIImage = try imageGenerator.copyCGImage(at: CMTime(seconds: start, preferredTimescale: 1000), actualTime: nil)
+            let time = CMTime(seconds: start + 2, preferredTimescale: 1)
+            let tumbnailCGIImage = try imageGenerator.copyCGImage(at: time, actualTime: nil)
             return UIImage(cgImage: tumbnailCGIImage)
         }catch {
             print(error)
