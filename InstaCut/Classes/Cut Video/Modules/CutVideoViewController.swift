@@ -115,6 +115,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         }
     }
     
+    //MARK: - Border cell settings
     private func addCellBorder() {
         let indexPath = IndexPath(item: 0, section: 0)
         let firstCell = createCell(indexPath: indexPath)
@@ -134,10 +135,29 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "videoPreviewCell", for: indexPath)
     }
     
+    private func setupBorderCell(indexPath: IndexPath) {
+        let cell = createCell(indexPath: indexPath)
+        moveCellBorder(to: cell.frame)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
     //Apply video URL
     func passVideoURL(_ videoURL: URL) {
         self.videoURL = videoURL
         videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
+        
+        let interval = CMTime(value: 1, timescale: 2)
+        videoPlayer.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (secondsTime) in
+            let seconds = CMTimeGetSeconds(secondsTime).rounded()
+            print("Video seconds: \(seconds)")
+            for (i, period) in self.periods.enumerated() {
+                if Double(seconds) > period.start && Double(seconds) < period.end {
+                    print("Period start: \(period.start)")
+                    let indexPath = IndexPath(item: i, section: 0)
+                    self.setupBorderCell(indexPath: indexPath)
+                }
+            }
+        })
         viewPreview.layer.addSublayer(videoPlayer.playerLayer)
     }
 
@@ -159,6 +179,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
             pausingVideo()
         }
     }
+    
 }
 
 //MARK:- UICollectionViewDataSource
@@ -183,13 +204,11 @@ extension CutVideoViewController: UICollectionViewDataSource {
 //MARK:- UICollectionViewDeleagte
 extension CutVideoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = createCell(indexPath: indexPath)
-        moveCellBorder(to: cell.frame)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         pausingVideo()
+        setupBorderCell(indexPath: indexPath)
         playButton.alpha = 1
         let start = periods[indexPath.row].start
-        let time = CMTime(seconds: start, preferredTimescale: 1000)
+        let time = CMTime(seconds: start + 2, preferredTimescale: 1000)
         videoPlayer.player?.seek(to: time)
     }
 }
