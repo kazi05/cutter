@@ -29,7 +29,6 @@
 		32A9A953222BF3E4002D2C06 /* MainScreenRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A952222BF3E4002D2C06 /* MainScreenRouting.swift */; };
 		32A9A957222BF428002D2C06 /* CutVideoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */; };
 		32A9A959222BF436002D2C06 /* CutVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */; };
-		32A9A95B222BF441002D2C06 /* CutVideoRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */; };
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
 		32C04FED2035AA7E00C509C7 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEC2035AA7E00C509C7 /* MainScreenViewController.swift */; };
 		32C04FF02035AA7E00C509C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FEE2035AA7E00C509C7 /* Main.storyboard */; };
@@ -71,7 +70,6 @@
 		32A9A952222BF3E4002D2C06 /* MainScreenRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouting.swift; sourceTree = "<group>"; };
 		32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoInteractor.swift; sourceTree = "<group>"; };
 		32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoPresenter.swift; sourceTree = "<group>"; };
-		32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoRouting.swift; sourceTree = "<group>"; };
 		32C04FE72035AA7E00C509C7 /* InstaCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C04FEC2035AA7E00C509C7 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				328C969D222D4B8400142FBE /* CutVideoViewController.swift */,
 				32A9A958222BF436002D2C06 /* CutVideoPresenter.swift */,
 				32A9A956222BF428002D2C06 /* CutVideoInteractor.swift */,
-				32A9A95A222BF441002D2C06 /* CutVideoRouting.swift */,
 				32A4C726222BF948003616CC /* CutVideoAssembly.swift */,
 			);
 			path = Modules;
@@ -458,7 +455,6 @@
 				32A4C725222BF937003616CC /* MainScreenAssembly.swift in Sources */,
 				323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */,
 				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
-				32A9A95B222BF441002D2C06 /* CutVideoRouting.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
 				3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,

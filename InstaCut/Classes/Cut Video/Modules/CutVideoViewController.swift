@@ -56,8 +56,6 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         presenter.loadImageFromVideo()
         presenter.getPeriodsForVideo()
         presenter.getVideoURL()
-        
-        
     }
     
     //MARK:- Result comes from Presenter
@@ -145,13 +143,16 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     //MARK:- Play video button action
     @IBAction func playVideo(_ sender: Any) {
         if !isPlayed {
-            videoPlayer.player?.play()
+//            if viewPreview.layer.sublayers == nil {
+//                viewPreview.layer.addSublayer(videoPlayer.playerLayer)
+//            }
+            videoPlayer.play()
             isPlayed = true
             self.playButton.alpha = 0
             self.playButton.setImage(UIImage(named: "media-pause") , for: .normal)
         }else {
             playButton.setImage(#imageLiteral(resourceName: "play-button.png"), for: .normal)
-            videoPlayer.player?.pause()
+            videoPlayer.pause()
             isPlayed = false
             isShowed = false
         }

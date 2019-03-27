@@ -462,7 +462,7 @@ class CutVideoVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             if isProVersion {
                 return UIImage(cgImage: tumbnailCGIImage)
             }else {
-                let maskImage = UIImage(cgImage: tumbnailCGIImage).addText()
+                let maskImage = UIImage(cgImage: tumbnailCGIImage).addLogoMask()
                 return maskImage
             }
         }catch {

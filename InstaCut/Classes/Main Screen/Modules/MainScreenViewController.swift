@@ -61,9 +61,12 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
     
     //MARK:- Display error view
     func displayAccesError(error: String?) {
-        cameraRollCollectionView.isHidden = true
-        noItemsView.isHidden = false
-        noItemsLbl.text = error
+        DispatchQueue.main.async {
+            self.cameraRollCollectionView.isHidden = true
+            self.noItemsView.isHidden = false
+            self.noItemsLbl.text = error
+        }
+       
     }
     
     //MARK:- Reload collectionView

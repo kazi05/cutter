@@ -33,6 +33,7 @@ class CutVideoInteractor: CutVideoInteractorInput {
     
     func getImageFromVideo() {
         if let image = video?.originalImage {
+//            let maskedImage = image.addLogoMask()
             self.presenter.sendImageFromVideo(image)
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
     
-    func addText() -> UIImage {
+    func addLogoMask() -> UIImage {
         
         
         // Setup the image context using the passed image
@@ -101,3 +101,19 @@ extension CGSize {
     }
 }
 
+extension CALayer {
+    
+    func addLogoMask() {
+        let imageWidth = frame.width
+        let imageHeight = frame.height
+        let sizeConst: CGFloat = imageHeight > imageWidth ? 12 : 5
+        let sizeHeight = imageHeight / sizeConst
+        let overlayLayer = CALayer()
+        let textImage = UIImage(named: "Cutter-maska")
+        overlayLayer.contents = textImage?.cgImage
+        overlayLayer.frame = CGRect(x: imageWidth - (sizeHeight * 1.3), y: imageHeight - (sizeHeight * 1.3), width: sizeHeight, height: sizeHeight)
+        overlayLayer.masksToBounds = true
+        addSublayer(overlayLayer)
+    }
+    
+}

@@ -40,12 +40,21 @@ class VideoPlayerView: UIView {
         self.previewImage = previewImage
     }
     
+    func play() {
+        player?.play()
+    }
+    
+    func pause() {
+        player?.pause()
+    }
+    
     private func getFrameOfPreview() -> CGRect {
         return previewImage!.calculateRectOfImageInImageView()
     }
     
     override func layoutSubviews() {
         playerLayer.frame = getFrameOfPreview()
+        playerLayer.addLogoMask()
     }
     
     required init?(coder aDecoder: NSCoder) {
