@@ -17,6 +17,13 @@
 		323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF322059AE47008ABC85 /* ReceiptValidator.swift */; };
 		323CCF362059AE47008ABC85 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 323CCF342059AE47008ABC85 /* pkcs7_union_accessors.c */; };
 		325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325F0A0E2046E0BE00DF16CA /* Extensions.swift */; };
+		3268F4E5224CDEAB000C544B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4E3224CDEAB000C544B /* PopUpViewController.swift */; };
+		3268F4E6224CDEAB000C544B /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3268F4E4224CDEAB000C544B /* PopUpViewController.xib */; };
+		3268F4E9224CE7CD000C544B /* ProgressPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3268F4E8224CE7CD000C544B /* ProgressPopUpView.xib */; };
+		3268F4EB224CE810000C544B /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EA224CE810000C544B /* ProgressPopUpView.swift */; };
+		3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EC224CE865000C544B /* NibLoadable.swift */; };
+		3268F4F0224CF055000C544B /* IterationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EF224CF055000C544B /* IterationObserver.swift */; };
+		3268F4F2224CF51F000C544B /* SavingVideosHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */; };
 		328AA146222FF40C008C7841 /* DelegatingVideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */; };
 		328C969E222D4B8400142FBE /* CutVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C969D222D4B8400142FBE /* CutVideoViewController.swift */; };
 		32A4C721222BF8DA003616CC /* PhotoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C720222BF8DA003616CC /* PhotoLibraryManager.swift */; };
@@ -57,6 +64,13 @@
 		325F0A0E2046E0BE00DF16CA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		326738B5205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		326738B6205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3268F4E3224CDEAB000C544B /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		3268F4E4224CDEAB000C544B /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		3268F4E8224CE7CD000C544B /* ProgressPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressPopUpView.xib; sourceTree = "<group>"; };
+		3268F4EA224CE810000C544B /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
+		3268F4EC224CE865000C544B /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		3268F4EF224CF055000C544B /* IterationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IterationObserver.swift; sourceTree = "<group>"; };
+		3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingVideosHelper.swift; sourceTree = "<group>"; };
 		32707E05203858C0007D6CBF /* InstaCut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaCut-Bridging-Header.h"; sourceTree = "<group>"; };
 		328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatingVideoHelper.swift; sourceTree = "<group>"; };
 		328C969D222D4B8400142FBE /* CutVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutVideoViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +113,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3268F4E2224CDE8F000C544B /* PopUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3268F4E7224CE74E000C544B /* PopUpViews */,
+				3268F4E3224CDEAB000C544B /* PopUpViewController.swift */,
+				3268F4E4224CDEAB000C544B /* PopUpViewController.xib */,
+			);
+			path = PopUpViewController;
+			sourceTree = "<group>";
+		};
+		3268F4E7224CE74E000C544B /* PopUpViews */ = {
+			isa = PBXGroup;
+			children = (
+				3268F4EA224CE810000C544B /* ProgressPopUpView.swift */,
+				3268F4E8224CE7CD000C544B /* ProgressPopUpView.xib */,
+			);
+			path = PopUpViews;
+			sourceTree = "<group>";
+		};
+		3268F4EE224CF03C000C544B /* Iteration Observer */ = {
+			isa = PBXGroup;
+			children = (
+				3268F4EF224CF055000C544B /* IterationObserver.swift */,
+			);
+			path = "Iteration Observer";
+			sourceTree = "<group>";
+		};
 		32A4C71F222BF8C5003616CC /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +200,7 @@
 		32A9A954222BF3FC002D2C06 /* Cut Video */ = {
 			isa = PBXGroup;
 			children = (
+				3268F4EE224CF03C000C544B /* Iteration Observer */,
 				32A9A955222BF40B002D2C06 /* Modules */,
 				32A9A95E222BF49E002D2C06 /* Views */,
 			);
@@ -196,6 +238,7 @@
 		32A9A95E222BF49E002D2C06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3268F4E2224CDE8F000C544B /* PopUpViewController */,
 				32A9A95F222BF4A4002D2C06 /* Cells */,
 				3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */,
 				3209D6D62247DF780007A11C /* VideoCellBorder.swift */,
@@ -220,6 +263,8 @@
 				32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */,
 				328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */,
 				3209D6D42247D7050007A11C /* AnimationHelper.swift */,
+				3268F4EC224CE865000C544B /* NibLoadable.swift */,
+				3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */,
 			);
 			path = Helpres;
 			sourceTree = "<group>";
@@ -370,8 +415,10 @@
 				32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
+				3268F4E9224CE7CD000C544B /* ProgressPopUpView.xib in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
 				32C04FF02035AA7E00C509C7 /* Main.storyboard in Resources */,
+				3268F4E6224CDEAB000C544B /* PopUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A4C727222BF948003616CC /* CutVideoAssembly.swift in Sources */,
+				3268F4F0224CF055000C544B /* IterationObserver.swift in Sources */,
 				328AA146222FF40C008C7841 /* DelegatingVideoHelper.swift in Sources */,
 				32A4C721222BF8DA003616CC /* PhotoLibraryManager.swift in Sources */,
 				32E8C9562053FD37001A3FA7 /* IAPManager.swift in Sources */,
@@ -446,15 +494,19 @@
 				32A9A953222BF3E4002D2C06 /* MainScreenRouting.swift in Sources */,
 				32A9A957222BF428002D2C06 /* CutVideoInteractor.swift in Sources */,
 				32A9A951222BF38E002D2C06 /* MainScreenPresenter.swift in Sources */,
+				3268F4F2224CF51F000C544B /* SavingVideosHelper.swift in Sources */,
 				328C969E222D4B8400142FBE /* CutVideoViewController.swift in Sources */,
 				32A9A959222BF436002D2C06 /* CutVideoPresenter.swift in Sources */,
 				325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */,
 				323CCF362059AE47008ABC85 /* pkcs7_union_accessors.c in Sources */,
 				32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */,
 				32C04FED2035AA7E00C509C7 /* MainScreenViewController.swift in Sources */,
+				3268F4EB224CE810000C544B /* ProgressPopUpView.swift in Sources */,
 				32A4C725222BF937003616CC /* MainScreenAssembly.swift in Sources */,
 				323CCF352059AE47008ABC85 /* ReceiptValidator.swift in Sources */,
+				3268F4E5224CDEAB000C544B /* PopUpViewController.swift in Sources */,
 				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
+				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
 				3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,

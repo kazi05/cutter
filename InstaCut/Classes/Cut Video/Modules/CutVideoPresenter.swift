@@ -33,6 +33,10 @@ class CutVideoPresenter: CutVideoPresenterInput {
         self.interactor.getVideoURLFromModel()
     }
     
+    func saveVideosToPhotoAlbum(from videoURL: URL, periods: [VideoPeriods], popUpView: PopUpViewController) {
+        self.interactor.saveVideosToPhotoAlbum(from: videoURL, periods: periods, popUpView: popUpView)
+    }
+    
     //MARK:- results comes from Interactor
     func sendImageFromVideo(_ image: UIImage) {
         self.viewController.addPreviewImage(image)

@@ -20,6 +20,7 @@ protocol CutVideoViewControllerOutput: class {
     func loadImageFromVideo()
     func getPeriodsForVideo()
     func getVideoURL()
+    func saveVideosToPhotoAlbum(from videoURL: URL, periods: [VideoPeriods], popUpView: PopUpViewController)
 }
 
 class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
@@ -44,6 +45,21 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     var isShowed = false
     
     var cellBorder: VideoCellBorder?
+    
+    private var isCanSave: Bool {
+        do {
+            let data = try Data(contentsOf: videoURL!)
+            let free = DiskStatus.freeDiskSpaceInBytes
+            print(free)
+            print(Int64(data.count))
+            if free < Int64(data.count) {
+                return false
+            }
+        }catch {
+            print(error.localizedDescription)
+        }
+        return true
+    }
     
     //MARK:- Configure module
     override func awakeFromNib() {
@@ -151,13 +167,11 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
         videoPlayer.player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (secondsTime) in
             if self.isPlayed {
                 let seconds = CMTimeGetSeconds(secondsTime).rounded()
-                print("Video seconds: \(seconds)")
                 let start = self.periods[self.index].start
                 if Double(seconds) >= start {
                     let indexPath = IndexPath(item: self.index, section: 0)
                     self.setupBorderCell(indexPath: indexPath)
                     if self.index >= self.periods.count - 1 {
-                        print("More then count")
                         self.index = self.periods.count - 1
                     }else {
                         self.index += 1
@@ -185,6 +199,18 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
             videoPlayer.play()
         }else {
             pausingVideo()
+        }
+    }
+    
+    //MARK: - Save button action
+    @IBAction func saveVideos(_ sender: Any) {        
+        let popUpViewController = PopUpViewController(nibName: "PopUpViewController", bundle: nil)
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        popUpViewController.modalTransitionStyle = .crossDissolve
+        self.present(popUpViewController, animated: true, completion: nil)
+        popUpViewController.showProgressHUD(count: periods.count)
+        if let url = videoURL {
+            presenter.saveVideosToPhotoAlbum(from: url, periods: self.periods, popUpView: popUpViewController)
         }
     }
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3BJ-DM-Kjb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3BJ-DM-Kjb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -223,6 +223,9 @@
                     <navigationItem key="navigationItem" id="uZW-sF-El6">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Szu-qQ-1pC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveVideos:" destination="Ogl-fQ-QEa" id="Fd8-lf-ZRx"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -279,6 +282,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="play-button" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="play-button" width="64" height="64"/>
     </resources>
 </document>

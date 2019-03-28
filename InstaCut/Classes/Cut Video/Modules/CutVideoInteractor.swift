@@ -19,6 +19,7 @@ protocol CutVideoInteractorInput: class {
     func getImageFromVideo()
     func getPeriodsForVideo()
     func getVideoURLFromModel()
+    func saveVideosToPhotoAlbum(from videoURL: URL, periods: [VideoPeriods], popUpView: PopUpViewController)
 }
 
 class CutVideoInteractor: CutVideoInteractorInput {
@@ -49,6 +50,11 @@ class CutVideoInteractor: CutVideoInteractorInput {
         if let videoURL = video?.videoURL {
             self.presenter.sendVideoURL(videoURL)
         }
+    }
+    
+    func saveVideosToPhotoAlbum(from videoURL: URL, periods: [VideoPeriods], popUpView: PopUpViewController) {
+        let saveVideosManager = SavingVideosHelper(popUpView: popUpView)
+        saveVideosManager.saveVideos(from: videoURL, with: periods)
     }
         
 }

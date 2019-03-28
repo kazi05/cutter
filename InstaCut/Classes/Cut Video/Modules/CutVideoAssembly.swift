@@ -16,6 +16,7 @@ class CutVideoAssembly {
         let delegateVideoManager = DelegatingVideoHelper()
         let presenter = CutVideoPresenter()
         let interactor = CutVideoInteractor()
+        
         viewController.presenter = presenter
         
         presenter.viewController = viewController
