@@ -11,6 +11,7 @@ import UIKit
 
 protocol PhotoLibraryProtocol: class {
     func fetchVideosFromPhotolibrary(_ viewController: UIViewController, completion: @escaping (String?, [VideoModel]?) -> Void)
+    func saveVideoToCameraRoll(videoURL: URL, completion: @escaping (Bool, Error?) -> Void)
 }
 
 class PhotoLibraryManager: PhotoLibraryProtocol {
@@ -78,5 +79,13 @@ class PhotoLibraryManager: PhotoLibraryProtocol {
         semaphore.wait()
         
         return url
+    }
+    
+    func saveVideoToCameraRoll(videoURL: URL, completion: @escaping (Bool, Error?) -> Void) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+        }) { saved, error in
+            completion(saved, error)
+        }
     }
 }

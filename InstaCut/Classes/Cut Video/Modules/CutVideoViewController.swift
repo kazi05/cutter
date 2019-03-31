@@ -79,7 +79,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     
     //Apply preview image
     func addPreviewImage(_ image: UIImage) {
-        self.viewPreview.image = image
+        viewPreview.image = image
         imagePreviewTap()
     }
     
@@ -160,7 +160,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     //Apply video URL
     var index = 0
     func passVideoURL(_ videoURL: URL) {
-        self.videoURL = videoURL
+        self.videoURL = videoURL        
         videoPlayer = VideoPlayerView(viedoURL: videoURL, previewImage: viewPreview)
         
         let interval = CMTime(seconds: 1, preferredTimescale: 1)

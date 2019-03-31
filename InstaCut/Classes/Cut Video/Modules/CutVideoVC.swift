@@ -833,7 +833,6 @@ class CutVideoVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 } catch {
                     print(error)
                 }
-                
             }
             //
             let size = videoTrack.naturalSize

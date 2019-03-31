@@ -14,6 +14,7 @@ class CutVideoAssembly {
     
     func configure(_ viewController: CutVideoViewController) {
         let delegateVideoManager = DelegatingVideoHelper()
+        let photoLibraryManager = PhotoLibraryManager()
         let presenter = CutVideoPresenter()
         let interactor = CutVideoInteractor()
         
@@ -24,6 +25,7 @@ class CutVideoAssembly {
         
         interactor.presenter = presenter
         interactor.delegateVideoManager = delegateVideoManager
+        interactor.photoLibraryManager = photoLibraryManager
     }
     
 }

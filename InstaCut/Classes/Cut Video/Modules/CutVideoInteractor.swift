@@ -27,6 +27,7 @@ class CutVideoInteractor: CutVideoInteractorInput {
     weak var presenter: CutVideoInteractorOutput!
     var video: VideoModel?
     var delegateVideoManager: DelegatingVideoHelperProtocol!
+    var photoLibraryManager: PhotoLibraryManager!
     
     func configureVideoModel(_ videoModel: VideoModel) {
         self.video = videoModel
@@ -53,7 +54,7 @@ class CutVideoInteractor: CutVideoInteractorInput {
     }
     
     func saveVideosToPhotoAlbum(from videoURL: URL, periods: [VideoPeriods], popUpView: PopUpViewController) {
-        let saveVideosManager = SavingVideosHelper(popUpView: popUpView)
+        let saveVideosManager = SavingVideosHelper(popUpView: popUpView, photoLibraryManager: photoLibraryManager)
         saveVideosManager.saveVideos(from: videoURL, with: periods)
     }
         

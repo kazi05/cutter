@@ -103,7 +103,7 @@ extension CGSize {
 
 extension CALayer {
     
-    func addLogoMask() {
+    func addLogoMask(reverse: Bool = false) {
         let imageWidth = frame.width
         let imageHeight = frame.height
         let sizeConst: CGFloat = imageHeight > imageWidth ? 12 : 5
@@ -111,7 +111,7 @@ extension CALayer {
         let overlayLayer = CALayer()
         let textImage = UIImage(named: "Cutter-maska")
         overlayLayer.contents = textImage?.cgImage
-        overlayLayer.frame = CGRect(x: imageWidth - (sizeHeight * 1.3), y: imageHeight - (sizeHeight * 1.3), width: sizeHeight, height: sizeHeight)
+        overlayLayer.frame = CGRect(x: imageWidth - (sizeHeight * 1.2), y: reverse ? (sizeHeight / 2) : imageHeight - (sizeHeight * 1.2) , width: sizeHeight, height: sizeHeight)
         overlayLayer.masksToBounds = true
         addSublayer(overlayLayer)
     }
