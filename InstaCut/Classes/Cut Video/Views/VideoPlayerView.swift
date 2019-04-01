@@ -54,7 +54,6 @@ class VideoPlayerView: UIView {
     
     override func layoutSubviews() {
         playerLayer.frame = getFrameOfPreview()
-        playerLayer.addLogoMask()
     }
     
     required init?(coder aDecoder: NSCoder) {

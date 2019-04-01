@@ -39,13 +39,18 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerInput 
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        performVideos()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        performVideos()
+        
     }
     
     //MARK:- Request videos service result from Presenter
     func performVideos() {
+        self.videos = []
         presenter.fetchVideos(self)
     }
     

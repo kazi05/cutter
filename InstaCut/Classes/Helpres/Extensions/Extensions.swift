@@ -8,40 +8,6 @@
 
 import UIKit
 
-extension UIImage {
-    
-    func addLogoMask() -> UIImage {
-        
-        
-        // Setup the image context using the passed image
-        UIGraphicsBeginImageContext(size)
-        
-        // Put the image into a rectangle as large as the original image
-        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        
-        let sizeConst: CGFloat = size.height > size.width ? 12 : 5
-        
-        let sizeHeight = size.height / sizeConst
-        
-//        let context = UIGraphicsGetCurrentContext()
-        
-        let textImage = UIImage(named: "Cutter-maska")
-        textImage?.draw(in: CGRect(x: size.width - (sizeHeight * 1.3), y: size.height - (sizeHeight * 1.3) , width: sizeHeight, height: sizeHeight))
-        //        textImage?.draw(at: CGPoint(x: (size.width / 2) - 35, y: size.height - 70))
-        
-        // Create a new image out of the images we have created
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        // End the context now that we have the image we need
-        UIGraphicsEndImageContext()
-        
-        //Pass the image back up to the caller
-        return newImage!
-        
-    }
-    
-}
-
 extension UIImageView {
     
     func calculateRectOfImageInImageView() -> CGRect {
@@ -99,21 +65,4 @@ extension CGSize {
         
         return minimumSize;
     }
-}
-
-extension CALayer {
-    
-    func addLogoMask(reverse: Bool = false) {
-        let imageWidth = frame.width
-        let imageHeight = frame.height
-        let sizeConst: CGFloat = imageHeight > imageWidth ? 12 : 5
-        let sizeHeight = imageHeight / sizeConst
-        let overlayLayer = CALayer()
-        let textImage = UIImage(named: "Cutter-maska")
-        overlayLayer.contents = textImage?.cgImage
-        overlayLayer.frame = CGRect(x: imageWidth - (sizeHeight * 1.2), y: reverse ? (sizeHeight / 2) : imageHeight - (sizeHeight * 1.2) , width: sizeHeight, height: sizeHeight)
-        overlayLayer.masksToBounds = true
-        addSublayer(overlayLayer)
-    }
-    
 }
