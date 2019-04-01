@@ -346,7 +346,6 @@
 				32C04FE42035AA7E00C509C7 /* Frameworks */,
 				32C04FE52035AA7E00C509C7 /* Resources */,
 				AF906D094E6A49318743BE63 /* [CP] Embed Pods Frameworks */,
-				36AA68908997A30DC29B07BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -428,21 +427,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36AA68908997A30DC29B07BF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AF906D094E6A49318743BE63 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,12 +435,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Segmentio/Segmentio.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Segmentio.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
