@@ -47,8 +47,7 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
     
     private func saveVideoToPhotoAlbum(index: Int, start: Double, end: Double) {
         
-        let outputURL = createDirectory(index: index)
-        guard let url = videoURL else { return }
+        guard let url = videoURL, let outputURL = createDirectory(index: index) else { return }
         
         let startTime = CMTime(seconds: start, preferredTimescale: 1000)
         let endTime = CMTime(seconds: end, preferredTimescale: 1000)
@@ -56,18 +55,21 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
         
         let asset = AVAsset(url: url)
         
+        exportToCameraRoll(with: timeRange, and: asset, to: outputURL, index: index)
         
+        dispatchSemaphore.wait()
     }
     
-    private func createDirectory(index: Int) -> URL {
-        guard let documentDirectory = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {return}
+    private func createDirectory(index: Int) -> URL? {
+        
+        guard let documentDirectory = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return nil }
             
         var outputURL = documentDirectory.appendingPathComponent("output")
         do {
             let name = "outputVideo_\(index + 1)_\(Int(Date().timeIntervalSince1970))"
             outputURL = outputURL.appendingPathComponent("\(name).mp4")
-            //                try manager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
-        }catch let error {
+            try fileManager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+        } catch {
             print(error)
         }
         
@@ -75,31 +77,32 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
     }
     
     private func removeFileFromDirectory(outputURL: URL) {
-        try? fileManager.removeItemAtURL(outputURL)
+        try? fileManager.removeItem(at: outputURL)
     }
     
-    private func exportToCameraRoll(with timeRange: CMTimeRange, and asset: AVAsset, to outputURL: URL) {
+    private func exportToCameraRoll(with timeRange: CMTimeRange, and asset: AVAsset, to outputURL: URL, index: Int) {
         guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {return}
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mp4
-        
         exportSession.timeRange = timeRange
+        
+        self.removeFileFromDirectory(outputURL: outputURL)
+        
         exportSession.exportAsynchronously {
             switch exportSession.status {
-            case .Completed:
+            case .completed:
                 print("exported at \(outputURL)")
                 self.photoLibraryManager.saveVideoToCameraRoll(videoURL: outputURL, completion: { (saved, error) in
                     if saved && error == nil {
-                        self.removeFileFromDirectory(outputURL: outputURL)
+                        self.dispatchSemaphore.signal()
                         self.dispatchGroup.leave()
+                        self.observerCenter.notify(index: index)
                     }
                 })
-            case .Failed:
+            case .failed:
                 print("failed \(exportSession.error)")
-                
-            case .Cancelled:
+            case .cancelled:
                 print("cancelled \(exportSession.error)")
-                
             default: break
             }
         }
