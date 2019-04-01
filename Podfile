@@ -6,6 +6,5 @@ target 'InstaCut' do
   use_frameworks!
 
   pod 'JGProgressHUD'
-  pod 'OpenSSL', '~> 1.0'
 
 end

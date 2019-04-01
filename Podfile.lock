@@ -1,20 +1,16 @@
 PODS:
   - JGProgressHUD (2.0)
-  - OpenSSL (1.0.210)
 
 DEPENDENCIES:
   - JGProgressHUD
-  - OpenSSL (~> 1.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - JGProgressHUD
-    - OpenSSL
 
 SPEC CHECKSUMS:
   JGProgressHUD: c402c0f41fc291ca7e33bba2f999118d9682dd9c
-  OpenSSL: 246ffb948e9d56466727fd318134af35f5aa764e
 
-PODFILE CHECKSUM: b140fff0207d013fb9f45a9efe5a66923e197bd9
+PODFILE CHECKSUM: a3c569a9b51ed4c2d587f08775a09d4ca081e2f0
 
 COCOAPODS: 1.5.0
