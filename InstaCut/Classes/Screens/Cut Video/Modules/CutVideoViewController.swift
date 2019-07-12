@@ -241,7 +241,7 @@ extension CutVideoViewController: UICollectionViewDelegate {
         let start = periods[indexPath.row].start
         index = indexPath.row
         let time = CMTime(seconds: start, preferredTimescale: 1000)
-        videoPlayer.player?.seek(to: time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        videoPlayer.player?.seek(to: time, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
         pausingVideo()
         setupBorderCell(indexPath: indexPath)
         playButton.alpha = 1

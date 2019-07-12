@@ -103,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320A223822D8A36C002FB589 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				32A9A94C222BF351002D2C06 /* Main Screen */,
+				32A9A954222BF3FC002D2C06 /* Cut Video */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		3268F4E2224CDE8F000C544B /* PopUpViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,12 +131,12 @@
 			path = PopUpViews;
 			sourceTree = "<group>";
 		};
-		3268F4EE224CF03C000C544B /* Iteration Observer */ = {
+		3268F4EE224CF03C000C544B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				3268F4EF224CF055000C544B /* IterationObserver.swift */,
 			);
-			path = "Iteration Observer";
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		32A4C71F222BF8C5003616CC /* Services */ = {
@@ -154,8 +163,7 @@
 				32A4C728222BFA24003616CC /* Models */,
 				32A4C71F222BF8C5003616CC /* Services */,
 				32A9A960222BF4B3002D2C06 /* Helpres */,
-				32A9A94C222BF351002D2C06 /* Main Screen */,
-				32A9A954222BF3FC002D2C06 /* Cut Video */,
+				320A223822D8A36C002FB589 /* Screens */,
 				323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */,
 				32C04FEE2035AA7E00C509C7 /* Main.storyboard */,
 				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
@@ -189,7 +197,7 @@
 		32A9A954222BF3FC002D2C06 /* Cut Video */ = {
 			isa = PBXGroup;
 			children = (
-				3268F4EE224CF03C000C544B /* Iteration Observer */,
+				3268F4EE224CF03C000C544B /* Helper */,
 				32A9A955222BF40B002D2C06 /* Modules */,
 				32A9A95E222BF49E002D2C06 /* Views */,
 			);
@@ -344,7 +352,7 @@
 				TargetAttributes = {
 					32C04FE62035AA7E00C509C7 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
@@ -641,7 +649,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -664,7 +672,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

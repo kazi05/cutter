@@ -21,21 +21,15 @@ class DiskStatus {
     
     //MARK: Get String Value
     class var totalDiskSpace:String {
-        get {
-            return ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
-        }
+        return ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
     }
     
     class var freeDiskSpace:String {
-        get {
-            return ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
-        }
+        return ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
     }
     
     class var usedDiskSpace:String {
-        get {
-            return ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
-        }
+        return ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
     }
     
     
@@ -65,10 +59,8 @@ class DiskStatus {
     }
     
     class var usedDiskSpaceInBytes:Int64 {
-        get {
-            let usedSpace = totalDiskSpaceInBytes - freeDiskSpaceInBytes
-            return usedSpace
-        }
+      let usedSpace = totalDiskSpaceInBytes - freeDiskSpaceInBytes
+      return usedSpace
     }
     
 }

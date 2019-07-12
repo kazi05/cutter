@@ -100,9 +100,9 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
                     }
                 })
             case .failed:
-                print("failed \(exportSession.error)")
+              print("failed \(String(describing: exportSession.error))")
             case .cancelled:
-                print("cancelled \(exportSession.error)")
+              print("cancelled \(String(describing: exportSession.error))")
             default: break
             }
         }

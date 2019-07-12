@@ -21,7 +21,7 @@ class ObserverCenters {
     }
     
     func unsubscribe(_ observer: IterationObserver) {
-        if let index = observers.index(where: { $0 === observer }) {
+        if let index = observers.firstIndex(where: { $0 === observer }) {
             observers.remove(at: index)
         }
     }

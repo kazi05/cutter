@@ -32,7 +32,9 @@ class PhotoLibraryPremission {
             completion(.error("Вы не разрешили приложению использовать вашу медиатеку. Для разрешения зайдите в Настройки"))
         case .denied:
             completion(.error("Вы не разрешили приложению использовать вашу медиатеку. Для разрешения зайдите в Настройки"))
-        }
+        @unknown default:
+          completion(.error("Unknown error"))
+      }
     }
     
 }
