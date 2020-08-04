@@ -6,8 +6,8 @@
 //  Copyright © 2019 Kazim Gajiev. All rights reserved.
 //
 
-import Foundation
-import Photos
+import UIKit
+import AVFoundation
 
 protocol DelegatingVideoHelperProtocol: class {
     func cutPeriodsFromVideo(_ video: VideoModel) -> [VideoPeriods]
