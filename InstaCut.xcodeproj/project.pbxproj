@@ -41,11 +41,9 @@
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
 		32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FFC2035AD4000C509C7 /* UserImagesCollectionViewCell.swift */; };
 		32DBD4AF2052EE0F005129D5 /* DiskStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */; };
-		5B9EE4D0DDCB784823DBD099 /* Pods_InstaCut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1973E305E32B3767E08F462D /* Pods_InstaCut.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1973E305E32B3767E08F462D /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		3209D6D42247D7050007A11C /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		3209D6D62247DF780007A11C /* VideoCellBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellBorder.swift; sourceTree = "<group>"; };
@@ -87,8 +85,6 @@
 		32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskStatus.swift; sourceTree = "<group>"; };
 		32E8C9532053FC56001A3FA7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaCut.entitlements; sourceTree = "<group>"; };
-		367646AD5FE13759FACACB6C /* Pods-InstaCut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut.debug.xcconfig"; sourceTree = "<group>"; };
-		FFF75E45018C06B8EDCB61E6 /* Pods-InstaCut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B9EE4D0DDCB784823DBD099 /* Pods_InstaCut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +272,6 @@
 			children = (
 				32C04FE92035AA7E00C509C7 /* InstaCut */,
 				32C04FE82035AA7E00C509C7 /* Products */,
-				856C9E9B189D86D06EBB8EC7 /* Pods */,
 				4A4C1883C655A31AA1C73395 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -304,18 +298,8 @@
 			isa = PBXGroup;
 			children = (
 				32E8C9532053FC56001A3FA7 /* StoreKit.framework */,
-				1973E305E32B3767E08F462D /* Pods_InstaCut.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		856C9E9B189D86D06EBB8EC7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				367646AD5FE13759FACACB6C /* Pods-InstaCut.debug.xcconfig */,
-				FFF75E45018C06B8EDCB61E6 /* Pods-InstaCut.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,11 +309,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32C04FF92035AA7E00C509C7 /* Build configuration list for PBXNativeTarget "InstaCut" */;
 			buildPhases = (
-				B236F5FFC4FE06DAD0F7DD4B /* [CP] Check Pods Manifest.lock */,
 				32C04FE32035AA7E00C509C7 /* Sources */,
 				32C04FE42035AA7E00C509C7 /* Frameworks */,
 				32C04FE52035AA7E00C509C7 /* Resources */,
-				AF906D094E6A49318743BE63 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,45 +391,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AF906D094E6A49318743BE63 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B236F5FFC4FE06DAD0F7DD4B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InstaCut-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32C04FE32035AA7E00C509C7 /* Sources */ = {
@@ -632,7 +575,6 @@
 		};
 		32C04FFA2035AA7E00C509C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 367646AD5FE13759FACACB6C /* Pods-InstaCut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -656,7 +598,6 @@
 		};
 		32C04FFB2035AA7E00C509C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFF75E45018C06B8EDCB61E6 /* Pods-InstaCut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
