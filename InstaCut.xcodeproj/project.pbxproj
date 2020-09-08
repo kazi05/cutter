@@ -265,9 +265,9 @@
 				32A9A961222BF4BA002D2C06 /* Extensions */,
 				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
 				32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */,
+				3268F4EC224CE865000C544B /* NibLoadable.swift */,
 				328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */,
 				3209D6D42247D7050007A11C /* AnimationHelper.swift */,
-				3268F4EC224CE865000C544B /* NibLoadable.swift */,
 				3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */,
 			);
 			path = Helpres;

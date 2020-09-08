@@ -152,7 +152,7 @@ class CutVideoViewController: UIViewController, CutVideoViewControllerInput {
     }
     
     private func setupBorderCell(indexPath: IndexPath) {
-        let cell = createCell(indexPath: indexPath)
+        let cell = collectionView.cellForItem(at: indexPath) ?? collectionView.visibleCells[0]
         moveCellBorder(to: cell.frame)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }

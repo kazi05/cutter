@@ -53,6 +53,7 @@ class VideoPlayerView: UIView {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         playerLayer.frame = getFrameOfPreview()
     }
     

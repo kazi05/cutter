@@ -28,7 +28,7 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
     }
 
     let dispatchGroup = DispatchGroup()
-    let dispatchQueue = DispatchQueue(label: "taskQueue")
+    let dispatchQueue = DispatchQueue(label: "taskQueue", qos: .background)
     let dispatchSemaphore = DispatchSemaphore(value: 0)
     
     func saveVideos(from videoURL: URL, with periods: [VideoPeriods]) {
@@ -67,7 +67,7 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
         var outputURL = documentDirectory.appendingPathComponent("output")
         do {
             let name = "outputVideo_\(index + 1)_\(Int(Date().timeIntervalSince1970))"
-            outputURL = outputURL.appendingPathComponent("\(name).mp4")
+            outputURL = outputURL.appendingPathComponent("\(name).mov")
             try fileManager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
         } catch {
             print(error)
@@ -83,7 +83,7 @@ class SavingVideosHelper: SavingVideosHelperProtocol, IterationObserver {
     private func exportToCameraRoll(with timeRange: CMTimeRange, and asset: AVAsset, to outputURL: URL, index: Int) {
         guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {return}
         exportSession.outputURL = outputURL
-        exportSession.outputFileType = AVFileType.mp4
+        exportSession.outputFileType = AVFileType.mov
         exportSession.timeRange = timeRange
         
         self.removeFileFromDirectory(outputURL: outputURL)

@@ -14,7 +14,7 @@ extension UIImageView {
         let imageViewSize = frame.size
         let imgSize = image?.size
         
-        guard let imageSize = imgSize, imgSize != nil else {
+        guard let imageSize = imgSize else {
             return CGRect.zero
         }
         
