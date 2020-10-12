@@ -22,7 +22,9 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
         PhotoLibraryPremission().getPhotolibraryAccesStatus { (status) in
             switch status {
             case .error(let errorString):
-                onError(errorString)
+                DispatchQueue.main.async {
+                    onError(errorString)
+                }
                 
             case .success:
                 let options = PHFetchOptions()
