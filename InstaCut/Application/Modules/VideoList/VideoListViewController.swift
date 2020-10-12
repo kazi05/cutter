@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VideoListView: class {
-    
+    func loadVideosError(_ error: String)
 }
 
 class VideoListViewController: UIViewController {
@@ -20,11 +20,15 @@ class VideoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        presenter.loadVideos()
     }
 
 }
 
 extension VideoListViewController: VideoListView {
+    
+    func loadVideosError(_ error: String) {
+        print(error)
+    }
     
 }

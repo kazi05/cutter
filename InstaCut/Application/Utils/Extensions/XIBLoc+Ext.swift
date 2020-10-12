@@ -8,12 +8,6 @@
 
 import UIKit
 
-extension String: Localizable {
-    var localized: String {
-        return NSLocalizedString(self, comment: "")
-    }
-}
-
 extension UILabel: XIBLocalizable {
     @IBInspectable var xibLocalKey: String? {
         get { return nil }

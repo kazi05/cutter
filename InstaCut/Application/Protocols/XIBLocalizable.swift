@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol Localizable {
-    var localized: String { get }
-}
-
 protocol XIBLocalizable {
     var xibLocalKey: String? { get set }
 }
