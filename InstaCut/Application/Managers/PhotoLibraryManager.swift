@@ -44,7 +44,8 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
                     group.enter()
                     imageManager.requestAVAsset(forVideo: asset, options: nil) { (asset, _, _) in
                         guard let asset = asset else { return }
-                        videoModels.append(VideoModel(asset: asset))
+                        let assetImage = AssetImageGenerator(asset: asset).generateImage()
+                        videoModels.append(VideoModel(asset: asset, image: assetImage))
                         group.leave()
                     }
                     group.wait()

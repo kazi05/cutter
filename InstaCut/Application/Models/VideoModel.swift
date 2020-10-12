@@ -12,6 +12,7 @@ import AVFoundation
 struct VideoModel {
     
     let asset: AVAsset
+    let image: UIImage
     
     var durationTimeString: String {
         return String(format: "%02d:%02d",Int((asset.duration.seconds / 60)),Int(asset.duration.seconds.rounded()) % 60)
