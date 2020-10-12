@@ -17,3 +17,6 @@ FAILED = "Ошибка";
 PH_REJECTED = "Вы не разрешили приложению использовать вашу медиатеку. Для разрешения зайдите в Настройки";
 PH_UNKNOWN = "Неизвестная ошибка";
 PH_ZERO_COUNT = "Нет видеофайлов в библиотеке";
+
+// MARK: - Video list view controller
+VIDEO_LIST_UPDATEBUTTON = "Обновить";

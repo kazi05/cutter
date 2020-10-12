@@ -16,3 +16,7 @@ FAILED = "Failed";
 // MARK: - Photo library premissions
 PH_REJECTED = "You have not authorized the application to use your library. For permission go to Settings";
 PH_UNKNOWN = "Unknown error";
+PH_ZERO_COUNT = "No video files in library";
+
+// MARK: - Video list view controller
+VIDEO_LIST_UPDATEBUTTON = "Reload";

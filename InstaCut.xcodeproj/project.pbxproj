@@ -20,6 +20,8 @@
 		321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */; };
 		321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64DB2534444800ED70F0 /* String+Ext.swift */; };
 		321A64E325344EB300ED70F0 /* AssetImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */; };
+		321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64E62534514100ED70F0 /* VideoThumbCollectionViewCell.swift */; };
+		321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 321A64E72534514100ED70F0 /* VideoThumbCollectionViewCell.xib */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
@@ -45,6 +47,8 @@
 		321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPremission.swift; sourceTree = "<group>"; };
 		321A64DB2534444800ED70F0 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetImageGenerator.swift; sourceTree = "<group>"; };
+		321A64E62534514100ED70F0 /* VideoThumbCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbCollectionViewCell.swift; sourceTree = "<group>"; };
+		321A64E72534514100ED70F0 /* VideoThumbCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoThumbCollectionViewCell.xib; sourceTree = "<group>"; };
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		321A64B125343C6000ED70F0 /* VideoList */ = {
 			isa = PBXGroup;
 			children = (
+				321A64E52534512400ED70F0 /* Cells */,
 				321A64BD25343D1700ED70F0 /* VideoListCoordinator.swift */,
 				321A64B725343CAE00ED70F0 /* VideoListFactory.swift */,
 				321A64BA25343CEB00ED70F0 /* VideoListPresenter.swift */,
@@ -156,6 +161,15 @@
 				321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		321A64E52534512400ED70F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				321A64E62534514100ED70F0 /* VideoThumbCollectionViewCell.swift */,
+				321A64E72534514100ED70F0 /* VideoThumbCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		32A4C728222BFA24003616CC /* Models */ = {
@@ -314,6 +328,7 @@
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
+				321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */,
 				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +396,7 @@
 				321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */,
 				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
 				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
+				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,
 				321A64BB25343CEB00ED70F0 /* VideoListPresenter.swift in Sources */,
 				321A64E325344EB300ED70F0 /* AssetImageGenerator.swift in Sources */,
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,

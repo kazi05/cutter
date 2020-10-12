@@ -34,8 +34,8 @@ class VideoListPresenter {
     // MARK: - View actions
     func loadVideos() {
         photoLibraryManager.fetchVideoFromLibrary { [weak self] (result) in
-            print(result)
             self?.videoModels = result
+            self?.view.loadVideosCompleted()
         } onError: { [weak self] (error) in
             self?.view.loadVideosError(error)
         }
