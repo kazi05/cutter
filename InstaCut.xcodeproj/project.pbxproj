@@ -26,6 +26,7 @@
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
+		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
 		3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EC224CE865000C544B /* NibLoadable.swift */; };
 		32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C729222BFA35003616CC /* VideoModel.swift */; };
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
@@ -55,6 +56,8 @@
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
 		323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32621583253494AA0012CED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		326738B6205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3268F4EC224CE865000C544B /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		32A4C729222BFA35003616CC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
 				321B9A3820569FE4008F7226 /* Localizable.strings */,
 				32C04FF62035AA7E00C509C7 /* Info.plist */,
+				32621581253494A30012CED3 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -336,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */,
+				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
@@ -425,6 +430,15 @@
 				321B9A3920569FF3008F7226 /* Base */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		32621581253494A30012CED3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32621580253494A30012CED3 /* ru */,
+				32621583253494AA0012CED3 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */ = {
