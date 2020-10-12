@@ -84,6 +84,11 @@ extension VideoListViewController: UICollectionViewDelegateFlowLayout, UICollect
         return CGSize(width: width, height: width)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.presentTrimmerView(by: indexPath.item)
+    }
+    
+    // MARK: - Flow layout methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
     }

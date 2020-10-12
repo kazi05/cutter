@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VideoListPresenterOutput: class {
-    
+    func showVideoTrimmer(by asset: VideoModel)
 }
 
 protocol VideoListPresenterInput {
@@ -54,7 +54,10 @@ class VideoListPresenter {
     
     
     // MARK: - Output methods
-    
+    func presentTrimmerView(by index: Int) {
+        let video = videoModels[index]
+        delegate?.showVideoTrimmer(by: video)
+    }
     
 }
 

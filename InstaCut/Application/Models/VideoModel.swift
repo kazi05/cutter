@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 
+typealias VideoAsset = AVAsset
+
 struct VideoModel {
     
     let asset: AVAsset

@@ -30,5 +30,10 @@ extension VideoListCoordinator {
 
 extension VideoListCoordinator: VideoListPresenterOutput {
     
+    func showVideoTrimmer(by asset: VideoModel) {
+        let scene = VideoListFactory.makeTrimmerScene(video: asset)
+        navigationController?.pushViewController(scene, animated: true)
+    }
+    
 }
 
