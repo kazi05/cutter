@@ -11,6 +11,14 @@
 		3209D6D52247D7050007A11C /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D42247D7050007A11C /* AnimationHelper.swift */; };
 		3209D6D72247DF780007A11C /* VideoCellBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D62247DF780007A11C /* VideoCellBorder.swift */; };
 		321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64A825343BF500ED70F0 /* AppCoordinator.swift */; };
+		321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64AC25343C3E00ED70F0 /* Coordinator.swift */; };
+		321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64B225343C9800ED70F0 /* VideoListViewController.swift */; };
+		321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 321A64B325343C9800ED70F0 /* VideoListViewController.xib */; };
+		321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64B725343CAE00ED70F0 /* VideoListFactory.swift */; };
+		321A64BB25343CEB00ED70F0 /* VideoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64BA25343CEB00ED70F0 /* VideoListPresenter.swift */; };
+		321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64BD25343D1700ED70F0 /* VideoListCoordinator.swift */; };
+		321A64C325343FCF00ED70F0 /* XIBLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64C225343FCF00ED70F0 /* XIBLocalizable.swift */; };
+		321A64C82534400C00ED70F0 /* XIBLoc+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229E239203743EF00466E51 /* VideoPrevieCell.swift */; };
@@ -50,6 +58,14 @@
 		3209D6D42247D7050007A11C /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		3209D6D62247DF780007A11C /* VideoCellBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellBorder.swift; sourceTree = "<group>"; };
 		321A64A825343BF500ED70F0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		321A64AC25343C3E00ED70F0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		321A64B225343C9800ED70F0 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
+		321A64B325343C9800ED70F0 /* VideoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoListViewController.xib; sourceTree = "<group>"; };
+		321A64B725343CAE00ED70F0 /* VideoListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListFactory.swift; sourceTree = "<group>"; };
+		321A64BA25343CEB00ED70F0 /* VideoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListPresenter.swift; sourceTree = "<group>"; };
+		321A64BD25343D1700ED70F0 /* VideoListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListCoordinator.swift; sourceTree = "<group>"; };
+		321A64C225343FCF00ED70F0 /* XIBLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIBLocalizable.swift; sourceTree = "<group>"; };
+		321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XIBLoc+Ext.swift"; sourceTree = "<group>"; };
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
@@ -127,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				321A64A725343BE800ED70F0 /* App */,
+				321A64B125343C6000ED70F0 /* VideoList */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -137,6 +154,44 @@
 				321A64A825343BF500ED70F0 /* AppCoordinator.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		321A64AB25343C2700ED70F0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				321A64AC25343C3E00ED70F0 /* Coordinator.swift */,
+				3268F4EC224CE865000C544B /* NibLoadable.swift */,
+				321A64C225343FCF00ED70F0 /* XIBLocalizable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		321A64B125343C6000ED70F0 /* VideoList */ = {
+			isa = PBXGroup;
+			children = (
+				321A64BD25343D1700ED70F0 /* VideoListCoordinator.swift */,
+				321A64B725343CAE00ED70F0 /* VideoListFactory.swift */,
+				321A64BA25343CEB00ED70F0 /* VideoListPresenter.swift */,
+				321A64B225343C9800ED70F0 /* VideoListViewController.swift */,
+				321A64B325343C9800ED70F0 /* VideoListViewController.xib */,
+			);
+			path = VideoList;
+			sourceTree = "<group>";
+		};
+		321A64C525343FF000ED70F0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				321A64C625343FFB00ED70F0 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		321A64C625343FFB00ED70F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3268F4E2224CDE8F000C544B /* PopUpViewController */ = {
@@ -188,6 +243,8 @@
 			children = (
 				32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */,
 				321A64A625343BDD00ED70F0 /* Modules */,
+				321A64AB25343C2700ED70F0 /* Protocols */,
+				321A64C525343FF000ED70F0 /* Utils */,
 				32CD2FB725343B30007D92D9 /* Old */,
 			);
 			path = Application;
@@ -276,7 +333,6 @@
 				32A9A961222BF4BA002D2C06 /* Extensions */,
 				32DBD4AE2052EE0F005129D5 /* DiskStatus.swift */,
 				32A4C722222BF8F2003616CC /* PhotoLibraryPremission.swift */,
-				3268F4EC224CE865000C544B /* NibLoadable.swift */,
 				328AA145222FF40C008C7841 /* DelegatingVideoHelper.swift */,
 				3209D6D42247D7050007A11C /* AnimationHelper.swift */,
 				3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */,
@@ -439,6 +495,7 @@
 				3268F4E9224CE7CD000C544B /* ProgressPopUpView.xib in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
 				32C04FF02035AA7E00C509C7 /* Main.storyboard in Resources */,
+				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
 				3268F4E6224CDEAB000C544B /* PopUpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,21 +562,28 @@
 				328C969E222D4B8400142FBE /* CutVideoViewController.swift in Sources */,
 				32A9A959222BF436002D2C06 /* CutVideoPresenter.swift in Sources */,
 				325F0A0F2046E0BE00DF16CA /* Extensions.swift in Sources */,
+				321A64C82534400C00ED70F0 /* XIBLoc+Ext.swift in Sources */,
+				321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */,
 				32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */,
 				32C04FED2035AA7E00C509C7 /* MainScreenViewController.swift in Sources */,
 				3268F4EB224CE810000C544B /* ProgressPopUpView.swift in Sources */,
 				32A4C725222BF937003616CC /* MainScreenAssembly.swift in Sources */,
 				3268F4E5224CDEAB000C544B /* PopUpViewController.swift in Sources */,
 				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
+				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
 				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
 				321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */,
 				3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,
 				32DBD4AF2052EE0F005129D5 /* DiskStatus.swift in Sources */,
+				321A64C325343FCF00ED70F0 /* XIBLocalizable.swift in Sources */,
 				321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */,
+				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
 				3209D6D52247D7050007A11C /* AnimationHelper.swift in Sources */,
+				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
 				3209D6D72247DF780007A11C /* VideoCellBorder.swift in Sources */,
+				321A64BB25343CEB00ED70F0 /* VideoListPresenter.swift in Sources */,
 				32A4C723222BF8F2003616CC /* PhotoLibraryPremission.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
