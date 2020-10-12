@@ -10,6 +10,7 @@
 		3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */; };
 		3209D6D52247D7050007A11C /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D42247D7050007A11C /* AnimationHelper.swift */; };
 		3209D6D72247DF780007A11C /* VideoCellBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3209D6D62247DF780007A11C /* VideoCellBorder.swift */; };
+		321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64A825343BF500ED70F0 /* AppCoordinator.swift */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */; };
 		3229E23A203743EF00466E51 /* VideoPrevieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3229E239203743EF00466E51 /* VideoPrevieCell.swift */; };
@@ -48,6 +49,7 @@
 		3209D6D22247C1ED0007A11C /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		3209D6D42247D7050007A11C /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 		3209D6D62247DF780007A11C /* VideoCellBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellBorder.swift; sourceTree = "<group>"; };
+		321A64A825343BF500ED70F0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriods.swift; sourceTree = "<group>"; };
@@ -121,6 +123,22 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		321A64A625343BDD00ED70F0 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				321A64A725343BE800ED70F0 /* App */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		321A64A725343BE800ED70F0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				321A64A825343BF500ED70F0 /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		3268F4E2224CDE8F000C544B /* PopUpViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,21 +183,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		32A9A94B222BF2A8002D2C06 /* Classes */ = {
+		32A9A94B222BF2A8002D2C06 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */,
-				32A4C728222BFA24003616CC /* Models */,
-				32A4C71F222BF8C5003616CC /* Services */,
-				32A9A960222BF4B3002D2C06 /* Helpres */,
-				320A223822D8A36C002FB589 /* Screens */,
-				323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */,
-				32C04FEE2035AA7E00C509C7 /* Main.storyboard */,
-				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
-				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
-				321B9A3820569FE4008F7226 /* Localizable.strings */,
+				321A64A625343BDD00ED70F0 /* Modules */,
+				32CD2FB725343B30007D92D9 /* Old */,
 			);
-			path = Classes;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		32A9A94C222BF351002D2C06 /* Main Screen */ = {
@@ -259,7 +270,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		32A9A960222BF4B3002D2C06 /* Helpres */ = {
+		32A9A960222BF4B3002D2C06 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				32A9A961222BF4BA002D2C06 /* Extensions */,
@@ -270,7 +281,7 @@
 				3209D6D42247D7050007A11C /* AnimationHelper.swift */,
 				3268F4F1224CF51F000C544B /* SavingVideosHelper.swift */,
 			);
-			path = Helpres;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		32A9A961222BF4BA002D2C06 /* Extensions */ = {
@@ -303,10 +314,34 @@
 			isa = PBXGroup;
 			children = (
 				32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */,
-				32C04FF62035AA7E00C509C7 /* Info.plist */,
-				32A9A94B222BF2A8002D2C06 /* Classes */,
+				32A9A94B222BF2A8002D2C06 /* Application */,
+				32CD2FB425343AB8007D92D9 /* Resources */,
 			);
 			path = InstaCut;
+			sourceTree = "<group>";
+		};
+		32CD2FB425343AB8007D92D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */,
+				32C04FF12035AA7E00C509C7 /* Assets.xcassets */,
+				32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */,
+				321B9A3820569FE4008F7226 /* Localizable.strings */,
+				32C04FF62035AA7E00C509C7 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32CD2FB725343B30007D92D9 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				32A4C728222BFA24003616CC /* Models */,
+				32A4C71F222BF8C5003616CC /* Services */,
+				32A9A960222BF4B3002D2C06 /* Helpers */,
+				320A223822D8A36C002FB589 /* Screens */,
+				32C04FEE2035AA7E00C509C7 /* Main.storyboard */,
+			);
+			path = Old;
 			sourceTree = "<group>";
 		};
 		4A4C1883C655A31AA1C73395 /* Frameworks */ = {
@@ -478,6 +513,7 @@
 				32A9A94F222BF379002D2C06 /* MainScreenInteractor.swift in Sources */,
 				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
+				321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */,
 				3209D6D32247C1ED0007A11C /* VideoPlayerView.swift in Sources */,
 				32C04FFD2035AD4000C509C7 /* UserImagesCollectionViewCell.swift in Sources */,
 				32DBD4AF2052EE0F005129D5 /* DiskStatus.swift in Sources */,
@@ -643,10 +679,11 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = InstaCut/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -667,10 +704,11 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = InstaCut/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
