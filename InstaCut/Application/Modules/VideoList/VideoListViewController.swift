@@ -26,7 +26,7 @@ class VideoListViewController: UIViewController {
     // MARK: - LifeCycle 🌎
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = .localized("VIDEO_LIST_TITLE")
         presenter.loadVideos()
         
         configureCollectionView()
