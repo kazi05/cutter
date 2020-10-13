@@ -9,7 +9,10 @@
 import UIKit
 
 protocol TrimVideoView: class {
+    /// Видео разбилось на периоды
     func periodsCreated()
+    
+    /// Воспроизвести видео в VideoPreviewView
     func showVideo(_ video: VideoModel)
 }
 
@@ -28,6 +31,7 @@ class TrimVideoViewController: UIViewController {
         super.viewDidLoad()
 
         configureCollectionView()
+        presenter.attachPlayer()
     }
     
     // MARK: - Private methods 🕶
@@ -49,7 +53,8 @@ extension TrimVideoViewController: TrimVideoView {
     }
     
     func showVideo(_ video: VideoModel) {
-        
+        let videoPlayer = VideoPlayer(with: video.asset)
+        videoPreview.attach(videoPlayer: videoPlayer)
     }
     
 }

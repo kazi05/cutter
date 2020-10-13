@@ -20,11 +20,13 @@ class TrimVideoPresenter {
     init(view: TrimVideoView, video: VideoModel) {
         self.view = view
         self.video = video
-        view.showVideo(video)
         loadPeriods()
     }
     
     // MARK: - View actions
+    func attachPlayer() {
+        view.showVideo(video)
+    }
     private func loadPeriods() {
         periods = []
         VideoPeriodsTrimmerManager().trimVideoPerPeriods(video) { [weak self] result in

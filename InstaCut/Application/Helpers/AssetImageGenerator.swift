@@ -21,7 +21,7 @@ class AssetImageGenerator {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
         imageGenerator.requestedTimeToleranceBefore = .zero
-        print(Thread.isMainThread)
+        
         do {
             let imageRef = try imageGenerator.copyCGImage(at: startTime, actualTime: nil)
             let image = UIImage(cgImage: imageRef)
