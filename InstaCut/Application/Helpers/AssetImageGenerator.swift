@@ -17,17 +17,17 @@ class AssetImageGenerator {
         self.asset = asset
     }
     
-    func generateImage() -> UIImage {
+    func generateImage(from startTime: CMTime = .zero) -> UIImage {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
         imageGenerator.requestedTimeToleranceBefore = .zero
-        var actualTime: CMTime = .zero
+        print(Thread.isMainThread)
         do {
-            let imageRef = try imageGenerator.copyCGImage(at: .zero, actualTime: &actualTime)
+            let imageRef = try imageGenerator.copyCGImage(at: startTime, actualTime: nil)
             let image = UIImage(cgImage: imageRef)
             return image
         } catch let error as NSError {
-            print("\(error.description). Time: \(actualTime)")
+            print("\(error.description). Time: \(startTime)")
             return UIImage()
         }
     }
