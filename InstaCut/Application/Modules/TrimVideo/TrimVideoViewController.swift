@@ -94,6 +94,7 @@ extension TrimVideoViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         moveBorder(at: indexPath.item)
+        presenter.seekVideo(at: indexPath.item)
     }
     
     // MARK: - Flow layout methods

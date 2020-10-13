@@ -54,6 +54,11 @@ class TrimVideoPresenter {
         return periods[index]
     }
     
+    func seekVideo(at index: Int) {
+        let start = periods[index].timeRange.start
+        videoPlayer.seek(to: start)
+    }
+    
     // MARK: - Input methods
     private func observePlayerTime(_ time: CMTime) {
         if let index = self.periodsRanges.firstIndex(where: { $0.containsTime(time) }),

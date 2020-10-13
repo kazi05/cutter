@@ -18,12 +18,6 @@ class VideoPreviewView: UIView {
         }
     }
     
-    private var isPlaying: Bool = false {
-        didSet {
-            toggleVideoState()
-        }
-    }
-    
     private var buttonShowing = true {
         didSet {
             buttonShowing ? showButton() : hideButton()
@@ -89,7 +83,7 @@ class VideoPreviewView: UIView {
     // MARK: - Actions ⚡️
     @objc
     private func actionToggleVideoState(_ sender: UIButton) {
-        isPlaying.toggle()
+        toggleVideoState()
     }
 }
 
@@ -128,33 +122,44 @@ fileprivate extension VideoPreviewView {
     }
     
     @objc func handleTap(_ tapGesture: UITapGestureRecognizer) {
-        if isPlaying {
+        if videoPlayer.isPlaying {
             buttonShowing.toggle()
         }
     }
     
     func toggleVideoState() {
-        let imageName = isPlaying ? "media-pause" : "play-button"
-        playButton.setImage(UIImage(named: imageName), for: .normal)
-        
-        if isPlaying {
+        if !videoPlayer.isPlaying {
             videoPlayer.play()
-            setupTimer()
         } else {
-            invalidateTimer()
             videoPlayer.pause()
         }
     }
     
+    func handleVideoState(state: VideoPlayerState) {
+        let imageName = videoPlayer.isPlaying ? "media-pause" : "play-button"
+        playButton.setImage(UIImage(named: imageName), for: .normal)
+        
+        switch state {
+        case .pause, .stop:
+            invalidateTimer()
+            buttonShowing = true
+            
+        case .play:
+            setupTimer()
+        }
+    }
+    
     func setupTimer() {
-        hideButtonTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+        hideButtonTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
             self.buttonShowing.toggle()
         })
     }
     
     func invalidateTimer() {
-        self.hideButtonTimer.invalidate()
-        self.hideButtonTimer = nil
+        if self.hideButtonTimer != nil {
+            self.hideButtonTimer.invalidate()
+            self.hideButtonTimer = nil
+        }
     }
     
     func hideButton() {
@@ -171,10 +176,10 @@ fileprivate extension VideoPreviewView {
             self.playButton.alpha = 1
             self.gradientView.alpha = 1
         } completion: { (_) in
-            if self.hideButtonTimer != nil {
-                self.invalidateTimer()
+            self.invalidateTimer()
+            if self.videoPlayer.isPlaying {
+                self.setupTimer()
             }
-            self.setupTimer()
         }
     }
 }
@@ -189,6 +194,10 @@ extension VideoPreviewView {
         
         videoPlayer.timeChanged = { [weak self] time in
             self?.currentTimeLabel.text = time.positionalTime
+        }
+        
+        videoPlayer.statusChanged = { [weak self] state in
+            self?.handleVideoState(state: state)
         }
     }
     

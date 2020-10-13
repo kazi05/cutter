@@ -27,7 +27,7 @@ class VideoPeriodsTrimmerManager {
             }
             
             guard timeRanges.count > 0 else {
-                let timeRange = CMTimeRange(start: .zero, duration: CMTimeMakeWithSeconds(videoDuration, preferredTimescale: 600))
+                let timeRange = CMTimeRange(start: .zero, duration: CMTimeMakeWithSeconds(videoDuration, preferredTimescale: CMTimeScale(NSEC_PER_SEC)))
                 let previewImage = AssetImageGenerator(asset: video.asset).generateImage()
                 completion([VideoPeriod(timeRange: timeRange, previewImage: previewImage)])
                 return
@@ -38,8 +38,8 @@ class VideoPeriodsTrimmerManager {
             }
             
             self.uniteByPeriods(timeRanges).forEach {
-                let start = CMTimeMakeWithSeconds($0.start, preferredTimescale: 600)
-                let end = CMTimeMakeWithSeconds($0.end, preferredTimescale: 600)
+                let start = CMTimeMakeWithSeconds($0.start, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+                let end = CMTimeMakeWithSeconds($0.end, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
                 let timeRange = CMTimeRange(start: start, end: end)
                 let previewImage = AssetImageGenerator(asset: video.asset).generateImage(from: start)
                 periods.append(VideoPeriod(timeRange: timeRange, previewImage: previewImage))
