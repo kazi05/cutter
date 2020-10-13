@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8GA-J9-xHI">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8GA-J9-xHI" customClass="VideoPeriodsCollectionView" customModule="InstaCut" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="689" width="414" height="207"/>
                     <color key="backgroundColor" name="navBarColor"/>
                     <constraints>

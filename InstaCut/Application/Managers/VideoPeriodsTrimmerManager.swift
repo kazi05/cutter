@@ -8,6 +8,8 @@
 
 import CoreMedia.CMTime
 
+let periodTimeRangeSeconds: Double = 60
+
 class VideoPeriodsTrimmerManager {
     
     let group = DispatchGroup()
@@ -20,7 +22,7 @@ class VideoPeriodsTrimmerManager {
             
             var timeRanges: [Double] = []
             
-            stride(from: 0, to: videoDuration, by: 60).forEach {
+            stride(from: 0, to: videoDuration, by: periodTimeRangeSeconds).forEach {
                 timeRanges.append($0)
             }
             

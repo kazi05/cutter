@@ -21,7 +21,6 @@ class VideoListPresenter {
     // MARK: - Private properties 🕶
     private weak var view: VideoListView!
     private weak var delegate: VideoListPresenterOutput?
-    private let photoLibraryManager: PhotoLibraryManagerType = PhotoLibraryManager()
     
     private var videoModels: [VideoModel] = []
     
@@ -33,7 +32,7 @@ class VideoListPresenter {
     
     // MARK: - View actions
     func loadVideos() {
-        photoLibraryManager.fetchVideoFromLibrary { [weak self] (result) in
+        PhotoLibraryManager().fetchVideoFromLibrary { [weak self] (result) in
             self?.videoModels = result
             self?.view.loadVideosCompleted()
         } onError: { [weak self] (error) in

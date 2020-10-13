@@ -13,7 +13,10 @@ protocol TrimVideoView: class {
     func periodsCreated()
     
     /// Воспроизвести видео в VideoPreviewView
-    func showVideo(_ video: VideoModel)
+    func showVideo(_ player: VideoPlayer)
+    
+    /// Время периода изменилось
+    func periodChanged(_ to: Int)
 }
 
 class TrimVideoViewController: UIViewController {
@@ -23,7 +26,7 @@ class TrimVideoViewController: UIViewController {
 
     // MARK: - Outlets 🔌
     @IBOutlet weak var videoPreview: VideoPreviewView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: VideoPeriodsCollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - LifeCycle 🌎
@@ -50,11 +53,19 @@ extension TrimVideoViewController: TrimVideoView {
     func periodsCreated() {
         activityIndicator.stopAnimating()
         collectionView.reloadData()
+        
+        DispatchQueue.main.async {
+            guard let firstCell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) else { return }
+            self.collectionView.moveBorderView(to: firstCell.center, animated: false)
+        }
     }
     
-    func showVideo(_ video: VideoModel) {
-        let videoPlayer = VideoPlayer(with: video.asset)
-        videoPreview.attach(videoPlayer: videoPlayer)
+    func showVideo(_ player: VideoPlayer) {
+        videoPreview.attach(videoPlayer: player)
+    }
+    
+    func periodChanged(_ to: Int) {
+        
     }
     
 }
@@ -74,6 +85,11 @@ extension TrimVideoViewController: UICollectionViewDataSource, UICollectionViewD
         cell.configure(with: period)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        self.collectionView.moveBorderView(to: cell.center)
     }
     
     // MARK: - Flow layout methods
