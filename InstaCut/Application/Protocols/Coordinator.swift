@@ -10,6 +10,15 @@ import UIKit
 
 protocol Coordinator {
     var navigationController: UINavigationController? { get set }
+    var childCoordinators: [Coordinator]? { get set }
     
-    func start()
+    func start(with params: Any?)
+}
+
+extension Coordinator {
+    
+    func start(with params: Any? = nil) {
+        start(with: params)
+    }
+    
 }

@@ -11,12 +11,14 @@ import UIKit
 class VideoListCoordinator: Coordinator {
 
     var navigationController: UINavigationController?
+    var childCoordinators: [Coordinator]?
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, childCoordinators: [Coordinator]? = nil) {
         self.navigationController = navigationController
+        self.childCoordinators = childCoordinators
     }
     
-    func start() {
+    func start(with params: Any?) {
         showFirstScene()
     }
 }
@@ -31,8 +33,9 @@ extension VideoListCoordinator {
 extension VideoListCoordinator: VideoListPresenterOutput {
     
     func showVideoTrimmer(by asset: VideoModel) {
-        let scene = VideoListFactory.makeTrimmerScene(video: asset)
-        navigationController?.pushViewController(scene, animated: true)
+        if let childs = childCoordinators, let trimCoordinator = childs.first as? TrimVideoCoordinator {
+            trimCoordinator.start(with: asset)
+        }
     }
     
 }

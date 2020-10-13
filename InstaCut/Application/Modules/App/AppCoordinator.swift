@@ -15,6 +15,7 @@ class AppCoordinator: Coordinator {
     private var starterCoordinator: Coordinator!
     
     var navigationController: UINavigationController?
+    var childCoordinators: [Coordinator]?
     
     // MARK: - Constructor 🏗
     init(window: UIWindow = UIWindow(),
@@ -43,7 +44,9 @@ fileprivate extension AppCoordinator {
     }
     
     func setupStarterCoordinator() {
-        starterCoordinator = VideoListCoordinator(navigationController: navigationController)
+        let trimCoordinator = TrimVideoCoordinator(navigationController: navigationController)
+        starterCoordinator = VideoListCoordinator(navigationController: navigationController,
+                                                  childCoordinators: [trimCoordinator])
     }
     
 }

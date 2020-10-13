@@ -17,10 +17,4 @@ struct VideoListFactory {
         return viewController
     }
     
-    static func makeTrimmerScene(video: VideoModel) -> TrimVideoViewController {
-        let viewController = TrimVideoViewController()
-        let presenter = TrimVideoPresenter(view: viewController, video: video)
-        viewController.presenter = presenter
-        return viewController
-    }
 }
