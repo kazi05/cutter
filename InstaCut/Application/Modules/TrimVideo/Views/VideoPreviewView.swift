@@ -41,6 +41,30 @@ class VideoPreviewView: UIView {
         return button
     }()
     
+    private lazy var gradientView: GradientView = {
+        let view = GradientView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.startColor = .clear
+        view.endColor = UIColor.black.withAlphaComponent(0.8)
+        return view
+    }()
+    
+    private lazy var currentTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        label.textColor = UIColor(named: "textColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var durationTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        label.textColor = UIColor(named: "textColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - LifeCycle 🌎
     override class var layerClass: AnyClass {
         return AVPlayerLayer.self
@@ -80,11 +104,26 @@ fileprivate extension VideoPreviewView {
     func setupUI() {
         addSubview(playButton)
         
+        addSubview(gradientView)
+        gradientView.addSubview(currentTimeLabel)
+        gradientView.addSubview(durationTimeLabel)
+        
         NSLayoutConstraint.activate([
             playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playButton.widthAnchor.constraint(equalToConstant: 50),
-            playButton.heightAnchor.constraint(equalToConstant: 50)
+            playButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            gradientView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            gradientView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            gradientView.heightAnchor.constraint(equalToConstant: 60),
+            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            currentTimeLabel.centerYAnchor.constraint(equalTo: gradientView.centerYAnchor),
+            currentTimeLabel.leadingAnchor.constraint(equalTo: gradientView.leadingAnchor, constant: 20),
+            
+            durationTimeLabel.centerYAnchor.constraint(equalTo: gradientView.centerYAnchor),
+            durationTimeLabel.trailingAnchor.constraint(equalTo: gradientView.trailingAnchor, constant: -20)
         ])
     }
     
@@ -121,6 +160,7 @@ fileprivate extension VideoPreviewView {
     func hideButton() {
         UIView.animate(withDuration: 0.3) {
             self.playButton.alpha = 0
+            self.gradientView.alpha = 0
         } completion: { (_) in
             self.invalidateTimer()
         }
@@ -129,6 +169,7 @@ fileprivate extension VideoPreviewView {
     func showButton() {
         UIView.animate(withDuration: 0.3) {
             self.playButton.alpha = 1
+            self.gradientView.alpha = 1
         } completion: { (_) in
             if self.hideButtonTimer != nil {
                 self.invalidateTimer()
@@ -143,6 +184,12 @@ extension VideoPreviewView {
     
     public func attach(videoPlayer: VideoPlayer) {
         self.videoPlayer = videoPlayer
+        durationTimeLabel.text = videoPlayer.player.currentItem?.duration.positionalTime
+        currentTimeLabel.text = CMTime.zero.positionalTime
+        
+        videoPlayer.timeChanged = { [weak self] time in
+            self?.currentTimeLabel.text = time.positionalTime
+        }
     }
     
 }

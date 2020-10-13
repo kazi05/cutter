@@ -39,6 +39,7 @@
 		32A760AA25359B7F00ECE08E /* CMTime+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A760A925359B7F00ECE08E /* CMTime+Ext.swift */; };
 		32A760AD2535CAD000ECE08E /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A760AC2535CAD000ECE08E /* VideoPlayer.swift */; };
 		32A760B22535E3D800ECE08E /* VideoPeriodsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A760B12535E3D800ECE08E /* VideoPeriodsCollectionView.swift */; };
+		32A760B62535E8D700ECE08E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A760B52535E8D700ECE08E /* GradientView.swift */; };
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
@@ -81,6 +82,7 @@
 		32A760A925359B7F00ECE08E /* CMTime+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+Ext.swift"; sourceTree = "<group>"; };
 		32A760AC2535CAD000ECE08E /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		32A760B12535E3D800ECE08E /* VideoPeriodsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriodsCollectionView.swift; sourceTree = "<group>"; };
+		32A760B52535E8D700ECE08E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		32C04FE72035AA7E00C509C7 /* InstaCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				32993DFE25359A3000776F3F /* Cells */,
+				32A760B42535E8C900ECE08E /* View */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -253,6 +256,14 @@
 				321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		32A760B42535E8C900ECE08E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32A760B52535E8D700ECE08E /* GradientView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		32A9A94B222BF2A8002D2C06 /* Application */ = {
@@ -480,6 +491,7 @@
 				321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */,
 				321A64C325343FCF00ED70F0 /* XIBLocalizable.swift in Sources */,
 				32A760AD2535CAD000ECE08E /* VideoPlayer.swift in Sources */,
+				32A760B62535E8D700ECE08E /* GradientView.swift in Sources */,
 				321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */,
 				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
 				32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */,

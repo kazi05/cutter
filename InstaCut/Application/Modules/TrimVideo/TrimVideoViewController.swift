@@ -38,11 +38,16 @@ class TrimVideoViewController: UIViewController {
     }
     
     // MARK: - Private methods 🕶
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView.register(VideoThumbCollectionViewCell.nib, forCellWithReuseIdentifier: VideoThumbCollectionViewCell.name)
         
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    private func moveBorder(at index: Int) {
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) else { return }
+        self.collectionView.moveBorderView(to: cell.center)
     }
 
 }
@@ -65,7 +70,7 @@ extension TrimVideoViewController: TrimVideoView {
     }
     
     func periodChanged(_ to: Int) {
-        
+        moveBorder(at: to)
     }
     
 }
@@ -88,8 +93,7 @@ extension TrimVideoViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        self.collectionView.moveBorderView(to: cell.center)
+        moveBorder(at: indexPath.item)
     }
     
     // MARK: - Flow layout methods

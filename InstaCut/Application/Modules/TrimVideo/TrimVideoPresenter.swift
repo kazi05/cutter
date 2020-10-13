@@ -32,7 +32,8 @@ class TrimVideoPresenter {
     
     // MARK: - View actions
     func attachPlayer() {
-        videoPlayer = VideoPlayer(with: video.asset) { [weak self] time in
+        videoPlayer = VideoPlayer(with: video.asset)
+        videoPlayer.timeChanged = { [weak self] time in
             self?.observePlayerTime(time)
         }
         view.showVideo(videoPlayer)
