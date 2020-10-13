@@ -17,11 +17,20 @@ class VideoPreviewView: UIView {
             playerLayer.player = videoPlayer.player
         }
     }
+    
     private var isPlaying: Bool = false {
         didSet {
             toggleVideoState()
         }
     }
+    
+    private var buttonShowing = true {
+        didSet {
+            buttonShowing ? showButton() : hideButton()
+        }
+    }
+    
+    private var hideButtonTimer: Timer!
     
     // MARK: - UI
     private lazy var playButton: UIButton = {
@@ -43,12 +52,14 @@ class VideoPreviewView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configUI()
+        config()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configUI()
+        config()
+        setupUI()
     }
     
     // MARK: - Actions ⚡️
@@ -61,7 +72,12 @@ class VideoPreviewView: UIView {
 // MARK: - Private methods 🕶
 fileprivate extension VideoPreviewView {
     
-    private func configUI() {
+    func config() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    func setupUI() {
         addSubview(playButton)
         
         NSLayoutConstraint.activate([
@@ -72,11 +88,53 @@ fileprivate extension VideoPreviewView {
         ])
     }
     
-    private func toggleVideoState() {
+    @objc func handleTap(_ tapGesture: UITapGestureRecognizer) {
+        if isPlaying {
+            buttonShowing.toggle()
+        }
+    }
+    
+    func toggleVideoState() {
         let imageName = isPlaying ? "media-pause" : "play-button"
         playButton.setImage(UIImage(named: imageName), for: .normal)
         
-        isPlaying ? videoPlayer.play() : videoPlayer.pause()
+        if isPlaying {
+            videoPlayer.play()
+            setupTimer()
+        } else {
+            invalidateTimer()
+            videoPlayer.pause()
+        }
+    }
+    
+    func setupTimer() {
+        hideButtonTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (_) in
+            self.buttonShowing.toggle()
+        })
+    }
+    
+    func invalidateTimer() {
+        self.hideButtonTimer.invalidate()
+        self.hideButtonTimer = nil
+    }
+    
+    func hideButton() {
+        UIView.animate(withDuration: 0.3) {
+            self.playButton.alpha = 0
+        } completion: { (_) in
+            self.invalidateTimer()
+        }
+    }
+    
+    func showButton() {
+        UIView.animate(withDuration: 0.3) {
+            self.playButton.alpha = 1
+        } completion: { (_) in
+            if self.hideButtonTimer != nil {
+                self.invalidateTimer()
+            }
+            self.setupTimer()
+        }
     }
 }
 
