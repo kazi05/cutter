@@ -24,6 +24,8 @@
 		321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 321A64E72534514100ED70F0 /* VideoThumbCollectionViewCell.xib */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */; };
+		3221BA34253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221BA32253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift */; };
+		3221BA35253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3221BA33253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib */; };
 		322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */; };
 		322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */; };
 		322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857E32537057100E70473 /* TrimmingProgressPresenter.swift */; };
@@ -71,6 +73,8 @@
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriod.swift; sourceTree = "<group>"; };
+		3221BA32253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTrimmingCollectionViewCell.swift; sourceTree = "<group>"; };
+		3221BA33253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTrimmingCollectionViewCell.xib; sourceTree = "<group>"; };
 		322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressViewController.swift; sourceTree = "<group>"; };
 		322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrimmingProgressViewController.xib; sourceTree = "<group>"; };
 		322857E32537057100E70473 /* TrimmingProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressPresenter.swift; sourceTree = "<group>"; };
@@ -208,9 +212,19 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3221BA31253749D80019A306 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3221BA32253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift */,
+				3221BA33253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		322857DD253704FB00E70473 /* TrimingProgress */ = {
 			isa = PBXGroup;
 			children = (
+				3221BA31253749D80019A306 /* Cells */,
 				322857E32537057100E70473 /* TrimmingProgressPresenter.swift */,
 				322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */,
 				322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */,
@@ -455,6 +469,7 @@
 				321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */,
 				32621589253496F80012CED3 /* TrimVideoViewController.xib in Resources */,
 				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
+				3221BA35253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +556,7 @@
 				3262158F2534971C0012CED3 /* TrimVideoSceneFactory.swift in Sources */,
 				321A64E325344EB300ED70F0 /* AssetImageGenerator.swift in Sources */,
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,
+				3221BA34253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

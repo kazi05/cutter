@@ -26,4 +26,18 @@ class TrimmingProgressPresenter {
         self.delegate = delegate
     }
     
+    // MARK: - View actions
+    func getPeriodsCount() -> Int {
+        return periods.count
+    }
+    
+    func getPreiod(at index: Int) -> VideoPeriod {
+        return periods[index]
+    }
+    
+    // MARK: - Input methods
+    
+    
+    // MARK: - Output methods
+    
 }
