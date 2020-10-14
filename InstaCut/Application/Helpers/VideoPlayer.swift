@@ -20,13 +20,11 @@ class VideoPlayer {
     private(set) var isPlaying = false
     private var lastSeekTime: CMTime!
     
+    private var timeObserver: Any!
+    
     init(with asset: AVAsset) {
         let playerItem = AVPlayerItem(asset: asset)
         self.player = AVPlayer(playerItem: playerItem)
-        let interval = CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-        self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { [weak self] time in
-            self?.timeChanged?(time)
-        })
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
@@ -38,22 +36,35 @@ class VideoPlayer {
         player.play()
         isPlaying = true
         statusChanged?(.play)
+        
+        let interval = CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: {
+            [weak self] time in
+            self?.timeChanged?(time)
+        })
     }
     
     func pause() {
+        afterPause()
+    }
+    
+    private func afterPause() {
         player.pause()
         isPlaying = false
         statusChanged?(.pause)
+        if timeObserver != nil {
+            player.removeTimeObserver(timeObserver!)
+            timeObserver = nil
+        }
     }
     
     func seek(to time: CMTime, with pause: Bool = true) {
         if pause {
-            player.pause()
-            isPlaying = false
-            statusChanged?(.pause)
+            afterPause()
         }
-        player.seek(to: time)
+        player.seek(to: time, toleranceBefore: .zero, toleranceAfter: .zero)
         lastSeekTime = time
+        timeChanged?(time)
     }
     
     @objc

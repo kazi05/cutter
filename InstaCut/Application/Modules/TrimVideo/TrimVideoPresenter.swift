@@ -59,8 +59,14 @@ class TrimVideoPresenter {
         videoPlayer.seek(to: start)
     }
     
+    func destroyPlayerNow() {
+        videoPlayer.pause()
+        videoPlayer = nil
+    }
+    
     // MARK: - Input methods
     private func observePlayerTime(_ time: CMTime) {
+        print("Time observer")
         view.playerTimeDidChange(time)
         if let index = self.periodsRanges.firstIndex(where: { $0.containsTime(time) }),
            index != self.previousRangeIndex {

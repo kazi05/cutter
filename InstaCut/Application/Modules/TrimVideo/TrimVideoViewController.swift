@@ -41,6 +41,12 @@ class TrimVideoViewController: UIViewController {
         presenter.attachPlayer()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Disappear")
+        presenter.destroyPlayerNow()
+    }
+    
     // MARK: - Private methods 🕶
     private func configureCollectionView() {
         collectionView.register(VideoThumbCollectionViewCell.nib, forCellWithReuseIdentifier: VideoThumbCollectionViewCell.name)

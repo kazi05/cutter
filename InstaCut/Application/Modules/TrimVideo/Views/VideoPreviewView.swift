@@ -14,7 +14,9 @@ class VideoPreviewView: UIView {
     // MARK: - Private properties 🕶
     private var videoPlayer: VideoPlayer! {
         didSet {
-            playerLayer.player = videoPlayer.player
+            if videoPlayer != nil {
+                playerLayer.player = videoPlayer.player
+            }
         }
     }
     
