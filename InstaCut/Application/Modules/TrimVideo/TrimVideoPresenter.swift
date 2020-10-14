@@ -61,6 +61,7 @@ class TrimVideoPresenter {
     
     // MARK: - Input methods
     private func observePlayerTime(_ time: CMTime) {
+        view.playerTimeDidChange(time)
         if let index = self.periodsRanges.firstIndex(where: { $0.containsTime(time) }),
            index != self.previousRangeIndex {
             self.previousRangeIndex = index

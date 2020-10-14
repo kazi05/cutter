@@ -39,7 +39,7 @@ class VideoPreviewView: UIView {
         let view = GradientView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.startColor = .clear
-        view.endColor = UIColor.black.withAlphaComponent(0.8)
+        view.endColor = UIColor.black.withAlphaComponent(0.6)
         return view
     }()
     
@@ -192,13 +192,13 @@ extension VideoPreviewView {
         durationTimeLabel.text = videoPlayer.player.currentItem?.duration.positionalTime
         currentTimeLabel.text = CMTime.zero.positionalTime
         
-        videoPlayer.timeChanged = { [weak self] time in
-            self?.currentTimeLabel.text = time.positionalTime
-        }
-        
         videoPlayer.statusChanged = { [weak self] state in
             self?.handleVideoState(state: state)
         }
+    }
+    
+    public func playerTimeDidChange(time: CMTime) {
+        currentTimeLabel.text = time.positionalTime
     }
     
 }

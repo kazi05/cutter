@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMedia.CMTime
 
 protocol TrimVideoView: class {
     /// Видео разбилось на периоды
@@ -17,6 +18,9 @@ protocol TrimVideoView: class {
     
     /// Время периода изменилось
     func periodChanged(_ to: Int)
+    
+    /// Время видео изменилось
+    func playerTimeDidChange(_ time: CMTime)
 }
 
 class TrimVideoViewController: UIViewController {
@@ -71,6 +75,10 @@ extension TrimVideoViewController: TrimVideoView {
     
     func periodChanged(_ to: Int) {
         moveBorder(at: to)
+    }
+    
+    func playerTimeDidChange(_ time: CMTime) {
+        videoPreview.playerTimeDidChange(time: time)
     }
     
 }
