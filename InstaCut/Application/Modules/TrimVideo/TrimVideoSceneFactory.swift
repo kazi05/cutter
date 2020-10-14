@@ -10,11 +10,21 @@ import UIKit
 
 struct TrimVideoSceneFactory {
     
-    static func makeTrimmerScene(video: VideoModel) -> TrimVideoViewController {
+    static func makeTrimmerScene(video: VideoModel,
+                                 delegate: TrimVideoPresenterOutput
+    ) -> TrimVideoViewController {
         let viewController = TrimVideoViewController()
-        let presenter = TrimVideoPresenter(view: viewController, video: video)
+        let presenter = TrimVideoPresenter(view: viewController, delegate: delegate, video: video)
         viewController.presenter = presenter
         return viewController
     }
     
+    static func makeTrimingProgressScene(periods: [VideoPeriod],
+                                         delegate: TrimmingProgressPresenterOutput
+    ) -> TrimmingProgressViewController {
+        let viewController = TrimmingProgressViewController()
+        let presenter = TrimmingProgressPresenter(view: viewController, periods: periods, delegate: delegate)
+        viewController.presenter = presenter
+        return viewController
+    }
 }

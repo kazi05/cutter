@@ -9,10 +9,15 @@
 import Foundation
 import CoreMedia.CMTime
 
+protocol TrimVideoPresenterOutput: class {
+    func saveVideos(with periods: [VideoPeriod])
+}
+
 class TrimVideoPresenter {
     
     // MARK: - Private properties 🕶
     private weak var view: TrimVideoView!
+    private weak var delegate: TrimVideoPresenterOutput!
     private let video: VideoModel
     private var videoPlayer: VideoPlayer!
     private var periods: [VideoPeriod] = [] {
@@ -24,8 +29,9 @@ class TrimVideoPresenter {
     private var previousRangeIndex = 0
     
     // MARK: - Constructor 🏗
-    init(view: TrimVideoView, video: VideoModel) {
+    init(view: TrimVideoView, delegate: TrimVideoPresenterOutput, video: VideoModel) {
         self.view = view
+        self.delegate = delegate
         self.video = video
         loadPeriods()
     }
@@ -64,9 +70,12 @@ class TrimVideoPresenter {
         videoPlayer = nil
     }
     
+    func saveVideos() {
+        delegate.saveVideos(with: periods)
+    }
+    
     // MARK: - Input methods
     private func observePlayerTime(_ time: CMTime) {
-        print("Time observer")
         view.playerTimeDidChange(time)
         if let index = self.periodsRanges.firstIndex(where: { $0.containsTime(time) }),
            index != self.previousRangeIndex {

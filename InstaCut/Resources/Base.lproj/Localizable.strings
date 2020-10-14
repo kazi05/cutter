@@ -21,3 +21,6 @@ PH_ZERO_COUNT = "No video files in library";
 // MARK: - Video list view controller
 VIDEO_LIST_UPDATEBUTTON = "Reload";
 VIDEO_LIST_TITLE = "Video library";
+
+// MARK: - Trim video view controller
+TRIM_VC_SAVE_BUTTON = "Save";

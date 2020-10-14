@@ -21,3 +21,6 @@ PH_ZERO_COUNT = "Нет видеофайлов в библиотеке";
 // MARK: - Video list view controller
 VIDEO_LIST_UPDATEBUTTON = "Обновить";
 VIDEO_LIST_TITLE = "Видео библиотека";
+
+// MARK: - Trim video view controller
+TRIM_VC_SAVE_BUTTON = "Сохранить";

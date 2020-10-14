@@ -24,6 +24,9 @@
 		321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 321A64E72534514100ED70F0 /* VideoThumbCollectionViewCell.xib */; };
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */; };
+		322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */; };
+		322857E12537051B00E70473 /* TriminProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322857DF2537051B00E70473 /* TriminProgressViewController.xib */; };
+		322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857E32537057100E70473 /* TrimmingProgressPresenter.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
 		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
@@ -65,6 +68,9 @@
 		321B9A3720569FE4008F7226 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriod.swift; sourceTree = "<group>"; };
+		322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressViewController.swift; sourceTree = "<group>"; };
+		322857DF2537051B00E70473 /* TriminProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TriminProgressViewController.xib; sourceTree = "<group>"; };
+		322857E32537057100E70473 /* TrimmingProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressPresenter.swift; sourceTree = "<group>"; };
 		323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			children = (
 				321A64A725343BE800ED70F0 /* App */,
 				32621585253496DA0012CED3 /* TrimVideo */,
+				322857DD253704FB00E70473 /* TrimingProgress */,
 				321A64B125343C6000ED70F0 /* VideoList */,
 			);
 			path = Modules;
@@ -192,6 +199,16 @@
 				32A760AC2535CAD000ECE08E /* VideoPlayer.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		322857DD253704FB00E70473 /* TrimingProgress */ = {
+			isa = PBXGroup;
+			children = (
+				322857E32537057100E70473 /* TrimmingProgressPresenter.swift */,
+				322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */,
+				322857DF2537051B00E70473 /* TriminProgressViewController.xib */,
+			);
+			path = TrimingProgress;
 			sourceTree = "<group>";
 		};
 		32621578253494070012CED3 /* Settings */ = {
@@ -413,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */,
+				322857E12537051B00E70473 /* TriminProgressViewController.xib in Resources */,
 				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
@@ -476,8 +494,10 @@
 				321A64C82534400C00ED70F0 /* XIBLoc+Ext.swift in Sources */,
 				321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */,
 				3262158C253497080012CED3 /* TrimVideoPresenter.swift in Sources */,
+				322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */,
 				32A760B22535E3D800ECE08E /* VideoPeriodsCollectionView.swift in Sources */,
 				321A64CC253440C000ED70F0 /* PhotoLibraryManager.swift in Sources */,
+				322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */,
 				32993DF32535946900776F3F /* VideoPreviewView.swift in Sources */,
 				32A760AA25359B7F00ECE08E /* CMTime+Ext.swift in Sources */,
 				32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */,

@@ -24,10 +24,23 @@ class TrimVideoCoordinator: Coordinator {
     }
 }
 
-extension TrimVideoCoordinator {
+fileprivate extension TrimVideoCoordinator {
     
     func showFirstScene(with asset: VideoModel) {
-        let scene = TrimVideoSceneFactory.makeTrimmerScene(video: asset)
+        let scene = TrimVideoSceneFactory.makeTrimmerScene(video: asset, delegate: self)
         navigationController?.pushViewController(scene, animated: true)
     }
+}
+
+extension TrimVideoCoordinator: TrimVideoPresenterOutput {
+    
+    func saveVideos(with periods: [VideoPeriod]) {
+        let scene = TrimVideoSceneFactory.makeTrimingProgressScene(periods: periods, delegate: self)
+        navigationController?.present(scene, animated: true)
+    }
+    
+}
+
+extension TrimVideoCoordinator: TrimmingProgressPresenterOutput {
+    
 }

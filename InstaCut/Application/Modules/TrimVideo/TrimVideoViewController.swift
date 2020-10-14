@@ -37,13 +37,13 @@ class TrimVideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addRightBarButton()
         configureCollectionView()
         presenter.attachPlayer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("Disappear")
         presenter.destroyPlayerNow()
     }
     
@@ -58,6 +58,21 @@ class TrimVideoViewController: UIViewController {
     private func moveBorder(at index: Int) {
         guard let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) else { return }
         self.collectionView.moveBorderView(to: cell.center)
+    }
+    
+    private func addRightBarButton() {
+        let barButton = UIBarButtonItem(title: .localized("TRIM_VC_SAVE_BUTTON"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(actionSaveVideos(_:)))
+        barButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    // MARK: - Actions ⚡️
+    @objc
+    private func actionSaveVideos(_ sender: UIBarButtonItem) {
+        presenter.saveVideos()
     }
 
 }
