@@ -24,8 +24,8 @@ class VideoPlayer {
         let playerItem = AVPlayerItem(asset: asset)
         self.player = AVPlayer(playerItem: playerItem)
         let interval = CMTime(seconds: 0.1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-        self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { time in
-            self.timeChanged?(time)
+        self.player.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { [weak self] time in
+            self?.timeChanged?(time)
         })
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
