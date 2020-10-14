@@ -25,8 +25,11 @@
 		321B9A3620569FE4008F7226 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 321B9A3820569FE4008F7226 /* Localizable.strings */; };
 		321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */; };
 		322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */; };
-		322857E12537051B00E70473 /* TriminProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322857DF2537051B00E70473 /* TriminProgressViewController.xib */; };
+		322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */; };
 		322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857E32537057100E70473 /* TrimmingProgressPresenter.swift */; };
+		322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857EA25370B7300E70473 /* CustomAlertController.swift */; };
+		322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857ED25370B9500E70473 /* AlertTransitioningDelegate.swift */; };
+		322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857F025370BA500E70473 /* AlertModalPresentationController.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
 		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
@@ -69,8 +72,11 @@
 		321B9A3920569FF3008F7226 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriod.swift; sourceTree = "<group>"; };
 		322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressViewController.swift; sourceTree = "<group>"; };
-		322857DF2537051B00E70473 /* TriminProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TriminProgressViewController.xib; sourceTree = "<group>"; };
+		322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrimmingProgressViewController.xib; sourceTree = "<group>"; };
 		322857E32537057100E70473 /* TrimmingProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimmingProgressPresenter.swift; sourceTree = "<group>"; };
+		322857EA25370B7300E70473 /* CustomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertController.swift; sourceTree = "<group>"; };
+		322857ED25370B9500E70473 /* AlertTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTransitioningDelegate.swift; sourceTree = "<group>"; };
+		322857F025370BA500E70473 /* AlertModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalPresentationController.swift; sourceTree = "<group>"; };
 		323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 		321A64CE2534427900ED70F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				322857E925370B5800E70473 /* Custom alert */,
 				321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */,
 				321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */,
 				32A760AC2535CAD000ECE08E /* VideoPlayer.swift */,
@@ -206,9 +213,19 @@
 			children = (
 				322857E32537057100E70473 /* TrimmingProgressPresenter.swift */,
 				322857DE2537051B00E70473 /* TrimmingProgressViewController.swift */,
-				322857DF2537051B00E70473 /* TriminProgressViewController.xib */,
+				322857DF2537051B00E70473 /* TrimmingProgressViewController.xib */,
 			);
 			path = TrimingProgress;
+			sourceTree = "<group>";
+		};
+		322857E925370B5800E70473 /* Custom alert */ = {
+			isa = PBXGroup;
+			children = (
+				322857EA25370B7300E70473 /* CustomAlertController.swift */,
+				322857ED25370B9500E70473 /* AlertTransitioningDelegate.swift */,
+				322857F025370BA500E70473 /* AlertModalPresentationController.swift */,
+			);
+			path = "Custom alert";
 			sourceTree = "<group>";
 		};
 		32621578253494070012CED3 /* Settings */ = {
@@ -430,7 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */,
-				322857E12537051B00E70473 /* TriminProgressViewController.xib in Resources */,
+				322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */,
 				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
@@ -504,6 +521,8 @@
 				32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */,
 				321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */,
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
+				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
+				322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */,
 				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,
 				3262157A2534943C0012CED3 /* Style.swift in Sources */,
 				32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */,
@@ -514,6 +533,7 @@
 				32A760B62535E8D700ECE08E /* GradientView.swift in Sources */,
 				321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */,
 				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
+				322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */,
 				32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */,
 				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
 				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,

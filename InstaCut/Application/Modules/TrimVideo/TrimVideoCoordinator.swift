@@ -36,7 +36,8 @@ extension TrimVideoCoordinator: TrimVideoPresenterOutput {
     
     func saveVideos(with periods: [VideoPeriod]) {
         let scene = TrimVideoSceneFactory.makeTrimingProgressScene(periods: periods, delegate: self)
-        navigationController?.present(scene, animated: true)
+        let alert = CustomAlertController(viewController: scene)
+        navigationController?.present(alert, animated: true)
     }
     
 }

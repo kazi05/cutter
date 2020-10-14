@@ -24,3 +24,6 @@ VIDEO_LIST_TITLE = "Видео библиотека";
 
 // MARK: - Trim video view controller
 TRIM_VC_SAVE_BUTTON = "Сохранить";
+
+// MARK: - Trimming progress view controller
+TRIMMING_VC_CANCEL_BUTTON = "Отмена";

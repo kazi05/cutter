@@ -42,6 +42,7 @@ class VideoListViewController: UIViewController {
     
     // MARK: - Actions ⚡️
     @IBAction func actionReloadLibrary(_ sender: Any) {
+        presenter.loadVideos()
     }
 }
 
