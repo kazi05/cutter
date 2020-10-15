@@ -61,12 +61,13 @@ class VideoCompositionMaker {
         
         let videoLayer = CALayer()
         videoLayer.frame = CGRect(origin: .zero, size: videoSize)
-        let maskLayer = makeImageMask(videoSize: videoSize)
+//        let maskLayer = makeImageMask(videoSize: videoSize)
+        let progressLayer = makeProgressView(videoSize: videoSize, duration: range.duration.seconds)
 
         let outputLayer = CALayer()
         outputLayer.frame = CGRect(origin: .zero, size: videoSize)
         outputLayer.addSublayer(videoLayer)
-        outputLayer.addSublayer(maskLayer)
+        outputLayer.addSublayer(progressLayer)
         
         let videoComposition = AVMutableVideoComposition()
         videoComposition.renderSize = videoSize
@@ -133,6 +134,32 @@ class VideoCompositionMaker {
         )
         imageLayer.contents = image.cgImage
         return imageLayer
+    }
+    
+    private func makeProgressView(videoSize: CGSize, duration: Double) -> CALayer {
+        let layer = CAShapeLayer()
+        layer.fillColor = nil
+        layer.strokeColor = UIColor(named: "appMainColor")?.cgColor
+        
+        let wide = min(videoSize.width, videoSize.height) / 40
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: wide / 2))
+        path.addLine(to: CGPoint(x: videoSize.width, y: wide / 2))
+        
+        layer.path = path.cgPath
+        layer.lineWidth = wide
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.beginTime = AVCoreAnimationBeginTimeAtZero
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = duration
+        animation.isRemovedOnCompletion = false
+        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+        
+        layer.add(animation, forKey: nil)
+        
+        return layer
     }
     
 }
