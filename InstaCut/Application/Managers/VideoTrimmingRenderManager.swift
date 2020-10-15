@@ -37,7 +37,6 @@ class VideoTrimmingRenderManager {
         
         for (index, range) in timing.enumerated() {
             let uploadOperation = VideoUploadOperation(with: asset, range: range) { [weak self] (progress) in
-                print("Operation progress: \(progress)")
                 self?.periodProgress?(index, progress)
             }
             uploadOperation.completionBlock = { [weak self] in

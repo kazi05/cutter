@@ -91,16 +91,12 @@ fileprivate extension VideoUploadOperation {
         
         removeFileFromDirectory(outputURL: outputURL)
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (_) in
-            self?.observeExportProgress()
-        })
-        
         exportSession.exportAsynchronously { [weak self] in
             guard let self = self else { return }
+            self.invalidateTimer()
             
             switch self.exportSession.status {
             case .completed:
-                self.invalidateTimer()
                 self.photoLibraryManager.saveVideoToPhotoLibrary(from: outputURL) { (result) in
                     switch result {
                     case .failure(let error):
@@ -117,17 +113,21 @@ fileprivate extension VideoUploadOperation {
                 }
             case .failed:
                 print("failed \(String(describing: self.exportSession.error))")
-                self.invalidateTimer()
                 self.state = .finished
             case .cancelled:
                 print("cancelled \(String(describing: self.exportSession.error))")
-                self.invalidateTimer()
             default: break
             }
         }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (_) in
+                self?.observeExportProgress()
+            })
+        }
     }
     
-    func observeExportProgress() {
+    @objc func observeExportProgress() {
         progress(exportSession.progress)
     }
     

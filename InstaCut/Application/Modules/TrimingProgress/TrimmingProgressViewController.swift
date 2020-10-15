@@ -40,7 +40,7 @@ class TrimmingProgressViewController: UIViewController {
         cellIdentity = firstCell.frame
         
         UIView.animate(withDuration: 0.3) {
-            firstCell.frame = self.currentPeriodView.frame
+            firstCell.frame = self.currentPeriodView.frame.offsetBy(dx: self.collectionView.contentOffset.x - 30, dy: -30)
         } completion: { _ in
             self.presenter.beginRendering()
         }
@@ -65,17 +65,41 @@ extension TrimmingProgressViewController: TrimmingProgressView {
     
     func period(at index: Int, progress: Float) {
         guard let periodCell = getCell(by: index) else { return }
-        print("[View] Cell index: \(index) progress: \(progress)")
         periodCell.progressChanged(progress)
     }
     
     func periodCompleted(at index: Int) {
-        guard let periodCell = getCell(by: index) else { return }
-        print("[View] Cell index: \(index) completed")
+        guard let periodCell = getCell(by: index),
+              let lastCell = collectionView.visibleCells.last,
+              let indexPath = collectionView.indexPath(for: lastCell)
+        else { return }
+        
+        if index == indexPath.item - 1 {
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+            
         periodCell.progressCompleted()
+        UIView.animate(withDuration: 0.3) {
+            periodCell.frame = self.cellIdentity
+        } completion: { (_) in
+            guard let nextCell = self.getCell(by: index + 1) else { return }
+            
+            self.cellIdentity = nextCell.frame
+            
+            UIView.animate(withDuration: 0.3) {
+                nextCell.frame = self.currentPeriodView.frame.offsetBy(dx: self.collectionView.contentOffset.x - 30, dy: -30)
+            }
+        }
+        
     }
     
     func renderingCompleted() {
+        if let lastCell = collectionView.visibleCells.last {
+            UIView.animate(withDuration: 0.3) {
+                lastCell.frame = self.cellIdentity
+            }
+        }
+        
         currentPeriodView.isHidden = true
         finishLabel.isHidden = false
         print("[View] Rendering complete")

@@ -16,29 +16,31 @@ class VideoTrimmingCollectionViewCell: UICollectionViewCell, NibLoadable {
     private lazy var progressCircle: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.fillColor = nil
-        layer.strokeColor = UIColor.red.withAlphaComponent(0.7).cgColor
+        layer.strokeColor = UIColor(named: "bgColor")?.withAlphaComponent(0.7).cgColor
         layer.strokeEnd = 0
         layer.anchorPoint = CGPoint(x: 0, y: 0)
         return layer
     }()
     
+    private var completed = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
-        contentView.layer.addSublayer(progressCircle)
+        contentView.layer.insertSublayer(progressCircle, at: 1)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         let path = UIBezierPath(arcCenter: contentView.center,
-                                radius: 15,
+                                radius: completed ? 60 : 15,
                                 startAngle: -CGFloat.pi / 2,
                                 endAngle: 3 * CGFloat.pi / 2,
                                 clockwise: true)
         progressCircle.path = path.cgPath
-        progressCircle.lineWidth = 15
+        progressCircle.lineWidth = completed ? 120 : 30
     }
 
     func configure(with thumb: UIImage, completed: Bool) {
@@ -46,6 +48,7 @@ class VideoTrimmingCollectionViewCell: UICollectionViewCell, NibLoadable {
         
         doneImage.transform = completed ? .identity : CGAffineTransform(scaleX: 0, y: 0)
         progressCircle.strokeEnd = completed ? 1 : 0
+        self.completed = completed
     }
     
     func progressChanged(_ progress: Float) {
@@ -53,6 +56,7 @@ class VideoTrimmingCollectionViewCell: UICollectionViewCell, NibLoadable {
     }
     
     func progressCompleted() {
+        self.completed = true
         UIView.animate(withDuration: 0.3) {
             self.doneImage.transform = .identity
         }

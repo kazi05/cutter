@@ -48,7 +48,7 @@
                         <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="Dvg-0T-vgv"/>
                     </connections>
                 </button>
-                <collectionView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-oc-FGh">
+                <collectionView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-oc-FGh">
                     <rect key="frame" x="30" y="74" width="354" height="70"/>
                     <color key="backgroundColor" name="bgColor"/>
                     <constraints>
