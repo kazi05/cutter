@@ -76,14 +76,18 @@ fileprivate extension VideoUploadOperation {
     }
     
     func exportToCameraRoll(to outputURL: URL) {
-        guard let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {return}
+        let videoMaker = VideoCompositionMaker(asset: asset)
+        
+        guard let composition = videoMaker.generateComposition(with: timeRange),
+              let session = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
+        else { return }
         
         if isCancelled { return }
         
         exportSession = session
+        exportSession.videoComposition = videoMaker.videoComposition
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mov
-        exportSession.timeRange = timeRange
         
         removeFileFromDirectory(outputURL: outputURL)
         
@@ -97,14 +101,15 @@ fileprivate extension VideoUploadOperation {
             switch self.exportSession.status {
             case .completed:
                 self.invalidateTimer()
-                self.photoLibraryManager.saveVideoToPhotoLibrary(from: outputURL) { [weak self] (result) in
+                self.photoLibraryManager.saveVideoToPhotoLibrary(from: outputURL) { (result) in
                     switch result {
                     case .failure(let error):
                         print("Save to camera roll error: \(error.localizedDescription)")
 
                     case .success(let saved):
                         if saved {
-                            self?.state = .finished
+                            self.removeFileFromDirectory(outputURL: outputURL)
+                            self.state = .finished
                         } else {
                             print("Something wrong")
                         }

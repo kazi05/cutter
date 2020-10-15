@@ -27,9 +27,13 @@ class VideoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = .localized("VIDEO_LIST_TITLE")
-        presenter.loadVideos()
         
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.loadVideos()
     }
     
     // MARK: - Private methods 🕶
