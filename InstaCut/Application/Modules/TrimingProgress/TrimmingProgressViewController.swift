@@ -75,7 +75,7 @@ extension TrimmingProgressViewController: TrimmingProgressView {
               let indexPath = collectionView.indexPath(for: lastCell)
         else { return }
         
-        if index == indexPath.item - 1 {
+        if index == indexPath.item - 1 && presenter.getPeriodsCount() > indexPath.item {
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
             
@@ -95,7 +95,8 @@ extension TrimmingProgressViewController: TrimmingProgressView {
     }
     
     func renderingCompleted() {
-        if let lastCell = collectionView.visibleCells.last {
+        if let lastCell = collectionView.cellForItem(at: IndexPath(item: presenter.getPeriodsCount() - 1, section: 0)) as? VideoTrimmingCollectionViewCell {
+            lastCell.progressCompleted()
             UIView.animate(withDuration: 0.3) {
                 lastCell.frame = self.cellIdentity
             }

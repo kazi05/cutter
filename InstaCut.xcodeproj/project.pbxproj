@@ -56,6 +56,7 @@
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
 		32DD15EF35F8A3C11DC5F2A5 /* Pods_InstaCut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */; };
+		32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EECF262538B03C00D5658F /* BackgroundTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		32C04FF62035AA7E00C509C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32E8C9532053FC56001A3FA7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaCut.entitlements; sourceTree = "<group>"; };
+		32EECF262538B03C00D5658F /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC933EF9DBEC67360A8C031 /* Pods-InstaCut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.debug.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.debug.xcconfig"; sourceTree = "<group>"; };
 		92594C43895D2DF4BD31EC89 /* Pods-InstaCut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.release.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				32BD386C25386AAF00503DBF /* AsyncOperation.swift */,
 				321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */,
+				32EECF262538B03C00D5658F /* BackgroundTask.swift */,
 				321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */,
 				32A760AC2535CAD000ECE08E /* VideoPlayer.swift */,
 				32BD3833253842F600503DBF /* VideoUploadOperation.swift */,
@@ -536,6 +539,7 @@
 				321A64CC253440C000ED70F0 /* PhotoLibraryManager.swift in Sources */,
 				322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */,
 				32993DF32535946900776F3F /* VideoPreviewView.swift in Sources */,
+				32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */,
 				32A760AA25359B7F00ECE08E /* CMTime+Ext.swift in Sources */,
 				32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */,
 				32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */,
