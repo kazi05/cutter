@@ -38,15 +38,21 @@ class TrimmingProgressPresenter {
         trimmingRenderManager.beginRendering()
         
         trimmingRenderManager.periodProgress = { [weak self] index, progress in
-            self?.periodAt(index: index, progress: progress)
+            DispatchQueue.main.async {
+                self?.periodAt(index: index, progress: progress)
+            }
         }
         
         trimmingRenderManager.periodRenderCompleted = { [weak self] index in
-            self?.periodCompleted(at: index)
+            DispatchQueue.main.async {
+                self?.periodCompleted(at: index)
+            }
         }
         
         trimmingRenderManager.allPeriodsRenderCompleted = { [weak self] in
-            self?.renderingCompleted()
+            DispatchQueue.main.async {
+                self?.renderingCompleted()
+            }
         }
     }
     

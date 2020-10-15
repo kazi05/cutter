@@ -24,33 +24,31 @@ class VideoTrimmingRenderManager {
     }
     
     func beginRendering() {
-        operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 1
-        
-        var operations: [Operation] = []
-        
-        for (index, range) in timing.enumerated() {
-            let uploadOperation = VideoUploadOperation(with: asset, range: range) { [weak self] (progress) in
-                self?.periodProgress?(index, progress)
-            }
-            uploadOperation.completionBlock = { [weak self] in
-                guard let self = self else { return }
-                print("Operation at index: \(index) completed")
-                if index == self.timing.count - 1 {
-                    self.allPeriodsRenderCompleted?()
-                } else {
-                    self.periodRenderCompleted?(index)
-                }
-            }
-            operations.append(uploadOperation)
-        }
-        
-        operationQueue.addOperations(operations, waitUntilFinished: true)
-        
+        configureQueue()
     }
     
     func cancelRendering() {
         operationQueue.cancelAllOperations()
     }
     
+    private func configureQueue() {
+        operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 1
+        
+        for (index, range) in timing.enumerated() {
+            let uploadOperation = VideoUploadOperation(with: asset, range: range) { [weak self] (progress) in
+                print("Operation progress: \(progress)")
+                self?.periodProgress?(index, progress)
+            }
+            uploadOperation.completionBlock = { [weak self] in
+                guard let self = self else { return }
+                if index == self.timing.count - 1 {
+                    self.allPeriodsRenderCompleted?()
+                } else {
+                    self.periodRenderCompleted?(index)
+                }
+            }
+            operationQueue.addOperation(uploadOperation)
+        }
+    }
 }

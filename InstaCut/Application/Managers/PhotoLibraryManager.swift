@@ -72,15 +72,10 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
                     PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
                 } completionHandler: { (saved, error) in
                     if let error = error {
-                        DispatchQueue.main.async {
-                            completed(.failure(error))
-                        }
+                        completed(.failure(error))
                         return
                     }
-                    
-                    DispatchQueue.main.async {
-                        completed(.success(saved))
-                    }
+                    completed(.success(saved))
                 }
 
             }

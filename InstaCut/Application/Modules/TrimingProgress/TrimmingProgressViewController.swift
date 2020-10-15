@@ -65,20 +65,20 @@ extension TrimmingProgressViewController: TrimmingProgressView {
     
     func period(at index: Int, progress: Float) {
         guard let periodCell = getCell(by: index) else { return }
-        
+        print("[View] Cell index: \(index) progress: \(progress)")
         periodCell.progressChanged(progress)
     }
     
     func periodCompleted(at index: Int) {
         guard let periodCell = getCell(by: index) else { return }
-        
+        print("[View] Cell index: \(index) completed")
         periodCell.progressCompleted()
     }
     
     func renderingCompleted() {
         currentPeriodView.isHidden = true
         finishLabel.isHidden = false
-        
+        print("[View] Rendering complete")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dismiss(animated: true, completion: nil)
         }

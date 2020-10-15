@@ -50,6 +50,7 @@
 		32A760B62535E8D700ECE08E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A760B52535E8D700ECE08E /* GradientView.swift */; };
 		32BD383125383D1A00503DBF /* VideoTrimmingRenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BD383025383D1A00503DBF /* VideoTrimmingRenderManager.swift */; };
 		32BD3834253842F600503DBF /* VideoUploadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BD3833253842F600503DBF /* VideoUploadOperation.swift */; };
+		32BD386D25386AAF00503DBF /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BD386C25386AAF00503DBF /* AsyncOperation.swift */; };
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
@@ -103,6 +104,7 @@
 		32A760B52535E8D700ECE08E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		32BD383025383D1A00503DBF /* VideoTrimmingRenderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTrimmingRenderManager.swift; sourceTree = "<group>"; };
 		32BD3833253842F600503DBF /* VideoUploadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoUploadOperation.swift; sourceTree = "<group>"; };
+		32BD386C25386AAF00503DBF /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		32C04FE72035AA7E00C509C7 /* InstaCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -208,7 +210,7 @@
 		321A64CE2534427900ED70F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				322857E925370B5800E70473 /* Custom alert */,
+				32BD386C25386AAF00503DBF /* AsyncOperation.swift */,
 				321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */,
 				321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */,
 				32A760AC2535CAD000ECE08E /* VideoPlayer.swift */,
@@ -307,6 +309,7 @@
 		32A760B42535E8C900ECE08E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				322857E925370B5800E70473 /* Custom alert */,
 				32A760B52535E8D700ECE08E /* GradientView.swift */,
 			);
 			path = View;
@@ -524,6 +527,7 @@
 				321A64C82534400C00ED70F0 /* XIBLoc+Ext.swift in Sources */,
 				321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */,
 				3262158C253497080012CED3 /* TrimVideoPresenter.swift in Sources */,
+				32BD386D25386AAF00503DBF /* AsyncOperation.swift in Sources */,
 				322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */,
 				32A760B22535E3D800ECE08E /* VideoPeriodsCollectionView.swift in Sources */,
 				321A64CC253440C000ED70F0 /* PhotoLibraryManager.swift in Sources */,

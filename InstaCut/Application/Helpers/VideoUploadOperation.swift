@@ -8,8 +8,9 @@
 
 import AVFoundation
 
-class VideoUploadOperation: Operation {
+class VideoUploadOperation: AsyncOperation {
     
+    // MARK: - Private properties 🕶
     private let asset: AVAsset
     private let timeRange: CMTimeRange
     private let progress: (Float) -> Void
@@ -19,24 +20,33 @@ class VideoUploadOperation: Operation {
     private let photoLibraryManager: PhotoLibraryManagerType = PhotoLibraryManager()
     private var timer: Timer!
     
+    override var isAsynchronous: Bool {
+        return true
+    }
+    
+    // MARK: - LifeCycle 🌎
     init(with asset: AVAsset, range: CMTimeRange, progress: @escaping (Float) -> Void) {
         self.asset = asset
         self.timeRange = range
         self.progress = progress
-        super.init()
     }
     
     override func main() {
-        if isCancelled { return }
-        
+        super.main()
         saveVideoToPhotoAlbum()
     }
     
     override func cancel() {
+        super.cancel()
         exportSession.cancelExport()
     }
     
-    private func saveVideoToPhotoAlbum() {
+}
+
+// MARK: - Export methods
+fileprivate extension VideoUploadOperation {
+    
+    func saveVideoToPhotoAlbum() {
         
         guard let outputURL = createDirectory() else { return }
         
@@ -45,36 +55,37 @@ class VideoUploadOperation: Operation {
         exportToCameraRoll(to: outputURL)
     }
     
-    private func createDirectory() -> URL? {
+    func createDirectory() -> URL? {
         
         guard let documentDirectory = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else { return nil }
-            
+        
         var outputURL = documentDirectory.appendingPathComponent("output")
         do {
-            let name = "outputVideo__\(Int(Date().timeIntervalSince1970))"
+            let name = "outputVideo__\(Int(timeRange.start.seconds))"
             outputURL = outputURL.appendingPathComponent("\(name).mov")
             try fileManager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            print(error)
+            print("File create error: \(error.localizedDescription)")
         }
         
         return outputURL
     }
     
-    private func removeFileFromDirectory(outputURL: URL) {
+    func removeFileFromDirectory(outputURL: URL) {
         try? fileManager.removeItem(at: outputURL)
     }
     
-    private func exportToCameraRoll(to outputURL: URL) {
+    func exportToCameraRoll(to outputURL: URL) {
         guard let session = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {return}
         
         if isCancelled { return }
         
         exportSession = session
-        
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mov
         exportSession.timeRange = timeRange
+        
+        removeFileFromDirectory(outputURL: outputURL)
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] (_) in
             self?.observeExportProgress()
@@ -82,19 +93,18 @@ class VideoUploadOperation: Operation {
         
         exportSession.exportAsynchronously { [weak self] in
             guard let self = self else { return }
+            
             switch self.exportSession.status {
             case .completed:
                 self.invalidateTimer()
-                print("exported at \(outputURL)")
-                self.photoLibraryManager.saveVideoToPhotoLibrary(from: outputURL) { (result) in
+                self.photoLibraryManager.saveVideoToPhotoLibrary(from: outputURL) { [weak self] (result) in
                     switch result {
                     case .failure(let error):
-                        print(error.localizedDescription)
-                        
+                        print("Save to camera roll error: \(error.localizedDescription)")
+
                     case .success(let saved):
                         if saved {
-                            self.removeFileFromDirectory(outputURL: outputURL)
-                            self.completionBlock?()
+                            self?.state = .finished
                         } else {
                             print("Something wrong")
                         }
@@ -103,6 +113,7 @@ class VideoUploadOperation: Operation {
             case .failed:
                 print("failed \(String(describing: self.exportSession.error))")
                 self.invalidateTimer()
+                self.state = .finished
             case .cancelled:
                 print("cancelled \(String(describing: self.exportSession.error))")
                 self.invalidateTimer()
@@ -111,12 +122,13 @@ class VideoUploadOperation: Operation {
         }
     }
     
-    private func observeExportProgress() {
+    func observeExportProgress() {
         progress(exportSession.progress)
     }
     
-    private func invalidateTimer() {
+    func invalidateTimer() {
         timer.invalidate()
         timer = nil
     }
+    
 }
