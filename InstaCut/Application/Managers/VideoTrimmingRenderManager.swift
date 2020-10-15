@@ -13,6 +13,7 @@ class VideoTrimmingRenderManager {
     private let asset: AVAsset
     private let timing: [CMTimeRange]
     private var operationQueue: OperationQueue!
+    private var wasCancelled = false
     
     public var periodProgress: ((Int, Float) -> Void)?
     public var periodRenderCompleted: ((Int) -> Void)?
@@ -28,6 +29,7 @@ class VideoTrimmingRenderManager {
     }
     
     func cancelRendering() {
+        wasCancelled = true
         operationQueue.cancelAllOperations()
     }
     
@@ -40,7 +42,10 @@ class VideoTrimmingRenderManager {
                 self?.periodProgress?(index, progress)
             }
             uploadOperation.completionBlock = { [weak self] in
-                guard let self = self else { return }
+                guard let self = self, !self.wasCancelled else { return }
+                
+                print("Complete operation")
+                
                 if index == self.timing.count - 1 {
                     self.allPeriodsRenderCompleted?()
                 } else {

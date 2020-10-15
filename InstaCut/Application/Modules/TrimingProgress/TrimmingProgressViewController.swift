@@ -56,6 +56,7 @@ class TrimmingProgressViewController: UIViewController {
     
     // MARK: - Actions ⚡️
     @IBAction func actionCancel(_ sender: Any) {
+        presenter.cancelRendering()
         dismiss(animated: true, completion: nil)
     }
 }

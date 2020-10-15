@@ -56,6 +56,10 @@ class TrimmingProgressPresenter {
         }
     }
     
+    func cancelRendering() {
+        trimmingRenderManager.cancelRendering()
+    }
+    
     func getPeriodsCount() -> Int {
         return periods.count
     }

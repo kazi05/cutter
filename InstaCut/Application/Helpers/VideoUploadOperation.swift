@@ -18,7 +18,6 @@ class VideoUploadOperation: AsyncOperation {
     private let fileManager = FileManager.default
     private var exportSession: AVAssetExportSession!
     private let photoLibraryManager: PhotoLibraryManagerType = PhotoLibraryManager()
-    private var timer: Timer!
     
     override var isAsynchronous: Bool {
         return true
@@ -38,6 +37,7 @@ class VideoUploadOperation: AsyncOperation {
     
     override func cancel() {
         super.cancel()
+        print("Cancel operation")
         exportSession.cancelExport()
     }
     
@@ -93,7 +93,6 @@ fileprivate extension VideoUploadOperation {
         
         exportSession.exportAsynchronously { [weak self] in
             guard let self = self else { return }
-            self.invalidateTimer()
             
             switch self.exportSession.status {
             case .completed:
@@ -104,6 +103,7 @@ fileprivate extension VideoUploadOperation {
 
                     case .success(let saved):
                         if saved {
+                            print("Saved")
                             self.removeFileFromDirectory(outputURL: outputURL)
                             self.state = .finished
                         } else {
@@ -120,20 +120,16 @@ fileprivate extension VideoUploadOperation {
             }
         }
         
-        DispatchQueue.main.async { [weak self] in
-            self?.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { (_) in
-                self?.observeExportProgress()
-            })
-        }
+        repeat {
+            Thread.sleep(forTimeInterval: 0.2)
+            observeExportProgress()
+        } while exportSession.status == .exporting
     }
     
     @objc func observeExportProgress() {
+        print("Progress: \(exportSession.progress)")
+        guard exportSession.progress < 1 else { return }
         progress(exportSession.progress)
-    }
-    
-    func invalidateTimer() {
-        timer.invalidate()
-        timer = nil
     }
     
 }

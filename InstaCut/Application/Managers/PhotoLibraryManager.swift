@@ -28,6 +28,7 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
             case .success:
                 let options = PHFetchOptions()
                 options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+                options.predicate = NSPredicate(format: "duration > %f", 60.0)
                 
                 let fetchResult = PHAsset.fetchAssets(with: .video, options: options)
                 
