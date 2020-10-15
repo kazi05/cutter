@@ -10,7 +10,7 @@ import Foundation
 import CoreMedia.CMTime
 
 protocol TrimVideoPresenterOutput: class {
-    func saveVideos(with periods: [VideoPeriod])
+    func saveVideos(from video: VideoModel, with periods: [VideoPeriod])
 }
 
 class TrimVideoPresenter {
@@ -71,7 +71,7 @@ class TrimVideoPresenter {
     }
     
     func saveVideos() {
-        delegate.saveVideos(with: periods)
+        delegate.saveVideos(from: video, with: periods)
     }
     
     // MARK: - Input methods

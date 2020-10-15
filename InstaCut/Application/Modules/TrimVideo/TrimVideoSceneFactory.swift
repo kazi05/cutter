@@ -19,11 +19,12 @@ struct TrimVideoSceneFactory {
         return viewController
     }
     
-    static func makeTrimingProgressScene(periods: [VideoPeriod],
+    static func makeTrimingProgressScene(video: VideoModel,
+                                         periods: [VideoPeriod],
                                          delegate: TrimmingProgressPresenterOutput
     ) -> TrimmingProgressViewController {
         let viewController = TrimmingProgressViewController()
-        let presenter = TrimmingProgressPresenter(view: viewController, periods: periods, delegate: delegate)
+        let presenter = TrimmingProgressPresenter(view: viewController, video: video, periods: periods, delegate: delegate)
         viewController.presenter = presenter
         return viewController
     }

@@ -17,16 +17,39 @@ class TrimmingProgressPresenter {
     // MARK: - Private properties 🕶
     private weak var view: TrimmingProgressView!
     private weak var delegate: TrimmingProgressPresenterOutput!
+    private var trimmingRenderManager: VideoTrimmingRenderManager!
     private let periods: [VideoPeriod]
+    private var completedPeriodsIndexes = Set<Int>()
     
     // MARK: - Constructor 🏗
-    init(view: TrimmingProgressView, periods: [VideoPeriod], delegate: TrimmingProgressPresenterOutput) {
+    init(view: TrimmingProgressView,
+         video: VideoModel,
+         periods: [VideoPeriod],
+         delegate: TrimmingProgressPresenterOutput) {
         self.view = view
         self.periods = periods
         self.delegate = delegate
+        self.trimmingRenderManager = VideoTrimmingRenderManager(with: video.asset,
+                                                                and: periods.map { $0.timeRange} )
     }
     
     // MARK: - View actions
+    func beginRendering() {
+        trimmingRenderManager.beginRendering()
+        
+        trimmingRenderManager.periodProgress = { [weak self] index, progress in
+            self?.periodAt(index: index, progress: progress)
+        }
+        
+        trimmingRenderManager.periodRenderCompleted = { [weak self] index in
+            self?.periodCompleted(at: index)
+        }
+        
+        trimmingRenderManager.allPeriodsRenderCompleted = { [weak self] in
+            self?.renderingCompleted()
+        }
+    }
+    
     func getPeriodsCount() -> Int {
         return periods.count
     }
@@ -35,8 +58,22 @@ class TrimmingProgressPresenter {
         return periods[index]
     }
     
-    // MARK: - Input methods
+    func isPeriodCompleted(at index: Int) -> Bool {
+        return completedPeriodsIndexes.contains(index)
+    }
     
+    // MARK: - Input methods
+    private func periodAt(index: Int, progress: Float) {
+        view.period(at: index, progress: progress)
+    }
+    
+    private func periodCompleted(at index: Int) {
+        view.periodCompleted(at: index)
+    }
+    
+    private func renderingCompleted() {
+        view.renderingCompleted()
+    }
     
     // MARK: - Output methods
     

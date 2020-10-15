@@ -19,23 +19,22 @@ class PhotoLibraryPremission {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({
                 (newStatus) in
-                print("status is \(newStatus)")
+                print("status is \(newStatus.rawValue)")
                 if newStatus ==  PHAuthorizationStatus.authorized {
-                    print("success")
                     completion(.success)
                 } else {
-                    completion(.error(.localized("PH_REJECTED")))
+                    completion(.error(.rejected))
                 }
             })
             
         case .restricted:
-            completion(.error(.localized("PH_REJECTED")))
+            completion(.error(.rejected))
             
         case .denied:
-            completion(.error(.localized("PH_REJECTED")))
+            completion(.error(.rejected))
             
         default:
-            completion(.error(.localized("PH_UNKNOWN")))
+            completion(.error(.unknown))
       }
     }
     
@@ -43,5 +42,24 @@ class PhotoLibraryPremission {
 
 enum PhotoAuthorizationStatus {
     case success
-    case error(String)
+    case error(PhotoAuthorizationError)
+}
+
+enum PhotoAuthorizationError: Error {
+    case rejected, unknown, empty
+}
+
+extension PhotoAuthorizationError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .rejected:
+            return .localized("PH_REJECTED")
+            
+        case .unknown:
+            return .localized("PH_UNKNOWN")
+            
+        case .empty:
+            return .localized("PH_ZERO_COUNT")
+        }
+    }
 }

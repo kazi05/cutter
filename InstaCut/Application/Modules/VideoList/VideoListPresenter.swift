@@ -33,12 +33,17 @@ class VideoListPresenter {
     // MARK: - View actions
     func loadVideos() {
         PhotoLibraryManager().fetchVideoFromLibrary { [weak self] (result) in
-            self?.videoModels = result
-            self?.view.loadVideosCompleted()
-        } onError: { [weak self] (error) in
-            self?.view.loadVideosError(error)
-        }
+            switch result {
+            case .failure(let error):
+                self?.view.loadVideosError(error)
+                
+            case .success(let videos):
+                self?.videoModels = videos
+                self?.view.loadVideosCompleted()
 
+            }
+            
+        }
     }
     
     func getVideosCount() -> Int {

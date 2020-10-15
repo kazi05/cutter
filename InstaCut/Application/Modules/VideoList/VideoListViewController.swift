@@ -10,7 +10,7 @@ import UIKit
 
 protocol VideoListView: class {
     func loadVideosCompleted()
-    func loadVideosError(_ error: String)
+    func loadVideosError(_ error: Error)
 }
 
 class VideoListViewController: UIViewController {
@@ -53,10 +53,10 @@ extension VideoListViewController: VideoListView {
         collectionView.reloadData()
     }
     
-    func loadVideosError(_ error: String) {
+    func loadVideosError(_ error: Error) {
         errorView.isHidden = false
         collectionView.isHidden = true
-        errorLabel.text = error
+        errorLabel.text = error.localizedDescription
     }
     
 }

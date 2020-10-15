@@ -10,20 +10,19 @@ import UIKit
 import Photos
 
 protocol PhotoLibraryManagerType {
-    func fetchVideoFromLibrary(onSuccess: @escaping ([VideoModel]) -> Void,
-                               onError: @escaping (String) -> Void)
+    func fetchVideoFromLibrary(completion: @escaping (Result<[VideoModel], Error>) -> Void)
+    
+    func saveVideoToPhotoLibrary(from url: URL, completed: @escaping (Result<Bool, Error>) -> Void)
 }
 
 class PhotoLibraryManager: PhotoLibraryManagerType {
-    
-    func fetchVideoFromLibrary(onSuccess: @escaping ([VideoModel]) -> Void,
-                               onError: @escaping (String) -> Void
-    ) {
+       
+    func fetchVideoFromLibrary(completion: @escaping (Result<[VideoModel], Error>) -> Void) {
         PhotoLibraryPremission().getPhotolibraryAccesStatus { (status) in
             switch status {
-            case .error(let errorString):
+            case .error(let error):
                 DispatchQueue.main.async {
-                    onError(errorString)
+                    completion(.failure(error))
                 }
                 
             case .success:
@@ -33,7 +32,7 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
                 let fetchResult = PHAsset.fetchAssets(with: .video, options: options)
                 
                 guard fetchResult.count > 0 else {
-                    onError(.localized("PH_ZERO_COUNT"))
+                    completion(.failure(PhotoAuthorizationError.empty))
                     return
                 }
                 
@@ -54,8 +53,36 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
                 }
                 
                 group.notify(queue: .main) {
-                    onSuccess(videoModels)
+                    completion(.success(videoModels))
                 }
+            }
+        }
+    }
+    
+    func saveVideoToPhotoLibrary(from url: URL, completed: @escaping (Result<Bool, Error>) -> Void) {
+        PhotoLibraryPremission().getPhotolibraryAccesStatus { (status) in
+            switch status {
+            case .error(let error):
+                DispatchQueue.main.async {
+                    completed(.failure(error))
+                }
+                
+            case .success:
+                PHPhotoLibrary.shared().performChanges {
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
+                } completionHandler: { (saved, error) in
+                    if let error = error {
+                        DispatchQueue.main.async {
+                            completed(.failure(error))
+                        }
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completed(.success(saved))
+                    }
+                }
+
             }
         }
     }

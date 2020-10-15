@@ -9,22 +9,41 @@
 import UIKit
 
 protocol TrimmingProgressView: class {
-    
+    func period(at index: Int, progress: Float)
+    func periodCompleted(at index: Int)
+    func renderingCompleted()
 }
 
 class TrimmingProgressViewController: UIViewController {
     
     // MARK: - Visible properties 👓
     var presenter: TrimmingProgressPresenter!
+    
+    // MARK: - Private properties 🕶
+    private var cellIdentity: CGRect = .zero
 
     // MARK: - Outlets 🔌
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var currentPeriodView: UIView!
+    @IBOutlet weak var finishLabel: UILabel!
     
     // MARK: - LifeCycle 🌎
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let firstCell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) else { return }
+        
+        cellIdentity = firstCell.frame
+        
+        UIView.animate(withDuration: 0.3) {
+            firstCell.frame = self.currentPeriodView.frame
+        } completion: { _ in
+            self.presenter.beginRendering()
+        }
     }
     
     // MARK: - Private methods 🕶
@@ -44,6 +63,30 @@ class TrimmingProgressViewController: UIViewController {
 // MARK: - View methods
 extension TrimmingProgressViewController: TrimmingProgressView {
     
+    func period(at index: Int, progress: Float) {
+        guard let periodCell = getCell(by: index) else { return }
+        
+        periodCell.progressChanged(progress)
+    }
+    
+    func periodCompleted(at index: Int) {
+        guard let periodCell = getCell(by: index) else { return }
+        
+        periodCell.progressCompleted()
+    }
+    
+    func renderingCompleted() {
+        currentPeriodView.isHidden = true
+        finishLabel.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func getCell(by index: Int) -> VideoTrimmingCollectionViewCell? {
+        return collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? VideoTrimmingCollectionViewCell
+    }
 }
 
 // MARK: - Collection view dataSource methods
@@ -57,7 +100,7 @@ extension TrimmingProgressViewController: UICollectionViewDataSource, UICollecti
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoTrimmingCollectionViewCell.name, for: indexPath) as? VideoTrimmingCollectionViewCell else { return UICollectionViewCell() }
         
         let period = presenter.getPreiod(at: indexPath.item)
-        cell.configure(with: period.previewImage)
+        cell.configure(with: period.previewImage, completed: presenter.isPeriodCompleted(at: indexPath.item))
         
         return cell
     }

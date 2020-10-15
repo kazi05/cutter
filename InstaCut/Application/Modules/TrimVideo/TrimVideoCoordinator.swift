@@ -34,8 +34,8 @@ fileprivate extension TrimVideoCoordinator {
 
 extension TrimVideoCoordinator: TrimVideoPresenterOutput {
     
-    func saveVideos(with periods: [VideoPeriod]) {
-        let scene = TrimVideoSceneFactory.makeTrimingProgressScene(periods: periods, delegate: self)
+    func saveVideos(from video: VideoModel, with periods: [VideoPeriod]) {
+        let scene = TrimVideoSceneFactory.makeTrimingProgressScene(video: video, periods: periods, delegate: self)
         let alert = CustomAlertController(viewController: scene)
         navigationController?.present(alert, animated: true)
     }

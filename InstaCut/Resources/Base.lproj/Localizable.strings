@@ -27,3 +27,4 @@ TRIM_VC_SAVE_BUTTON = "Save";
 
 // MARK: - Trimming progress view controller
 TRIMMING_VC_CANCEL_BUTTON = "Cancel";
+TRIMMING_VC_FINISH_LABEL = "Finish!";

@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="collectionView" destination="Ah2-oc-FGh" id="IuO-MK-Sd4"/>
                 <outlet property="currentPeriodView" destination="7vJ-gd-A6s" id="u47-G9-f6S"/>
+                <outlet property="finishLabel" destination="4us-GT-VLe" id="03m-kd-5Tw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,32 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="576"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agn-b0-vK6">
-                    <rect key="frame" x="180.5" y="344" width="53" height="202"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                    <state key="normal" title="Button">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="TRIMMING_VC_CANCEL_BUTTON"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="Dvg-0T-vgv"/>
-                    </connections>
-                </button>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-oc-FGh">
-                    <rect key="frame" x="30" y="74" width="354" height="70"/>
-                    <color key="backgroundColor" name="bgColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="70" id="ll3-f0-PUb"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tFE-xP-p7G">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vJ-gd-A6s">
                     <rect key="frame" x="157" y="194" width="100" height="100"/>
                     <color key="backgroundColor" name="navBarColor"/>
@@ -60,12 +35,49 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agn-b0-vK6">
+                    <rect key="frame" x="180.5" y="344" width="53" height="202"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="TRIMMING_VC_CANCEL_BUTTON"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="Dvg-0T-vgv"/>
+                    </connections>
+                </button>
+                <collectionView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ah2-oc-FGh">
+                    <rect key="frame" x="30" y="74" width="354" height="70"/>
+                    <color key="backgroundColor" name="bgColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="ll3-f0-PUb"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tFE-xP-p7G">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4us-GT-VLe">
+                    <rect key="frame" x="176.5" y="227.5" width="61" height="33"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                    <color key="textColor" name="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="TRIMMING_VC_FINISH_LABEL"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="bgColor"/>
             <constraints>
                 <constraint firstItem="Ah2-oc-FGh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Fcu-O3-A5g"/>
                 <constraint firstItem="7vJ-gd-A6s" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Hcx-9d-zOp"/>
+                <constraint firstItem="4us-GT-VLe" firstAttribute="centerY" secondItem="7vJ-gd-A6s" secondAttribute="centerY" id="MOZ-Dy-ddh"/>
+                <constraint firstItem="4us-GT-VLe" firstAttribute="centerX" secondItem="7vJ-gd-A6s" secondAttribute="centerX" id="NHA-hH-fsb"/>
                 <constraint firstItem="Ah2-oc-FGh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="S5W-4a-deg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ah2-oc-FGh" secondAttribute="trailing" constant="30" id="YDA-Ml-kZT"/>
                 <constraint firstItem="agn-b0-vK6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e2c-6f-drL"/>
@@ -83,6 +95,9 @@
         </namedColor>
         <namedColor name="navBarColor">
             <color red="0.11800000071525574" green="0.11800000071525574" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColor">
+            <color red="0.68599998950958252" green="0.68999999761581421" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
