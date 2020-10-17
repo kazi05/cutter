@@ -12,6 +12,8 @@ class VideoTrimmingRenderManager {
     
     private let asset: AVAsset
     private let timing: [CMTimeRange]
+    private let renderSettings: VideoRenderSettings
+    
     private var operationQueue: OperationQueue!
     private var wasCancelled = false
     
@@ -19,9 +21,12 @@ class VideoTrimmingRenderManager {
     public var periodRenderCompleted: ((Int) -> Void)?
     public var allPeriodsRenderCompleted: (() -> Void)?
     
-    init(with asset: AVAsset, and periods: [CMTimeRange]) {
+    init(with asset: AVAsset,
+         and periods: [CMTimeRange],
+         renderSettings: VideoRenderSettings) {
         self.asset = asset
         self.timing = periods
+        self.renderSettings = renderSettings
     }
     
     func beginRendering() {
@@ -38,7 +43,7 @@ class VideoTrimmingRenderManager {
         operationQueue.maxConcurrentOperationCount = 1
         
         for (index, range) in timing.enumerated() {
-            let uploadOperation = VideoUploadOperation(with: asset, range: range) { [weak self] (progress) in
+            let uploadOperation = VideoUploadOperation(with: asset, range: range, renderSettings: self.renderSettings) { [weak self] (progress) in
                 self?.periodProgress?(index, progress)
             }
             uploadOperation.completionBlock = { [weak self] in

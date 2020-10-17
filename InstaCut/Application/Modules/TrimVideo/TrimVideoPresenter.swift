@@ -10,7 +10,7 @@ import Foundation
 import CoreMedia.CMTime
 
 protocol TrimVideoPresenterOutput: class {
-    func saveVideos(from video: VideoModel, with periods: [VideoPeriod])
+    func saveVideos(from video: VideoModel, with periods: [VideoPeriod], and settings: VideoRenderSettings)
     
     func purchaseNoMask(period: VideoPeriod)
 }
@@ -31,6 +31,8 @@ class TrimVideoPresenter {
     private var periodsRanges: [CMTimeRange] = []
     private var previousRangeIndex = 0
     private var currentPeriod: VideoPeriod!
+    
+    private var renderSettings = VideoRenderSettings()
     
     // MARK: - Constructor 🏗
     init(view: TrimVideoView, delegate: TrimVideoPresenterOutput, video: VideoModel) {
@@ -76,7 +78,7 @@ class TrimVideoPresenter {
     }
     
     func saveVideos() {
-        delegate.saveVideos(from: video, with: periods)
+        delegate.saveVideos(from: video, with: periods, and: renderSettings)
     }
     
     // MARK: - Input methods

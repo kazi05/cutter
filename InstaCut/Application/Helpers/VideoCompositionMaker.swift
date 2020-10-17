@@ -18,7 +18,9 @@ class VideoCompositionMaker {
         self.asset = asset
     }
     
-    func generateComposition(with range: CMTimeRange) -> AVMutableComposition? {
+    func generateComposition(with range: CMTimeRange,
+                             renderSettings: VideoRenderSettings
+    ) -> AVMutableComposition? {
         let composition = AVMutableComposition()
         
         guard
@@ -66,12 +68,12 @@ class VideoCompositionMaker {
         outputLayer.frame = CGRect(origin: .zero, size: videoSize)
         outputLayer.addSublayer(videoLayer)
         
-        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil {
+        if renderSettings.needMask {
             addImageMask(to: outputLayer, videoSize: videoSize)
         }
         
-        if UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) != nil {
-            addProgressView(to: outputLayer, videoSize: videoSize, duration: range.duration.seconds)
+        if renderSettings.progressSettings != nil {
+            addProgressView(to: outputLayer, videoSize: videoSize, duration: range.duration.seconds, color: renderSettings.progressSettings!.color)
         }
         
         let videoComposition = AVMutableVideoComposition()
@@ -94,8 +96,7 @@ class VideoCompositionMaker {
             assetTrack: assetTrack)
         instruction.layerInstructions = [layerInstruction]
         
-        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil ||
-            UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) != nil {
+        if renderSettings.needMask || renderSettings.progressSettings != nil {
             self.videoComposition = videoComposition
         }
         
@@ -144,10 +145,10 @@ class VideoCompositionMaker {
         layer.addSublayer(imageLayer)
     }
     
-    private func addProgressView(to layer: CALayer, videoSize: CGSize, duration: Double) {
+    private func addProgressView(to layer: CALayer, videoSize: CGSize, duration: Double, color: UIColor) {
         let progressLayer = CAShapeLayer()
         progressLayer.fillColor = nil
-        progressLayer.strokeColor = UIColor(named: "appMainColor")?.cgColor
+        progressLayer.strokeColor = color.cgColor
         
         let wide = min(videoSize.width, videoSize.height) / 40
         let path = UIBezierPath()

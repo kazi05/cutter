@@ -34,6 +34,8 @@
 		322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857F025370BA500E70473 /* AlertModalPresentationController.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
 		323EFC94253B9D44009A383F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC93253B9D44009A383F /* UIViewController+Ext.swift */; };
+		323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC96253BA413009A383F /* VideoProgressSettings.swift */; };
+		323EFC9A253BA655009A383F /* VideoRenderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC99253BA655009A383F /* VideoRenderSettings.swift */; };
 		3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C30D253A04A900D400A5 /* IAPManager.swift */; };
 		3246C312253A04CC00D400A5 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C311253A04CC00D400A5 /* IAPProduct.swift */; };
 		3246C318253A15B000D400A5 /* NoMaskPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */; };
@@ -94,6 +96,8 @@
 		322857F025370BA500E70473 /* AlertModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalPresentationController.swift; sourceTree = "<group>"; };
 		323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		323EFC93253B9D44009A383F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		323EFC96253BA413009A383F /* VideoProgressSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProgressSettings.swift; sourceTree = "<group>"; };
+		323EFC99253BA655009A383F /* VideoRenderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRenderSettings.swift; sourceTree = "<group>"; };
 		3246C30D253A04A900D400A5 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		3246C311253A04CC00D400A5 /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchaseViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 				3246C311253A04CC00D400A5 /* IAPProduct.swift */,
 				32A4C729222BFA35003616CC /* VideoModel.swift */,
 				321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */,
+				323EFC96253BA413009A383F /* VideoProgressSettings.swift */,
+				323EFC99253BA655009A383F /* VideoRenderSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -573,7 +579,9 @@
 				32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */,
 				323EFC94253B9D44009A383F /* UIViewController+Ext.swift in Sources */,
 				321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */,
+				323EFC9A253BA655009A383F /* VideoRenderSettings.swift in Sources */,
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
+				323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */,
 				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
 				3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */,
 				322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */,

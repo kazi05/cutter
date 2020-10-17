@@ -25,12 +25,14 @@ class TrimmingProgressPresenter {
     init(view: TrimmingProgressView,
          video: VideoModel,
          periods: [VideoPeriod],
+         renderSettings: VideoRenderSettings,
          delegate: TrimmingProgressPresenterOutput) {
         self.view = view
         self.periods = periods
         self.delegate = delegate
         self.trimmingRenderManager = VideoTrimmingRenderManager(with: video.asset,
-                                                                and: periods.map { $0.timeRange} )
+                                                                and: periods.map { $0.timeRange},
+                                                                renderSettings: renderSettings )
     }
     
     // MARK: - View actions

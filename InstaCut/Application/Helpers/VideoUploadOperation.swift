@@ -14,6 +14,7 @@ class VideoUploadOperation: AsyncOperation {
     private let asset: AVAsset
     private let timeRange: CMTimeRange
     private let progress: (Float) -> Void
+    private let renderSettings: VideoRenderSettings
     
     private let fileManager = FileManager.default
     private var exportSession: AVAssetExportSession!
@@ -24,9 +25,13 @@ class VideoUploadOperation: AsyncOperation {
     }
     
     // MARK: - LifeCycle 🌎
-    init(with asset: AVAsset, range: CMTimeRange, progress: @escaping (Float) -> Void) {
+    init(with asset: AVAsset,
+         range: CMTimeRange,
+         renderSettings: VideoRenderSettings,
+         progress: @escaping (Float) -> Void) {
         self.asset = asset
         self.timeRange = range
+        self.renderSettings = renderSettings
         self.progress = progress
     }
     
@@ -79,7 +84,7 @@ fileprivate extension VideoUploadOperation {
     func exportToCameraRoll(to outputURL: URL) {
         let videoMaker = VideoCompositionMaker(asset: asset)
         
-        guard let composition = videoMaker.generateComposition(with: timeRange),
+        guard let composition = videoMaker.generateComposition(with: timeRange, renderSettings: renderSettings),
               let session = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
         else { return }
         
