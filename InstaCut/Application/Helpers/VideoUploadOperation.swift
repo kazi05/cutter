@@ -37,8 +37,9 @@ class VideoUploadOperation: AsyncOperation {
     
     override func cancel() {
         super.cancel()
-        print("Cancel operation")
-        exportSession.cancelExport()
+        if exportSession != nil {
+            exportSession.cancelExport()
+        }
     }
     
 }
@@ -48,7 +49,7 @@ fileprivate extension VideoUploadOperation {
     
     func saveVideoToPhotoAlbum() {
         
-        guard let outputURL = createDirectory() else { return }
+        guard let outputURL = createDirectory(), !isCancelled else { return }
         
         if isCancelled { return }
         
@@ -116,6 +117,7 @@ fileprivate extension VideoUploadOperation {
                 self.state = .finished
             case .cancelled:
                 print("cancelled \(String(describing: self.exportSession.error))")
+                self.state = .cancelled
             default: break
             }
         }

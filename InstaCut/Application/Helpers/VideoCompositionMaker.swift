@@ -61,13 +61,18 @@ class VideoCompositionMaker {
         
         let videoLayer = CALayer()
         videoLayer.frame = CGRect(origin: .zero, size: videoSize)
-//        let maskLayer = makeImageMask(videoSize: videoSize)
-        let progressLayer = makeProgressView(videoSize: videoSize, duration: range.duration.seconds)
 
         let outputLayer = CALayer()
         outputLayer.frame = CGRect(origin: .zero, size: videoSize)
         outputLayer.addSublayer(videoLayer)
-        outputLayer.addSublayer(progressLayer)
+        
+        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil {
+            addImageMask(to: outputLayer, videoSize: videoSize)
+        }
+        
+        if UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) != nil {
+            addProgressView(to: outputLayer, videoSize: videoSize, duration: range.duration.seconds)
+        }
         
         let videoComposition = AVMutableVideoComposition()
         videoComposition.renderSize = videoSize
@@ -89,7 +94,10 @@ class VideoCompositionMaker {
             assetTrack: assetTrack)
         instruction.layerInstructions = [layerInstruction]
         
-        self.videoComposition = videoComposition
+        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil ||
+            UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) != nil {
+            self.videoComposition = videoComposition
+        }
         
         return composition
     }
@@ -121,7 +129,7 @@ class VideoCompositionMaker {
         return instruction
     }
     
-    private func makeImageMask(videoSize: CGSize) -> CALayer {
+    private func addImageMask(to layer: CALayer, videoSize: CGSize) {
         let image = UIImage(named: "Cutter-maska")!
         let imageLayer = CALayer()
         
@@ -133,21 +141,21 @@ class VideoCompositionMaker {
             height: wide
         )
         imageLayer.contents = image.cgImage
-        return imageLayer
+        layer.addSublayer(imageLayer)
     }
     
-    private func makeProgressView(videoSize: CGSize, duration: Double) -> CALayer {
-        let layer = CAShapeLayer()
-        layer.fillColor = nil
-        layer.strokeColor = UIColor(named: "appMainColor")?.cgColor
+    private func addProgressView(to layer: CALayer, videoSize: CGSize, duration: Double) {
+        let progressLayer = CAShapeLayer()
+        progressLayer.fillColor = nil
+        progressLayer.strokeColor = UIColor(named: "appMainColor")?.cgColor
         
         let wide = min(videoSize.width, videoSize.height) / 40
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: wide / 2))
         path.addLine(to: CGPoint(x: videoSize.width, y: wide / 2))
         
-        layer.path = path.cgPath
-        layer.lineWidth = wide
+        progressLayer.path = path.cgPath
+        progressLayer.lineWidth = wide
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.beginTime = AVCoreAnimationBeginTimeAtZero
@@ -157,9 +165,9 @@ class VideoCompositionMaker {
         animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
         
-        layer.add(animation, forKey: nil)
+        progressLayer.add(animation, forKey: nil)
         
-        return layer
+        layer.addSublayer(progressLayer)
     }
     
 }

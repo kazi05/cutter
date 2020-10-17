@@ -16,7 +16,7 @@ FAILED = "Failed";
 // MARK: - Photo library premissions
 PH_REJECTED = "You have not authorized the application to use your library. For permission go to Settings";
 PH_UNKNOWN = "Unknown error";
-PH_ZERO_COUNT = "No video files in library";
+PH_ZERO_COUNT = "No video files in library or all video files are less than a minute";
 
 // MARK: - Video list view controller
 VIDEO_LIST_UPDATEBUTTON = "Reload";
@@ -26,5 +26,12 @@ VIDEO_LIST_TITLE = "Video library";
 TRIM_VC_SAVE_BUTTON = "Save";
 
 // MARK: - Trimming progress view controller
-TRIMMING_VC_CANCEL_BUTTON = "Cancel";
+CANCEL_BUTTON = "Cancel";
 TRIMMING_VC_FINISH_LABEL = "Finish!";
+
+// MARK: - No mask view controller
+NO_MASK_VC_DESRIPTION = "Allows you to save videos without the application logo";
+NO_MASK_VC_BUY = "Buy - ";
+
+// MARK: - Alert controller
+ALERT_ERROR_TITLE = "Error";

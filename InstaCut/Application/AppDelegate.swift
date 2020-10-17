@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Style.stylizeNavigationBar()
         
+        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil ||
+            UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) == nil {
+            IAPManager.shared.restorePurchases()
+        }
+        
         appCoordinator = AppCoordinator()
         appCoordinator.start()
         return true

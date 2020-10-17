@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="QXY-dH-biF" id="SrU-2k-lva"/>
                 <outlet property="collectionView" destination="8GA-J9-xHI" id="LoV-yr-r5M"/>
+                <outlet property="noMaskButton" destination="Vj9-oM-qP9" id="dfg-8G-V2W"/>
                 <outlet property="videoPreview" destination="CBv-qF-oWv" id="fBh-6i-0TY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,13 +37,48 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBv-qF-oWv" customClass="VideoPreviewView" customModule="InstaCut" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="645"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="601"/>
                     <color key="backgroundColor" name="bgColor"/>
                 </view>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QXY-dH-biF">
                     <rect key="frame" x="197" y="782.5" width="20" height="20"/>
                     <color key="color" name="textColor"/>
                 </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xi4-Ib-KGO">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj9-oM-qP9">
+                            <rect key="frame" x="327" y="9.5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="YID-YK-KwZ"/>
+                                <constraint firstAttribute="width" constant="25" id="ee6-un-Y05"/>
+                            </constraints>
+                            <state key="normal" image="No-mask"/>
+                            <connections>
+                                <action selector="actionPurchaseNoMask:" destination="-1" eventType="touchUpInside" id="ChO-vl-6v5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMn-P8-rFZ">
+                            <rect key="frame" x="372" y="9.5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="7a3-D6-slS"/>
+                                <constraint firstAttribute="width" constant="25" id="HrB-GT-G1f"/>
+                            </constraints>
+                            <state key="normal" image="Progress-bar"/>
+                            <connections>
+                                <action selector="actionAddProgressBar:" destination="-1" eventType="touchUpInside" id="i8j-kF-fON"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="navBarColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HMn-P8-rFZ" secondAttribute="trailing" constant="17" id="1Wi-yI-lYY"/>
+                        <constraint firstAttribute="height" constant="44" id="iIF-V4-lSk"/>
+                        <constraint firstItem="HMn-P8-rFZ" firstAttribute="centerY" secondItem="Xi4-Ib-KGO" secondAttribute="centerY" id="ovu-eP-3PE"/>
+                        <constraint firstItem="Vj9-oM-qP9" firstAttribute="centerY" secondItem="Xi4-Ib-KGO" secondAttribute="centerY" id="uxA-lN-QNL"/>
+                        <constraint firstItem="HMn-P8-rFZ" firstAttribute="leading" secondItem="Vj9-oM-qP9" secondAttribute="trailing" constant="20" id="vca-7R-hQy"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="bgColor"/>
@@ -50,17 +86,22 @@
                 <constraint firstItem="8GA-J9-xHI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DGj-M5-iqf"/>
                 <constraint firstItem="QXY-dH-biF" firstAttribute="centerY" secondItem="8GA-J9-xHI" secondAttribute="centerY" id="I3Y-MH-GrN"/>
                 <constraint firstItem="QXY-dH-biF" firstAttribute="centerX" secondItem="8GA-J9-xHI" secondAttribute="centerX" id="NjZ-5O-ir8"/>
-                <constraint firstItem="CBv-qF-oWv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="R7r-uo-XL6"/>
+                <constraint firstItem="Xi4-Ib-KGO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="d3a-js-VYC"/>
                 <constraint firstItem="8GA-J9-xHI" firstAttribute="top" secondItem="CBv-qF-oWv" secondAttribute="bottom" id="fg4-rn-ZFe"/>
+                <constraint firstItem="CBv-qF-oWv" firstAttribute="top" secondItem="Xi4-Ib-KGO" secondAttribute="bottom" id="gvO-xI-rvq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Xi4-Ib-KGO" secondAttribute="trailing" id="q6G-Kd-E08"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8GA-J9-xHI" secondAttribute="trailing" id="vRq-Hr-Kc0"/>
                 <constraint firstAttribute="bottom" secondItem="8GA-J9-xHI" secondAttribute="bottom" id="vxB-Yr-jlg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CBv-qF-oWv" secondAttribute="trailing" id="wVL-8U-Jb4"/>
+                <constraint firstItem="Xi4-Ib-KGO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xXh-yI-MrB"/>
                 <constraint firstItem="CBv-qF-oWv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yug-oG-ndv"/>
             </constraints>
-            <point key="canvasLocation" x="136" y="151"/>
+            <point key="canvasLocation" x="134.78260869565219" y="150.66964285714286"/>
         </view>
     </objects>
     <resources>
+        <image name="No-mask" width="27" height="24"/>
+        <image name="Progress-bar" width="30" height="30"/>
         <namedColor name="bgColor">
             <color red="0.21199999749660492" green="0.21199999749660492" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

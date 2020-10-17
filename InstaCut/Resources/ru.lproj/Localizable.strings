@@ -16,7 +16,7 @@ FAILED = "Ошибка";
 // MARK: - Photo library premissions
 PH_REJECTED = "Вы не разрешили приложению использовать вашу медиатеку. Для разрешения зайдите в Настройки";
 PH_UNKNOWN = "Неизвестная ошибка";
-PH_ZERO_COUNT = "Нет видеофайлов в библиотеке";
+PH_ZERO_COUNT = "Нет видеофайлов в библиотеке или все видеофайлы меньше минуты";
 
 // MARK: - Video list view controller
 VIDEO_LIST_UPDATEBUTTON = "Обновить";
@@ -26,5 +26,12 @@ VIDEO_LIST_TITLE = "Видео библиотека";
 TRIM_VC_SAVE_BUTTON = "Сохранить";
 
 // MARK: - Trimming progress view controller
-TRIMMING_VC_CANCEL_BUTTON = "Отмена";
+CANCEL_BUTTON = "Отмена";
 TRIMMING_VC_FINISH_LABEL = "Готово!";
+
+// MARK: - No mask view controller
+NO_MASK_VC_DESRIPTION = "Позволит сохранять видео без логотипа приложения";
+NO_MASK_VC_BUY = "Купить - ";
+
+// MARK: - Alert controller
+ALERT_ERROR_TITLE = "Ошибка";

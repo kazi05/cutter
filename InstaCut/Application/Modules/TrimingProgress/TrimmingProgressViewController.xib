@@ -42,7 +42,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="TRIMMING_VC_CANCEL_BUTTON"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="CANCEL_BUTTON"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="Dvg-0T-vgv"/>

@@ -74,7 +74,7 @@ class AsyncOperation: Operation {
 
     override func cancel() {
         super.cancel()
-        state = .finished
+        state = .cancelled
     }
 
 }

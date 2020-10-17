@@ -32,14 +32,22 @@ class TrimVideoViewController: UIViewController {
     @IBOutlet weak var videoPreview: VideoPreviewView!
     @IBOutlet weak var collectionView: VideoPeriodsCollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noMaskButton: UIButton!
     
     // MARK: - LifeCycle 🌎
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         addRightBarButton()
         configureCollectionView()
         presenter.attachPlayer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let _ = UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) {
+            noMaskButton.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,6 +83,12 @@ class TrimVideoViewController: UIViewController {
         presenter.saveVideos()
     }
 
+    @IBAction func actionPurchaseNoMask(_ sender: Any) {
+        presenter.purchaseNoMask()
+    }
+    
+    @IBAction func actionAddProgressBar(_ sender: Any) {
+    }
 }
 
 // MARK: - View methods

@@ -11,6 +11,8 @@ import CoreMedia.CMTime
 
 protocol TrimVideoPresenterOutput: class {
     func saveVideos(from video: VideoModel, with periods: [VideoPeriod])
+    
+    func purchaseNoMask(period: VideoPeriod)
 }
 
 class TrimVideoPresenter {
@@ -23,10 +25,12 @@ class TrimVideoPresenter {
     private var periods: [VideoPeriod] = [] {
         didSet {
             periodsRanges = periods.map { $0.timeRange }
+            currentPeriod = periods.first
         }
     }
     private var periodsRanges: [CMTimeRange] = []
     private var previousRangeIndex = 0
+    private var currentPeriod: VideoPeriod!
     
     // MARK: - Constructor 🏗
     init(view: TrimVideoView, delegate: TrimVideoPresenterOutput, video: VideoModel) {
@@ -61,6 +65,7 @@ class TrimVideoPresenter {
     }
     
     func seekVideo(at index: Int) {
+        currentPeriod = periods[index]
         let start = periods[index].timeRange.start
         videoPlayer.seek(to: start)
     }
@@ -86,7 +91,12 @@ class TrimVideoPresenter {
     
     // MARK: - Output methods
     private func periodChanged(to index: Int) {
+        currentPeriod = periods[index]
         view.periodChanged(index)
+    }
+    
+    func purchaseNoMask() {
+        delegate.purchaseNoMask(period: currentPeriod)
     }
     
 }

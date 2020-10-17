@@ -33,6 +33,12 @@
 		322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857ED25370B9500E70473 /* AlertTransitioningDelegate.swift */; };
 		322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322857F025370BA500E70473 /* AlertModalPresentationController.swift */; };
 		323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */; };
+		323EFC94253B9D44009A383F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC93253B9D44009A383F /* UIViewController+Ext.swift */; };
+		3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C30D253A04A900D400A5 /* IAPManager.swift */; };
+		3246C312253A04CC00D400A5 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C311253A04CC00D400A5 /* IAPProduct.swift */; };
+		3246C318253A15B000D400A5 /* NoMaskPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */; };
+		3246C319253A15B000D400A5 /* NoMaskPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */; };
+		3246C31D253A15C800D400A5 /* NoMaskPurchasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
 		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
 		32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32621586253496F80012CED3 /* TrimVideoViewController.swift */; };
@@ -87,6 +93,12 @@
 		322857ED25370B9500E70473 /* AlertTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTransitioningDelegate.swift; sourceTree = "<group>"; };
 		322857F025370BA500E70473 /* AlertModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalPresentationController.swift; sourceTree = "<group>"; };
 		323CCF2C2059A983008ABC85 /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
+		323EFC93253B9D44009A383F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		3246C30D253A04A900D400A5 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		3246C311253A04CC00D400A5 /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
+		3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchaseViewController.swift; sourceTree = "<group>"; };
+		3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoMaskPurchaseViewController.xib; sourceTree = "<group>"; };
+		3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchasePresenter.swift; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32621583253494AA0012CED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -146,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				321A64A725343BE800ED70F0 /* App */,
+				3246C315253A157500D400A5 /* No Mask Purchase */,
 				32621585253496DA0012CED3 /* TrimVideo */,
 				322857DD253704FB00E70473 /* TrimingProgress */,
 				321A64B125343C6000ED70F0 /* VideoList */,
@@ -197,6 +210,7 @@
 				321A64DB2534444800ED70F0 /* String+Ext.swift */,
 				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
 				32A760A925359B7F00ECE08E /* CMTime+Ext.swift */,
+				323EFC93253B9D44009A383F /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -204,6 +218,7 @@
 		321A64CA253440A800ED70F0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				3246C30D253A04A900D400A5 /* IAPManager.swift */,
 				321A64CB253440C000ED70F0 /* PhotoLibraryManager.swift */,
 				32993DF8253597D700776F3F /* VideoPeriodsTrimmerManager.swift */,
 				32BD383025383D1A00503DBF /* VideoTrimmingRenderManager.swift */,
@@ -253,6 +268,16 @@
 				322857F025370BA500E70473 /* AlertModalPresentationController.swift */,
 			);
 			path = "Custom alert";
+			sourceTree = "<group>";
+		};
+		3246C315253A157500D400A5 /* No Mask Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */,
+				3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */,
+				3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */,
+			);
+			path = "No Mask Purchase";
 			sourceTree = "<group>";
 		};
 		32621578253494070012CED3 /* Settings */ = {
@@ -306,6 +331,7 @@
 		32A4C728222BFA24003616CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3246C311253A04CC00D400A5 /* IAPProduct.swift */,
 				32A4C729222BFA35003616CC /* VideoModel.swift */,
 				321E0D4E222F9BDD001606F6 /* VideoPeriod.swift */,
 			);
@@ -471,6 +497,7 @@
 				322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */,
 				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
+				3246C319253A15B000D400A5 /* NoMaskPurchaseViewController.xib in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
 				321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */,
@@ -532,6 +559,7 @@
 			files = (
 				321A64C82534400C00ED70F0 /* XIBLoc+Ext.swift in Sources */,
 				321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */,
+				3246C312253A04CC00D400A5 /* IAPProduct.swift in Sources */,
 				3262158C253497080012CED3 /* TrimVideoPresenter.swift in Sources */,
 				32BD386D25386AAF00503DBF /* AsyncOperation.swift in Sources */,
 				322857E02537051B00E70473 /* TrimmingProgressViewController.swift in Sources */,
@@ -543,9 +571,11 @@
 				32A760AA25359B7F00ECE08E /* CMTime+Ext.swift in Sources */,
 				32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */,
 				32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */,
+				323EFC94253B9D44009A383F /* UIViewController+Ext.swift in Sources */,
 				321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */,
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
 				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
+				3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */,
 				322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */,
 				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,
 				3262157A2534943C0012CED3 /* Style.swift in Sources */,
@@ -559,6 +589,7 @@
 				321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */,
 				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
 				322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */,
+				3246C31D253A15C800D400A5 /* NoMaskPurchasePresenter.swift in Sources */,
 				32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */,
 				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
 				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,
@@ -568,6 +599,7 @@
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,
 				3221BA34253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift in Sources */,
 				32BD383125383D1A00503DBF /* VideoTrimmingRenderManager.swift in Sources */,
+				3246C318253A15B000D400A5 /* NoMaskPurchaseViewController.swift in Sources */,
 				32BD3871253876B600503DBF /* VideoCompositionMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,7 +33,9 @@ class PhotoLibraryManager: PhotoLibraryManagerType {
                 let fetchResult = PHAsset.fetchAssets(with: .video, options: options)
                 
                 guard fetchResult.count > 0 else {
-                    completion(.failure(PhotoAuthorizationError.empty))
+                    DispatchQueue.main.async {
+                        completion(.failure(PhotoAuthorizationError.empty))
+                    }
                     return
                 }
                 

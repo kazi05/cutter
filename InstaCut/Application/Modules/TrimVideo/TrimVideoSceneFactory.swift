@@ -28,4 +28,11 @@ struct TrimVideoSceneFactory {
         viewController.presenter = presenter
         return viewController
     }
+    
+    static func makePurchaseNoMaskScene(period: VideoPeriod) -> NoMaskPurchaseViewController {
+        let viewController = NoMaskPurchaseViewController()
+        let presenter = NoMaskPurchasePresenter(view: viewController, period: period)
+        viewController.presenter = presenter
+        return viewController
+    }
 }

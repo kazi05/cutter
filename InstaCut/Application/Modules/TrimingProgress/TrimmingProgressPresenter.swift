@@ -83,6 +83,7 @@ class TrimmingProgressPresenter {
     
     private func renderingCompleted() {
         view.renderingCompleted()
+        trimmingRenderManager = nil
     }
     
     // MARK: - Output methods
