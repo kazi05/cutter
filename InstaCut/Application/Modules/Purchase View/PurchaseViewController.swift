@@ -1,5 +1,5 @@
 //
-//  NoMaskPurchaseViewController.swift
+//  PurchaseViewController.swift
 //  InstaCut
 //
 //  Created by Kazim Gadjiev on 16.10.2020.
@@ -8,16 +8,19 @@
 
 import UIKit
 
-protocol NoMaskPurchaseView: class {
-    
+protocol PurchaseView: class {
+    func setPreview(view: UIView)
+    func configPurchaseInfo(description: String, priceTitle: String)
 }
 
-class NoMaskPurchaseViewController: UIViewController {
+class PurchaseViewController: UIViewController {
     
     // MARK: - Visible properties 👓
-    var presenter: NoMaskPurchasePresenter!
+    var presenter: PurchasePresenter!
 
     // MARK: - Outlets 🔌
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageWithMask: UIImageView!
     @IBOutlet weak var imageWithoutMask: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -28,19 +31,7 @@ class NoMaskPurchaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureUI()
-    }
-    
-    // MARK: - Private methods 🕶
-    private func configureUI() {        
-        imageWithMask.image = presenter.getPeriodImage()
-        imageWithoutMask.image = presenter.getPeriodImage()
-        
-        if let maskProduct = IAPManager.shared.getProduct(by: .mask) {
-            buyButton.setTitle(.localized("NO_MASK_VC_BUY") + maskProduct.priceTitle, for: .normal)
-        } else {
-            buyButton.isHidden = true
-        }
+        presenter.loadInfo()
     }
 
     // MARK: - Actions ⚡️
@@ -70,6 +61,24 @@ class NoMaskPurchaseViewController: UIViewController {
     }
 }
 
-extension NoMaskPurchaseViewController: NoMaskPurchaseView {
+// MARK: - View methods
+extension PurchaseViewController: PurchaseView {
+    func configPurchaseInfo(description: String, priceTitle: String) {
+        descriptionLabel.text = description
+        buyButton.setTitle(.localized("NO_MASK_VC_BUY") + priceTitle, for: .normal)
+    }
+    
+    func setPreview(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        previewView.addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: previewView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: previewView.trailingAnchor),
+            view.topAnchor.constraint(equalTo: previewView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: previewView.bottomAnchor)
+        ])
+    }
+    
     
 }

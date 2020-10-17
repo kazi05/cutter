@@ -21,6 +21,8 @@ protocol TrimVideoView: class {
     
     /// Время видео изменилось
     func playerTimeDidChange(_ time: CMTime)
+    
+    
 }
 
 class TrimVideoViewController: UIViewController {
@@ -88,6 +90,7 @@ class TrimVideoViewController: UIViewController {
     }
     
     @IBAction func actionAddProgressBar(_ sender: Any) {
+        presenter.showProgressBar()
     }
 }
 

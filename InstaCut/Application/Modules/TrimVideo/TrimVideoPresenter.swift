@@ -12,7 +12,9 @@ import CoreMedia.CMTime
 protocol TrimVideoPresenterOutput: class {
     func saveVideos(from video: VideoModel, with periods: [VideoPeriod], and settings: VideoRenderSettings)
     
-    func purchaseNoMask(period: VideoPeriod)
+    func purchaseNoMask(product: IAPProduct, period: VideoPeriod)
+    
+    func purchaseProgressBar(product: IAPProduct, period: VideoPeriod)
 }
 
 class TrimVideoPresenter {
@@ -81,6 +83,14 @@ class TrimVideoPresenter {
         delegate.saveVideos(from: video, with: periods, and: renderSettings)
     }
     
+    func showProgressBar() {
+        if UserDefaults.standard.bool(forKey: IAPProductKind.progress.rawValue) {
+            
+        } else if let product = IAPManager.shared.getProduct(by: .progress) {
+            delegate.purchaseProgressBar(product: product, period: currentPeriod)
+        }
+    }
+    
     // MARK: - Input methods
     private func observePlayerTime(_ time: CMTime) {
         view.playerTimeDidChange(time)
@@ -98,7 +108,9 @@ class TrimVideoPresenter {
     }
     
     func purchaseNoMask() {
-        delegate.purchaseNoMask(period: currentPeriod)
+        if let product = IAPManager.shared.getProduct(by: .mask) {
+            delegate.purchaseNoMask(product: product, period: currentPeriod)
+        }
     }
     
 }

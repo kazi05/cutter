@@ -36,11 +36,13 @@
 		323EFC94253B9D44009A383F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC93253B9D44009A383F /* UIViewController+Ext.swift */; };
 		323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC96253BA413009A383F /* VideoProgressSettings.swift */; };
 		323EFC9A253BA655009A383F /* VideoRenderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFC99253BA655009A383F /* VideoRenderSettings.swift */; };
+		323EFCA7253BAD0A009A383F /* NoMaskPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323EFCA6253BAD0A009A383F /* NoMaskPurchaseView.swift */; };
+		323EFCAA253BAD16009A383F /* NoMaskPurchaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323EFCA9253BAD16009A383F /* NoMaskPurchaseView.xib */; };
 		3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C30D253A04A900D400A5 /* IAPManager.swift */; };
 		3246C312253A04CC00D400A5 /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C311253A04CC00D400A5 /* IAPProduct.swift */; };
-		3246C318253A15B000D400A5 /* NoMaskPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */; };
-		3246C319253A15B000D400A5 /* NoMaskPurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */; };
-		3246C31D253A15C800D400A5 /* NoMaskPurchasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */; };
+		3246C318253A15B000D400A5 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C316253A15B000D400A5 /* PurchaseViewController.swift */; };
+		3246C319253A15B000D400A5 /* PurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3246C317253A15B000D400A5 /* PurchaseViewController.xib */; };
+		3246C31D253A15C800D400A5 /* PurchasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C31C253A15C800D400A5 /* PurchasePresenter.swift */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
 		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
 		32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32621586253496F80012CED3 /* TrimVideoViewController.swift */; };
@@ -98,11 +100,13 @@
 		323EFC93253B9D44009A383F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		323EFC96253BA413009A383F /* VideoProgressSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProgressSettings.swift; sourceTree = "<group>"; };
 		323EFC99253BA655009A383F /* VideoRenderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRenderSettings.swift; sourceTree = "<group>"; };
+		323EFCA6253BAD0A009A383F /* NoMaskPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchaseView.swift; sourceTree = "<group>"; };
+		323EFCA9253BAD16009A383F /* NoMaskPurchaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoMaskPurchaseView.xib; sourceTree = "<group>"; };
 		3246C30D253A04A900D400A5 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		3246C311253A04CC00D400A5 /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
-		3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchaseViewController.swift; sourceTree = "<group>"; };
-		3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoMaskPurchaseViewController.xib; sourceTree = "<group>"; };
-		3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoMaskPurchasePresenter.swift; sourceTree = "<group>"; };
+		3246C316253A15B000D400A5 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		3246C317253A15B000D400A5 /* PurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseViewController.xib; sourceTree = "<group>"; };
+		3246C31C253A15C800D400A5 /* PurchasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePresenter.swift; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32621583253494AA0012CED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -162,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				321A64A725343BE800ED70F0 /* App */,
-				3246C315253A157500D400A5 /* No Mask Purchase */,
+				3246C315253A157500D400A5 /* Purchase View */,
 				32621585253496DA0012CED3 /* TrimVideo */,
 				322857DD253704FB00E70473 /* TrimingProgress */,
 				321A64B125343C6000ED70F0 /* VideoList */,
@@ -274,14 +278,23 @@
 			path = "Custom alert";
 			sourceTree = "<group>";
 		};
-		3246C315253A157500D400A5 /* No Mask Purchase */ = {
+		323EFCA5253BACF2009A383F /* No Mask Purchase */ = {
 			isa = PBXGroup;
 			children = (
-				3246C31C253A15C800D400A5 /* NoMaskPurchasePresenter.swift */,
-				3246C316253A15B000D400A5 /* NoMaskPurchaseViewController.swift */,
-				3246C317253A15B000D400A5 /* NoMaskPurchaseViewController.xib */,
+				323EFCA6253BAD0A009A383F /* NoMaskPurchaseView.swift */,
+				323EFCA9253BAD16009A383F /* NoMaskPurchaseView.xib */,
 			);
 			path = "No Mask Purchase";
+			sourceTree = "<group>";
+		};
+		3246C315253A157500D400A5 /* Purchase View */ = {
+			isa = PBXGroup;
+			children = (
+				3246C31C253A15C800D400A5 /* PurchasePresenter.swift */,
+				3246C316253A15B000D400A5 /* PurchaseViewController.swift */,
+				3246C317253A15B000D400A5 /* PurchaseViewController.xib */,
+			);
+			path = "Purchase View";
 			sourceTree = "<group>";
 		};
 		32621578253494070012CED3 /* Settings */ = {
@@ -347,6 +360,7 @@
 		32A760B42535E8C900ECE08E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				323EFCA5253BACF2009A383F /* No Mask Purchase */,
 				322857E925370B5800E70473 /* Custom alert */,
 				32A760B52535E8D700ECE08E /* GradientView.swift */,
 			);
@@ -503,12 +517,13 @@
 				322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */,
 				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
-				3246C319253A15B000D400A5 /* NoMaskPurchaseViewController.xib in Resources */,
+				3246C319253A15B000D400A5 /* PurchaseViewController.xib in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
 				321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */,
 				32621589253496F80012CED3 /* TrimVideoViewController.xib in Resources */,
 				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
+				323EFCAA253BAD16009A383F /* NoMaskPurchaseView.xib in Resources */,
 				3221BA35253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,6 +587,7 @@
 				32A760B22535E3D800ECE08E /* VideoPeriodsCollectionView.swift in Sources */,
 				321A64CC253440C000ED70F0 /* PhotoLibraryManager.swift in Sources */,
 				322857E42537057100E70473 /* TrimmingProgressPresenter.swift in Sources */,
+				323EFCA7253BAD0A009A383F /* NoMaskPurchaseView.swift in Sources */,
 				32993DF32535946900776F3F /* VideoPreviewView.swift in Sources */,
 				32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */,
 				32A760AA25359B7F00ECE08E /* CMTime+Ext.swift in Sources */,
@@ -597,7 +613,7 @@
 				321E0D4F222F9BDD001606F6 /* VideoPeriod.swift in Sources */,
 				321A64BE25343D1700ED70F0 /* VideoListCoordinator.swift in Sources */,
 				322857F125370BA500E70473 /* AlertModalPresentationController.swift in Sources */,
-				3246C31D253A15C800D400A5 /* NoMaskPurchasePresenter.swift in Sources */,
+				3246C31D253A15C800D400A5 /* PurchasePresenter.swift in Sources */,
 				32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */,
 				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
 				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,
@@ -607,7 +623,7 @@
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,
 				3221BA34253749FA0019A306 /* VideoTrimmingCollectionViewCell.swift in Sources */,
 				32BD383125383D1A00503DBF /* VideoTrimmingRenderManager.swift in Sources */,
-				3246C318253A15B000D400A5 /* NoMaskPurchaseViewController.swift in Sources */,
+				3246C318253A15B000D400A5 /* PurchaseViewController.swift in Sources */,
 				32BD3871253876B600503DBF /* VideoCompositionMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

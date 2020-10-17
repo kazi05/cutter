@@ -30,9 +30,11 @@ struct TrimVideoSceneFactory {
         return viewController
     }
     
-    static func makePurchaseNoMaskScene(period: VideoPeriod) -> NoMaskPurchaseViewController {
-        let viewController = NoMaskPurchaseViewController()
-        let presenter = NoMaskPurchasePresenter(view: viewController, period: period)
+    static func makePurchaseNoMaskScene(product: IAPProduct, period: VideoPeriod) -> PurchaseViewController {
+        let viewController = PurchaseViewController()
+        let noMaskPurchaseView = NoMaskPurchaseView.loadFromNib()
+        noMaskPurchaseView.setPreview(from: period)
+        let presenter = PurchasePresenter(view: viewController, product: product, preview: noMaskPurchaseView, description: .localized("NO_MASK_VC_DESRIPTION"))
         viewController.presenter = presenter
         return viewController
     }

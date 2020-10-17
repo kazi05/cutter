@@ -40,10 +40,14 @@ extension TrimVideoCoordinator: TrimVideoPresenterOutput {
         navigationController?.present(alert, animated: true)
     }
     
-    func purchaseNoMask(period: VideoPeriod) {
-        let scene = TrimVideoSceneFactory.makePurchaseNoMaskScene(period: period)
+    func purchaseNoMask(product: IAPProduct, period: VideoPeriod) {
+        let scene = TrimVideoSceneFactory.makePurchaseNoMaskScene(product: product, period: period)
         let alert = CustomAlertController(viewController: scene)
         navigationController?.present(alert, animated: true)
+    }
+    
+    func purchaseProgressBar(product: IAPProduct, period: VideoPeriod) {
+        
     }
     
 }

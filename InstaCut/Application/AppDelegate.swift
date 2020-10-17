@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Style.stylizeNavigationBar()
         
-        if UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) == nil ||
-            UserDefaults.standard.value(forKey: IAPProductKind.progress.rawValue) == nil {
+        if !UserDefaults.standard.bool(forKey: IAPProductKind.mask.rawValue) ||
+            !UserDefaults.standard.bool(forKey: IAPProductKind.progress.rawValue) {
             IAPManager.shared.restorePurchases()
         }
         
