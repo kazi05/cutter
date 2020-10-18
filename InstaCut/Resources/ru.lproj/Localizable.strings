@@ -29,8 +29,9 @@ TRIM_VC_SAVE_BUTTON = "Сохранить";
 CANCEL_BUTTON = "Отмена";
 TRIMMING_VC_FINISH_LABEL = "Готово!";
 
-// MARK: - No mask view controller
+// MARK: - Purchases
 NO_MASK_VC_DESRIPTION = "Позволит сохранять видео без логотипа приложения";
+PROGRESS_BAR_DESCRIPTION = "Позволит добавлять шкалу времени на каждый отрезок видео";
 NO_MASK_VC_BUY = "Купить - ";
 
 // MARK: - Alert controller

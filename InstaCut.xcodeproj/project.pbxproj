@@ -66,6 +66,8 @@
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
 		32DD15EF35F8A3C11DC5F2A5 /* Pods_InstaCut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */; };
+		32DD3541253BB2A100E62ABF /* ProgressBarPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */; };
+		32DD3544253BB2AE00E62ABF /* ProgressBarPurchaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */; };
 		32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EECF262538B03C00D5658F /* BackgroundTask.swift */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,9 @@
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32C04FF42035AA7E00C509C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C04FF62035AA7E00C509C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarPurchaseView.swift; sourceTree = "<group>"; };
+		32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarPurchaseView.xib; sourceTree = "<group>"; };
+		32DD3546253BBBE700E62ABF /* StoreKitConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfiguration.storekit; sourceTree = "<group>"; };
 		32E8C9532053FC56001A3FA7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaCut.entitlements; sourceTree = "<group>"; };
 		32EECF262538B03C00D5658F /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
@@ -360,8 +365,9 @@
 		32A760B42535E8C900ECE08E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				323EFCA5253BACF2009A383F /* No Mask Purchase */,
 				322857E925370B5800E70473 /* Custom alert */,
+				323EFCA5253BACF2009A383F /* No Mask Purchase */,
+				32DD353F253BB27E00E62ABF /* Progress Bar Purchase */,
 				32A760B52535E8D700ECE08E /* GradientView.swift */,
 			);
 			path = View;
@@ -420,8 +426,18 @@
 				321B9A3820569FE4008F7226 /* Localizable.strings */,
 				32C04FF62035AA7E00C509C7 /* Info.plist */,
 				32621581253494A30012CED3 /* InfoPlist.strings */,
+				32DD3546253BBBE700E62ABF /* StoreKitConfiguration.storekit */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		32DD353F253BB27E00E62ABF /* Progress Bar Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */,
+				32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */,
+			);
+			path = "Progress Bar Purchase";
 			sourceTree = "<group>";
 		};
 		4A4C1883C655A31AA1C73395 /* Frameworks */ = {
@@ -523,6 +539,7 @@
 				321A64E92534514100ED70F0 /* VideoThumbCollectionViewCell.xib in Resources */,
 				32621589253496F80012CED3 /* TrimVideoViewController.xib in Resources */,
 				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
+				32DD3544253BB2AE00E62ABF /* ProgressBarPurchaseView.xib in Resources */,
 				323EFCAA253BAD16009A383F /* NoMaskPurchaseView.xib in Resources */,
 				3221BA35253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib in Resources */,
 			);
@@ -618,6 +635,7 @@
 				321A64B825343CAE00ED70F0 /* VideoListFactory.swift in Sources */,
 				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,
 				321A64BB25343CEB00ED70F0 /* VideoListPresenter.swift in Sources */,
+				32DD3541253BB2A100E62ABF /* ProgressBarPurchaseView.swift in Sources */,
 				3262158F2534971C0012CED3 /* TrimVideoSceneFactory.swift in Sources */,
 				321A64E325344EB300ED70F0 /* AssetImageGenerator.swift in Sources */,
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,

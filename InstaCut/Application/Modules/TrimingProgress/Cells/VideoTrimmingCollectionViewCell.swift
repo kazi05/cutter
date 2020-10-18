@@ -59,6 +59,7 @@ class VideoTrimmingCollectionViewCell: UICollectionViewCell, NibLoadable {
         self.completed = true
         UIView.animate(withDuration: 0.3) {
             self.doneImage.transform = .identity
+            self.progressCircle.strokeEnd = 1
         }
     }
 

@@ -69,15 +69,8 @@ extension PurchaseViewController: PurchaseView {
     }
     
     func setPreview(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
         previewView.addSubview(view)
-        
-        NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: previewView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: previewView.trailingAnchor),
-            view.topAnchor.constraint(equalTo: previewView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: previewView.bottomAnchor)
-        ])
+        view.frame = previewView.bounds
     }
     
     

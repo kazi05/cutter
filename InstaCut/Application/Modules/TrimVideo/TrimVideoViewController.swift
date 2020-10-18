@@ -47,9 +47,7 @@ class TrimVideoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let _ = UserDefaults.standard.value(forKey: IAPProductKind.mask.rawValue) {
-            noMaskButton.isHidden = true
-        }
+        noMaskButton.isHidden = UserDefaults.standard.bool(forKey: IAPProductKind.mask.rawValue)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

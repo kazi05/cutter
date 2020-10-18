@@ -38,4 +38,15 @@ struct TrimVideoSceneFactory {
         viewController.presenter = presenter
         return viewController
     }
+    
+    static func makePurchaseProgressBarScene(product: IAPProduct,
+                                             period: VideoPeriod
+    ) -> PurchaseViewController {
+        let viewController = PurchaseViewController()
+        let progressBarView = ProgressBarPurchaseView.loadFromNib()
+        progressBarView.setPreview(from: period)
+        let presenter = PurchasePresenter(view: viewController, product: product, preview: progressBarView, description: .localized("PROGRESS_BAR_DESCRIPTION"))
+        viewController.presenter = presenter
+        return viewController
+    }
 }
