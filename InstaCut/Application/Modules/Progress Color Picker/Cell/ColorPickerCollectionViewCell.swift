@@ -17,7 +17,8 @@ class ColorPickerCollectionViewCell: UICollectionViewCell, NibLoadable {
         let layer = CAShapeLayer()
         layer.fillColor = nil
         layer.strokeColor = UIColor.white.cgColor
-        layer.lineWidth = 1
+        layer.lineWidth = 2
+        layer.applySketchShadow(color: .black, alpha: 1, x: 0, y: 0, blur: 5, spread: 0)
         layer.opacity = 0
         return layer
     }()

@@ -225,9 +225,14 @@ extension VideoPreviewView {
     public func showProgressDemostration(_ show: Bool) {
         gradientView.alpha = show ? 0 : 1
         playButton.alpha = show ? 0 : 1
-        layer.addSublayer(progressLayer)
         
-        progressLayer.addProgressAnimation(repeated: true)
+        if show {
+            layer.addSublayer(progressLayer)
+            progressLayer.addProgressAnimation(repeated: true)
+        } else {
+            progressLayer.removeFromSuperlayer()
+            progressLayer.removeAllAnimations()
+        }
     }
     
     public func setProgressColor(color: UIColor) {

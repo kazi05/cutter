@@ -46,6 +46,7 @@ class TrimVideoViewController: UIViewController {
     @IBOutlet weak var videoPreview: VideoPreviewView!
     @IBOutlet weak var collectionView: VideoPeriodsCollectionView!
     @IBOutlet weak var collectionViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noMaskButton: UIButton!
     
@@ -103,6 +104,7 @@ class TrimVideoViewController: UIViewController {
         
         /// Отодвигаем collectionView влево
         collectionViewRightConstraint.constant = view.bounds.width
+        collectionViewLeftConstraint.constant = -view.bounds.width
         
         /// Добавляем контроллер как дочерний контроллер
         addChild(controller)
@@ -120,7 +122,7 @@ class TrimVideoViewController: UIViewController {
         saveBarButton.isEnabled = false
         
         /// У превью видео начинаем анимацию
-        
+        videoPreview.showProgressDemostration(true)
         
         UIView.animate(withDuration: 0.4) {
             controller.view.frame.origin.x = 0
@@ -131,10 +133,21 @@ class TrimVideoViewController: UIViewController {
     
     private func removeColorPickerController() {
         saveBarButton.isEnabled = true
-        colorPickerControl.removeFromSuperview()
-        colorPickerController.willMove(toParent: nil)
-        colorPickerController.view.removeFromSuperview()
-        colorPickerController.removeFromParent()
+        collectionViewRightConstraint.constant = 0
+        collectionViewLeftConstraint.constant = 0
+        
+        videoPreview.showProgressDemostration(false)
+        
+        UIView.animate(withDuration: 0.4) {
+            self.colorPickerControl.frame.origin.y = -100
+            self.colorPickerController.view.frame.origin.x = self.view.bounds.width
+            self.view.layoutIfNeeded()
+        } completion: { (_) in
+            self.colorPickerControl.removeFromSuperview()
+            self.colorPickerController.willMove(toParent: nil)
+            self.colorPickerController.view.removeFromSuperview()
+            self.colorPickerController.removeFromParent()
+        }
     }
     
     // MARK: - Actions ⚡️

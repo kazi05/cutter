@@ -266,11 +266,11 @@
 		321A64C625343FFB00ED70F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				321A64DB2534444800ED70F0 /* String+Ext.swift */,
-				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
-				32A760A925359B7F00ECE08E /* CMTime+Ext.swift */,
-				323EFC93253B9D44009A383F /* UIViewController+Ext.swift */,
 				32189D9F253C9D7A007E142A /* CALayer+Ext.swift */,
+				32A760A925359B7F00ECE08E /* CMTime+Ext.swift */,
+				321A64DB2534444800ED70F0 /* String+Ext.swift */,
+				323EFC93253B9D44009A383F /* UIViewController+Ext.swift */,
+				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

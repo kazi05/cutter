@@ -60,6 +60,8 @@ class ProgressColorPickerController: UIViewController {
         colorControlView.tappedOnRemove = { [weak self] removed in
             if removed {
                 self?.presenter.colorRemoved()
+            } else {
+                self?.presenter.cancelPicker()
             }
         }
     }

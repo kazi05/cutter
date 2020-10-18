@@ -25,7 +25,7 @@
                     <rect key="frame" x="20" y="64" width="374" height="50"/>
                     <color key="backgroundColor" name="navBarColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Xke-2l-6zx"/>
+                        <constraint firstAttribute="height" priority="999" constant="50" id="Xke-2l-6zx"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j4C-W5-uH7">
                         <size key="itemSize" width="128" height="128"/>
