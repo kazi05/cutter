@@ -71,6 +71,9 @@ class VideoPreviewView: UIView {
         return progressLayer
     }()
     
+    // Key-value observing context
+    private var playerItemContext = 0
+    
     // MARK: - LifeCycle 🌎
     override class var layerClass: AnyClass {
         return AVPlayerLayer.self
@@ -92,13 +95,41 @@ class VideoPreviewView: UIView {
         setupUI()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let rect = playerLayer.videoRect
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: rect.height - progressWide / 2))
-        path.addLine(to: CGPoint(x: bounds.width, y: rect.height - progressWide / 2))
-        progressLayer.path = path.cgPath
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+
+        // Only handle observations for the playerItemContext
+        guard context == &playerItemContext else {
+            super.observeValue(forKeyPath: keyPath,
+                               of: object,
+                               change: change,
+                               context: context)
+            return
+        }
+
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItem.Status
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+
+            // Switch over status value
+            switch status {
+            case .readyToPlay:
+                let rect = playerLayer.videoRect
+                let path = UIBezierPath()
+                path.move(to: CGPoint(x: 0, y: rect.maxY - progressWide / 2))
+                path.addLine(to: CGPoint(x: bounds.width, y: rect.maxY - progressWide / 2))
+                progressLayer.path = path.cgPath
+                
+            default: break
+                // Player item is not yet ready.
+            }
+        }
     }
     
     // MARK: - Actions ⚡️
@@ -210,6 +241,10 @@ extension VideoPreviewView {
     
     public func attach(videoPlayer: VideoPlayer) {
         self.videoPlayer = videoPlayer
+        self.videoPlayer.player.currentItem!.addObserver(self,
+                                                         forKeyPath: #keyPath(AVPlayerItem.status),
+                                                         options: [.old, .new],
+                                                         context: &playerItemContext)
         durationTimeLabel.text = videoPlayer.player.currentItem?.duration.positionalTime
         currentTimeLabel.text = CMTime.zero.positionalTime
         
