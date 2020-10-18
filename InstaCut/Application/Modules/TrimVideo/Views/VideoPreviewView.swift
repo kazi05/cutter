@@ -61,6 +61,16 @@ class VideoPreviewView: UIView {
         return label
     }()
     
+    private let progressWide: CGFloat = 10
+    
+    private lazy var progressLayer: CAShapeLayer = {
+        let progressLayer = CAShapeLayer()
+        progressLayer.fillColor = nil
+        progressLayer.strokeColor = UIColor(named: "appMainColor")?.cgColor
+        progressLayer.lineWidth = progressWide
+        return progressLayer
+    }()
+    
     // MARK: - LifeCycle 🌎
     override class var layerClass: AnyClass {
         return AVPlayerLayer.self
@@ -80,6 +90,15 @@ class VideoPreviewView: UIView {
         super.init(coder: coder)
         config()
         setupUI()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let rect = playerLayer.videoRect
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: rect.height - progressWide / 2))
+        path.addLine(to: CGPoint(x: bounds.width, y: rect.height - progressWide / 2))
+        progressLayer.path = path.cgPath
     }
     
     // MARK: - Actions ⚡️
@@ -201,6 +220,18 @@ extension VideoPreviewView {
     
     public func playerTimeDidChange(time: CMTime) {
         currentTimeLabel.text = time.positionalTime
+    }
+    
+    public func showProgressDemostration(_ show: Bool) {
+        gradientView.alpha = show ? 0 : 1
+        playButton.alpha = show ? 0 : 1
+        layer.addSublayer(progressLayer)
+        
+        progressLayer.addProgressAnimation(repeated: true)
+    }
+    
+    public func setProgressColor(color: UIColor) {
+        progressLayer.strokeColor = color.cgColor
     }
     
 }

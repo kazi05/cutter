@@ -158,15 +158,7 @@ class VideoCompositionMaker {
         progressLayer.path = path.cgPath
         progressLayer.lineWidth = wide
         
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.beginTime = AVCoreAnimationBeginTimeAtZero
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = duration
-        animation.isRemovedOnCompletion = false
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        
-        progressLayer.add(animation, forKey: nil)
+        progressLayer.addProgressAnimation(repeated: false, beginTime: AVCoreAnimationBeginTimeAtZero, duration: duration)
         
         layer.addSublayer(progressLayer)
     }

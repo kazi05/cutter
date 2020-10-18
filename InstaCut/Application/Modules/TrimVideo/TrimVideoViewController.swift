@@ -22,7 +22,19 @@ protocol TrimVideoView: class {
     /// Время видео изменилось
     func playerTimeDidChange(_ time: CMTime)
     
+    /// Покупка `Убрать маску` куплена
+    func hideNoMaskButton()
     
+    /// Покупка `Шкала времени` куплена
+    func progressBarPurchased(_ colorPicker: ProgressColorPickerController)
+    
+    func progressColorChanged(_ color: UIColor)
+    
+    func progressColorChoosed(_ color: UIColor)
+    
+    func progressColorRemoved()
+    
+    func progressColorCanceled()
 }
 
 class TrimVideoViewController: UIViewController {
@@ -33,8 +45,20 @@ class TrimVideoViewController: UIViewController {
     // MARK: - Outlets 🔌
     @IBOutlet weak var videoPreview: VideoPreviewView!
     @IBOutlet weak var collectionView: VideoPeriodsCollectionView!
+    @IBOutlet weak var collectionViewRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noMaskButton: UIButton!
+    
+    private var colorPickerController: ProgressColorPickerController!
+    private var colorPickerControl: ProgressColorControlView!
+    private lazy var saveBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: .localized("TRIM_VC_SAVE_BUTTON"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(actionSaveVideos(_:)))
+        barButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        return barButton
+    }()
     
     // MARK: - LifeCycle 🌎
     override func viewDidLoad() {
@@ -69,12 +93,48 @@ class TrimVideoViewController: UIViewController {
     }
     
     private func addRightBarButton() {
-        let barButton = UIBarButtonItem(title: .localized("TRIM_VC_SAVE_BUTTON"),
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(actionSaveVideos(_:)))
-        barButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
-        navigationItem.rightBarButtonItem = barButton
+        navigationItem.rightBarButtonItem = saveBarButton
+    }
+    
+    private func addColorPickerController(_ controller: ProgressColorPickerController) {
+        /// Сохраняем ссылки контроллеры, чтобы в дальнейшем удалить их
+        self.colorPickerController = controller
+        self.colorPickerControl = controller.colorControlView
+        
+        /// Отодвигаем collectionView влево
+        collectionViewRightConstraint.constant = view.bounds.width
+        
+        /// Добавляем контроллер как дочерний контроллер
+        addChild(controller)
+        controller.view.frame = collectionView.frame
+        controller.view.frame.origin.x = view.bounds.width
+        
+        /// Добавляем управление шкалой вверху экрана
+        colorPickerControl.frame = CGRect(x: 0, y: -60, width: view.bounds.width, height: 60)
+        view.addSubview(colorPickerControl)
+        
+        view.addSubview(controller.view)
+        controller.didMove(toParent: self)
+        
+        /// Отключаем кнопку сохранения
+        saveBarButton.isEnabled = false
+        
+        /// У превью видео начинаем анимацию
+        
+        
+        UIView.animate(withDuration: 0.4) {
+            controller.view.frame.origin.x = 0
+            self.colorPickerControl.frame.origin.y = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func removeColorPickerController() {
+        saveBarButton.isEnabled = true
+        colorPickerControl.removeFromSuperview()
+        colorPickerController.willMove(toParent: nil)
+        colorPickerController.view.removeFromSuperview()
+        colorPickerController.removeFromParent()
     }
     
     // MARK: - Actions ⚡️
@@ -88,7 +148,9 @@ class TrimVideoViewController: UIViewController {
     }
     
     @IBAction func actionAddProgressBar(_ sender: Any) {
-        presenter.showProgressBar()
+        if let colorPickerController = presenter.showProgressBar() {
+            addColorPickerController(colorPickerController)
+        }
     }
 }
 
@@ -117,6 +179,30 @@ extension TrimVideoViewController: TrimVideoView {
         videoPreview.playerTimeDidChange(time: time)
     }
     
+    func hideNoMaskButton() {
+        noMaskButton.isHidden = true
+    }
+    
+    // MARK: - Color picker methods
+    func progressBarPurchased(_ colorPicker: ProgressColorPickerController) {
+        addColorPickerController(colorPicker)
+    }
+    
+    func progressColorChanged(_ color: UIColor) {
+        //
+    }
+    
+    func progressColorChoosed(_ color: UIColor) {
+        removeColorPickerController()
+    }
+    
+    func progressColorRemoved() {
+        removeColorPickerController()
+    }
+    
+    func progressColorCanceled() {
+        removeColorPickerController()
+    }
 }
 
 // MARK: - Collection view delegate/dataSource methods

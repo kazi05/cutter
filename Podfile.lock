@@ -1,16 +1,16 @@
 PODS:
-  - JGProgressHUD (2.0)
+  - FlexColorPicker (1.4.2)
 
 DEPENDENCIES:
-  - JGProgressHUD
+  - FlexColorPicker
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - JGProgressHUD
+  trunk:
+    - FlexColorPicker
 
 SPEC CHECKSUMS:
-  JGProgressHUD: c402c0f41fc291ca7e33bba2f999118d9682dd9c
+  FlexColorPicker: d7ed5cfd8ceb936f2930e4e30629f9448967a5f8
 
-PODFILE CHECKSUM: a3c569a9b51ed4c2d587f08775a09d4ca081e2f0
+PODFILE CHECKSUM: a5bbf326c427841ed9d012efdc55c2fb541812bc
 
 COCOAPODS: 1.8.4

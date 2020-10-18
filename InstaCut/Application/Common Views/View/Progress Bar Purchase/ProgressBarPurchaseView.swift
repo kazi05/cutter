@@ -44,16 +44,7 @@ class ProgressBarPurchaseView: UIView, NibLoadable {
     }
     
     private func addProgressBar() {
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 10
-        animation.isRemovedOnCompletion = true
-        animation.repeatCount = .infinity
-        animation.fillMode = .forwards
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        
         layer.addSublayer(progressLayer)
-        progressLayer.add(animation, forKey: nil)
+        progressLayer.addProgressAnimation(repeated: true)
     }
 }

@@ -67,7 +67,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="actionPurchaseNoMask:" destination="-1" eventType="touchUpInside" id="ySy-Cw-4xV"/>
+                                <action selector="actionPurchaseProduct:" destination="-1" eventType="touchUpInside" id="ySy-Cw-4xV"/>
                             </connections>
                         </button>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0ok-sz-hT3">

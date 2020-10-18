@@ -12,11 +12,11 @@ struct TrimVideoSceneFactory {
     
     static func makeTrimmerScene(video: VideoModel,
                                  delegate: TrimVideoPresenterOutput
-    ) -> TrimVideoViewController {
+    ) -> (TrimVideoViewController, TrimVideoPresenterInput) {
         let viewController = TrimVideoViewController()
         let presenter = TrimVideoPresenter(view: viewController, delegate: delegate, video: video)
         viewController.presenter = presenter
-        return viewController
+        return (viewController, presenter)
     }
     
     static func makeTrimingProgressScene(video: VideoModel,
@@ -30,22 +30,35 @@ struct TrimVideoSceneFactory {
         return viewController
     }
     
-    static func makePurchaseNoMaskScene(product: IAPProduct, period: VideoPeriod) -> PurchaseViewController {
+    static func makePurchaseNoMaskScene(product: IAPProduct,
+                                        period: VideoPeriod,
+                                        delegate: PurchasePresenterOutput
+    ) -> PurchaseViewController {
         let viewController = PurchaseViewController()
         let noMaskPurchaseView = NoMaskPurchaseView.loadFromNib()
         noMaskPurchaseView.setPreview(from: period)
-        let presenter = PurchasePresenter(view: viewController, product: product, preview: noMaskPurchaseView, description: .localized("NO_MASK_VC_DESRIPTION"))
+        let presenter = PurchasePresenter(view: viewController, delegate: delegate, product: product, preview: noMaskPurchaseView, description: .localized("NO_MASK_VC_DESRIPTION"))
         viewController.presenter = presenter
         return viewController
     }
     
     static func makePurchaseProgressBarScene(product: IAPProduct,
-                                             period: VideoPeriod
+                                             period: VideoPeriod,
+                                             delegate: PurchasePresenterOutput
     ) -> PurchaseViewController {
         let viewController = PurchaseViewController()
         let progressBarView = ProgressBarPurchaseView.loadFromNib()
         progressBarView.setPreview(from: period)
-        let presenter = PurchasePresenter(view: viewController, product: product, preview: progressBarView, description: .localized("PROGRESS_BAR_DESCRIPTION"))
+        let presenter = PurchasePresenter(view: viewController, delegate: delegate, product: product, preview: progressBarView, description: .localized("PROGRESS_BAR_DESCRIPTION"))
+        viewController.presenter = presenter
+        return viewController
+    }
+    
+    static func makeColorPickerViewController(color: UIColor?,
+                                              delegate: ProgressColorPickerPresenterOutput
+    ) -> ProgressColorPickerController {
+        let viewController = ProgressColorPickerController()
+        let presenter = ProgressColorPickerPresenter(view: viewController, delegate: delegate, color: color)
         viewController.presenter = presenter
         return viewController
     }

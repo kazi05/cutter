@@ -6,7 +6,7 @@
 //  Copyright © 2020 Kazim Gajiev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreMedia.CMTime
 
 protocol TrimVideoPresenterOutput: class {
@@ -15,6 +15,20 @@ protocol TrimVideoPresenterOutput: class {
     func purchaseNoMask(product: IAPProduct, period: VideoPeriod)
     
     func purchaseProgressBar(product: IAPProduct, period: VideoPeriod)
+    
+    func showColorPickerController(color: UIColor?) -> ProgressColorPickerController
+}
+
+protocol TrimVideoPresenterInput: class {
+    func purchaseCompleted(_ product: IAPProduct)
+    
+    func progressColorChanged(_ color: UIColor)
+    
+    func progressColorChoosed(_ color: UIColor)
+    
+    func progressColorRemoved()
+    
+    func progressColorCanceled()
 }
 
 class TrimVideoPresenter {
@@ -83,15 +97,18 @@ class TrimVideoPresenter {
         delegate.saveVideos(from: video, with: periods, and: renderSettings)
     }
     
-    func showProgressBar() {
+    func showProgressBar() -> ProgressColorPickerController? {
         if UserDefaults.standard.bool(forKey: IAPProductKind.progress.rawValue) {
-            
+            return delegate.showColorPickerController(color: renderSettings.progressSettings?.color)
         } else if let product = IAPManager.shared.getProduct(by: .progress) {
             delegate.purchaseProgressBar(product: product, period: currentPeriod)
+            return nil
+        } else {
+            return nil
         }
     }
     
-    // MARK: - Input methods
+    // MARK: - Private methods
     private func observePlayerTime(_ time: CMTime) {
         view.playerTimeDidChange(time)
         if let index = self.periodsRanges.firstIndex(where: { $0.containsTime(time) }),
@@ -113,4 +130,33 @@ class TrimVideoPresenter {
         }
     }
     
+}
+
+// MARK: - Input methods
+extension TrimVideoPresenter: TrimVideoPresenterInput {
+    
+    func purchaseCompleted(_ product: IAPProduct) {
+        if product.kind == .mask {
+            view.hideNoMaskButton()
+        } else {
+            view.progressBarPurchased(delegate.showColorPickerController(color: nil))
+        }
+    }
+    
+    func progressColorChanged(_ color: UIColor) {
+        view.progressColorChanged(color)
+    }
+    
+    func progressColorChoosed(_ color: UIColor) {
+        renderSettings.progressSettings?.color = color
+        view.progressColorChoosed(color)
+    }
+    
+    func progressColorRemoved() {
+        view.progressColorRemoved()
+    }
+    
+    func progressColorCanceled() {
+        view.progressColorCanceled()
+    }
 }

@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="QXY-dH-biF" id="SrU-2k-lva"/>
                 <outlet property="collectionView" destination="8GA-J9-xHI" id="LoV-yr-r5M"/>
+                <outlet property="collectionViewRightConstraint" destination="vRq-Hr-Kc0" id="zSF-tO-X6c"/>
                 <outlet property="noMaskButton" destination="Vj9-oM-qP9" id="dfg-8G-V2W"/>
                 <outlet property="videoPreview" destination="CBv-qF-oWv" id="fBh-6i-0TY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -40,10 +41,6 @@
                     <rect key="frame" x="0.0" y="104" width="414" height="585"/>
                     <color key="backgroundColor" name="bgColor"/>
                 </view>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QXY-dH-biF">
-                    <rect key="frame" x="197" y="782.5" width="20" height="20"/>
-                    <color key="color" name="textColor"/>
-                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xi4-Ib-KGO">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <subviews>
@@ -79,6 +76,10 @@
                         <constraint firstItem="HMn-P8-rFZ" firstAttribute="leading" secondItem="Vj9-oM-qP9" secondAttribute="trailing" constant="25" id="vca-7R-hQy"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="QXY-dH-biF">
+                    <rect key="frame" x="197" y="782.5" width="20" height="20"/>
+                    <color key="color" name="textColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="bgColor"/>

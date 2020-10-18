@@ -35,11 +35,11 @@ class PurchaseViewController: UIViewController {
     }
 
     // MARK: - Actions ⚡️
-    @IBAction func actionPurchaseNoMask(_ sender: Any) {
+    @IBAction func actionPurchaseProduct(_ sender: Any) {
         buyButton.isHidden = true
         activityIndicator.startAnimating()
         
-        IAPManager.shared.purchase(product: .mask) { [weak self] (state, error) in
+        IAPManager.shared.purchase(product: presenter.getProdcut().kind) { [weak self] (state, error) in
             guard let self = self else { return }
             switch state {
             case .purchased:
