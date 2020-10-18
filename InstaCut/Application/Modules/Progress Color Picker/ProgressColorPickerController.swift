@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlexColorPicker
 
 protocol ProgressColorPickerView: class {
     func setSelectedColor(color: UIColor?)
@@ -85,7 +86,13 @@ extension ProgressColorPickerController: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.item != defaultColors.count - 1 else {
+            let defaultColorPicker = SimpleColorPickerViewController()
+            present(defaultColorPicker, animated: true)
+            return
+        }
         
+        presenter.changeColor(color: defaultColors[indexPath.item])
     }
     
     // MARK: - Flow layout methods

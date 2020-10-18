@@ -202,7 +202,7 @@ extension TrimVideoViewController: TrimVideoView {
     }
     
     func progressColorChanged(_ color: UIColor) {
-        //
+        videoPreview.setProgressColor(color: color)
     }
     
     func progressColorChoosed(_ color: UIColor) {

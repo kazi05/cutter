@@ -15,6 +15,8 @@
 		32189D9A253C8156007E142A /* ProgressColorControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32189D99253C8156007E142A /* ProgressColorControlView.swift */; };
 		32189D9D253C815E007E142A /* ProgressColorControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32189D9C253C815E007E142A /* ProgressColorControlView.xib */; };
 		32189DA0253C9D7A007E142A /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32189D9F253C9D7A007E142A /* CALayer+Ext.swift */; };
+		32189DA6253CB539007E142A /* SimpleColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32189DA4253CB539007E142A /* SimpleColorPickerViewController.swift */; };
+		32189DA7253CB539007E142A /* SimpleColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32189DA5253CB539007E142A /* SimpleColorPickerViewController.xib */; };
 		321A64A925343BF500ED70F0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64A825343BF500ED70F0 /* AppCoordinator.swift */; };
 		321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64AC25343C3E00ED70F0 /* Coordinator.swift */; };
 		321A64B425343C9800ED70F0 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321A64B225343C9800ED70F0 /* VideoListViewController.swift */; };
@@ -88,6 +90,8 @@
 		32189D99253C8156007E142A /* ProgressColorControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressColorControlView.swift; sourceTree = "<group>"; };
 		32189D9C253C815E007E142A /* ProgressColorControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressColorControlView.xib; sourceTree = "<group>"; };
 		32189D9F253C9D7A007E142A /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
+		32189DA4253CB539007E142A /* SimpleColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleColorPickerViewController.swift; sourceTree = "<group>"; };
+		32189DA5253CB539007E142A /* SimpleColorPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleColorPickerViewController.xib; sourceTree = "<group>"; };
 		321A64A825343BF500ED70F0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		321A64AC25343C3E00ED70F0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		321A64B225343C9800ED70F0 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
@@ -212,9 +216,19 @@
 			path = "Progress Color Control View";
 			sourceTree = "<group>";
 		};
+		32189DA3253CB50F007E142A /* Simple Color Picker */ = {
+			isa = PBXGroup;
+			children = (
+				32189DA4253CB539007E142A /* SimpleColorPickerViewController.swift */,
+				32189DA5253CB539007E142A /* SimpleColorPickerViewController.xib */,
+			);
+			path = "Simple Color Picker";
+			sourceTree = "<group>";
+		};
 		321A64A625343BDD00ED70F0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				32189DA3253CB50F007E142A /* Simple Color Picker */,
 				321A64A725343BE800ED70F0 /* App */,
 				32189D80253C6BEC007E142A /* Progress Color Picker */,
 				3246C315253A157500D400A5 /* Purchase View */,
@@ -590,6 +604,7 @@
 				321A64B525343C9800ED70F0 /* VideoListViewController.xib in Resources */,
 				32DD3544253BB2AE00E62ABF /* ProgressBarPurchaseView.xib in Resources */,
 				323EFCAA253BAD16009A383F /* NoMaskPurchaseView.xib in Resources */,
+				32189DA7253CB539007E142A /* SimpleColorPickerViewController.xib in Resources */,
 				32189D9D253C815E007E142A /* ProgressColorControlView.xib in Resources */,
 				32189D84253C6C0F007E142A /* ProgressColorPickerController.xib in Resources */,
 				3221BA35253749FA0019A306 /* VideoTrimmingCollectionViewCell.xib in Resources */,
@@ -692,6 +707,7 @@
 				321A64E82534514100ED70F0 /* VideoThumbCollectionViewCell.swift in Sources */,
 				321A64BB25343CEB00ED70F0 /* VideoListPresenter.swift in Sources */,
 				32DD3541253BB2A100E62ABF /* ProgressBarPurchaseView.swift in Sources */,
+				32189DA6253CB539007E142A /* SimpleColorPickerViewController.swift in Sources */,
 				3262158F2534971C0012CED3 /* TrimVideoSceneFactory.swift in Sources */,
 				321A64E325344EB300ED70F0 /* AssetImageGenerator.swift in Sources */,
 				321A64D02534428E00ED70F0 /* PhotoLibraryPremission.swift in Sources */,
