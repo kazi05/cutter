@@ -16,11 +16,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsP-Vk-nXP">
-                    <rect key="frame" x="20" y="182.5" width="30" height="30"/>
+                    <rect key="frame" x="20" y="187.5" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="klD-le-fOg"/>
-                        <constraint firstAttribute="width" constant="30" id="paF-gw-262"/>
+                        <constraint firstAttribute="height" constant="20" id="klD-le-fOg"/>
+                        <constraint firstAttribute="width" constant="20" id="paF-gw-262"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="cancel"/>
                     <connections>
                         <action selector="actionDeleteOrRemoveColor:" destination="iN0-l3-epB" eventType="touchUpInside" id="eLE-xq-6uY"/>

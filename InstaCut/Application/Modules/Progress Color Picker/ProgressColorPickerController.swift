@@ -135,11 +135,12 @@ extension ProgressColorPickerController: ProgressColorPickerView {
     
     func setSelectedColor(color: UIColor?) {
         if let color = color {
+            colorControlView.setRemoveOrCancelIcon(remove: true)
             if let colorIndex = defaultColors.firstIndex(of: color) {
                 collectionView.selectItem(at: IndexPath(item: colorIndex, section: 0), animated: false, scrollPosition: .left)
             } else {
+                collectionView.selectItem(at: IndexPath(item: defaultColors.count - 1, section: 0), animated: false, scrollPosition: .left)
                 selectedColorView.backgroundColor = color
-                colorControlView.setRemoveOrCancelIcon(remove: true)
             }
         } else {
             collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .left)

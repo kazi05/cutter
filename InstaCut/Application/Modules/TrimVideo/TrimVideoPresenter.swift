@@ -99,6 +99,7 @@ class TrimVideoPresenter {
     
     func showProgressBar() -> ProgressColorPickerController? {
         if UserDefaults.standard.bool(forKey: IAPProductKind.progress.rawValue) {
+            print(renderSettings.progressSettings?.color)
             return delegate.showColorPickerController(color: renderSettings.progressSettings?.color)
         } else if let product = IAPManager.shared.getProduct(by: .progress) {
             delegate.purchaseProgressBar(product: product, period: currentPeriod)
@@ -148,11 +149,12 @@ extension TrimVideoPresenter: TrimVideoPresenterInput {
     }
     
     func progressColorChoosed(_ color: UIColor) {
-        renderSettings.progressSettings?.color = color
+        renderSettings.progressSettings = VideoProgressSettings(color: color)
         view.progressColorChoosed(color)
     }
     
     func progressColorRemoved() {
+        renderSettings.progressSettings = nil
         view.progressColorRemoved()
     }
     
