@@ -61,13 +61,14 @@ class VideoPreviewView: UIView {
         return label
     }()
     
-    private let progressWide: CGFloat = 10
+    private let progressWide: CGFloat = 5
     
     private lazy var progressLayer: CAShapeLayer = {
         let progressLayer = CAShapeLayer()
         progressLayer.fillColor = nil
         progressLayer.strokeColor = UIColor(named: "appMainColor")?.cgColor
         progressLayer.lineWidth = progressWide
+        progressLayer.strokeEnd = 0
         return progressLayer
     }()
     
@@ -264,7 +265,11 @@ extension VideoPreviewView {
     
     public func playerTimeDidChange(time: CMTime) {
         currentTimeLabel.text = time.positionalTime
-        let strokeEnd = time.seconds / 60 - Double(time.minute)
+        let videoDuration = videoPlayer.videoDuration.seconds
+        let lastPeriodDuration = videoDuration.truncatingRemainder(dividingBy: 60)
+        let percent = (videoDuration - lastPeriodDuration) > time.seconds ? 0 : 60 / lastPeriodDuration.rounded() * 100 - 100
+        let timeDuration = time.seconds / 60 - Double(time.minute)
+        let strokeEnd =  timeDuration + (timeDuration / 100) * percent
         progressLayer.strokeEnd = CGFloat(strokeEnd)
     }
     
