@@ -71,6 +71,14 @@ class VideoPreviewView: UIView {
         return progressLayer
     }()
     
+    private lazy var demostratingProgressLayer: CAShapeLayer = {
+        let progressLayer = CAShapeLayer()
+        progressLayer.fillColor = nil
+        progressLayer.strokeColor = UIColor(named: "appMainColor")?.cgColor
+        progressLayer.lineWidth = progressWide
+        return progressLayer
+    }()
+    
     // Key-value observing context
     private var playerItemContext = 0
     
@@ -125,6 +133,7 @@ class VideoPreviewView: UIView {
                 path.move(to: CGPoint(x: 0, y: rect.maxY - progressWide / 2))
                 path.addLine(to: CGPoint(x: bounds.width, y: rect.maxY - progressWide / 2))
                 progressLayer.path = path.cgPath
+                demostratingProgressLayer.path = path.cgPath
                 
             default: break
                 // Player item is not yet ready.
@@ -255,6 +264,8 @@ extension VideoPreviewView {
     
     public func playerTimeDidChange(time: CMTime) {
         currentTimeLabel.text = time.positionalTime
+        let strokeEnd = time.seconds / 60 - Double(time.minute)
+        progressLayer.strokeEnd = CGFloat(strokeEnd)
     }
     
     public func showProgressDemostration(_ show: Bool) {
@@ -262,16 +273,29 @@ extension VideoPreviewView {
         playButton.alpha = show ? 0 : 1
         
         if show {
-            layer.addSublayer(progressLayer)
-            progressLayer.addProgressAnimation(repeated: true)
+            layer.addSublayer(demostratingProgressLayer)
+            demostratingProgressLayer.addProgressAnimation(repeated: true)
         } else {
-            progressLayer.removeFromSuperlayer()
-            progressLayer.removeAllAnimations()
+            demostratingProgressLayer.removeFromSuperlayer()
+            demostratingProgressLayer.removeAllAnimations()
+        }
+        
+        if progressLayer.superlayer != nil {
+            progressLayer.opacity = show ? 0 : 1
         }
     }
     
     public func setProgressColor(color: UIColor) {
         progressLayer.strokeColor = color.cgColor
+        demostratingProgressLayer.strokeColor = color.cgColor
+    }
+    
+    public func setProgress(_ set: Bool) {
+        if set && progressLayer.superlayer == nil {
+            layer.addSublayer(progressLayer)
+        } else if !set {
+            progressLayer.removeFromSuperlayer()
+        }
     }
     
 }

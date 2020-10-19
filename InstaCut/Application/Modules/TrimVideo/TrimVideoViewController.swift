@@ -207,10 +207,12 @@ extension TrimVideoViewController: TrimVideoView {
     
     func progressColorChoosed(_ color: UIColor) {
         removeColorPickerController()
+        videoPreview.setProgress(true)
     }
     
     func progressColorRemoved() {
         removeColorPickerController()
+        videoPreview.setProgress(false)
     }
     
     func progressColorCanceled() {

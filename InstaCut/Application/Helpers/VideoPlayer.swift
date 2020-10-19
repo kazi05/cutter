@@ -18,13 +18,15 @@ class VideoPlayer {
     var timeChanged: ((CMTime) -> Void)?
     var statusChanged: ((VideoPlayerState) -> Void)?
     private(set) var isPlaying = false
-    private var lastSeekTime: CMTime!
+    let videoDuration: CMTime
     
+    private var lastSeekTime: CMTime!
     private var timeObserver: Any!
     
     init(with asset: AVAsset) {
         let playerItem = AVPlayerItem(asset: asset)
         self.player = AVPlayer(playerItem: playerItem)
+        self.videoDuration = playerItem.duration
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
