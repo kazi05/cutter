@@ -61,6 +61,7 @@
 		3262158F2534971C0012CED3 /* TrimVideoSceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3262158E2534971C0012CED3 /* TrimVideoSceneFactory.swift */; };
 		326215932534972D0012CED3 /* TrimVideoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215922534972D0012CED3 /* TrimVideoCoordinator.swift */; };
 		3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EC224CE865000C544B /* NibLoadable.swift */; };
+		3274FF94253DDEAD00021E5A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E8C9532053FC56001A3FA7 /* StoreKit.framework */; };
 		32993DF32535946900776F3F /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32993DF22535946900776F3F /* VideoPreviewView.swift */; };
 		32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32993DF8253597D700776F3F /* VideoPeriodsTrimmerManager.swift */; };
 		32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C729222BFA35003616CC /* VideoModel.swift */; };
@@ -172,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32DD15EF35F8A3C11DC5F2A5 /* Pods_InstaCut.framework in Frameworks */,
+				3274FF94253DDEAD00021E5A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

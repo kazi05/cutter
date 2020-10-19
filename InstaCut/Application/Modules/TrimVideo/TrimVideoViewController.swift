@@ -176,7 +176,7 @@ extension TrimVideoViewController: TrimVideoView {
         
         DispatchQueue.main.async {
             guard let firstCell = self.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) else { return }
-            self.collectionView.moveBorderView(to: firstCell.center, animated: false)
+            self.collectionView.setBorderView(with: firstCell.frame)
         }
     }
     

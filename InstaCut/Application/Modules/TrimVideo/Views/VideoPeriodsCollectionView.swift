@@ -15,6 +15,7 @@ class VideoPeriodsCollectionView: UICollectionView {
         view.backgroundColor = .clear
         view.layer.borderWidth = 4
         view.layer.borderColor = UIColor(named: "appMainColor")?.cgColor
+        view.alpha = 0
         return view
     }()
     
@@ -22,9 +23,13 @@ class VideoPeriodsCollectionView: UICollectionView {
         super.init(coder: coder)
         addSubview(borderView)
         
-        if let collectionViewFlowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
-            borderView.frame.size = collectionViewFlowLayout.itemSize
-            borderView.layer.cornerRadius = 4
+        borderView.layer.cornerRadius = 4
+    }
+    
+    public func setBorderView(with frame: CGRect) {
+        borderView.frame = frame
+        UIView.animate(withDuration: 0.2) {
+            self.borderView.alpha = 1
         }
     }
     

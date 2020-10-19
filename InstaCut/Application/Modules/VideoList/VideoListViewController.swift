@@ -54,6 +54,8 @@ class VideoListViewController: UIViewController {
 extension VideoListViewController: VideoListView {
     
     func loadVideosCompleted() {
+        errorView.isHidden = true
+        collectionView.isHidden = false
         collectionView.reloadData()
     }
     
