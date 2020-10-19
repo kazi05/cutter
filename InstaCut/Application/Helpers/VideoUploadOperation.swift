@@ -14,6 +14,7 @@ class VideoUploadOperation: AsyncOperation {
     private let asset: AVAsset
     private let timeRange: CMTimeRange
     private let progress: (Float) -> Void
+    private let onError: (Error?) -> Void
     private let renderSettings: VideoRenderSettings
     
     private let fileManager = FileManager.default
@@ -28,11 +29,13 @@ class VideoUploadOperation: AsyncOperation {
     init(with asset: AVAsset,
          range: CMTimeRange,
          renderSettings: VideoRenderSettings,
-         progress: @escaping (Float) -> Void) {
+         progress: @escaping (Float) -> Void,
+         onError: @escaping (Error?) -> Void) {
         self.asset = asset
         self.timeRange = range
         self.renderSettings = renderSettings
         self.progress = progress
+        self.onError = onError
     }
     
     override func main() {
@@ -118,7 +121,7 @@ fileprivate extension VideoUploadOperation {
                     }
                 }
             case .failed:
-                print("failed \(String(describing: self.exportSession.error))")
+                self.onError(self.exportSession.error)
                 self.state = .finished
             case .cancelled:
                 print("cancelled \(String(describing: self.exportSession.error))")

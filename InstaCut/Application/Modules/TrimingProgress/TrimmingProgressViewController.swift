@@ -12,6 +12,7 @@ protocol TrimmingProgressView: class {
     func period(at index: Int, progress: Float)
     func periodCompleted(at index: Int)
     func renderingCompleted()
+    func renderErrorOccured(_ error: Error?)
 }
 
 class TrimmingProgressViewController: UIViewController {
@@ -112,6 +113,10 @@ extension TrimmingProgressViewController: TrimmingProgressView {
     
     private func getCell(by index: Int) -> VideoTrimmingCollectionViewCell? {
         return collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? VideoTrimmingCollectionViewCell
+    }
+    
+    func renderErrorOccured(_ error: Error?) {
+        self.showErrorAlert(with: error?.localizedDescription)
     }
 }
 

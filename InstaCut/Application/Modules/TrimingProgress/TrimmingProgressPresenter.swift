@@ -56,6 +56,12 @@ class TrimmingProgressPresenter {
                 self?.renderingCompleted()
             }
         }
+        
+        trimmingRenderManager.renderError = { [weak self] errror in
+            DispatchQueue.main.async {
+                self?.renderError(errror)
+            }
+        }
     }
     
     func cancelRendering() {
@@ -86,6 +92,10 @@ class TrimmingProgressPresenter {
     private func renderingCompleted() {
         view.renderingCompleted()
         trimmingRenderManager = nil
+    }
+    
+    private func renderError(_ error: Error?) {
+        view.renderErrorOccured(error)
     }
     
     // MARK: - Output methods

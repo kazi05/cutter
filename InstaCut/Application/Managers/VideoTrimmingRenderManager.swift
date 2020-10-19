@@ -17,6 +17,7 @@ class VideoTrimmingRenderManager {
     private var operationQueue: OperationQueue!
     private var wasCancelled = false
     
+    public var renderError: ((Error?) -> Void)?
     public var periodProgress: ((Int, Float) -> Void)?
     public var periodRenderCompleted: ((Int) -> Void)?
     public var allPeriodsRenderCompleted: (() -> Void)?
@@ -43,8 +44,12 @@ class VideoTrimmingRenderManager {
         operationQueue.maxConcurrentOperationCount = 1
         
         for (index, range) in timing.enumerated() {
-            let uploadOperation = VideoUploadOperation(with: asset, range: range, renderSettings: self.renderSettings) { [weak self] (progress) in
+            let uploadOperation = VideoUploadOperation(with: asset, range: range, renderSettings: self.renderSettings)
+            { [weak self] (progress) in
                 self?.periodProgress?(index, progress)
+            } onError: { [weak self] (error) in
+                self?.renderError?(error)
+                self?.cancelRendering()
             }
             uploadOperation.completionBlock = { [weak self] in
                 guard let self = self, !self.wasCancelled else { return }
