@@ -37,3 +37,4 @@ NO_MASK_VC_BUY = "Купить - ";
 
 // MARK: - Alert controller
 ALERT_ERROR_TITLE = "Ошибка";
+ALERT_MEMORY_MESSAGE = "Недостаточно памяти телефона";

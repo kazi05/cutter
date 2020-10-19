@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreMedia.CMTime
+import AVFoundation
 
 protocol TrimVideoPresenterOutput: class {
     func saveVideos(from video: VideoModel, with periods: [VideoPeriod], and settings: VideoRenderSettings)
@@ -94,6 +94,11 @@ class TrimVideoPresenter {
     }
     
     func saveVideos() {
+        guard let urlAsset = video.asset as? AVURLAsset else { return }
+        guard let fileSize = urlAsset.fileSize, DiskStatus.freeDiskSpaceInBytes > fileSize else {
+            view.memoryIsFullError()
+            return
+        }
         delegate.saveVideos(from: video, with: periods, and: renderSettings)
     }
     

@@ -62,6 +62,7 @@
 		326215932534972D0012CED3 /* TrimVideoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215922534972D0012CED3 /* TrimVideoCoordinator.swift */; };
 		3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3268F4EC224CE865000C544B /* NibLoadable.swift */; };
 		3274FF94253DDEAD00021E5A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E8C9532053FC56001A3FA7 /* StoreKit.framework */; };
+		3274FF97253DF48B00021E5A /* DiskStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3274FF96253DF48B00021E5A /* DiskStatus.swift */; };
 		32993DF32535946900776F3F /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32993DF22535946900776F3F /* VideoPreviewView.swift */; };
 		32993DF9253597D700776F3F /* VideoPeriodsTrimmerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32993DF8253597D700776F3F /* VideoPeriodsTrimmerManager.swift */; };
 		32A4C72A222BFA35003616CC /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A4C729222BFA35003616CC /* VideoModel.swift */; };
@@ -140,6 +141,7 @@
 		326215922534972D0012CED3 /* TrimVideoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimVideoCoordinator.swift; sourceTree = "<group>"; };
 		326738B6205699400078674D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3268F4EC224CE865000C544B /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		3274FF96253DF48B00021E5A /* DiskStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStatus.swift; sourceTree = "<group>"; };
 		32993DF22535946900776F3F /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
 		32993DF8253597D700776F3F /* VideoPeriodsTrimmerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPeriodsTrimmerManager.swift; sourceTree = "<group>"; };
 		32A4C729222BFA35003616CC /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				32BD386C25386AAF00503DBF /* AsyncOperation.swift */,
 				321A64E225344EB300ED70F0 /* AssetImageGenerator.swift */,
 				32EECF262538B03C00D5658F /* BackgroundTask.swift */,
+				3274FF96253DF48B00021E5A /* DiskStatus.swift */,
 				321A64CF2534428E00ED70F0 /* PhotoLibraryPremission.swift */,
 				32A760AC2535CAD000ECE08E /* VideoPlayer.swift */,
 				32BD3833253842F600503DBF /* VideoUploadOperation.swift */,
@@ -686,6 +689,7 @@
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
 				323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */,
 				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
+				3274FF97253DF48B00021E5A /* DiskStatus.swift in Sources */,
 				3246C30E253A04A900D400A5 /* IAPManager.swift in Sources */,
 				322857EE25370B9500E70473 /* AlertTransitioningDelegate.swift in Sources */,
 				3268F4ED224CE865000C544B /* NibLoadable.swift in Sources */,

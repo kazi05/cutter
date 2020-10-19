@@ -22,6 +22,8 @@ protocol TrimVideoView: class {
     /// Время видео изменилось
     func playerTimeDidChange(_ time: CMTime)
     
+    func memoryIsFullError()
+    
     /// Покупка `Убрать маску` куплена
     func hideNoMaskButton()
     
@@ -217,6 +219,10 @@ extension TrimVideoViewController: TrimVideoView {
     
     func progressColorCanceled() {
         removeColorPickerController()
+    }
+    
+    func memoryIsFullError() {
+        showErrorAlert(with: .localized("ALERT_MEMORY_MESSAGE"))
     }
 }
 

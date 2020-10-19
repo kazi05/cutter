@@ -37,3 +37,4 @@ NO_MASK_VC_BUY = "Buy - ";
 
 // MARK: - Alert controller
 ALERT_ERROR_TITLE = "Error";
+ALERT_MEMORY_MESSAGE = "Phone memory is full";
