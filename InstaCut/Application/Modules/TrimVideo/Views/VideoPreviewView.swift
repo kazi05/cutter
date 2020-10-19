@@ -61,7 +61,7 @@ class VideoPreviewView: UIView {
         return label
     }()
     
-    private let progressWide: CGFloat = 5
+    private let progressWide: CGFloat = 7
     
     private lazy var progressLayer: CAShapeLayer = {
         let progressLayer = CAShapeLayer()
