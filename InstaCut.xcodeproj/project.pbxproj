@@ -228,11 +228,11 @@
 		321A64A625343BDD00ED70F0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				32189DA3253CB50F007E142A /* Simple Color Picker */,
 				321A64A725343BE800ED70F0 /* App */,
 				32189D80253C6BEC007E142A /* Progress Color Picker */,
 				3246C315253A157500D400A5 /* Purchase View */,
 				32621585253496DA0012CED3 /* TrimVideo */,
+				32189DA3253CB50F007E142A /* Simple Color Picker */,
 				322857DD253704FB00E70473 /* TrimingProgress */,
 				321A64B125343C6000ED70F0 /* VideoList */,
 			);

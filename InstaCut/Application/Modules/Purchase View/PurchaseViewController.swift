@@ -43,7 +43,9 @@ class PurchaseViewController: UIViewController {
             guard let self = self else { return }
             switch state {
             case .purchased:
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true) { [weak self] in
+                    self?.presenter.purchaseSuccess()
+                }
                 
             default:
                 self.buyButton.isHidden = false

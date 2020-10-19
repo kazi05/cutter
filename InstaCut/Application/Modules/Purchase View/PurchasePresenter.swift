@@ -40,4 +40,8 @@ class PurchasePresenter {
         return product
     }
     
+    func purchaseSuccess() {
+        delegate.productPurchaseSuccess(product)
+    }
+    
 }
