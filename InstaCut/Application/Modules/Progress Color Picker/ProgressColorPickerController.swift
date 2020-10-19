@@ -88,10 +88,13 @@ extension ProgressColorPickerController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.item != defaultColors.count - 1 else {
             let defaultColorPicker = SimpleColorPickerViewController()
+            defaultColorPicker.selectedColor = presenter.getCurrentColor() ?? .white
+            defaultColorPicker.delegate = self
             present(defaultColorPicker, animated: true)
             return
         }
         
+        selectedColorView.backgroundColor = UIColor(named: "navBarColor")
         presenter.changeColor(color: defaultColors[indexPath.item])
     }
     
@@ -111,7 +114,17 @@ extension ProgressColorPickerController: UICollectionViewDataSource, UICollectio
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 12
+    }
+    
+}
+
+// MARK: - Color picker methods
+extension ProgressColorPickerController: ColorPickerDelegate {
+    
+    func colorPicker(_ colorPicker: ColorPickerController, confirmedColor: UIColor, usingControl: ColorControl) {
+        selectedColorView.backgroundColor = confirmedColor
+        presenter.changeColor(color: confirmedColor)
     }
     
 }

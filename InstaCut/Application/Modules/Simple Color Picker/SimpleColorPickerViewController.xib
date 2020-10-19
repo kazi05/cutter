@@ -32,12 +32,31 @@
                         <action selector="acrionCancel:" destination="-1" eventType="touchUpInside" id="PH9-or-3vb"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJe-AM-hzm">
+                    <rect key="frame" x="30" y="792" width="354" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="dhC-Pd-VxL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="CHOOSE_BUTTON"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="actionChooseColor:" destination="-1" eventType="touchUpInside" id="mfh-S9-ZpI"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="navBarColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EJe-AM-hzm" secondAttribute="bottom" constant="20" id="3Zg-l7-q6y"/>
                 <constraint firstItem="Ajs-Gs-qDh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="I6c-fk-68f"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EJe-AM-hzm" secondAttribute="trailing" constant="30" id="ehg-Cs-4Mh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ajs-Gs-qDh" secondAttribute="trailing" constant="20" id="fjX-E0-NQ0"/>
+                <constraint firstItem="EJe-AM-hzm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="ntI-Zb-4Df"/>
             </constraints>
             <point key="canvasLocation" x="139" y="151"/>
         </view>

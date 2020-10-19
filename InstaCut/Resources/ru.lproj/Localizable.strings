@@ -28,6 +28,7 @@ TRIM_VC_SAVE_BUTTON = "Сохранить";
 // MARK: - Trimming progress view controller
 CANCEL_BUTTON = "Отмена";
 TRIMMING_VC_FINISH_LABEL = "Готово!";
+CHOOSE_BUTTON = "Выбрать";
 
 // MARK: - Purchases
 NO_MASK_VC_DESRIPTION = "Позволит сохранять видео без логотипа приложения";

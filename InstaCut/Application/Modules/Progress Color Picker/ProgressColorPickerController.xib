@@ -35,7 +35,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzL-5Y-rF8">
-                    <rect key="frame" x="20" y="152" width="374" height="79"/>
+                    <rect key="frame" x="20" y="124" width="374" height="157"/>
                     <color key="backgroundColor" name="navBarColor"/>
                 </view>
             </subviews>
@@ -44,8 +44,8 @@
             <constraints>
                 <constraint firstItem="jzL-5Y-rF8" firstAttribute="leading" secondItem="nH7-0x-7in" secondAttribute="leading" id="Bz6-j6-Hne"/>
                 <constraint firstItem="nH7-0x-7in" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="CCG-gb-pDi"/>
-                <constraint firstItem="jzL-5Y-rF8" firstAttribute="top" secondItem="nH7-0x-7in" secondAttribute="bottom" constant="38" id="EKd-vR-z2r"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jzL-5Y-rF8" secondAttribute="bottom" constant="60" id="IWe-Rp-M3H"/>
+                <constraint firstItem="jzL-5Y-rF8" firstAttribute="top" secondItem="nH7-0x-7in" secondAttribute="bottom" constant="10" id="EKd-vR-z2r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jzL-5Y-rF8" secondAttribute="bottom" constant="10" id="IWe-Rp-M3H"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nH7-0x-7in" secondAttribute="trailing" constant="20" id="elV-9S-9q0"/>
                 <constraint firstItem="nH7-0x-7in" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="hdf-sw-Ah0"/>
                 <constraint firstItem="jzL-5Y-rF8" firstAttribute="trailing" secondItem="nH7-0x-7in" secondAttribute="trailing" id="k9c-y7-om8"/>

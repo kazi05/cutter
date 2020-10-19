@@ -53,4 +53,8 @@ class ProgressColorPickerPresenter {
         delegate.canceled()
     }
     
+    func getCurrentColor() -> UIColor? {
+        return changedColor
+    }
+    
 }

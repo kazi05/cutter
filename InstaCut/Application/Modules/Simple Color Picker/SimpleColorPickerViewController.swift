@@ -20,4 +20,10 @@ class SimpleColorPickerViewController: DefaultColorPickerViewController {
     @IBAction func acrionCancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func actionChooseColor(_ sender: Any) {
+        dismiss(animated: true)
+        delegate?.colorPicker(colorPicker, confirmedColor: colorPicker.selectedColor, usingControl: colorPicker.colorControls.first!)
+    }
+    
 }
