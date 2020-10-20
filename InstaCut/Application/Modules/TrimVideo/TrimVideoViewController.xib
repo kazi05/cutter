@@ -16,6 +16,7 @@
                 <outlet property="collectionViewLeftConstraint" destination="DGj-M5-iqf" id="OqY-lr-L4w"/>
                 <outlet property="collectionViewRightConstraint" destination="vRq-Hr-Kc0" id="zSF-tO-X6c"/>
                 <outlet property="noMaskButton" destination="Vj9-oM-qP9" id="dfg-8G-V2W"/>
+                <outlet property="toolBarView" destination="Xi4-Ib-KGO" id="XZE-K6-C5h"/>
                 <outlet property="videoPreview" destination="CBv-qF-oWv" id="fBh-6i-0TY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -42,7 +43,7 @@
                     <rect key="frame" x="0.0" y="104" width="414" height="585"/>
                     <color key="backgroundColor" name="bgColor"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xi4-Ib-KGO">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xi4-Ib-KGO">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj9-oM-qP9">

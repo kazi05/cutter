@@ -1,16 +1,24 @@
 PODS:
+  - ASN1Swift (1.2.3)
   - FlexColorPicker (1.4.2)
+  - TPInAppReceipt (3.0.0):
+    - ASN1Swift (~> 1.2.2)
 
 DEPENDENCIES:
   - FlexColorPicker
+  - TPInAppReceipt
 
 SPEC REPOS:
   trunk:
+    - ASN1Swift
     - FlexColorPicker
+    - TPInAppReceipt
 
 SPEC CHECKSUMS:
+  ASN1Swift: 73ba94f1d97c1c1d059d180708ad42845aeac4f9
   FlexColorPicker: d7ed5cfd8ceb936f2930e4e30629f9448967a5f8
+  TPInAppReceipt: 772fec006fd2ce1a6b7b90eac6a049fa20a0ff87
 
-PODFILE CHECKSUM: a5bbf326c427841ed9d012efdc55c2fb541812bc
+PODFILE CHECKSUM: f22aff99acd8a072537736492fe5070ae6c24b9b
 
 COCOAPODS: 1.8.4

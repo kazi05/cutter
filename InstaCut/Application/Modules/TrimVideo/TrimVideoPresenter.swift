@@ -104,7 +104,7 @@ class TrimVideoPresenter {
     
     func showProgressBar() -> ProgressColorPickerController? {
         videoPlayer.pause()
-        if UserDefaults.standard.bool(forKey: IAPProductKind.progress.rawValue) {
+        if IAPManager.shared.purchasedProducts.contains(.progress) {
             return delegate.showColorPickerController(color: renderSettings.progressSettings?.color)
         } else if let product = IAPManager.shared.getProduct(by: .progress) {
             delegate.purchaseProgressBar(product: product, period: currentPeriod)
@@ -143,10 +143,15 @@ class TrimVideoPresenter {
 extension TrimVideoPresenter: TrimVideoPresenterInput {
     
     func purchaseCompleted(_ product: IAPProduct) {
-        if product.kind == .mask {
+        switch product.kind {
+        case .mask:
             view.hideNoMaskButton()
-        } else {
+            
+        case .progress:
             view.progressBarPurchased(delegate.showColorPickerController(color: nil))
+            if IAPManager.shared.purchasedProducts.contains(.mask) {
+                view.hideNoMaskButton()
+            }
         }
     }
     

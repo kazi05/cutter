@@ -16,6 +16,7 @@
                 <outlet property="descriptionLabel" destination="91G-mC-19g" id="PqB-gP-krj"/>
                 <outlet property="previewHeightConstraint" destination="XTp-1S-mam" id="T5j-Co-lBP"/>
                 <outlet property="previewView" destination="ls9-1u-eNw" id="Dzf-bW-SRY"/>
+                <outlet property="restoreButton" destination="Nvp-mz-olS" id="O0L-dJ-lS7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -51,8 +52,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRH-56-qto">
                     <rect key="frame" x="20" y="394" width="374" height="388"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nvp-mz-olS">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="i7l-Lz-AEJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" name="textColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocalKey" value="RESTORE_BUTTON"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="actionRestorePurchase:" destination="-1" eventType="touchUpInside" id="Zob-7I-8Nf"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNM-4F-X3U">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                            <rect key="frame" x="0.0" y="50" width="374" height="50"/>
                             <color key="backgroundColor" name="appMainColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="CfF-4X-MED"/>
@@ -77,11 +94,14 @@
                     </subviews>
                     <color key="backgroundColor" name="bgColor"/>
                     <constraints>
+                        <constraint firstItem="Nvp-mz-olS" firstAttribute="leading" secondItem="NRH-56-qto" secondAttribute="leading" id="7aq-eG-oVt"/>
+                        <constraint firstAttribute="trailing" secondItem="Nvp-mz-olS" secondAttribute="trailing" id="ApY-Mf-OlE"/>
                         <constraint firstItem="0ok-sz-hT3" firstAttribute="centerY" secondItem="NRH-56-qto" secondAttribute="centerY" id="CEe-KA-N5j"/>
                         <constraint firstItem="0ok-sz-hT3" firstAttribute="centerX" secondItem="NRH-56-qto" secondAttribute="centerX" id="K5Y-85-SDn"/>
                         <constraint firstItem="NNM-4F-X3U" firstAttribute="leading" secondItem="NRH-56-qto" secondAttribute="leading" id="M1J-oU-9a0"/>
                         <constraint firstAttribute="trailing" secondItem="NNM-4F-X3U" secondAttribute="trailing" id="Z2U-U4-pG2"/>
-                        <constraint firstItem="NNM-4F-X3U" firstAttribute="top" secondItem="NRH-56-qto" secondAttribute="top" id="jji-XR-65Z"/>
+                        <constraint firstItem="NNM-4F-X3U" firstAttribute="top" secondItem="Nvp-mz-olS" secondAttribute="bottom" constant="10" id="Zvm-RE-KMp"/>
+                        <constraint firstItem="Nvp-mz-olS" firstAttribute="top" secondItem="NRH-56-qto" secondAttribute="top" id="u3K-b9-fd0"/>
                         <constraint firstAttribute="bottom" secondItem="NNM-4F-X3U" secondAttribute="bottom" id="yPM-k7-gXQ"/>
                     </constraints>
                 </view>

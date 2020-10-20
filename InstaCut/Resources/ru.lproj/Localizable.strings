@@ -34,6 +34,7 @@ CHOOSE_BUTTON = "Выбрать";
 NO_MASK_VC_DESRIPTION = "Позволит сохранять видео без логотипа приложения";
 PROGRESS_BAR_DESCRIPTION = "Позволит добавлять шкалу времени на каждый отрезок видео";
 NO_MASK_VC_BUY = "Купить - ";
+RESTORE_BUTTON = "Восстановить покупки";
 
 // MARK: - Alert controller
 ALERT_ERROR_TITLE = "Ошибка";

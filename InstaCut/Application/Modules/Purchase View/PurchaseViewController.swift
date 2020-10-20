@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 protocol PurchaseView: class {
     func setPreview(view: UIView)
@@ -17,13 +18,14 @@ class PurchaseViewController: UIViewController {
     
     // MARK: - Visible properties 👓
     var presenter: PurchasePresenter!
+    
+    private let iapManager = IAPManager.shared
 
     // MARK: - Outlets 🔌
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageWithMask: UIImageView!
-    @IBOutlet weak var imageWithoutMask: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var restoreButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -36,31 +38,57 @@ class PurchaseViewController: UIViewController {
 
     // MARK: - Actions ⚡️
     @IBAction func actionPurchaseProduct(_ sender: Any) {
-        buyButton.isHidden = true
-        activityIndicator.startAnimating()
+        hidePurchaseButtons()
         
-        IAPManager.shared.purchase(product: presenter.getProdcut().kind) { [weak self] (state, error) in
-            guard let self = self else { return }
-            switch state {
-            case .purchased:
-                self.dismiss(animated: true) { [weak self] in
-                    self?.presenter.purchaseSuccess()
-                }
-                
-            default:
-                self.buyButton.isHidden = false
-                self.activityIndicator.stopAnimating()
-                
-                if let error = error {
-                    self.showErrorAlert(with: error.localizedDescription)
-                }
-            }
+        iapManager.purchase(product: presenter.getProdcut().kind) { [weak self] (state, error) in
+            self?.purchaseCompleted(state: state, error: error)
+        }
+    }
+    
+    @IBAction func actionRestorePurchase(_ sender: Any) {
+        hidePurchaseButtons()
+        
+        iapManager.restorePurchases { [weak self] (state, error) in
+            self?.purchaseCompleted(state: state, error: error)
         }
     }
     
     @IBAction func actionCancel(_ sender: Any) {
         dismiss(animated: true)
     }
+}
+
+// MARK: - Private methods
+fileprivate extension PurchaseViewController {
+    
+    func hidePurchaseButtons() {
+        buyButton.isHidden = true
+        restoreButton.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    
+    func showPurchaseButtons() {
+        restoreButton.isHidden = false
+        buyButton.isHidden = false
+        activityIndicator.stopAnimating()
+    }
+    
+    func purchaseCompleted(state: SKPaymentTransactionState, error: Error?) {
+        switch state {
+        case .purchased, .restored:
+            self.dismiss(animated: true) { [weak self] in
+                self?.presenter.purchaseSuccess()
+            }
+            
+        default:
+            self.showPurchaseButtons()
+            
+            if let error = error {
+                self.showErrorAlert(with: error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 // MARK: - View methods
@@ -74,6 +102,5 @@ extension PurchaseViewController: PurchaseView {
         previewView.addSubview(view)
         view.frame = previewView.bounds
     }
-    
     
 }

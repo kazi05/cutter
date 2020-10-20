@@ -7,6 +7,7 @@
 //
 
 import StoreKit
+import TPInAppReceipt
 
 class IAPManager: NSObject {
     
@@ -16,9 +17,9 @@ class IAPManager: NSObject {
     
     private let paymentQueue = SKPaymentQueue.default()
     
-    private let userDefaults = UserDefaults.standard
-    
     private var purchaseCompleted: ((SKPaymentTransactionState, Error?) -> Void)?
+    
+    private(set) var purchasedProducts = Set<IAPProductKind>()
     
     fileprivate struct Static {
         static var instance: IAPManager?
@@ -33,9 +34,18 @@ class IAPManager: NSObject {
         return Static.instance!
     }
     
-    private override init() {
-        super.init()
+    private override init() { }
+    
+    func receiptValidation() {
         getProducts()
+        if let receipt = try? InAppReceipt.localReceipt() {
+            for purchase in receipt.purchases {
+                guard let product = IAPProductKind(rawValue: purchase.productIdentifier) else {
+                    continue
+                }
+                purchasedProducts.insert(product)
+            }
+        }
     }
     
     private func getProducts() {
@@ -60,8 +70,9 @@ class IAPManager: NSObject {
         purchaseCompleted = completion
     }
     
-    public func restorePurchases() {
+    public func restorePurchases(completion: @escaping (SKPaymentTransactionState, Error?) -> Void) {
         paymentQueue.restoreCompletedTransactions()
+        purchaseCompleted = completion
     }
     
 }
@@ -74,7 +85,10 @@ extension IAPManager: SKPaymentTransactionObserver {
             case .purchasing: break
                 
             case .purchased, .restored:
-                userDefaults.setValue(true, forKey: transaction.payment.productIdentifier)
+                guard let product = IAPProductKind(rawValue: transaction.payment.productIdentifier) else {
+                    fallthrough
+                }
+                purchasedProducts.insert(product)
                 fallthrough
                 
             case .failed:

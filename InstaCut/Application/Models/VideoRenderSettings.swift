@@ -11,7 +11,7 @@ import Foundation
 class VideoRenderSettings {
     
     var needMask: Bool {
-        return !UserDefaults.standard.bool(forKey: IAPProductKind.mask.rawValue)
+        return !IAPManager.shared.purchasedProducts.contains(.mask)
     }
     
     var progressSettings: VideoProgressSettings?

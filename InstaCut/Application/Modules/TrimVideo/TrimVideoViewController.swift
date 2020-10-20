@@ -50,6 +50,7 @@ class TrimVideoViewController: UIViewController {
     @IBOutlet weak var collectionViewRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var toolBarView: UIView!
     @IBOutlet weak var noMaskButton: UIButton!
     
     private var colorPickerController: ProgressColorPickerController!
@@ -74,7 +75,7 @@ class TrimVideoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        noMaskButton.isHidden = UserDefaults.standard.bool(forKey: IAPProductKind.mask.rawValue)
+        noMaskButton.isHidden = IAPManager.shared.purchasedProducts.contains(.mask)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -173,6 +174,7 @@ class TrimVideoViewController: UIViewController {
 extension TrimVideoViewController: TrimVideoView {
     
     func periodsCreated() {
+        toolBarView.isHidden = false
         activityIndicator.stopAnimating()
         collectionView.reloadData()
         

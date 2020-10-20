@@ -53,6 +53,7 @@
 		3246C318253A15B000D400A5 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C316253A15B000D400A5 /* PurchaseViewController.swift */; };
 		3246C319253A15B000D400A5 /* PurchaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3246C317253A15B000D400A5 /* PurchaseViewController.xib */; };
 		3246C31D253A15C800D400A5 /* PurchasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3246C31C253A15C800D400A5 /* PurchasePresenter.swift */; };
+		32547D75253F4F0500279C5B /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 32547D74253F4F0500279C5B /* StoreKitTestCertificate.cer */; };
 		3262157A2534943C0012CED3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326215792534943C0012CED3 /* Style.swift */; };
 		3262157F253494A30012CED3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32621581253494A30012CED3 /* InfoPlist.strings */; };
 		32621588253496F80012CED3 /* TrimVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32621586253496F80012CED3 /* TrimVideoViewController.swift */; };
@@ -131,6 +132,7 @@
 		3246C316253A15B000D400A5 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		3246C317253A15B000D400A5 /* PurchaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchaseViewController.xib; sourceTree = "<group>"; };
 		3246C31C253A15C800D400A5 /* PurchasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasePresenter.swift; sourceTree = "<group>"; };
+		32547D74253F4F0500279C5B /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		326215792534943C0012CED3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		32621580253494A30012CED3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32621583253494AA0012CED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				32C04FF62035AA7E00C509C7 /* Info.plist */,
 				32621581253494A30012CED3 /* InfoPlist.strings */,
 				32DD3546253BBBE700E62ABF /* StoreKitConfiguration.storekit */,
+				32547D74253F4F0500279C5B /* StoreKitTestCertificate.cer */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				322857E12537051B00E70473 /* TrimmingProgressViewController.xib in Resources */,
 				3262157F253494A30012CED3 /* InfoPlist.strings in Resources */,
 				321B9A3620569FE4008F7226 /* Localizable.strings in Resources */,
+				32547D75253F4F0500279C5B /* StoreKitTestCertificate.cer in Resources */,
 				3246C319253A15B000D400A5 /* PurchaseViewController.xib in Resources */,
 				32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */,
 				323CCF2D2059A983008ABC85 /* AppleIncRootCertificate.cer in Resources */,
@@ -626,11 +630,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ASN1Swift/ASN1Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/FlexColorPicker/FlexColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/TPInAppReceipt/TPInAppReceipt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASN1Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPInAppReceipt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -881,7 +889,7 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
@@ -906,7 +914,7 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;

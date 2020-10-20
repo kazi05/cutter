@@ -6,5 +6,6 @@ target 'InstaCut' do
   use_frameworks!
 
   pod 'FlexColorPicker'
+  pod 'TPInAppReceipt'
 
 end
