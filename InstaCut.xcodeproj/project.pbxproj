@@ -889,7 +889,7 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
@@ -914,7 +914,7 @@
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;

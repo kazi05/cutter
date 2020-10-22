@@ -73,7 +73,7 @@ class VideoPlayer {
     private func playerDidFinishPlaying() {
         isPlaying = false
         statusChanged?(.stop)
-        player.seek(to: lastSeekTime)
+        player.seek(to: lastSeekTime, toleranceBefore: .zero, toleranceAfter: .zero)
     }
     
 }

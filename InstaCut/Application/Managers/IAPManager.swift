@@ -39,6 +39,22 @@ class IAPManager: NSObject {
     func receiptValidation() {
         getProducts()
         if let receipt = try? InAppReceipt.localReceipt() {
+            do {
+                try receipt.verify()
+            }catch IARError.validationFailed(reason: .hashValidation) {
+                print("Hash validation failed")
+                return
+            } catch IARError.validationFailed(reason: .bundleIdentifierVefirication) {
+                print("Bundle identifier verification failed")
+                return
+            } catch IARError.validationFailed(reason: .signatureValidation) {
+                print("Signature validation")
+                return
+            } catch {
+                print("Verify unknown error")
+                return
+            }
+            
             for purchase in receipt.purchases {
                 guard let product = IAPProductKind(rawValue: purchase.productIdentifier) else {
                     continue
@@ -92,6 +108,9 @@ extension IAPManager: SKPaymentTransactionObserver {
                 fallthrough
                 
             case .failed:
+                if let error = transaction.error {
+                    print("Transaction error: \(error)")
+                }
                 fallthrough
                 
             default:
