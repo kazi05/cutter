@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  InstaCut
+
+  Created by Kazim Gajiev on 12.03.2018.
+  Copyright © 2018 Kazim Gajiev. All rights reserved.
+*/
+BUY = "Follow";
+WAIT = "Wait";
+SUCCES = "Successfully";
+MEMORY = "Not enough memory";
+POST = "for post";
+STORIES = "for stories";
+FAILED = "Failed";
+
+// MARK: - Photo library premissions
+PH_REJECTED = "You have not authorized the application to use your library. For permission go to Settings";
+PH_UNKNOWN = "Unknown error";
+PH_ZERO_COUNT = "No video files in library or all video files are less than a minute";
+
+// MARK: - Video list view controller
+VIDEO_LIST_UPDATEBUTTON = "Reload";
+VIDEO_LIST_TITLE = "Video library";
+
+// MARK: - Trim video view controller
+TRIM_VC_SAVE_BUTTON = "Save";
+
+// MARK: - Trimming progress view controller
+CANCEL_BUTTON = "Cancel";
+TRIMMING_VC_FINISH_LABEL = "Finish!";
+CHOOSE_BUTTON = "Choose";
+
+// MARK: - Purchases
+NO_MASK_VC_DESRIPTION = "Allows you to save videos without the application logo";
+PROGRESS_BAR_DESCRIPTION = "Allows you to add a timeline to each segment of the video";
+NO_MASK_VC_BUY = "Buy - ";
+RESTORE_BUTTON = "Restore purchases";
+
+// MARK: - Alert controller
+ALERT_ERROR_TITLE = "Error";
+ALERT_MEMORY_MESSAGE = "Phone memory is full";
