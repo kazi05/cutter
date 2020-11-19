@@ -52,12 +52,20 @@ final class SimpleColorPickerViewController: DefaultColorPickerViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(colorPreviewTapped))
         colorPreview.addGestureRecognizer(tapGesture)
+        
+        let endEditingTap = UITapGestureRecognizer(target: self, action: #selector(viewEndEditingTap))
+        view.addGestureRecognizer(endEditingTap)
     }
     
     // MARK: - Selectors ⚡️
     @objc
-    private func colorPreviewTapped(_ sender: UIView) {
+    private func colorPreviewTapped(_ tapGesture: UITapGestureRecognizer) {
         myTextField.becomeFirstResponder()
+    }
+    
+    @objc
+    private func viewEndEditingTap(_ tapGesture: UITapGestureRecognizer) {
+        myTextField.resignFirstResponder()
     }
     
     // MARK: - Actions ⚡️
