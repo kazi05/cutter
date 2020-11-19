@@ -78,13 +78,15 @@
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
-		32DD15EF35F8A3C11DC5F2A5 /* Pods_InstaCut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */; };
+		32C7E576256661010075253A /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C7E575256661010075253A /* UIColor+Ext.swift */; };
 		32DD3541253BB2A100E62ABF /* ProgressBarPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */; };
 		32DD3544253BB2AE00E62ABF /* ProgressBarPurchaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */; };
 		32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EECF262538B03C00D5658F /* BackgroundTask.swift */; };
+		83D7EFC3FB768EED62CE71C5 /* Pods_InstaCut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA98AD57FB08D832CC65F9E /* Pods_InstaCut.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16A387A6BB3818A6B22BD1A6 /* Pods-InstaCut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.debug.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.debug.xcconfig"; sourceTree = "<group>"; };
 		32189D81253C6C0F007E142A /* ProgressColorPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressColorPickerController.swift; sourceTree = "<group>"; };
 		32189D82253C6C0F007E142A /* ProgressColorPickerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressColorPickerController.xib; sourceTree = "<group>"; };
 		32189D8F253C6E53007E142A /* ColorPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -160,15 +162,15 @@
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32C04FF42035AA7E00C509C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C04FF62035AA7E00C509C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32C7E575256661010075253A /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarPurchaseView.swift; sourceTree = "<group>"; };
 		32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarPurchaseView.xib; sourceTree = "<group>"; };
 		32DD3546253BBBE700E62ABF /* StoreKitConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfiguration.storekit; sourceTree = "<group>"; };
 		32E8C9532053FC56001A3FA7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32E8C9572053FF47001A3FA7 /* InstaCut.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaCut.entitlements; sourceTree = "<group>"; };
 		32EECF262538B03C00D5658F /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
-		5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EC933EF9DBEC67360A8C031 /* Pods-InstaCut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.debug.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.debug.xcconfig"; sourceTree = "<group>"; };
-		92594C43895D2DF4BD31EC89 /* Pods-InstaCut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.release.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.release.xcconfig"; sourceTree = "<group>"; };
+		35EEFCE7DB58767022247F1D /* Pods-InstaCut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaCut.release.xcconfig"; path = "Target Support Files/Pods-InstaCut/Pods-InstaCut.release.xcconfig"; sourceTree = "<group>"; };
+		8BA98AD57FB08D832CC65F9E /* Pods_InstaCut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaCut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +178,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32DD15EF35F8A3C11DC5F2A5 /* Pods_InstaCut.framework in Frameworks */,
 				3274FF94253DDEAD00021E5A /* StoreKit.framework in Frameworks */,
+				83D7EFC3FB768EED62CE71C5 /* Pods_InstaCut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,8 +189,8 @@
 		29B52E365B59395D4DA03063 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6EC933EF9DBEC67360A8C031 /* Pods-InstaCut.debug.xcconfig */,
-				92594C43895D2DF4BD31EC89 /* Pods-InstaCut.release.xcconfig */,
+				16A387A6BB3818A6B22BD1A6 /* Pods-InstaCut.debug.xcconfig */,
+				35EEFCE7DB58767022247F1D /* Pods-InstaCut.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -289,6 +291,7 @@
 				32189D9F253C9D7A007E142A /* CALayer+Ext.swift */,
 				32A760A925359B7F00ECE08E /* CMTime+Ext.swift */,
 				321A64DB2534444800ED70F0 /* String+Ext.swift */,
+				32C7E575256661010075253A /* UIColor+Ext.swift */,
 				323EFC93253B9D44009A383F /* UIViewController+Ext.swift */,
 				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
 			);
@@ -514,7 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				32E8C9532053FC56001A3FA7 /* StoreKit.framework */,
-				5DC2C4A917796B618B5753DD /* Pods_InstaCut.framework */,
+				8BA98AD57FB08D832CC65F9E /* Pods_InstaCut.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,11 +529,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32C04FF92035AA7E00C509C7 /* Build configuration list for PBXNativeTarget "InstaCut" */;
 			buildPhases = (
-				CA384C4C30F39516B2EC86BC /* [CP] Check Pods Manifest.lock */,
+				152BF163449DC8271C7256E3 /* [CP] Check Pods Manifest.lock */,
 				32C04FE32035AA7E00C509C7 /* Sources */,
 				32C04FE42035AA7E00C509C7 /* Frameworks */,
 				32C04FE52035AA7E00C509C7 /* Resources */,
-				BBC8977341F7BD54D7EAD3BD /* [CP] Embed Pods Frameworks */,
+				95AAD98B629E73E5264054DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -623,29 +626,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BBC8977341F7BD54D7EAD3BD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ASN1Swift/ASN1Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/FlexColorPicker/FlexColorPicker.framework",
-				"${BUILT_PRODUCTS_DIR}/TPInAppReceipt/TPInAppReceipt.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASN1Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexColorPicker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPInAppReceipt.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CA384C4C30F39516B2EC86BC /* [CP] Check Pods Manifest.lock */ = {
+		152BF163449DC8271C7256E3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -665,6 +646,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95AAD98B629E73E5264054DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ASN1Swift/ASN1Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/FlexColorPicker/FlexColorPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/TPInAppReceipt/TPInAppReceipt.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ASN1Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexColorPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPInAppReceipt.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstaCut/Pods-InstaCut-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -695,6 +698,7 @@
 				321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */,
 				323EFC9A253BA655009A383F /* VideoRenderSettings.swift in Sources */,
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
+				32C7E576256661010075253A /* UIColor+Ext.swift in Sources */,
 				323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */,
 				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
 				3274FF97253DF48B00021E5A /* DiskStatus.swift in Sources */,
@@ -882,19 +886,20 @@
 		};
 		32C04FFA2035AA7E00C509C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EC933EF9DBEC67360A8C031 /* Pods-InstaCut.debug.xcconfig */;
+			baseConfigurationReference = 16A387A6BB3818A6B22BD1A6 /* Pods-InstaCut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -907,19 +912,20 @@
 		};
 		32C04FFB2035AA7E00C509C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92594C43895D2DF4BD31EC89 /* Pods-InstaCut.release.xcconfig */;
+			baseConfigurationReference = 35EEFCE7DB58767022247F1D /* Pods-InstaCut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InstaCut/InstaCut.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InstaCut/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
