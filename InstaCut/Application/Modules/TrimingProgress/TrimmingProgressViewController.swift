@@ -27,6 +27,7 @@ class TrimmingProgressViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var currentPeriodView: UIView!
     @IBOutlet weak var finishLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
     // MARK: - LifeCycle 🌎
     override func viewDidLoad() {
@@ -105,7 +106,7 @@ extension TrimmingProgressViewController: TrimmingProgressView {
         
         currentPeriodView.isHidden = true
         finishLabel.isHidden = false
-        print("[View] Rendering complete")
+        cancelButton.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dismiss(animated: true, completion: nil)
         }
