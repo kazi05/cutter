@@ -78,6 +78,7 @@
 		32C04FEB2035AA7E00C509C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C04FEA2035AA7E00C509C7 /* AppDelegate.swift */; };
 		32C04FF22035AA7E00C509C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF12035AA7E00C509C7 /* Assets.xcassets */; };
 		32C04FF52035AA7E00C509C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C04FF32035AA7E00C509C7 /* LaunchScreen.storyboard */; };
+		32C7E576256661010075253A /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C7E575256661010075253A /* UIColor+Ext.swift */; };
 		32DD3541253BB2A100E62ABF /* ProgressBarPurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */; };
 		32DD3544253BB2AE00E62ABF /* ProgressBarPurchaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */; };
 		32EECF272538B03C00D5658F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EECF262538B03C00D5658F /* BackgroundTask.swift */; };
@@ -161,6 +162,7 @@
 		32C04FF12035AA7E00C509C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32C04FF42035AA7E00C509C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32C04FF62035AA7E00C509C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32C7E575256661010075253A /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		32DD3540253BB2A100E62ABF /* ProgressBarPurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarPurchaseView.swift; sourceTree = "<group>"; };
 		32DD3543253BB2AE00E62ABF /* ProgressBarPurchaseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarPurchaseView.xib; sourceTree = "<group>"; };
 		32DD3546253BBBE700E62ABF /* StoreKitConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfiguration.storekit; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				32189D9F253C9D7A007E142A /* CALayer+Ext.swift */,
 				32A760A925359B7F00ECE08E /* CMTime+Ext.swift */,
 				321A64DB2534444800ED70F0 /* String+Ext.swift */,
+				32C7E575256661010075253A /* UIColor+Ext.swift */,
 				323EFC93253B9D44009A383F /* UIViewController+Ext.swift */,
 				321A64C72534400C00ED70F0 /* XIBLoc+Ext.swift */,
 			);
@@ -695,6 +698,7 @@
 				321A64DC2534444800ED70F0 /* String+Ext.swift in Sources */,
 				323EFC9A253BA655009A383F /* VideoRenderSettings.swift in Sources */,
 				321A64AD25343C3E00ED70F0 /* Coordinator.swift in Sources */,
+				32C7E576256661010075253A /* UIColor+Ext.swift in Sources */,
 				323EFC97253BA413009A383F /* VideoProgressSettings.swift in Sources */,
 				322857EB25370B7300E70473 /* CustomAlertController.swift in Sources */,
 				3274FF97253DF48B00021E5A /* DiskStatus.swift in Sources */,

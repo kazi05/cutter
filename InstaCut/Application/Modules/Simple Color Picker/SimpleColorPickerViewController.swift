@@ -60,6 +60,7 @@ final class SimpleColorPickerViewController: DefaultColorPickerViewController {
     // MARK: - Selectors ⚡️
     @objc
     private func colorPreviewTapped(_ tapGesture: UITapGestureRecognizer) {
+        myTextField.text = colorPreview.hexLabel.text
         myTextField.becomeFirstResponder()
     }
     
@@ -116,10 +117,17 @@ extension SimpleColorPickerViewController: UITextFieldDelegate {
             } else if (swiftRange?.startIndex ?? 1) == 0 && string != "#" {
                 textField.insertText("#")
             }
-        
+            
             textField.insertText(formattedString.uppercased())
         }
         return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let hexColor = UIColor(hexString: textField.text!).hsbColor
+        colorPicker.setColor(hexColor, exceptControl: nil, isInteractive: false)
+        textField.resignFirstResponder()
+        return true
     }
 }
 
