@@ -9,16 +9,12 @@ import SwiftUI
 import AVKit
 
 struct VideoEditorScreen: View {
-    let video: VideoModel
-    
-    @State private var player = AVPlayer()
+    @ObservedObject var viewModel: VideoEditorViewModel
     
     var body: some View {
-        VStack {
-            VideoPlayer(player: player)
-        }
-        .onAppear {
-            player = AVPlayer(playerItem: AVPlayerItem(asset: video.asset))
+        VStack(spacing: nil) {
+            VideoEditorPreview(preview: viewModel.preview)
+            VideoEditorControlContainer(preview: viewModel.preview)
         }
     }
 }

@@ -26,7 +26,7 @@ struct LibraryScreen: View {
         }
         .background(Color.backgorund)
         .navigationTitle("LIBRARY_TITLE")
-        .onAppear {
+        .onFirstAppear {
             state.onAppear()
         }
     }
@@ -61,11 +61,11 @@ struct LibraryScreen: View {
     @ViewBuilder
     private func listView(_ models: [VideoModel]) -> some View {
         let threeColumnGrid = [
-            GridItem(.flexible(), spacing: 8),
-            GridItem(.flexible(), spacing: 8),
-            GridItem(.flexible(), spacing: 8),
+            GridItem(.flexible(), spacing: 4),
+            GridItem(.flexible(), spacing: 4),
+            GridItem(.flexible(), spacing: 4),
         ]
-        LazyVGrid(columns: threeColumnGrid, spacing: 8, content: {
+        LazyVGrid(columns: threeColumnGrid, spacing: 4, content: {
             ForEach(models) { model in
                 LibraryVideoCard(video: model)
                     .onTapGesture {
@@ -73,7 +73,7 @@ struct LibraryScreen: View {
                     }
             }
             .clipped()
-            .aspectRatio(1, contentMode: .fit)
+            .aspectRatio(0.60, contentMode: .fit)
         })
         .padding(8)
         

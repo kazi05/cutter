@@ -14,7 +14,8 @@ struct ContentDetailsScreen: View {
         if let state = navigationStateManager.selectionState {
             switch state {
             case .videoEditing(let videoModel):
-                VideoEditorScreen(video: videoModel)
+                let viewModel = VideoEditorViewModel(video: videoModel)
+                VideoEditorScreen(viewModel: viewModel)
             }
         } else {
             Text("DETAILS_PICK_VIDEO")
