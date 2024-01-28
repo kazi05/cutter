@@ -23,6 +23,10 @@
 		E3678A252B3DE37700B0E1C2 /* AppNavigationSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A242B3DE37700B0E1C2 /* AppNavigationSelectionState.swift */; };
 		E3678A282B3DE46600B0E1C2 /* VideoEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A272B3DE46600B0E1C2 /* VideoEditorScreen.swift */; };
 		E3678A2B2B3DE49300B0E1C2 /* ContentDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A2A2B3DE49300B0E1C2 /* ContentDetailsScreen.swift */; };
+		E370C7242B6679090042839C /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370C7232B6679090042839C /* RoundedCorner.swift */; };
+		E370C7292B669F3E0042839C /* VideoEditorControlItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370C7282B669F3E0042839C /* VideoEditorControlItem.swift */; };
+		E370C72C2B66A06D0042839C /* VideoEditorControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370C72B2B66A06D0042839C /* VideoEditorControlState.swift */; };
+		E370C72F2B66AC380042839C /* VideoEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E370C72E2B66AC380042839C /* VideoEditorState.swift */; };
 		E39E7AAD2B43214D006A252B /* VideoEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E7AAC2B43214D006A252B /* VideoEditorViewModel.swift */; };
 		E39E7AB02B432201006A252B /* VideoPreviewControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E7AAF2B432201006A252B /* VideoPreviewControls.swift */; };
 		E39E7AB22B4323CD006A252B /* VideoPreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E7AB12B4323CD006A252B /* VideoPreviewPlayer.swift */; };
@@ -57,6 +61,10 @@
 		E3678A242B3DE37700B0E1C2 /* AppNavigationSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationSelectionState.swift; sourceTree = "<group>"; };
 		E3678A272B3DE46600B0E1C2 /* VideoEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorScreen.swift; sourceTree = "<group>"; };
 		E3678A2A2B3DE49300B0E1C2 /* ContentDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailsScreen.swift; sourceTree = "<group>"; };
+		E370C7232B6679090042839C /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		E370C7282B669F3E0042839C /* VideoEditorControlItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorControlItem.swift; sourceTree = "<group>"; };
+		E370C72B2B66A06D0042839C /* VideoEditorControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorControlState.swift; sourceTree = "<group>"; };
+		E370C72E2B66AC380042839C /* VideoEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorState.swift; sourceTree = "<group>"; };
 		E39E7AAC2B43214D006A252B /* VideoEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorViewModel.swift; sourceTree = "<group>"; };
 		E39E7AAF2B432201006A252B /* VideoPreviewControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewControls.swift; sourceTree = "<group>"; };
 		E39E7AB12B4323CD006A252B /* VideoPreviewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewPlayer.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				E330EFC82B3B011B00E713A4 /* CutterApp.swift */,
+				E370C7222B6679000042839C /* Shapes */,
 				E3DDF52A2B62B35A0049D303 /* Shaders */,
 				E3678A202B3DE2DE00B0E1C2 /* State */,
 				E3D935AA2B3B30DE00CF6B12 /* Extensions */,
@@ -189,8 +198,7 @@
 			children = (
 				E3678A232B3DE31B00B0E1C2 /* State */,
 				E330EFE22B3B08B700E713A4 /* VideoModel.swift */,
-				E39E7AB12B4323CD006A252B /* VideoPreviewPlayer.swift */,
-				E3E9E41D2B64CB5400435C2A /* VideoPreviewRenderer.swift */,
+				E370C7282B669F3E0042839C /* VideoEditorControlItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +222,8 @@
 		E3678A262B3DE45000B0E1C2 /* VideoEditorScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E370C72D2B66AC060042839C /* States */,
+				E370C72A2B66A0420042839C /* Models */,
 				E39E7AAE2B4321EB006A252B /* Subviews */,
 				E3678A272B3DE46600B0E1C2 /* VideoEditorScreen.swift */,
 				E39E7AAC2B43214D006A252B /* VideoEditorViewModel.swift */,
@@ -227,6 +237,32 @@
 				E3678A2A2B3DE49300B0E1C2 /* ContentDetailsScreen.swift */,
 			);
 			path = ContentDetails;
+			sourceTree = "<group>";
+		};
+		E370C7222B6679000042839C /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				E370C7232B6679090042839C /* RoundedCorner.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		E370C72A2B66A0420042839C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E39E7AB12B4323CD006A252B /* VideoPreviewPlayer.swift */,
+				E3E9E41D2B64CB5400435C2A /* VideoPreviewRenderer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E370C72D2B66AC060042839C /* States */ = {
+			isa = PBXGroup;
+			children = (
+				E370C72B2B66A06D0042839C /* VideoEditorControlState.swift */,
+				E370C72E2B66AC380042839C /* VideoEditorState.swift */,
+			);
+			path = States;
 			sourceTree = "<group>";
 		};
 		E39E7AAE2B4321EB006A252B /* Subviews */ = {
@@ -377,6 +413,7 @@
 			files = (
 				E3678A252B3DE37700B0E1C2 /* AppNavigationSelectionState.swift in Sources */,
 				E3DDF5272B6276C40049D303 /* VideoEditorControlContainer.swift in Sources */,
+				E370C7242B6679090042839C /* RoundedCorner.swift in Sources */,
 				E39E7AAD2B43214D006A252B /* VideoEditorViewModel.swift in Sources */,
 				E3DDF52C2B62B3640049D303 /* render.metal in Sources */,
 				E3DDF5222B62715C0049D303 /* View.swift in Sources */,
@@ -385,6 +422,7 @@
 				E39E7AB62B432EA3006A252B /* AVAsset+Size.swift in Sources */,
 				E3D935A12B3B292200CF6B12 /* VScrollView.swift in Sources */,
 				E39E7AB22B4323CD006A252B /* VideoPreviewPlayer.swift in Sources */,
+				E370C7292B669F3E0042839C /* VideoEditorControlItem.swift in Sources */,
 				E3678A282B3DE46600B0E1C2 /* VideoEditorScreen.swift in Sources */,
 				E3D935A42B3B2B2100CF6B12 /* VideoLibraryService.swift in Sources */,
 				E3D935B02B3B712900CF6B12 /* LibraryVideoCard.swift in Sources */,
@@ -394,8 +432,10 @@
 				E3D935A72B3B2C3B00CF6B12 /* MediaLibraryPermission.swift in Sources */,
 				E3D935A92B3B303800CF6B12 /* AssetImageGenerator.swift in Sources */,
 				E3DDF5292B62A92D0049D303 /* MetalVideoView.swift in Sources */,
+				E370C72C2B66A06D0042839C /* VideoEditorControlState.swift in Sources */,
 				E3D935AC2B3B30E700CF6B12 /* Task.swift in Sources */,
 				E39E7AB02B432201006A252B /* VideoPreviewControls.swift in Sources */,
+				E370C72F2B66AC380042839C /* VideoEditorState.swift in Sources */,
 				E3678A222B3DE30100B0E1C2 /* AppNavigationStateManager.swift in Sources */,
 				E330EFE32B3B08B700E713A4 /* VideoModel.swift in Sources */,
 				E39E7AB42B432A2F006A252B /* VideoEditorPreview.swift in Sources */,

@@ -12,9 +12,18 @@ final class VideoPreviewRenderer {
     private let videoOutput: AVPlayerItemVideoOutput
     private var textureCache: CVMetalTextureCache?
     
-    init(playerItem: AVPlayerItem, videoOutput: AVPlayerItemVideoOutput) {
+    init(playerItem: AVPlayerItem) {
         self.playerItem = playerItem
-        self.videoOutput = videoOutput
+        let pixelBufferAttributes: [String: Any] = [
+            kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA),
+            kCVPixelBufferMetalCompatibilityKey as String: true
+        ]
+        self.videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: pixelBufferAttributes)
+        setupVideoOutput()
+    }
+    
+    private func setupVideoOutput() {
+        playerItem.add(videoOutput)
     }
     
     func getCurrentFrameTexture(device: MTLDevice) -> MTLTexture? {

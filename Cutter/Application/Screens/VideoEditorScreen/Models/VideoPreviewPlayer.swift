@@ -16,7 +16,6 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
     
     let asset: AVAsset
     let playerItem: AVPlayerItem
-    let videoOutput: AVPlayerItemVideoOutput
     
     private let player: AVPlayer
     
@@ -27,22 +26,11 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
         self.asset = asset
         self.playerItem = .init(asset: asset)
         self.player = .init(playerItem: playerItem)
-        let pixelBufferAttributes: [String: Any] = [
-            kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA),
-            kCVPixelBufferMetalCompatibilityKey as String: true
-        ]
-        self.videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: pixelBufferAttributes)
         super.init()
-        setupVideoOutput()
     }
     
     deinit {
         print("Video preview player deinit")
-    }
-    
-    // Настройка вывода видео
-    private func setupVideoOutput() {
-        playerItem.add(videoOutput)
     }
     
     // Воспроизведение видео

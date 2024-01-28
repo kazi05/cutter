@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct VideoEditorControlContainer: View {
-    @ObservedObject private var preview: VideoPreviewPlayer
+    @ObservedObject private var editorState: VideoEditorState
+    @ObservedObject private var controlState: VideoEditorControlState
     
-    @State private var spaceHeight: CGFloat = 50
-    
-    init(preview: VideoPreviewPlayer) {
-        self.preview = preview
+    init(
+        editorState: VideoEditorState,
+        controlState: VideoEditorControlState
+    ) {
+        self.editorState = editorState
+        self.controlState = controlState
     }
     
     var body: some View {
         VStack {
-            VideoPreviewControls(isPlaying: preview.state == .play) { play in
-                play ? preview.play() : preview.pause()
-            }
+            VideoEditorControls(
+                editorState: editorState,
+                controlState: controlState
+            )
+            
             Spacer()
-                .frame(height: spaceHeight)
+                .frame(height: 200)
         }
         .frame(maxWidth: .infinity)
         .background(Color.editorControlBackground)
-        .onTapGesture {
-            withAnimation {
-                spaceHeight = 200
-            }
-        }
+        .roundedCorner(24, corners: [.topLeft, .topRight])
     }
 }

@@ -14,7 +14,6 @@ struct MetalVideoView: UIViewRepresentable {
     var state: VideoPlayerState
     
     private let device: MTLDevice
-    private var subscriptions = Set<AnyCancellable>()
     
     init(
         renderer: VideoPreviewRenderer,
@@ -100,7 +99,7 @@ struct MetalVideoView: UIViewRepresentable {
                   let commandBuffer = commandQueue?.makeCommandBuffer(),
                   let renderDescriptor = view.currentRenderPassDescriptor,
                   let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderDescriptor),
-                  let pipelineState = pipelineState,
+                  let pipelineState,
                   let samplerState
             else {
                 return

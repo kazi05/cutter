@@ -9,12 +9,16 @@ import SwiftUI
 import AVKit
 
 struct VideoEditorScreen: View {
-    @ObservedObject var viewModel: VideoEditorViewModel
+    @StateObject var viewModel: VideoEditorViewModel
     
     var body: some View {
         VStack(spacing: nil) {
             VideoEditorPreview(preview: viewModel.preview)
-            VideoEditorControlContainer(preview: viewModel.preview)
+            VideoEditorControlContainer(
+                editorState: viewModel.editorState,
+                controlState: viewModel.controlState
+            )
         }
+        .ignoresSafeArea(edges: .bottom)
     }
 }
