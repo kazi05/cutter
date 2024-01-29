@@ -15,12 +15,14 @@ final class VideoEditorViewModel: ObservableObject {
     @Published private(set) var preview: VideoPreviewPlayer
     @Published private(set) var controlState = VideoEditorControlState()
     @Published private(set) var editorState = VideoEditorState()
+    @Published private(set) var timeLineGenerator: VideoTimeLineGenerator
     
     private var subscriptions = Set<AnyCancellable>()
     
     init(video: VideoModel) {
         self.video = video
         self.preview = .init(asset: video.asset)
+        self.timeLineGenerator = .init(asset: video.asset)
         bind()
     }
 }
@@ -30,5 +32,14 @@ fileprivate extension VideoEditorViewModel {
         preview.$state.sink { [unowned self] state in
             editorState.isVideoPlaying = state == .play
         }.store(in: &subscriptions)
+        
+        controlState.onItemInteracted = { [weak self] item in
+            switch item {
+            case .playPause:
+                self?.preview.togglePlaying()
+            case .enableDisable:
+                break
+            }
+        }
     }
 }

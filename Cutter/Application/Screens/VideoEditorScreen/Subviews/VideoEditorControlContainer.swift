@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct VideoEditorControlContainer: View {
+    @ObservedObject private var preview: VideoPreviewPlayer
     @ObservedObject private var editorState: VideoEditorState
     @ObservedObject private var controlState: VideoEditorControlState
+    @ObservedObject private var timeLineGenerator: VideoTimeLineGenerator
     
     init(
+        preview: VideoPreviewPlayer,
         editorState: VideoEditorState,
-        controlState: VideoEditorControlState
+        controlState: VideoEditorControlState,
+        timeLineGenerator: VideoTimeLineGenerator
     ) {
+        self.preview = preview
         self.editorState = editorState
         self.controlState = controlState
+        self.timeLineGenerator = timeLineGenerator
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             VideoEditorControls(
                 editorState: editorState,
                 controlState: controlState
             )
             
-            Spacer()
-                .frame(height: 200)
+            VideoEditorTimeLine(
+                timeLineGenerator: timeLineGenerator,
+                preview: preview
+            )
+                .frame(maxWidth: .infinity, maxHeight: 135)
         }
         .frame(maxWidth: .infinity)
         .background(Color.editorControlBackground)

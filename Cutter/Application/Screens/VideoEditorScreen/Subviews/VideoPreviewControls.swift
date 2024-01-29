@@ -54,7 +54,7 @@ struct VideoEditorControls: View {
     private func viewForOption(_ option: VideoEditorControlItem.Option) -> some View {
         let image: SafeSFSymbol = switch option {
         case .trimCut:
-            .timeline.selection
+            .squareshape.split_2x2Dotted
         case .separate:
             .chart.barXaxis
         case .eraseBackground:
@@ -65,7 +65,9 @@ struct VideoEditorControls: View {
             .checkmark
         }
         Button(action: {
-            controlState.optionChoosed(option)
+            withAnimation {
+                controlState.optionChoosed(option)
+            }
         }, label: {
             Image(image)
         })
@@ -83,6 +85,7 @@ struct VideoEditorControls: View {
         case .enableDisable:
             Toggle("", isOn: $editorState.isEraseEnabled)
                 .labelsHidden()
+                .tint(Color.accentColor)
         }
     }
 }

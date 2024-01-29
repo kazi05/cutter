@@ -45,6 +45,14 @@
 		E3DDF5292B62A92D0049D303 /* MetalVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDF5282B62A92D0049D303 /* MetalVideoView.swift */; };
 		E3DDF52C2B62B3640049D303 /* render.metal in Sources */ = {isa = PBXBuildFile; fileRef = E3DDF52B2B62B3640049D303 /* render.metal */; };
 		E3E9E41E2B64CB5400435C2A /* VideoPreviewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9E41D2B64CB5400435C2A /* VideoPreviewRenderer.swift */; };
+		E3FE3B6F2B6786A800C5A63E /* VideoEditorTimeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B6E2B6786A800C5A63E /* VideoEditorTimeLine.swift */; };
+		E3FE3B712B678B3000C5A63E /* VideoTimeLineGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B702B678B3000C5A63E /* VideoTimeLineGenerator.swift */; };
+		E3FE3B732B67991E00C5A63E /* SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B722B67991E00C5A63E /* SafeArea.swift */; };
+		E3FE3B752B67C59A00C5A63E /* ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B742B67C59A00C5A63E /* ScrollDelegate.swift */; };
+		E3FE3B782B67C6DD00C5A63E /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = E3FE3B772B67C6DD00C5A63E /* SwiftUIIntrospect */; };
+		E3FE3B7A2B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E3FE3B792B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic */; };
+		E3FE3B7C2B67C6DD00C5A63E /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = E3FE3B7B2B67C6DD00C5A63E /* SwiftUIIntrospect-Static */; };
+		E3FE3B7E2B67DB2700C5A63E /* UIKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +91,11 @@
 		E3DDF5282B62A92D0049D303 /* MetalVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoView.swift; sourceTree = "<group>"; };
 		E3DDF52B2B62B3640049D303 /* render.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = render.metal; sourceTree = "<group>"; };
 		E3E9E41D2B64CB5400435C2A /* VideoPreviewRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewRenderer.swift; sourceTree = "<group>"; };
+		E3FE3B6E2B6786A800C5A63E /* VideoEditorTimeLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorTimeLine.swift; sourceTree = "<group>"; };
+		E3FE3B702B678B3000C5A63E /* VideoTimeLineGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTimeLineGenerator.swift; sourceTree = "<group>"; };
+		E3FE3B722B67991E00C5A63E /* SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArea.swift; sourceTree = "<group>"; };
+		E3FE3B742B67C59A00C5A63E /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
+		E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +103,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FE3B782B67C6DD00C5A63E /* SwiftUIIntrospect in Frameworks */,
+				E3FE3B7A2B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic in Frameworks */,
 				E3DDF5252B62722F0049D303 /* SafeSFSymbols in Frameworks */,
 				E330EFED2B3B0DD800E713A4 /* SwiftUINavigation in Frameworks */,
 				E330EFD82B3B01EF00E713A4 /* StoreKit.framework in Frameworks */,
 				E330EFEF2B3B0DD800E713A4 /* SwiftUINavigationCore in Frameworks */,
 				E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */,
 				E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */,
+				E3FE3B7C2B67C6DD00C5A63E /* SwiftUIIntrospect-Static in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +287,7 @@
 				E39E7AAF2B432201006A252B /* VideoPreviewControls.swift */,
 				E39E7AB32B432A2F006A252B /* VideoEditorPreview.swift */,
 				E3DDF5262B6276C40049D303 /* VideoEditorControlContainer.swift */,
+				E3FE3B6E2B6786A800C5A63E /* VideoEditorTimeLine.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -280,6 +297,7 @@
 			children = (
 				E3D935A02B3B292200CF6B12 /* VScrollView.swift */,
 				E3DDF5282B62A92D0049D303 /* MetalVideoView.swift */,
+				E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -297,6 +315,8 @@
 			children = (
 				E3D935A62B3B2C3B00CF6B12 /* MediaLibraryPermission.swift */,
 				E3D935A82B3B303800CF6B12 /* AssetImageGenerator.swift */,
+				E3FE3B702B678B3000C5A63E /* VideoTimeLineGenerator.swift */,
+				E3FE3B742B67C59A00C5A63E /* ScrollDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -307,6 +327,7 @@
 				E3D935AB2B3B30E700CF6B12 /* Task.swift */,
 				E39E7AB52B432EA3006A252B /* AVAsset+Size.swift */,
 				E3DDF5212B62715C0049D303 /* View.swift */,
+				E3FE3B722B67991E00C5A63E /* SafeArea.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -349,6 +370,9 @@
 				E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */,
 				E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */,
 				E3DDF5242B62722F0049D303 /* SafeSFSymbols */,
+				E3FE3B772B67C6DD00C5A63E /* SwiftUIIntrospect */,
+				E3FE3B792B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic */,
+				E3FE3B7B2B67C6DD00C5A63E /* SwiftUIIntrospect-Static */,
 			);
 			productName = Cutter;
 			productReference = E330EFC52B3B011B00E713A4 /* Cutter.app */;
@@ -382,6 +406,7 @@
 				E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 				E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 				E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */,
+				E3FE3B762B67C6DD00C5A63E /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
 			);
 			productRefGroup = E330EFC62B3B011B00E713A4 /* Products */;
 			projectDirPath = "";
@@ -418,7 +443,10 @@
 				E3DDF52C2B62B3640049D303 /* render.metal in Sources */,
 				E3DDF5222B62715C0049D303 /* View.swift in Sources */,
 				E3E9E41E2B64CB5400435C2A /* VideoPreviewRenderer.swift in Sources */,
+				E3FE3B7E2B67DB2700C5A63E /* UIKScrollView.swift in Sources */,
+				E3FE3B6F2B6786A800C5A63E /* VideoEditorTimeLine.swift in Sources */,
 				E330EFC92B3B011B00E713A4 /* CutterApp.swift in Sources */,
+				E3FE3B712B678B3000C5A63E /* VideoTimeLineGenerator.swift in Sources */,
 				E39E7AB62B432EA3006A252B /* AVAsset+Size.swift in Sources */,
 				E3D935A12B3B292200CF6B12 /* VScrollView.swift in Sources */,
 				E39E7AB22B4323CD006A252B /* VideoPreviewPlayer.swift in Sources */,
@@ -428,11 +456,13 @@
 				E3D935B02B3B712900CF6B12 /* LibraryVideoCard.swift in Sources */,
 				E330EFE02B3B065900E713A4 /* LibraryState.swift in Sources */,
 				E330EFDE2B3B04B400E713A4 /* LibraryScreen.swift in Sources */,
+				E3FE3B732B67991E00C5A63E /* SafeArea.swift in Sources */,
 				E3678A2B2B3DE49300B0E1C2 /* ContentDetailsScreen.swift in Sources */,
 				E3D935A72B3B2C3B00CF6B12 /* MediaLibraryPermission.swift in Sources */,
 				E3D935A92B3B303800CF6B12 /* AssetImageGenerator.swift in Sources */,
 				E3DDF5292B62A92D0049D303 /* MetalVideoView.swift in Sources */,
 				E370C72C2B66A06D0042839C /* VideoEditorControlState.swift in Sources */,
+				E3FE3B752B67C59A00C5A63E /* ScrollDelegate.swift in Sources */,
 				E3D935AC2B3B30E700CF6B12 /* Task.swift in Sources */,
 				E39E7AB02B432201006A252B /* VideoPreviewControls.swift in Sources */,
 				E370C72F2B66AC380042839C /* VideoEditorState.swift in Sources */,
@@ -680,6 +710,14 @@
 				minimumVersion = 2.0.1;
 			};
 		};
+		E3FE3B762B67C6DD00C5A63E /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/swiftui-introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -707,6 +745,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */;
 			productName = SafeSFSymbols;
+		};
+		E3FE3B772B67C6DD00C5A63E /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3FE3B762B67C6DD00C5A63E /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+		E3FE3B792B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3FE3B762B67C6DD00C5A63E /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = "SwiftUIIntrospect-Dynamic";
+		};
+		E3FE3B7B2B67C6DD00C5A63E /* SwiftUIIntrospect-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3FE3B762B67C6DD00C5A63E /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = "SwiftUIIntrospect-Static";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

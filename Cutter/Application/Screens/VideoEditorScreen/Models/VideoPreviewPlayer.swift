@@ -33,6 +33,17 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
         print("Video preview player deinit")
     }
     
+    func togglePlaying() {
+        switch state {
+        case .play:
+            state = .pause
+            player.pause()
+        case .pause, .stop:
+            state = .play
+            player.play()
+        }
+    }
+    
     // Воспроизведение видео
     func play() {
         state = .play

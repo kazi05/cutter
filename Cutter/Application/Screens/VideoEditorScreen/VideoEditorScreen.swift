@@ -15,8 +15,10 @@ struct VideoEditorScreen: View {
         VStack(spacing: nil) {
             VideoEditorPreview(preview: viewModel.preview)
             VideoEditorControlContainer(
+                preview: viewModel.preview,
                 editorState: viewModel.editorState,
-                controlState: viewModel.controlState
+                controlState: viewModel.controlState, 
+                timeLineGenerator: viewModel.timeLineGenerator
             )
         }
         .ignoresSafeArea(edges: .bottom)
