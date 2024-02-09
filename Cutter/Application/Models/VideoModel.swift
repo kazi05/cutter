@@ -18,10 +18,7 @@ struct VideoModel: Identifiable, Hashable {
     var durationTimeString: String {
         get async throws {
             let duration = try await asset.load(.duration)
-            return String(
-                format: "%02d:%02d",
-                Int((duration.seconds / 60)), Int(duration.seconds.rounded()) % 60
-            )
+            return duration.formatted()
         }
     }
 }

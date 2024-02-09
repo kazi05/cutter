@@ -13,10 +13,14 @@ struct VideoEditorTimeLine: View {
     @ObservedObject private var preview: VideoPreviewPlayer
     
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+
     @State private var videoDuration: CMTime = .zero
+    @State private var frameStepSeconds: Double = 10
+    @State private var lastFrameStepSeconds: Double = 10
+    @State private var frameStepScale: CGFloat = 1
+    @State private var lastFrameStepScale: CGFloat = 1
     @State private var contentOffset: CGPoint = .zero
     @State private var contentSize: CGSize = .zero
-    @State private var isScrolling = false
     
     init(
         timeLineGenerator: VideoTimeLineGenerator,
@@ -28,24 +32,34 @@ struct VideoEditorTimeLine: View {
     
     var body: some View {
         GeometryReader { gr in
+            let parentWidth = gr.size.width
+            let frameSize = CGSize(width: gr.size.height * max(1, frameStepScale), height: gr.size.height)
+            let horizontalInset = parentWidth / 2
             UIKScrollView(
                 .horizontal,
                 contentSize: contentSize,
-                showsIndicators: false,
-                contentInset: .init(top: 0, left: gr.size.width / 2, bottom: 0, right: gr.size.width / 2),
-                onIsScrolling: {
-                    isScrolling in
-                    print(isScrolling)
+                showsIndicators: false, 
+                contentOffset: contentOffset,
+                contentInset: .init(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset),
+                onIsScrolling: { isScrolling in
+                    if isScrolling {
+                        preview.pause()
+                    }
                 },
                 onOffsetChanged: { offset in
-                    print(offset)
+                    guard offset.x > 0 else { return }
+                    let frameWidth = gr.size.height * max(1, frameStepScale)
+                    let seconds = offset.x / frameWidth * frameStepSeconds
+                    let time = CMTime(seconds: seconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+                    
+                    preview.seek(to: time)
                 }) {
-                    LazyHGrid(rows: [.init(.fixed(gr.size.height), spacing: 0)], spacing: 0, content: {
+                    LazyHGrid(rows: [.init(.fixed(frameSize.height), spacing: 0)], spacing: 0, content: {
                         ForEach(timeLineGenerator.thumbnails, id: \.id) { thumb in
                             Image(uiImage: thumb.image)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: gr.size.height)
+                                .frame(width: frameSize.width)
                         }
                     })
                     .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -55,46 +69,64 @@ struct VideoEditorTimeLine: View {
                     )
             }
             .onReceive(timeLineGenerator.$thumbnails, perform: { thumbnails in
-                let width = CGFloat(thumbnails.count) * gr.size.height
-                let height = gr.size.height
-                contentSize = .init(width: width, height: height)
+                let width = CGFloat(thumbnails.count) * frameSize.width
+                contentSize = .init(width: width, height: frameSize.height)
             })
-//            .scrollStatusByIntrospect(
-//                isScrolling: $isScrolling,
-//                contentOffset: $contentOffset
-//            )
-//            .overlay(alignment: .center) {
-//                VStack {
-//                    Text("\(String(describing: contentOffset))")
-//                    Text("\(String(describing: contentSize))")
-//                    Text("Is scrolling: \(String(isScrolling))")
-//                }
-//            }
+            .onReceive(preview.$time) { time in
+                let xOffset = (time.seconds * frameSize.width) / frameStepSeconds - horizontalInset
+                contentOffset = .init(x: xOffset, y: 0)
+            }
+            .overlay {
+                Capsule(style: .circular)
+                    .fill(.white)
+                    .frame(width: 3)
+                    .frame(maxHeight: .infinity)
+            }
+            .simultaneousGesture(
+                MagnificationGesture()
+                    .onChanged { value in
+                        let formattedValue = value < 1 ? (value - 1) * 10 : value
+                        let value = lastFrameStepScale + formattedValue
+                        let scale = 1 + value.truncatingRemainder(dividingBy: 1)
+                        frameStepScale = scale
+                        let width = CGFloat(timeLineGenerator.thumbnails.count) * frameSize.width
+                        contentSize = .init(width: width, height: frameSize.height)
+                        let stepSeconds = lastFrameStepSeconds - (value - 1).rounded(.down)
+                        if frameStepSeconds != stepSeconds && stepSeconds < videoDuration.seconds / 4 {
+                            frameStepSeconds = max(1, stepSeconds)
+                            Task.do {
+                                try await generateTimeline()
+                            } catch: { error in
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                    .onEnded { value in
+                        let formattedValue = value < 1 ? (value - 1) * 10 : value
+                        lastFrameStepScale = 1 + formattedValue.truncatingRemainder(dividingBy: 1)
+                        lastFrameStepSeconds -= (formattedValue - 1).rounded(.down)
+                    }
+            )
         }
         .padding(.horizontal, 16)
         .padding(.bottom, safeAreaInsets.bottom)
-        .padding(.top, 10)
+        .padding(.top, 30)
+        .overlay(alignment: .top, content: {
+            Text(preview.time.formatted("m:s:ms"))
+                .frame(maxWidth: .infinity)
+        })
         .onFirstAppear {
             Task.do {
                 videoDuration = try await timeLineGenerator.asset.load(.duration)
-                let times = stride(from: CMTime.zero, to: videoDuration, by: 10).map { $0 }
-                try await timeLineGenerator.generateThumbnails(at: times)
+                try await generateTimeline()
             } catch: { error in
                 fatalError(error.localizedDescription)
             }
-
         }
     }
-}
-
-extension CMTime: Strideable {
-    public func distance(to other: CMTime) -> TimeInterval {
-        return TimeInterval((Double(other.value) / Double(other.timescale)) - (Double(self.value) /  Double(self.timescale)))
-    }
-
-    public func advanced(by n: TimeInterval) -> CMTime {
-        var retval = self
-        retval.value += CMTimeValue(n * TimeInterval(self.timescale))
-        return retval
+    
+    private func generateTimeline() async throws {
+        let times = stride(from: CMTime.zero, to: videoDuration, by: frameStepSeconds).map { $0 }
+        try await timeLineGenerator.generateThumbnails(at: times)
     }
 }

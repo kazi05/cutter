@@ -53,6 +53,7 @@
 		E3FE3B7A2B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E3FE3B792B67C6DD00C5A63E /* SwiftUIIntrospect-Dynamic */; };
 		E3FE3B7C2B67C6DD00C5A63E /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = E3FE3B7B2B67C6DD00C5A63E /* SwiftUIIntrospect-Static */; };
 		E3FE3B7E2B67DB2700C5A63E /* UIKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */; };
+		E3FE3B802B6803CA00C5A63E /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FE3B7F2B6803CA00C5A63E /* CMTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		E3FE3B722B67991E00C5A63E /* SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArea.swift; sourceTree = "<group>"; };
 		E3FE3B742B67C59A00C5A63E /* ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollDelegate.swift; sourceTree = "<group>"; };
 		E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKScrollView.swift; sourceTree = "<group>"; };
+		E3FE3B7F2B6803CA00C5A63E /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				E39E7AB52B432EA3006A252B /* AVAsset+Size.swift */,
 				E3DDF5212B62715C0049D303 /* View.swift */,
 				E3FE3B722B67991E00C5A63E /* SafeArea.swift */,
+				E3FE3B7F2B6803CA00C5A63E /* CMTime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FE3B802B6803CA00C5A63E /* CMTime.swift in Sources */,
 				E3678A252B3DE37700B0E1C2 /* AppNavigationSelectionState.swift in Sources */,
 				E3DDF5272B6276C40049D303 /* VideoEditorControlContainer.swift in Sources */,
 				E370C7242B6679090042839C /* RoundedCorner.swift in Sources */,

@@ -28,8 +28,8 @@ final class VideoTimeLineGenerator: ObservableObject {
     @MainActor
     func generateThumbnails(
         at times: [CMTime],
-        disableTolerance: Bool = true,
-        needReloadForTolerance: Bool = false
+        disableTolerance: Bool = false,
+        needReloadForTolerance: Bool = true
     ) async throws {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
@@ -79,6 +79,7 @@ final class VideoTimeLineGenerator: ObservableObject {
                     continue
                 }
             }
+            needsToReload.removeAll()
         }
     }
     

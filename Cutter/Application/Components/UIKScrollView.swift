@@ -18,7 +18,7 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
     private var onIsScrolling: ((Bool) -> Void)?
     private var onOffsetChanged: ((CGPoint) -> Void)?
     
-    @ViewBuilder let content: () -> Content
+    @ViewBuilder private let content: () -> Content
     
     init(
         _ axis: Axis.Set = .vertical,
@@ -61,7 +61,13 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
     func updateUIView(_ uiView: UIScrollView, context: Context) {
         context.coordinator.hostingController?.rootView = content()
         uiView.contentSize = contentSize
-        context.coordinator.hostingController?.view.frame = CGRect(origin: .zero, size: contentSize)
+        context.coordinator.hostingController?.view.frame = CGRect(
+            origin: .zero,
+            size: contentSize
+        )
+        if let contentOffset, !context.coordinator.isScrolling {
+            uiView.setContentOffset(contentOffset, animated: false)
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -72,22 +78,22 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
         let parent: UIKScrollView
         var hostingController: UIHostingController<Content>?
         
-        private var isScrolling = false
+        private(set) var isScrolling = false
+        private(set) var isDecelerating = false
         
         init(_ parent: UIKScrollView) {
             self.parent = parent
-            print("Init UIKScrollView coordinator")
         }
         
-        deinit {
-            print("Deinit UIKScrollView coordinator")
-        }
-        
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
             if !isScrolling {
                 isScrolling = true
                 parent.onIsScrolling?(true)
             }
+        }
+        
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            guard isScrolling else { return }
             let contentOffset = scrollView.contentOffset
             let contentInset = scrollView.contentInset
             parent.onOffsetChanged?(
@@ -99,6 +105,7 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
         }
         
         func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            isDecelerating = false
             if isScrolling {
                 isScrolling = false
                 parent.onIsScrolling?(false)
@@ -106,6 +113,7 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
         }
         
         func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            isDecelerating = decelerate
             if !decelerate {
                 if isScrolling {
                     isScrolling = false

@@ -13,7 +13,7 @@ struct VideoEditorScreen: View {
     
     var body: some View {
         VStack(spacing: nil) {
-            VideoEditorPreview(preview: viewModel.preview)
+//            VideoEditorPreview(preview: viewModel.preview)
             VideoEditorControlContainer(
                 preview: viewModel.preview,
                 editorState: viewModel.editorState,
