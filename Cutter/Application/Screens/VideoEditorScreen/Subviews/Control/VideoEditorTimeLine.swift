@@ -9,9 +9,12 @@ import SwiftUI
 import AVFoundation
 
 struct VideoEditorTimeLine: View {
-    @ObservedObject private var timeLineGenerator: VideoTimeLineGenerator
-    @ObservedObject private var preview: VideoPreviewPlayer
-    
+    @ObservedObject private var state: VideoEditorTimeLineState
+
+    private var timeLineGenerator: VideoTimeLineGenerator {
+        state.timeLineGenerator
+    }
+
     @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     @State private var videoDuration: CMTime = .zero
@@ -22,12 +25,8 @@ struct VideoEditorTimeLine: View {
     @State private var contentOffset: CGPoint = .zero
     @State private var contentSize: CGSize = .zero
     
-    init(
-        timeLineGenerator: VideoTimeLineGenerator,
-        preview: VideoPreviewPlayer
-    ) {
-        self.timeLineGenerator = timeLineGenerator
-        self.preview = preview
+    init(state: VideoEditorTimeLineState) {
+        self.state = state
     }
     
     var body: some View {
@@ -43,7 +42,7 @@ struct VideoEditorTimeLine: View {
                 contentInset: .init(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset),
                 onIsScrolling: { isScrolling in
                     if isScrolling {
-                        preview.pause()
+                        state.pause()
                     }
                 },
                 onOffsetChanged: { offset in
@@ -52,7 +51,7 @@ struct VideoEditorTimeLine: View {
                     let seconds = offset.x / frameWidth * frameStepSeconds
                     let time = CMTime(seconds: seconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
                     
-                    preview.seek(to: time)
+                    state.seek(to: time)
                 }) {
                     LazyHGrid(rows: [.init(.fixed(frameSize.height), spacing: 0)], spacing: 0, content: {
                         ForEach(timeLineGenerator.thumbnails, id: \.id) { thumb in
@@ -72,7 +71,7 @@ struct VideoEditorTimeLine: View {
                 let width = CGFloat(thumbnails.count) * frameSize.width
                 contentSize = .init(width: width, height: frameSize.height)
             })
-            .onReceive(preview.$time) { time in
+            .onReceive(state.$time) { time in
                 let xOffset = (time.seconds * frameSize.width) / frameStepSeconds - horizontalInset
                 contentOffset = .init(x: xOffset, y: 0)
             }
@@ -112,7 +111,7 @@ struct VideoEditorTimeLine: View {
         .padding(.bottom, safeAreaInsets.bottom)
         .padding(.top, 30)
         .overlay(alignment: .top, content: {
-            Text(preview.time.formatted("m:s:ms"))
+            Text(state.time.formatted("m:s:ms"))
                 .frame(maxWidth: .infinity)
         })
         .onFirstAppear {

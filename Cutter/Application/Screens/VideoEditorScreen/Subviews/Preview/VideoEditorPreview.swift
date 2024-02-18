@@ -10,8 +10,9 @@ import AVKit
 import SafeSFSymbols
 
 struct VideoEditorPreview: View {
-    @ObservedObject var preview: VideoPreviewPlayer
     
+    @ObservedObject var preview: VideoEditorPreviewState
+
     @State private var videoSize: CGSize = .zero
     
     var body: some View {
@@ -25,14 +26,15 @@ struct VideoEditorPreview: View {
                 let padding: CGFloat = 10
                 let previewWidth = max(100, videoSize.width * scale - (padding * 2))
                 let previewHeight = max(100, videoSize.height * scale - (padding * 2))
-                
+
                 MetalVideoView(
-                    renderer: .init(playerItem: preview.playerItem),
-                    state: preview.state
+                    renderer: preview.renderer,
+                    state: preview.playerState, 
+                    seekedTime: preview.seekedTime
                 )
                     .onFirstAppear {
                         Task.do {
-                            let size = try await preview.asset.videoSize() ?? .zero
+                            let size = try await preview.getVideoSize()
                             videoSize = size
                         } catch: { _ in
                             videoSize = .zero

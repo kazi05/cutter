@@ -9,15 +9,16 @@ import SwiftUI
 import SafeSFSymbols
 
 struct VideoEditorControls: View {
-    @ObservedObject private var editorState: VideoEditorState
-    @ObservedObject private var controlState: VideoEditorControlState
+    @ObservedObject private var state: VideoEditorState
     
+    private var controlState: VideoEditorControlState {
+        state.controlState
+    }
+
     init(
-        editorState: VideoEditorState,
-        controlState: VideoEditorControlState
+        state: VideoEditorState
     ) {
-        self.editorState = editorState
-        self.controlState = controlState
+        self.state = state
     }
     
     var body: some View {
@@ -80,10 +81,10 @@ struct VideoEditorControls: View {
             Button(action: {
                 controlState.itemInteracted(interaction)
             }, label: {
-                Image(editorState.isVideoPlaying ? .pause.fill : .play.fill)
+                Image(state.isVideoPlaying ? .pause.fill : .play.fill)
             })
         case .enableDisable:
-            Toggle("", isOn: $editorState.isEraseEnabled)
+            Toggle("", isOn: $state.isEraseEnabled)
                 .labelsHidden()
                 .tint(Color.accentColor)
         }

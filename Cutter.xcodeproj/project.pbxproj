@@ -19,6 +19,8 @@
 		E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFE92B3B0DB000E713A4 /* DependenciesMacros */; };
 		E330EFED2B3B0DD800E713A4 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */; };
 		E330EFEF2B3B0DD800E713A4 /* SwiftUINavigationCore in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */; };
+		E35EEF182B81B64800BC7ED6 /* VideoEditorPreviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */; };
+		E35EEF1D2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF1C2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift */; };
 		E3678A222B3DE30100B0E1C2 /* AppNavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A212B3DE30100B0E1C2 /* AppNavigationStateManager.swift */; };
 		E3678A252B3DE37700B0E1C2 /* AppNavigationSelectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A242B3DE37700B0E1C2 /* AppNavigationSelectionState.swift */; };
 		E3678A282B3DE46600B0E1C2 /* VideoEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3678A272B3DE46600B0E1C2 /* VideoEditorScreen.swift */; };
@@ -66,6 +68,8 @@
 		E330EFDF2B3B065900E713A4 /* LibraryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryState.swift; sourceTree = "<group>"; };
 		E330EFE22B3B08B700E713A4 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
 		E330EFE42B3B0C5F00E713A4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorPreviewState.swift; sourceTree = "<group>"; };
+		E35EEF1C2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorTimeLineState.swift; sourceTree = "<group>"; };
 		E3678A212B3DE30100B0E1C2 /* AppNavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationStateManager.swift; sourceTree = "<group>"; };
 		E3678A242B3DE37700B0E1C2 /* AppNavigationSelectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationSelectionState.swift; sourceTree = "<group>"; };
 		E3678A272B3DE46600B0E1C2 /* VideoEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorScreen.swift; sourceTree = "<group>"; };
@@ -221,6 +225,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E35EEF162B81B63600BC7ED6 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				E39E7AB32B432A2F006A252B /* VideoEditorPreview.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		E35EEF192B81BBBB00BC7ED6 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				E39E7AAF2B432201006A252B /* VideoPreviewControls.swift */,
+				E3DDF5262B6276C40049D303 /* VideoEditorControlContainer.swift */,
+				E3FE3B6E2B6786A800C5A63E /* VideoEditorTimeLine.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
 		E3678A202B3DE2DE00B0E1C2 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,7 +300,9 @@
 			isa = PBXGroup;
 			children = (
 				E370C72B2B66A06D0042839C /* VideoEditorControlState.swift */,
+				E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */,
 				E370C72E2B66AC380042839C /* VideoEditorState.swift */,
+				E35EEF1C2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift */,
 			);
 			path = States;
 			sourceTree = "<group>";
@@ -286,10 +310,8 @@
 		E39E7AAE2B4321EB006A252B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				E39E7AAF2B432201006A252B /* VideoPreviewControls.swift */,
-				E39E7AB32B432A2F006A252B /* VideoEditorPreview.swift */,
-				E3DDF5262B6276C40049D303 /* VideoEditorControlContainer.swift */,
-				E3FE3B6E2B6786A800C5A63E /* VideoEditorTimeLine.swift */,
+				E35EEF192B81BBBB00BC7ED6 /* Control */,
+				E35EEF162B81B63600BC7ED6 /* Preview */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -458,8 +480,10 @@
 				E3678A282B3DE46600B0E1C2 /* VideoEditorScreen.swift in Sources */,
 				E3D935A42B3B2B2100CF6B12 /* VideoLibraryService.swift in Sources */,
 				E3D935B02B3B712900CF6B12 /* LibraryVideoCard.swift in Sources */,
+				E35EEF1D2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift in Sources */,
 				E330EFE02B3B065900E713A4 /* LibraryState.swift in Sources */,
 				E330EFDE2B3B04B400E713A4 /* LibraryScreen.swift in Sources */,
+				E35EEF182B81B64800BC7ED6 /* VideoEditorPreviewState.swift in Sources */,
 				E3FE3B732B67991E00C5A63E /* SafeArea.swift in Sources */,
 				E3678A2B2B3DE49300B0E1C2 /* ContentDetailsScreen.swift in Sources */,
 				E3D935A72B3B2C3B00CF6B12 /* MediaLibraryPermission.swift in Sources */,

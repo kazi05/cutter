@@ -12,17 +12,23 @@ import Combine
 final class VideoEditorViewModel: ObservableObject {
     let video: VideoModel
     
-    @Published private(set) var preview: VideoPreviewPlayer
-    @Published private(set) var controlState = VideoEditorControlState()
-    @Published private(set) var editorState = VideoEditorState()
-    @Published private(set) var timeLineGenerator: VideoTimeLineGenerator
-    
+    @Published private var preview: VideoPreviewPlayer
+
+    @Published private(set) var previewState: VideoEditorPreviewState
+    @Published private(set) var editorState: VideoEditorState
+
     private var subscriptions = Set<AnyCancellable>()
     
     init(video: VideoModel) {
         self.video = video
-        self.preview = .init(asset: video.asset)
-        self.timeLineGenerator = .init(asset: video.asset)
+        let playerItem = AVPlayerItem(asset: video.asset)
+        self.preview = .init(playerItem: playerItem)
+        self.previewState = .init(
+            playerItem: playerItem,
+            asset: video.asset,
+            playerState: .stop
+        )
+        self.editorState = .init(asset: video.asset)
         bind()
     }
 }
@@ -30,16 +36,34 @@ final class VideoEditorViewModel: ObservableObject {
 fileprivate extension VideoEditorViewModel {
     func bind() {
         preview.$state.sink { [unowned self] state in
+            previewState.playerState = state
             editorState.isVideoPlaying = state == .play
         }.store(in: &subscriptions)
-        
-        controlState.onItemInteracted = { [weak self] item in
+
+        preview.$time.sink { [unowned self] time in
+            editorState.timeLineState.time = time
+        }.store(in: &subscriptions)
+
+        editorState.controlState.onItemInteracted.sink { [unowned self] item in
             switch item {
             case .playPause:
-                self?.preview.togglePlaying()
+                preview.togglePlaying()
             case .enableDisable:
                 break
             }
-        }
+        }.store(in: &subscriptions)
+
+        editorState.timeLineState.onPlay.sink { [unowned self] in
+            preview.play()
+        }.store(in: &subscriptions)
+
+        editorState.timeLineState.onPause.sink { [unowned self] in
+            preview.pause()
+        }.store(in: &subscriptions)
+
+        editorState.timeLineState.onSeek.sink { [unowned self] time in
+            preview.seek(to: time)
+            previewState.seekedTime = time
+        }.store(in: &subscriptions)
     }
 }

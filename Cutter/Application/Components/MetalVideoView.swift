@@ -7,33 +7,42 @@
 
 import SwiftUI
 import MetalKit
-import Combine
+import AVFoundation
 
 struct MetalVideoView: UIViewRepresentable {
     let renderer: VideoPreviewRenderer
     var state: VideoPlayerState
-    
+    var seekedTime: CMTime
+
     private let device: MTLDevice
     
     init(
         renderer: VideoPreviewRenderer,
         state: VideoPlayerState = .stop,
+        seekedTime: CMTime,
         device: MTLDevice = MTLCreateSystemDefaultDevice()!
     ) {
         self.renderer = renderer
         self.state = state
+        self.seekedTime = seekedTime
         self.device = device
     }
     
     func makeUIView(context: Context) -> MTKView {
         let mtkView = MTKView()
         mtkView.device = device
+//        mtkView.isPaused = true
+//        mtkView.enableSetNeedsDisplay = false
+//        mtkView.framebufferOnly = false
         mtkView.delegate = context.coordinator
         return mtkView
     }
     
     func updateUIView(_ uiView: MTKView, context: Context) {
         uiView.isPaused = state != .play
+        if state != .play {
+            uiView.draw()
+        }
     }
     
     func makeCoordinator() -> Coordinator {

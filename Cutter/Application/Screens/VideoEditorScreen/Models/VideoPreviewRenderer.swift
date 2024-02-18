@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import Combine
 
 final class VideoPreviewRenderer {
     private let playerItem: AVPlayerItem

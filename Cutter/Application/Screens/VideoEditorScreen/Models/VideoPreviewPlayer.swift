@@ -15,9 +15,6 @@ enum VideoPlayerState {
 
 final class VideoPreviewPlayer: NSObject, ObservableObject {
     
-    let asset: AVAsset
-    let playerItem: AVPlayerItem
-    
     private let player: AVPlayer
     private var timeObserver: Any?
     private var subscriptions = Set<AnyCancellable>()
@@ -25,9 +22,7 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
     @Published private(set) var state: VideoPlayerState = .stop
     @Published private(set) var time: CMTime = .zero
     
-    init(asset: AVAsset) {
-        self.asset = asset
-        self.playerItem = .init(asset: asset)
+    init(playerItem: AVPlayerItem) {
         self.player = .init(playerItem: playerItem)
         super.init()
         

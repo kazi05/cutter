@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class VideoEditorControlState: ObservableObject {
     @Published private(set) var leftOptions: [VideoEditorControlItem.Option]
@@ -13,9 +14,9 @@ final class VideoEditorControlState: ObservableObject {
     @Published private(set) var rightOptions: [VideoEditorControlItem.Option]
     @Published private(set) var selectedItem: VideoEditorControlItem.Option?
     
-    var optionChangeAccepted: ((VideoEditorControlItem.Option) -> Void)?
-    var onItemInteracted: ((VideoEditorControlItem.Interaction) -> Void)?
-    
+    let optionChangeAccepted = PassthroughSubject<VideoEditorControlItem.Option, Never>()
+    let onItemInteracted = PassthroughSubject<VideoEditorControlItem.Interaction, Never>()
+
     private let initialLeftOptions: [VideoEditorControlItem.Option] = []
     private let initialCenterItems: [VideoEditorControlItem.Interaction] = [.playPause]
     private let initialRightOptions: [VideoEditorControlItem.Option] = [
@@ -37,7 +38,7 @@ final class VideoEditorControlState: ObservableObject {
             setInitialItems()
         case .acceptEditing:
             selectedItem = nil
-            optionChangeAccepted?(option)
+            optionChangeAccepted.send(option)
             setInitialItems()
         default:
             selectedItem = option
@@ -53,7 +54,7 @@ final class VideoEditorControlState: ObservableObject {
     }
     
     func itemInteracted(_ item: VideoEditorControlItem.Interaction) {
-        onItemInteracted?(item)
+        onItemInteracted.send(item)
     }
 }
 
