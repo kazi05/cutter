@@ -14,10 +14,36 @@ struct Vertex {
     float2 textureCoordinate;
 };
 
+// Буфер параметров, который будет использоваться для передачи данных из Swift кода
+struct RenderParameters {
+    bool shouldRotate;
+};
+
 // Вершинный шейдер
-vertex Vertex renderVertex(uint vertexID [[vertex_id]]) {
-    float2 positions[4] = { float2(-1.0, -1.0), float2(-1.0, 1.0), float2(1.0, -1.0), float2(1.0, 1.0) };
-    float2 texCoords[4] = { float2(0.0, 1.0), float2(0.0, 0.0), float2(1.0, 1.0), float2(1.0, 0.0) };
+vertex Vertex renderVertex(uint vertexID [[vertex_id]],
+                           constant RenderParameters& params [[buffer(1)]]) {
+    float2 positions[4] = {
+        float2(-1.0, -1.0),
+        float2(-1.0, 1.0),
+        float2(1.0, -1.0),
+        float2(1.0, 1.0)
+    };
+
+    // Определяем, нужно ли применять поворот на 90 градусов
+    float2 texCoords[4];
+    if (params.shouldRotate) {
+        // Поворачиваем текстурные координаты на 90 градусов против часовой стрелки
+        texCoords[0] = float2(1.0, 1.0);
+        texCoords[1] = float2(0.0, 1.0);
+        texCoords[2] = float2(1.0, 0.0);
+        texCoords[3] = float2(0.0, 0.0);
+    } else {
+        // Используем обычные текстурные координаты
+        texCoords[0] = float2(0.0, 1.0);
+        texCoords[1] = float2(0.0, 0.0);
+        texCoords[2] = float2(1.0, 1.0);
+        texCoords[3] = float2(1.0, 0.0);
+    }
 
     Vertex out;
     out.position = float4(positions[vertexID], 0.0, 1.0);

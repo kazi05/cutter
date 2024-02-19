@@ -27,8 +27,14 @@ final class VideoEditorPreviewState: ObservableObject {
     }
 
     func getVideoSize() async throws -> CGSize {
-        let size = try await asset.videoSize ?? .zero
-        renderer.setupVideoSize(size)
-        return size
+        guard let track = try await asset.loadTracks(withMediaType: .video).first else {
+            return .zero
+        }
+        let transform = try await track.load(.preferredTransform)
+        let size = try await track.load(.naturalSize).applying(transform)
+        let normalSize = CGSize(width: abs(size.width), height: abs(size.height))
+        let needRotate = size.width < normalSize.width
+        renderer.setupVideoSize(normalSize, isNeedRotate: needRotate)
+        return normalSize
     }
 }

@@ -16,8 +16,11 @@ final class VideoPreviewRenderer {
     private let videoOutput: AVPlayerItemVideoOutput
     private var textureCache: CVMetalTextureCache?
     private var eraseBackgroundEnabled = false
+    private(set) var isNeedRotate = false
 
     let device: MTLDevice
+
+    private var subscriptions = Set<AnyCancellable>()
 
     init(playerItem: AVPlayerItem, device: MTLDevice) {
         self.playerItem = playerItem
@@ -32,10 +35,18 @@ final class VideoPreviewRenderer {
     }
     
     private func setupVideoOutput() {
-        playerItem.add(videoOutput)
+        playerItem.publisher(for: \.status).sink { [unowned self] status in
+            switch status {
+            case .readyToPlay:
+                playerItem.add(videoOutput)
+            default:
+                break
+            }
+        }.store(in: &subscriptions)
     }
 
-    public func setupVideoSize(_ videoSize: CGSize) {
+    public func setupVideoSize(_ videoSize: CGSize, isNeedRotate: Bool) {
+        self.isNeedRotate = isNeedRotate
         let maxVideoSize = max(videoSize.width, videoSize.height)
         if maxVideoSize > 1280 {
             self.predictor = RVMPredictorFHD()

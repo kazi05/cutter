@@ -30,17 +30,19 @@ fileprivate extension VideoEditorViewModel {
         options.deliveryMode = .highQualityFormat
         options.version = .current
         let imageManager = PHCachingImageManager()
-        imageManager.requestAVAsset(forVideo: video.asset, options: options) { [weak self] asset, _, _ in
-            guard let asset, let self else { return }
-            let playerItem = AVPlayerItem(asset: asset)
-            self.player = .init(playerItem: playerItem)
-            self.previewState = .init(
-                playerItem: playerItem,
-                asset: asset,
-                playerState: .stop
-            )
-            self.editorState = .init(asset: asset)
-            self.bind()
+        imageManager.requestAVAsset(forVideo: video.asset, options: options) { asset, _, _ in
+            guard let asset else { return }
+            DispatchQueue.main.async { [weak self] in
+                let playerItem = AVPlayerItem(asset: asset)
+                self?.player = .init(playerItem: playerItem)
+                self?.previewState = .init(
+                    playerItem: playerItem,
+                    asset: asset,
+                    playerState: .stop
+                )
+                self?.editorState = .init(asset: asset)
+                self?.bind()
+            }
         }
     }
 
