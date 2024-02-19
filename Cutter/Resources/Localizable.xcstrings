@@ -14,6 +14,17 @@
         }
       }
     },
+    "ERASE_BACKGROUND_OPTION_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erase background"
+          }
+        }
+      }
+    },
     "LIBRARY_EMPTY_LIST" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -76,6 +87,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown error"
+          }
+        }
+      }
+    },
+    "SEPARATE_OPTION_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separate"
+          }
+        }
+      }
+    },
+    "TRIM_OPTION_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trim"
           }
         }
       }

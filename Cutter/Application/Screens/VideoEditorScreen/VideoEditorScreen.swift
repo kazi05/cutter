@@ -12,10 +12,14 @@ struct VideoEditorScreen: View {
     @StateObject var viewModel: VideoEditorViewModel
     
     var body: some View {
-        VStack(spacing: nil) {
-            VideoEditorPreview(preview: viewModel.previewState)
-            VideoEditorControlContainer(editorState: viewModel.editorState)
+        if viewModel.previewState != nil && viewModel.editorState != nil {
+            VStack(spacing: nil) {
+                VideoEditorPreview(preview: viewModel.previewState)
+                VideoEditorControlContainer(editorState: viewModel.editorState)
+            }
+            .ignoresSafeArea(edges: .bottom)
+        } else {
+            ProgressView()
         }
-        .ignoresSafeArea(edges: .bottom)
     }
 }

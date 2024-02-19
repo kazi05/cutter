@@ -21,12 +21,14 @@ final class VideoEditorPreviewState: ObservableObject {
         asset: AVAsset,
         playerState: VideoPlayerState
     ) {
-        self.renderer = .init(playerItem: playerItem)
+        self.renderer = .init(playerItem: playerItem, device: MTLCreateSystemDefaultDevice()!)
         self.asset = asset
         self.playerState = playerState
     }
 
     func getVideoSize() async throws -> CGSize {
-        try await asset.videoSize() ?? .zero
+        let size = try await asset.videoSize ?? .zero
+        renderer.setupVideoSize(size)
+        return size
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AVFoundation.AVAsset
 
 final class VideoEditorState: ObservableObject {
     @Published var isVideoPlaying: Bool = false
@@ -17,7 +18,7 @@ final class VideoEditorState: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(asset: VideoAsset) {
+    init(asset: AVAsset) {
         self.timeLineState = .init(asset: asset)
         bind()
     }
@@ -31,6 +32,10 @@ fileprivate extension VideoEditorState {
             controlState.$centerItems
         ).sink { [unowned self] _ in
             self.objectWillChange.send()
+        }.store(in: &subscriptions)
+
+        $isEraseEnabled.sink { [unowned self] enabled in
+            controlState.onItemInteracted.send(.enableDisable)
         }.store(in: &subscriptions)
     }
 }

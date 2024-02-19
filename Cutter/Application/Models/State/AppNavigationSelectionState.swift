@@ -8,5 +8,5 @@
 import Foundation
 
 enum AppNavigationSelectionState: Hashable {
-    case videoEditing(VideoModel)
+    case videoEditing(VideoThumbnail)
 }

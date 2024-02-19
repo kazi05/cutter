@@ -30,7 +30,8 @@ struct VideoEditorPreview: View {
                 MetalVideoView(
                     renderer: preview.renderer,
                     state: preview.playerState, 
-                    seekedTime: preview.seekedTime
+                    seekedTime: preview.seekedTime,
+                    device: preview.renderer.device
                 )
                     .onFirstAppear {
                         Task.do {

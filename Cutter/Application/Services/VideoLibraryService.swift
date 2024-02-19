@@ -10,7 +10,7 @@ import Dependencies
 
 protocol VideoLibraryService {
     func getStatus() async -> MediaAuthorizationStatus
-    func getVideos() async -> [VideoModel]
+    func getVideos() async -> [VideoThumbnail]
 }
 
 //MARK: - DependencyValues
@@ -23,18 +23,18 @@ extension DependencyValues {
     }
     
     enum VideoLibraryServiceKey: DependencyKey {
-        public static let liveValue: VideoLibraryService = ViewLibraryServiceImpl()
+        public static let liveValue: VideoLibraryService = VideoLibraryServiceImpl()
     }
 }
 
-final class ViewLibraryServiceImpl: VideoLibraryService {
+final class VideoLibraryServiceImpl: VideoLibraryService {
     private let permission = MediaLibraryPremission()
     
     func getStatus() async -> MediaAuthorizationStatus {
         await permission.getMedialibraryAccesStatus()
     }
     
-    func getVideos() async -> [VideoModel] {
+    func getVideos() async -> [VideoThumbnail] {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
@@ -44,31 +44,12 @@ final class ViewLibraryServiceImpl: VideoLibraryService {
             return []
         }
         
-        return await withTaskGroup(of: VideoModel.self) { group in
-            for index in 0..<fetchResult.count {
-                let asset = fetchResult.object(at: index)
-                group.addTask {
-                    await self.generateVideoModel(for: asset)
-                }
-            }
-            
-            var videoModels: [VideoModel] = []
-            for await model in group {
-                videoModels.append(model)
-            }
-            return videoModels
+        var results = [VideoThumbnail]()
+        for index in 0..<fetchResult.count {
+            let asset = fetchResult.object(at: index)
+            let video = VideoThumbnail(id: asset.localIdentifier, asset: asset)
+            results.append(video)
         }
-    }
-    
-    private func generateVideoModel(for asset: PHAsset) async -> VideoModel {
-        await withCheckedContinuation { continuation in
-            let imageManager = PHCachingImageManager()
-            imageManager.requestAVAsset(forVideo: asset, options: nil) { (avAsset, _, _) in
-                guard let avAsset else { return }
-                let assetImage = AssetImageGenerator(asset: avAsset).generateImage()
-                let model = VideoModel(id: asset.localIdentifier, asset: avAsset, image: assetImage)
-                continuation.resume(returning: model)
-            }
-        }
+        return results.reversed()
     }
 }

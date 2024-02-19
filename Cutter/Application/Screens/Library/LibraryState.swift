@@ -12,7 +12,7 @@ final class LibraryState: ObservableObject {
     
     enum State {
         case loading
-        case loaded([VideoModel])
+        case loaded([VideoThumbnail])
         case error(MediaAuthorizationError)
     }
     

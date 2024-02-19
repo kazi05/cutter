@@ -18,5 +18,18 @@ enum VideoEditorControlItem {
         case eraseBackground
         case cancelEditing
         case acceptEditing
+
+        var title: String? {
+            switch self {
+            case .trimCut:
+                return "TRIM_OPTION_TITLE"
+            case .separate:
+                return "SEPARATE_OPTION_TITLE"
+            case .eraseBackground:
+                return "ERASE_BACKGROUND_OPTION_TITLE"
+            default:
+                return nil
+            }
+        }
     }
 }

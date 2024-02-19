@@ -11,7 +11,7 @@ import Combine
 final class AppNavigationStateManager: ObservableObject {
     @Published var selectionState: AppNavigationSelectionState? = nil
     
-    func openVideoEditing(_ video: VideoModel) {
+    func openVideoEditing(_ video: VideoThumbnail) {
         selectionState = .videoEditing(video)
     }
     

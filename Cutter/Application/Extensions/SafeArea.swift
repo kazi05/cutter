@@ -24,9 +24,19 @@ private struct SafeAreaInsetsKey: EnvironmentKey {
     }
 }
 
+private struct ScreenSizeInsetsKey: EnvironmentKey {
+    static var defaultValue: CGSize {
+        UIApplication.shared.keyWindow?.bounds.size ?? .zero
+    }
+}
+
 extension EnvironmentValues {
     var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
+    }
+
+    var screenSize: CGSize {
+        self[ScreenSizeInsetsKey.self]
     }
 }
 

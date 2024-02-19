@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AVFoundation
+import AVFoundation.AVAsset
 import Combine
 
 final class VideoEditorTimeLineState: ObservableObject {
@@ -17,7 +17,7 @@ final class VideoEditorTimeLineState: ObservableObject {
     let onPause = PassthroughSubject<Void, Never>()
     let onSeek = PassthroughSubject<CMTime, Never>()
 
-    init(asset: VideoAsset) {
+    init(asset: AVAsset) {
         self.timeLineGenerator = .init(asset: asset)
     }
 

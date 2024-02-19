@@ -12,12 +12,14 @@ struct LibraryScreen: View {
     
     @StateObject private var state = LibraryState()
     @EnvironmentObject private var navigationStateManager: AppNavigationStateManager
-    
+    @Environment(\.screenSize) private var screenSize
+
     var body: some View {
         ScrollView {
             switch state.state {
             case .loading:
                 ProgressView()
+                    .frame(maxWidth: .infinity)
             case .loaded(let models):
                 if models.isEmpty { emptyView } else { listView(models) }
             case .error(let error):
@@ -59,7 +61,7 @@ struct LibraryScreen: View {
     }
     
     @ViewBuilder
-    private func listView(_ models: [VideoModel]) -> some View {
+    private func listView(_ models: [VideoThumbnail]) -> some View {
         let threeColumnGrid = [
             GridItem(.flexible(), spacing: 4),
             GridItem(.flexible(), spacing: 4),
@@ -74,6 +76,7 @@ struct LibraryScreen: View {
             }
             .clipped()
             .aspectRatio(0.60, contentMode: .fit)
+            .frame(height: screenSize.width / 3 * 1.60)
         })
         .padding(8)
         

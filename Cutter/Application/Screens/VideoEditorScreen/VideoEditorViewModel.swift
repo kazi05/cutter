@@ -8,61 +8,71 @@
 import AVFoundation
 import SwiftUI
 import Combine
+import Photos
 
 final class VideoEditorViewModel: ObservableObject {
-    let video: VideoModel
     
-    @Published private var preview: VideoPreviewPlayer
+    @Published private var player: VideoPreviewPlayer!
 
-    @Published private(set) var previewState: VideoEditorPreviewState
-    @Published private(set) var editorState: VideoEditorState
+    @Published private(set) var previewState: VideoEditorPreviewState!
+    @Published private(set) var editorState: VideoEditorState!
 
     private var subscriptions = Set<AnyCancellable>()
-    
-    init(video: VideoModel) {
-        self.video = video
-        let playerItem = AVPlayerItem(asset: video.asset)
-        self.preview = .init(playerItem: playerItem)
-        self.previewState = .init(
-            playerItem: playerItem,
-            asset: video.asset,
-            playerState: .stop
-        )
-        self.editorState = .init(asset: video.asset)
-        bind()
+
+    init(video: VideoThumbnail) {
+        config(with: video)
     }
 }
 
 fileprivate extension VideoEditorViewModel {
+    func config(with video: VideoThumbnail) {
+        let options = PHVideoRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.version = .current
+        let imageManager = PHCachingImageManager()
+        imageManager.requestAVAsset(forVideo: video.asset, options: options) { [weak self] asset, _, _ in
+            guard let asset, let self else { return }
+            let playerItem = AVPlayerItem(asset: asset)
+            self.player = .init(playerItem: playerItem)
+            self.previewState = .init(
+                playerItem: playerItem,
+                asset: asset,
+                playerState: .stop
+            )
+            self.editorState = .init(asset: asset)
+            self.bind()
+        }
+    }
+
     func bind() {
-        preview.$state.sink { [unowned self] state in
+        player.$state.sink { [unowned self] state in
             previewState.playerState = state
             editorState.isVideoPlaying = state == .play
         }.store(in: &subscriptions)
 
-        preview.$time.sink { [unowned self] time in
+        player.$time.sink { [unowned self] time in
             editorState.timeLineState.time = time
         }.store(in: &subscriptions)
 
         editorState.controlState.onItemInteracted.sink { [unowned self] item in
             switch item {
             case .playPause:
-                preview.togglePlaying()
+                player.togglePlaying()
             case .enableDisable:
-                break
+                previewState.renderer.setEraseBackgroundEnabled(!editorState.isEraseEnabled)
             }
         }.store(in: &subscriptions)
 
         editorState.timeLineState.onPlay.sink { [unowned self] in
-            preview.play()
+            player.play()
         }.store(in: &subscriptions)
 
         editorState.timeLineState.onPause.sink { [unowned self] in
-            preview.pause()
+            player.pause()
         }.store(in: &subscriptions)
 
         editorState.timeLineState.onSeek.sink { [unowned self] time in
-            preview.seek(to: time)
+            player.seek(to: time)
             previewState.seekedTime = time
         }.store(in: &subscriptions)
     }

@@ -20,7 +20,7 @@ struct MetalVideoView: UIViewRepresentable {
         renderer: VideoPreviewRenderer,
         state: VideoPlayerState = .stop,
         seekedTime: CMTime,
-        device: MTLDevice = MTLCreateSystemDefaultDevice()!
+        device: MTLDevice
     ) {
         self.renderer = renderer
         self.state = state
@@ -103,7 +103,7 @@ struct MetalVideoView: UIViewRepresentable {
         }
         
         func draw(in view: MTKView) {
-            guard let texture = renderer.getCurrentFrameTexture(device: view.device!),
+            guard let texture = renderer.getCurrentFrameTexture(),
                   let drawable = view.currentDrawable,
                   let commandBuffer = commandQueue?.makeCommandBuffer(),
                   let renderDescriptor = view.currentRenderPassDescriptor,

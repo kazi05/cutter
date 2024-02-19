@@ -29,9 +29,15 @@ struct VideoEditorControls: View {
                     viewForOption(option)
                 }
             }
-            .frame(maxWidth: .infinity)
-            
+            .frame(minWidth: 100)
+
             VStack(alignment: .center, spacing: 8) {
+                if let title = controlState.selectedItem?.title {
+                    Text(LocalizedStringResource(stringLiteral: title))
+                        .font(.system(size: 14))
+                        .lineLimit(1)
+                        .fontWeight(.semibold)
+                }
                 ForEach(0..<controlState.centerItems.count, id: \.self) { index in
                     let item = controlState.centerItems[index]
                     viewForInteraction(item)
@@ -45,7 +51,7 @@ struct VideoEditorControls: View {
                     viewForOption(option)
                 }
             }
-            .frame(maxWidth: .infinity)
+            .frame(minWidth: 100)
         }
         .frame(minHeight: 40)
         .padding()
@@ -54,16 +60,16 @@ struct VideoEditorControls: View {
     @ViewBuilder
     private func viewForOption(_ option: VideoEditorControlItem.Option) -> some View {
         let image: SafeSFSymbol = switch option {
-        case .trimCut:
-            .squareshape.split_2x2Dotted
-        case .separate:
-            .chart.barXaxis
-        case .eraseBackground:
-            .eraser.lineDashedFill
-        case .cancelEditing:
-            .xmark
-        case .acceptEditing:
-            .checkmark
+            case .trimCut:
+                .timeline.selection
+            case .separate:
+                .chart.barXaxis
+            case .eraseBackground:
+                .eraser.lineDashedFill
+            case .cancelEditing:
+                .xmark
+            case .acceptEditing:
+                .checkmark
         }
         Button(action: {
             withAnimation {

@@ -7,14 +7,22 @@
 
 import AVFoundation
 import Combine
+import CoreML
 
 final class VideoPreviewRenderer {
     private let playerItem: AVPlayerItem
+    private let processor: VideoPreviewRenderProcessor
+    private var predictor: RVMPredictable!
     private let videoOutput: AVPlayerItemVideoOutput
     private var textureCache: CVMetalTextureCache?
-    
-    init(playerItem: AVPlayerItem) {
+    private var eraseBackgroundEnabled = false
+
+    let device: MTLDevice
+
+    init(playerItem: AVPlayerItem, device: MTLDevice) {
         self.playerItem = playerItem
+        self.device = device
+        self.processor = .init(device: device)
         let pixelBufferAttributes: [String: Any] = [
             kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA),
             kCVPixelBufferMetalCompatibilityKey as String: true
@@ -26,8 +34,17 @@ final class VideoPreviewRenderer {
     private func setupVideoOutput() {
         playerItem.add(videoOutput)
     }
-    
-    func getCurrentFrameTexture(device: MTLDevice) -> MTLTexture? {
+
+    public func setupVideoSize(_ videoSize: CGSize) {
+        let maxVideoSize = max(videoSize.width, videoSize.height)
+        if maxVideoSize > 1280 {
+            self.predictor = RVMPredictorFHD()
+        } else {
+            self.predictor = RVMPredictorHD()
+        }
+    }
+
+    public func getCurrentFrameTexture() -> MTLTexture? {
         if textureCache == nil {
             var cache: CVMetalTextureCache?
             CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &cache)
@@ -46,14 +63,26 @@ final class VideoPreviewRenderer {
         guard let pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil) else {
             return nil
         }
-        
+
+        if eraseBackgroundEnabled, let processedTexture = processFrame(pixelBuffer) {
+            return processedTexture
+        }
+
+        guard let texture = createTexture(from: pixelBuffer, cache: textureCache) else {
+            return nil
+        }
+
+        return texture
+    }
+
+    private func createTexture(from pixelBuffer: CVPixelBuffer, cache: CVMetalTextureCache) -> MTLTexture? {
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
         
         var cvMetalTexture: CVMetalTexture?
         let result = CVMetalTextureCacheCreateTextureFromImage(
             kCFAllocatorDefault,
-            textureCache,
+            cache,
             pixelBuffer,
             nil,
             .bgra8Unorm,
@@ -62,11 +91,38 @@ final class VideoPreviewRenderer {
             0,
             &cvMetalTexture
         )
-        
-        if result == kCVReturnSuccess, let cvMetalTexture = cvMetalTexture {
-            return CVMetalTextureGetTexture(cvMetalTexture)
-        } else {
-            return nil
+
+        guard result == kCVReturnSuccess,
+              let cvMetalTexture = cvMetalTexture
+        else { return nil }
+
+        return CVMetalTextureGetTexture(cvMetalTexture)
+    }
+
+    private func processFrame(_ frame: CVPixelBuffer) -> MTLTexture? {
+        var resizedFrame = frame
+        let initialWidth = CVPixelBufferGetWidth(frame)
+        let initialHeight = CVPixelBufferGetHeight(frame)
+        let inputWidth = predictor.inputWidth
+        let inputHeight = predictor.inputHeight
+        let needResize = initialWidth < initialHeight || initialWidth > inputWidth
+        if needResize, let resized = frame.resizePixelBuffer(width: inputWidth, height: inputHeight) {
+            resizedFrame = resized
         }
+        var (fgr, pha) = predictor.predict(src: resizedFrame)
+        if needResize,
+           let originalFgr = fgr.resizePixelBuffer(width: initialWidth, height: initialHeight),
+           let originalPha = pha.resizePixelBuffer(width: initialWidth, height: initialHeight){
+            fgr = originalFgr
+            pha = originalPha
+        }
+        return processor.eraseBackground(
+            from: fgr.toCGImage(),
+            maskImage: pha.toBGRApixelBuffer()!.toCGImage()
+        )
+    }
+
+    public func setEraseBackgroundEnabled(_ enabled: Bool) {
+        eraseBackgroundEnabled = enabled
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct CutterApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var navigationStateManager = AppNavigationStateManager()
     
     var body: some Scene {

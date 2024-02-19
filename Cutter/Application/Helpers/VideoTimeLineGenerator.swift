@@ -15,13 +15,13 @@ struct Thumbnail: Identifiable {
 }
 
 final class VideoTimeLineGenerator: ObservableObject {
-    let asset: VideoAsset
-    
+    let asset: AVAsset
+
     @Published private(set) var thumbnails: [Thumbnail] = []
     
     private var needsToReload: [Thumbnail] = []
     
-    init(asset: VideoAsset) {
+    init(asset: AVAsset) {
         self.asset = asset
     }
     

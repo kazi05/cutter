@@ -9,9 +9,11 @@ import AVKit
 import Foundation
 
 extension AVAsset {
-    func videoSize() async throws -> CGSize? {
-        guard let track = try await loadTracks(withMediaType: .video).first else { return nil }
-        let size = try await track.load(.naturalSize)
-        return size
+    var videoSize: CGSize? {
+        get async throws {
+            guard let track = try await loadTracks(withMediaType: .video).first else { return nil }
+            let size = try await track.load(.naturalSize)
+            return size
+        }
     }
 }
