@@ -89,7 +89,7 @@ final class VideoPreviewRenderProcessor {
 //        let commandBuffer = commandQueue.makeCommandBuffer()!
 //        let commandEncoder = commandBuffer.makeComputeCommandEncoder()!
 //        commandEncoder.setComputePipelineState(pipelineState)
-//        commandEncoder.setTexture(frame, index: 0)
+//        commandEncoder.setTexture(originalTexture, index: 0)
 //        commandEncoder.setTexture(maskTexture, index: 1)
 //        commandEncoder.setTexture(outputTexture, index: 2)
 //
@@ -105,55 +105,7 @@ final class VideoPreviewRenderProcessor {
 //
 //        return outputTexture
 //    }
-//
-//    public func resizeFrame(_ frame: MTLTexture, to size: CGSize) -> CVPixelBuffer? {
-//        let descriptor = MTLTextureDescriptor.texture2DDescriptor(
-//            pixelFormat: .rgba8Unorm,
-//            width: Int(size.width),
-//            height: Int(size.height),
-//            mipmapped: false
-//        )
-//        descriptor.usage = [.shaderWrite, .shaderRead]
-//        let outputTexture = device.makeTexture(descriptor: descriptor)!
-//
-//        // Выполнение шейдера
-//        let commandBuffer = commandQueue.makeCommandBuffer()!
-//        let commandEncoder = commandBuffer.makeComputeCommandEncoder()!
-//        commandEncoder.setComputePipelineState(resizePipelineState)
-//        commandEncoder.setTexture(frame, index: 0) // Исходная текстура
-//        commandEncoder.setTexture(outputTexture, index: 1) // Выходная текстура
-//        let threadGroupCount = MTLSizeMake(16, 16, 1)
-//        let threadGroups = MTLSizeMake(outputTexture.width / threadGroupCount.width,
-//                                       outputTexture.height / threadGroupCount.height,
-//                                       1)
-//
-//        commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
-//        commandEncoder.endEncoding()
-//        commandBuffer.commit()
-//        commandBuffer.waitUntilCompleted()
-//
-//        return createCVPixelBuffer(from: outputTexture)
-//    }
 
-//    private func createCVPixelBuffer(from texture: MTLTexture) -> CVPixelBuffer? {
-//        let ciImage = CIImage(mtlTexture: texture, options: nil)
-//        let context = CIContext(mtlDevice: device)
-//
-//        // Создание CVPixelBuffer для рендеринга
-//        var pixelBuffer: CVPixelBuffer?
-//        CVPixelBufferCreate(nil, texture.width, texture.height, kCVPixelFormatType_32BGRA, nil, &pixelBuffer)
-//
-//        // Проверка успешности создания CVPixelBuffer
-//        guard let outputPixelBuffer = pixelBuffer else {
-//            return nil
-//        }
-//
-//        // Рендеринг CIImage в CVPixelBuffer
-//        context.render(ciImage!, to: outputPixelBuffer)
-//
-//        return outputPixelBuffer
-//    }
-//
     func createTexture(from pixelBuffer: CVPixelBuffer, textureCache: CVMetalTextureCache) -> MTLTexture? {
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
@@ -178,26 +130,4 @@ final class VideoPreviewRenderProcessor {
 
         return CVMetalTextureGetTexture(unwrappedCVMetalTexture)
     }
-//
-//    func resizePixelBuffer(_ pixelBuffer: CVPixelBuffer, to size: CGSize) -> CVPixelBuffer? {
-//        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-//
-//        let filter = CIFilter(name: "CILanczosScaleTransform")!
-//        filter.setValue(ciImage, forKey: kCIInputImageKey)
-//        filter.setValue(size.height / ciImage.extent.height, forKey: kCIInputScaleKey)
-//        filter.setValue(1.0, forKey: kCIInputAspectRatioKey)
-//        guard let outputCIImage = filter.outputImage else { return nil }
-//
-//        let context = CIContext()
-//
-//        var newPixelBuffer: CVPixelBuffer?
-//        CVPixelBufferCreate(nil, Int(size.width), Int(size.height), CVPixelBufferGetPixelFormatType(pixelBuffer), nil, &newPixelBuffer)
-//
-//        if let newPixelBuffer = newPixelBuffer {
-//            context.render(outputCIImage, to: newPixelBuffer)
-//            return newPixelBuffer
-//        }
-//
-//        return nil
-//    }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E30BD4C32B847A5D006DFE7B /* RVM_HD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E30BD4C22B847A5D006DFE7B /* RVM_HD.mlmodel */; };
+		E30BD4C72B848414006DFE7B /* RVM_FHD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E30BD4C62B848414006DFE7B /* RVM_FHD.mlmodel */; };
 		E330EFC92B3B011B00E713A4 /* CutterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E330EFC82B3B011B00E713A4 /* CutterApp.swift */; };
 		E330EFCD2B3B011C00E713A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E330EFCC2B3B011C00E713A4 /* Assets.xcassets */; };
 		E330EFD02B3B011C00E713A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E330EFCF2B3B011C00E713A4 /* Preview Assets.xcassets */; };
@@ -39,9 +41,6 @@
 		E3A9E3972B8238F200F70276 /* RVMPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3962B8238F200F70276 /* RVMPredictor.swift */; };
 		E3A9E3992B82556800F70276 /* CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */; };
 		E3C0BCCA2B830F6B0062673E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCC92B830F6B0062673E /* AppDelegate.swift */; };
-		E3C0BCCD2B8315B20062673E /* RVM_FHD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCCB2B8315B20062673E /* RVM_FHD.mlmodel */; };
-		E3C0BCCE2B8315B20062673E /* RVM_HD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCCC2B8315B20062673E /* RVM_HD.mlmodel */; };
-		E3C0BCD02B831EB30062673E /* Segmentation.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCCF2B831EB30062673E /* Segmentation.mlmodel */; };
 		E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */; };
 		E3D4A5602B837848001C4095 /* VideoThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */; };
 		E3D9359E2B3B223B00CF6B12 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E3D9359D2B3B223B00CF6B12 /* InfoPlist.xcstrings */; };
@@ -65,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E30BD4C22B847A5D006DFE7B /* RVM_HD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_HD.mlmodel; sourceTree = "<group>"; };
+		E30BD4C62B848414006DFE7B /* RVM_FHD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD.mlmodel; sourceTree = "<group>"; };
 		E330EFC52B3B011B00E713A4 /* Cutter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cutter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E330EFC82B3B011B00E713A4 /* CutterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutterApp.swift; sourceTree = "<group>"; };
 		E330EFCC2B3B011C00E713A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,9 +95,6 @@
 		E3A9E3962B8238F200F70276 /* RVMPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVMPredictor.swift; sourceTree = "<group>"; };
 		E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVPixelBuffer.swift; sourceTree = "<group>"; };
 		E3C0BCC92B830F6B0062673E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3C0BCCB2B8315B20062673E /* RVM_FHD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD.mlmodel; sourceTree = "<group>"; };
-		E3C0BCCC2B8315B20062673E /* RVM_HD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_HD.mlmodel; sourceTree = "<group>"; };
-		E3C0BCCF2B831EB30062673E /* Segmentation.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Segmentation.mlmodel; sourceTree = "<group>"; };
 		E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditingModel.swift; sourceTree = "<group>"; };
 		E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailService.swift; sourceTree = "<group>"; };
 		E3D9359D2B3B223B00CF6B12 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -183,9 +181,8 @@
 		E330EFD92B3B024D00E713A4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E3C0BCCF2B831EB30062673E /* Segmentation.mlmodel */,
-				E3C0BCCC2B8315B20062673E /* RVM_HD.mlmodel */,
-				E3C0BCCB2B8315B20062673E /* RVM_FHD.mlmodel */,
+				E30BD4C62B848414006DFE7B /* RVM_FHD.mlmodel */,
+				E30BD4C22B847A5D006DFE7B /* RVM_HD.mlmodel */,
 				E330EFCC2B3B011C00E713A4 /* Assets.xcassets */,
 				E330EFE42B3B0C5F00E713A4 /* Localizable.xcstrings */,
 				E3D9359D2B3B223B00CF6B12 /* InfoPlist.xcstrings */,
@@ -495,13 +492,11 @@
 				E39E7AB62B432EA3006A252B /* AVAsset+Size.swift in Sources */,
 				E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */,
 				E3D935A12B3B292200CF6B12 /* VScrollView.swift in Sources */,
-				E3C0BCD02B831EB30062673E /* Segmentation.mlmodel in Sources */,
 				E39E7AB22B4323CD006A252B /* VideoPreviewPlayer.swift in Sources */,
 				E370C7292B669F3E0042839C /* VideoEditorControlItem.swift in Sources */,
 				E3C0BCCA2B830F6B0062673E /* AppDelegate.swift in Sources */,
 				E3678A282B3DE46600B0E1C2 /* VideoEditorScreen.swift in Sources */,
 				E3D935A42B3B2B2100CF6B12 /* VideoLibraryService.swift in Sources */,
-				E3C0BCCE2B8315B20062673E /* RVM_HD.mlmodel in Sources */,
 				E3D935B02B3B712900CF6B12 /* LibraryVideoCard.swift in Sources */,
 				E3A9E3972B8238F200F70276 /* RVMPredictor.swift in Sources */,
 				E35EEF1D2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift in Sources */,
@@ -518,9 +513,10 @@
 				E3D935AC2B3B30E700CF6B12 /* Task.swift in Sources */,
 				E39E7AB02B432201006A252B /* VideoPreviewControls.swift in Sources */,
 				E35EEF212B81CF5900BC7ED6 /* process.metal in Sources */,
-				E3C0BCCD2B8315B20062673E /* RVM_FHD.mlmodel in Sources */,
 				E370C72F2B66AC380042839C /* VideoEditorState.swift in Sources */,
 				E3678A222B3DE30100B0E1C2 /* AppNavigationStateManager.swift in Sources */,
+				E30BD4C32B847A5D006DFE7B /* RVM_HD.mlmodel in Sources */,
+				E30BD4C72B848414006DFE7B /* RVM_FHD.mlmodel in Sources */,
 				E330EFE32B3B08B700E713A4 /* VideoThumbnail.swift in Sources */,
 				E39E7AB42B432A2F006A252B /* VideoEditorPreview.swift in Sources */,
 			);

@@ -127,9 +127,12 @@ final class VideoPreviewRenderer {
             fgr = originalFgr
             pha = originalPha
         }
+        guard let bgraPha = pha.toBGRApixelBuffer() else {
+            return nil
+        }
         return processor.eraseBackground(
             from: fgr.toCGImage(),
-            maskImage: pha.toBGRApixelBuffer()!.toCGImage()
+            maskImage: bgraPha.toCGImage()
         )
     }
 

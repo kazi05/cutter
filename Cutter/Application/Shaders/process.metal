@@ -18,10 +18,10 @@ kernel void bg_erase(texture2d<float, access::read>  inputTexture  [[ texture(0)
     float4 maskColor = maskTexture.read(gid);
 
     // Если маска белая, сохраняем исходный цвет
-    if (maskColor.r > 0.1f) {
+    if (maskColor.r > 0.4f) {
         outputTexture.write(color, gid);
     } else {
-        outputTexture.write(float4(0.0, 0.0, 0.0, 0.0), gid);  // Записываем прозрачный цвет для объекта
+        outputTexture.write(float4(0.0, 1.0, 0.0, 1.0), gid);  // Записываем прозрачный цвет для объекта
     }
 }
 
