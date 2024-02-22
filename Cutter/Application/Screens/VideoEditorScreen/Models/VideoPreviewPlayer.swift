@@ -17,7 +17,7 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
     
     private let player: AVPlayer
     private var timeObserver: Any?
-    private var subscriptions = Set<AnyCancellable>()
+    var subscriptions = Set<AnyCancellable>()
     
     @Published private(set) var state: VideoPlayerState = .stop
     @Published private(set) var time: CMTime = .zero
@@ -34,6 +34,9 @@ final class VideoPreviewPlayer: NSObject, ObservableObject {
     }
     
     deinit {
+        print("Deinit preview player")
+        subscriptions.forEach { $0.cancel() }
+        subscriptions.removeAll()
         if timeObserver != nil {
             player.removeTimeObserver(timeObserver!)
             timeObserver = nil

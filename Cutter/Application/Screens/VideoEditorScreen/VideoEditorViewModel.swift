@@ -11,16 +11,25 @@ import Combine
 import Photos
 
 final class VideoEditorViewModel: ObservableObject {
-    
-    @Published private var player: VideoPreviewPlayer!
+    private weak var initialAsset: AVAsset!
+    private var player: VideoPreviewPlayer!
+
 
     @Published private(set) var previewState: VideoEditorPreviewState!
     @Published private(set) var editorState: VideoEditorState!
 
     private var subscriptions = Set<AnyCancellable>()
+    private let fileManager = VideoOutputFileManager.shared
 
     init(video: VideoThumbnail) {
         config(with: video)
+    }
+
+    deinit {
+        print("Deinit view model")
+        subscriptions.forEach { $0.cancel() }
+        subscriptions.removeAll()
+        fileManager.deleteFile()
     }
 }
 
@@ -32,17 +41,28 @@ fileprivate extension VideoEditorViewModel {
         let imageManager = PHCachingImageManager()
         imageManager.requestAVAsset(forVideo: video.asset, options: options) { asset, _, _ in
             guard let asset else { return }
-            DispatchQueue.main.async { [weak self] in
-                let playerItem = AVPlayerItem(asset: asset)
-                self?.player = .init(playerItem: playerItem)
-                self?.previewState = .init(
-                    playerItem: playerItem,
-                    asset: asset,
-                    playerState: .stop
-                )
-                self?.editorState = .init(asset: asset)
-                self?.bind()
-            }
+            print(asset)
+            self.initialAsset = asset
+            self.configItems(asset)
+        }
+    }
+
+    func configItems(_ asset: AVAsset) {
+        DispatchQueue.main.async { [weak self] in
+            self?.subscriptions.forEach { $0.cancel() }
+            self?.subscriptions.removeAll()
+            self?.player = nil
+            self?.previewState = nil
+            self?.editorState = nil
+            let playerItem = AVPlayerItem(asset: asset)
+            self?.player = .init(playerItem: playerItem)
+            self?.previewState = .init(
+                playerItem: playerItem,
+                asset: asset,
+                playerState: .stop
+            )
+            self?.editorState = .init(asset: asset)
+            self?.bind()
         }
     }
 
@@ -50,32 +70,54 @@ fileprivate extension VideoEditorViewModel {
         player.$state.sink { [unowned self] state in
             previewState.playerState = state
             editorState.isVideoPlaying = state == .play
-        }.store(in: &subscriptions)
+        }.store(in: &player.subscriptions)
 
         player.$time.sink { [unowned self] time in
-            editorState.timeLineState.time = time
-        }.store(in: &subscriptions)
+            editorState.seek(to: time)
+        }.store(in: &player.subscriptions)
 
-        editorState.controlState.onItemInteracted.sink { [unowned self] item in
+        editorState.onItemInteracted.sink { [unowned self] item in
             switch item {
             case .playPause:
                 player.togglePlaying()
             case .enableDisable:
-                previewState.renderer.setEraseBackgroundEnabled(!editorState.isEraseEnabled)
+                previewState.setEraseBackgroundEnabled(!editorState.isEraseEnabled)
             }
-        }.store(in: &subscriptions)
+        }.store(in: &editorState.subscriptions)
 
-        editorState.timeLineState.onPlay.sink { [unowned self] in
+        editorState.optionChangeAccepted.sink { [unowned self] option in
+            switch option {
+            case .eraseBackground:
+                if editorState.isEraseEnabled {
+                    Task.do {
+                        guard let url = self.fileManager.generateTemporaryURL(),
+                              let asset = try await self.previewState.processVideoFrames(to: url)
+                        else { return }
+                        print("Process completed", asset)
+                        print(try await asset.loadTracks(withMediaType: .audio))
+                        self.configItems(asset)
+                    } catch: { error in
+                        print(error.localizedDescription)
+                    }
+                } else {
+                    configItems(initialAsset)
+                }
+            default:
+                break
+            }
+        }.store(in: &editorState.subscriptions)
+
+        editorState.onPlay.sink { [unowned self] in
             player.play()
-        }.store(in: &subscriptions)
+        }.store(in: &editorState.subscriptions)
 
-        editorState.timeLineState.onPause.sink { [unowned self] in
+        editorState.onPause.sink { [unowned self] in
             player.pause()
-        }.store(in: &subscriptions)
+        }.store(in: &editorState.subscriptions)
 
-        editorState.timeLineState.onSeek.sink { [unowned self] time in
+        editorState.onSeek.sink { [unowned self] time in
             player.seek(to: time)
             previewState.seekedTime = time
-        }.store(in: &subscriptions)
+        }.store(in: &editorState.subscriptions)
     }
 }

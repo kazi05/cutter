@@ -12,10 +12,12 @@ final class VideoEditorControlState: ObservableObject {
     @Published private(set) var leftOptions: [VideoEditorControlItem.Option]
     @Published private(set) var centerItems: [VideoEditorControlItem.Interaction]
     @Published private(set) var rightOptions: [VideoEditorControlItem.Option]
-    @Published private(set) var selectedItem: VideoEditorControlItem.Option?
+    @Published private(set) var selectedOption: VideoEditorControlItem.Option?
     
     let optionChangeAccepted = PassthroughSubject<VideoEditorControlItem.Option, Never>()
     let onItemInteracted = PassthroughSubject<VideoEditorControlItem.Interaction, Never>()
+
+    var subscriptions = Set<AnyCancellable>()
 
     private let initialLeftOptions: [VideoEditorControlItem.Option] = []
     private let initialCenterItems: [VideoEditorControlItem.Interaction] = [.playPause]
@@ -30,18 +32,26 @@ final class VideoEditorControlState: ObservableObject {
         self.centerItems = initialCenterItems
         self.rightOptions = initialRightOptions
     }
-    
+
+    deinit {
+        print("Editor control state deinited")
+        subscriptions.forEach { $0.cancel() }
+        subscriptions.removeAll()
+    }
+
     func optionChoosed(_ option: VideoEditorControlItem.Option) {
         switch option {
         case .cancelEditing:
-            selectedItem = nil
+            selectedOption = nil
             setInitialItems()
         case .acceptEditing:
-            selectedItem = nil
-            optionChangeAccepted.send(option)
+            if let option = selectedOption {
+                optionChangeAccepted.send(option)
+            }
+            selectedOption = nil
             setInitialItems()
         default:
-            selectedItem = option
+            selectedOption = option
             leftOptions = [.cancelEditing]
             rightOptions = [.acceptEditing]
         }

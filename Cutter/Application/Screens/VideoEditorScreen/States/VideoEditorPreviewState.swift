@@ -26,6 +26,10 @@ final class VideoEditorPreviewState: ObservableObject {
         self.playerState = playerState
     }
 
+    deinit {
+        print("Deinit preview state")
+    }
+
     func getVideoSize() async throws -> CGSize {
         guard let track = try await asset.loadTracks(withMediaType: .video).first else {
             return .zero
@@ -36,5 +40,13 @@ final class VideoEditorPreviewState: ObservableObject {
         let needRotate = size.width < normalSize.width
         renderer.setupVideoSize(normalSize, isNeedRotate: needRotate)
         return normalSize
+    }
+
+    func setEraseBackgroundEnabled(_ enabled: Bool) {
+        renderer.setEraseBackgroundEnabled(enabled)
+    }
+
+    func processVideoFrames(to destinationURL: URL) async throws -> AVAsset? {
+        try await renderer.processVideoFrames(to: destinationURL)
     }
 }

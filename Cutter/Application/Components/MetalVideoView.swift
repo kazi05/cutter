@@ -10,7 +10,7 @@ import MetalKit
 import AVFoundation
 
 struct MetalVideoView: UIViewRepresentable {
-    let renderer: VideoPreviewRenderer
+    weak var renderer: VideoPreviewRenderer?
     var state: VideoPlayerState
     var seekedTime: CMTime
 
@@ -46,17 +46,17 @@ struct MetalVideoView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, renderer: renderer)
+        return Coordinator(self, renderer: renderer)
     }
     
     class Coordinator: NSObject, MTKViewDelegate {
         var parent: MetalVideoView
-        var renderer: VideoPreviewRenderer
+        weak var renderer: VideoPreviewRenderer?
         var commandQueue: MTLCommandQueue?
         var pipelineState: MTLRenderPipelineState?
         var samplerState: MTLSamplerState?
         
-        init(_ parent: MetalVideoView, renderer: VideoPreviewRenderer) {
+        init(_ parent: MetalVideoView, renderer: VideoPreviewRenderer?) {
             self.parent = parent
             self.renderer = renderer
             super.init()
@@ -107,7 +107,7 @@ struct MetalVideoView: UIViewRepresentable {
         }
         
         func draw(in view: MTKView) {
-            guard let texture = renderer.getCurrentFrameTexture(),
+            guard let texture = renderer?.getCurrentFrameTexture(),
                   let drawable = view.currentDrawable,
                   let commandBuffer = commandQueue?.makeCommandBuffer(),
                   let renderDescriptor = view.currentRenderPassDescriptor,
@@ -118,7 +118,7 @@ struct MetalVideoView: UIViewRepresentable {
                 return
             }
 
-            var renderParams = RenderParameters(shouldRotate: renderer.isNeedRotate)
+            var renderParams = RenderParameters(shouldRotate: renderer?.isNeedRotate ?? false)
             let renderParamsBuffer = view.device?.makeBuffer(bytes: &renderParams, length: MemoryLayout<RenderParameters>.size, options: [])
 
             commandEncoder.setRenderPipelineState(pipelineState)

@@ -32,7 +32,7 @@ struct VideoEditorControls: View {
             .frame(minWidth: 100)
 
             VStack(alignment: .center, spacing: 8) {
-                if let title = controlState.selectedItem?.title {
+                if let title = controlState.selectedOption?.title {
                     Text(LocalizedStringResource(stringLiteral: title))
                         .font(.system(size: 14))
                         .lineLimit(1)
@@ -71,9 +71,9 @@ struct VideoEditorControls: View {
             case .acceptEditing:
                 .checkmark
         }
-        Button(action: {
+        Button(action: { [weak controlState] in
             withAnimation {
-                controlState.optionChoosed(option)
+                controlState?.optionChoosed(option)
             }
         }, label: {
             Image(image)
@@ -84,8 +84,8 @@ struct VideoEditorControls: View {
     private func viewForInteraction(_ interaction: VideoEditorControlItem.Interaction) -> some View {
         switch interaction {
         case .playPause:
-            Button(action: {
-                controlState.itemInteracted(interaction)
+            Button(action: { [weak controlState] in
+                controlState?.itemInteracted(interaction)
             }, label: {
                 Image(state.isVideoPlaying ? .pause.fill : .play.fill)
             })

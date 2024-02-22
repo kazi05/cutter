@@ -9,7 +9,12 @@ import Photos
 import Dependencies
 
 protocol VideoThumbnailService {
-    func getAssetThumnail(from asset: PHAsset) async -> AssetThumbnailGenerator
+    func getAssetThumnail(
+        from asset: PHAsset,
+        completion: @escaping (AssetThumbnailGenerator?) -> Void
+    ) -> PHImageRequestID
+
+    func cancelRequest(_ requestID: PHImageRequestID)
 }
 
 //MARK: - DependencyValues
@@ -39,16 +44,23 @@ final class VideoThumbnailServiceImpl: VideoThumbnailService {
         print("Thumbnail service inited")
     }
 
-    func getAssetThumnail(from asset: PHAsset) async -> AssetThumbnailGenerator {
-        return await withCheckedContinuation { continuation in
-            imageManager.requestAVAsset(forVideo: asset, options: options) { (avAsset, _, _) in
-                guard let avAsset else {
-                    return
-                }
-                let model = AssetThumbnailGenerator(asset: avAsset)
-                continuation.resume(returning: model)
+    func getAssetThumnail(
+        from asset: PHAsset,
+        completion: @escaping (AssetThumbnailGenerator?) -> Void
+    ) -> PHImageRequestID {
+        let requestID = imageManager.requestAVAsset(forVideo: asset, options: options) { (avAsset, _, _) in
+            guard let avAsset else {
+                completion(nil)
+                return
             }
+            let model = AssetThumbnailGenerator(asset: avAsset)
+            completion(model)
         }
+        return requestID
+    }
+
+    func cancelRequest(_ requestID: PHImageRequestID) {
+        imageManager.cancelImageRequest(requestID)
     }
 }
 

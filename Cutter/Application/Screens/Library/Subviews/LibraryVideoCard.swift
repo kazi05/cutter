@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Dependencies
+import Photos
 
 struct LibraryVideoCard: View {
     let video: VideoThumbnail
@@ -14,6 +15,7 @@ struct LibraryVideoCard: View {
     @Dependency(\.videoThumbnailService) private var videoThumbnailService
     @State private var thumbnail: UIImage? = nil
     @State private var videoDuration: String? = nil
+    @State private var requestID: PHImageRequestID?
 
     var body: some View {
         Group {
@@ -35,14 +37,27 @@ struct LibraryVideoCard: View {
                 ProgressView()
             }
         }
-        .task {
-            do {
-                guard thumbnail == nil && videoDuration == nil else { return }
-                let asset = await videoThumbnailService.getAssetThumnail(from: video.asset)
+        .onAppear {
+            loadVideoData()
+        }
+        .onDisappear {
+            // Освобождение ресурсов
+            self.thumbnail = nil
+            self.videoDuration = nil
+            if let requestID, thumbnail == nil {
+                videoThumbnailService.cancelRequest(requestID)
+            }
+        }
+    }
+
+    func loadVideoData() {
+        guard thumbnail == nil && videoDuration == nil else { return }
+        requestID = videoThumbnailService.getAssetThumnail(from: video.asset) { asset in
+            guard let asset else { return }
+            Task {
                 thumbnail = await asset.generateImage()
                 videoDuration = try await asset.videoDuration
-            } catch {
-                print(error.localizedDescription)
+                requestID = nil
             }
         }
     }

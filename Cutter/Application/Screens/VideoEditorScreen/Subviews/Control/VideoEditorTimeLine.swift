@@ -7,13 +7,10 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct VideoEditorTimeLine: View {
     @ObservedObject private var state: VideoEditorTimeLineState
-
-    private var timeLineGenerator: VideoTimeLineGenerator {
-        state.timeLineGenerator
-    }
 
     @Environment(\.safeAreaInsets) private var safeAreaInsets
 
@@ -39,22 +36,9 @@ struct VideoEditorTimeLine: View {
                 contentSize: contentSize,
                 showsIndicators: false, 
                 contentOffset: contentOffset,
-                contentInset: .init(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset),
-                onIsScrolling: { isScrolling in
-                    if isScrolling {
-                        state.pause()
-                    }
-                },
-                onOffsetChanged: { offset in
-                    guard offset.x > 0 else { return }
-                    let frameWidth = gr.size.height * max(1, frameStepScale)
-                    let seconds = offset.x / frameWidth * frameStepSeconds
-                    let time = CMTime(seconds: seconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-                    
-                    state.seek(to: time)
-                }) {
+                contentInset: .init(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset)) {
                     LazyHGrid(rows: [.init(.fixed(frameSize.height), spacing: 0)], spacing: 0, content: {
-                        ForEach(timeLineGenerator.thumbnails, id: \.id) { thumb in
+                        ForEach(state.timeLineGenerator.thumbnails, id: \.id) { thumb in
                             Image(uiImage: thumb.image)
                                 .resizable()
                                 .scaledToFill()
@@ -67,7 +51,20 @@ struct VideoEditorTimeLine: View {
                             .stroke(.accent, lineWidth: 4)
                     )
             }
-            .onReceive(timeLineGenerator.$thumbnails, perform: { thumbnails in
+                .onIsScrolling { [weak state] isScrolling in
+                    if isScrolling {
+                        state?.pause()
+                    }
+                }
+                .onOffsetChanged { [weak state] offset in
+                    guard offset.x > 0 else { return }
+                    let frameWidth = gr.size.height * max(1, frameStepScale)
+                    let seconds = offset.x / frameWidth * frameStepSeconds
+                    let time = CMTime(seconds: seconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+
+                    state?.seek(to: time)
+                }
+            .onReceive(state.timeLineGenerator.$thumbnails, perform: { thumbnails in
                 let width = CGFloat(thumbnails.count) * frameSize.width
                 contentSize = .init(width: width, height: frameSize.height)
             })
@@ -88,7 +85,7 @@ struct VideoEditorTimeLine: View {
                         let value = lastFrameStepScale + formattedValue
                         let scale = 1 + value.truncatingRemainder(dividingBy: 1)
                         frameStepScale = scale
-                        let width = CGFloat(timeLineGenerator.thumbnails.count) * frameSize.width
+                        let width = CGFloat((state.timeLineGenerator.thumbnails).count) * frameSize.width
                         contentSize = .init(width: width, height: frameSize.height)
                         let stepSeconds = lastFrameStepSeconds - (value - 1).rounded(.down)
                         if frameStepSeconds != stepSeconds && stepSeconds < videoDuration.seconds / 4 {
@@ -116,7 +113,7 @@ struct VideoEditorTimeLine: View {
         })
         .onFirstAppear {
             Task.do {
-                videoDuration = try await timeLineGenerator.asset.load(.duration)
+                videoDuration = try await state.timeLineGenerator.asset.load(.duration)
                 try await generateTimeline()
             } catch: { error in
                 fatalError(error.localizedDescription)
@@ -126,6 +123,6 @@ struct VideoEditorTimeLine: View {
     
     private func generateTimeline() async throws {
         let times = stride(from: CMTime.zero, to: videoDuration, by: frameStepSeconds).map { $0 }
-        try await timeLineGenerator.generateThumbnails(at: times)
+        try await state.timeLineGenerator.generateThumbnails(at: times)
     }
 }
