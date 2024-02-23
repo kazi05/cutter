@@ -68,11 +68,10 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, onIsScrolling: _onIsScrolling, onOffsetChanged: _onOffsetChanged)
+        Coordinator(onIsScrolling: _onIsScrolling, onOffsetChanged: _onOffsetChanged)
     }
     
     class Coordinator: NSObject, UIScrollViewDelegate {
-        let parent: UIKScrollView
         var hostingController: UIHostingController<Content>?
         
         private(set) var isScrolling = false
@@ -80,8 +79,7 @@ struct UIKScrollView<Content:View>: UIViewRepresentable {
         private var onIsScrolling: ((Bool) -> Void)?
         private var onOffsetChanged: ((CGPoint) -> Void)?
 
-        init(_ parent: UIKScrollView, onIsScrolling: ((Bool) -> Void)?, onOffsetChanged: ((CGPoint) -> Void)?) {
-            self.parent = parent
+        init(onIsScrolling: ((Bool) -> Void)?, onOffsetChanged: ((CGPoint) -> Void)?) {
             self.onIsScrolling = onIsScrolling
             self.onOffsetChanged = onOffsetChanged
         }

@@ -17,8 +17,10 @@ struct VideoEditorControlContainer: View {
     var body: some View {
         VStack(spacing: 0) {
             VideoEditorControls(state: editorState)
+                .id(Unmanaged.passUnretained(editorState).toOpaque())
 
             VideoEditorTimeLine(state: editorState.timeLineState)
+                .id(Unmanaged.passUnretained(editorState).toOpaque())
                 .frame(maxWidth: .infinity, maxHeight: 135)
         }
         .frame(maxWidth: .infinity)

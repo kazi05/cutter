@@ -51,18 +51,18 @@ struct VideoEditorTimeLine: View {
                             .stroke(.accent, lineWidth: 4)
                     )
             }
-                .onIsScrolling { [weak state] isScrolling in
+                .onIsScrolling { isScrolling in
                     if isScrolling {
-                        state?.pause()
+                        state.pause()
                     }
                 }
-                .onOffsetChanged { [weak state] offset in
+                .onOffsetChanged { offset in
                     guard offset.x > 0 else { return }
                     let frameWidth = gr.size.height * max(1, frameStepScale)
                     let seconds = offset.x / frameWidth * frameStepSeconds
                     let time = CMTime(seconds: seconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
 
-                    state?.seek(to: time)
+                    state.seek(to: time)
                 }
             .onReceive(state.timeLineGenerator.$thumbnails, perform: { thumbnails in
                 let width = CGFloat(thumbnails.count) * frameSize.width

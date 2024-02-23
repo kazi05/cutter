@@ -43,9 +43,6 @@ struct VideoEditorPreview: View {
                     }
                     .frame(width: previewWidth, height: previewHeight)
                     .clipShape(RoundedRectangle(cornerSize: .init(width: 8, height: 8)))
-                    .overlay {
-                        Text(String(describing: Unmanaged.passUnretained(preview).toOpaque()))
-                    }
             }
         }
         .id(Unmanaged.passUnretained(preview).toOpaque())
