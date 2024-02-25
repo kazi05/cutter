@@ -12,22 +12,23 @@ struct LibraryScreen: View {
     
     @StateObject private var state = LibraryState()
     @EnvironmentObject private var navigationStateManager: AppNavigationStateManager
-    @Environment(\.screenSize) private var screenSize
 
     var body: some View {
-        ScrollView {
-            switch state.state {
-            case .loading:
-                ProgressView()
-                    .frame(maxWidth: .infinity)
-            case .loaded(let models):
-                if models.isEmpty { emptyView } else { listView(models) }
-            case .error(let error):
-                errorView(error)
+        GeometryReader { gr in
+            ScrollView {
+                switch state.state {
+                case .loading:
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                case .loaded(let models):
+                    if models.isEmpty { emptyView } else { listView(models, size: gr.size) }
+                case .error(let error):
+                    errorView(error)
+                }
             }
+            .background(Color.backgorund)
+            .navigationTitle("LIBRARY_TITLE")
         }
-        .background(Color.backgorund)
-        .navigationTitle("LIBRARY_TITLE")
         .onFirstAppear {
             state.onAppear()
         }
@@ -61,7 +62,7 @@ struct LibraryScreen: View {
     }
     
     @ViewBuilder
-    private func listView(_ models: [VideoThumbnail]) -> some View {
+    private func listView(_ models: [VideoThumbnail], size: CGSize) -> some View {
         let threeColumnGrid = [
             GridItem(.flexible(), spacing: 4),
             GridItem(.flexible(), spacing: 4),
@@ -74,12 +75,11 @@ struct LibraryScreen: View {
                         navigationStateManager.openVideoEditing(model)
                     }
             }
+            .frame(height: size.width / 3 * 1.60)
             .clipped()
-            .aspectRatio(0.60, contentMode: .fit)
-            .frame(height: screenSize.width / 3 * 1.60)
         })
         .padding(8)
-        
+
         List(selection: $navigationStateManager.selectionState, content: {})
             .hidden()
     }

@@ -31,6 +31,7 @@ struct VideoEditorTimeLine: View {
             let parentWidth = gr.size.width
             let frameSize = CGSize(width: gr.size.height * max(1, frameStepScale), height: gr.size.height)
             let horizontalInset = parentWidth / 2
+
             UIKScrollView(
                 .horizontal,
                 contentSize: contentSize,
@@ -123,6 +124,9 @@ struct VideoEditorTimeLine: View {
     
     private func generateTimeline() async throws {
         let times = stride(from: CMTime.zero, to: videoDuration, by: frameStepSeconds).map { $0 }
-        try await state.timeLineGenerator.generateThumbnails(at: times)
+        try await state.timeLineGenerator.generateThumbnails(
+            at: times,
+            size: .init(width: contentSize.height * 2, height: contentSize.height * 2)
+        )
     }
 }

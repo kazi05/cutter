@@ -32,12 +32,14 @@ final class VideoTimeLineGenerator: ObservableObject {
     @MainActor
     func generateThumbnails(
         at times: [CMTime],
+        size: CGSize,
         disableTolerance: Bool = false,
         needReloadForTolerance: Bool = true
     ) async throws {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
-        
+        imageGenerator.maximumSize = size
+
         let images = try await withThrowingTaskGroup(of: (UIImage, CMTime).self, returning: [Thumbnail].self) { group in
 
             for time in times {
@@ -98,5 +100,29 @@ final class VideoTimeLineGenerator: ObservableObject {
         }
         let (cgImage, newTime) = try await imageGenerator.image(at: time)
         return (UIImage(cgImage: cgImage), disableTolerance ? newTime : time)
+    }
+}
+
+extension Int {
+
+    public enum DataUnits: String {
+        case byte, kilobyte, megabyte, gigabyte
+    }
+
+    func getSizeIn(_ type: DataUnits)-> String {
+        var size: Double = 0.0
+
+        switch type {
+        case .byte:
+            size = Double(self)
+        case .kilobyte:
+            size = Double(self) / 1024
+        case .megabyte:
+            size = Double(self) / 1024 / 1024
+        case .gigabyte:
+            size = Double(self) / 1024 / 1024 / 1024
+        }
+
+        return String(format: "%.2f", size)
     }
 }

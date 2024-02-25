@@ -18,10 +18,13 @@ struct LibraryVideoCard: View {
     @State private var requestID: PHImageRequestID?
 
     var body: some View {
-        Group {
+        GeometryReader { gr in
             if let thumbnail, let videoDuration {
                 Image(uiImage: thumbnail)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: gr.size.width, height: gr.size.height, alignment: .center)
+                    .contentShape(Rectangle())
                     .clipShape(RoundedRectangle(cornerSize: .init(width: 8, height: 8)))
                     .overlay(alignment: .bottom) {
                         ZStack {
@@ -35,6 +38,7 @@ struct LibraryVideoCard: View {
                     }
             } else {
                 ProgressView()
+                    .frame(width: gr.size.width, height: gr.size.height, alignment: .center)
             }
         }
         .onAppear {

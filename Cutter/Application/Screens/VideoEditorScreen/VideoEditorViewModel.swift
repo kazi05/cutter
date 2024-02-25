@@ -14,14 +14,15 @@ final class VideoEditorViewModel: ObservableObject {
     private weak var initialAsset: AVAsset!
     private var player: VideoPreviewPlayer!
 
-
     @Published private(set) var previewState: VideoEditorPreviewState!
     @Published private(set) var editorState: VideoEditorState!
 
     private var subscriptions = Set<AnyCancellable>()
     private let fileManager = VideoOutputFileManager.shared
+    private let videoRenderingStateManager: VideoRenderingStateManager
 
-    init(video: VideoThumbnail) {
+    init(video: VideoThumbnail, videoRenderingStateManager: VideoRenderingStateManager) {
+        self.videoRenderingStateManager = videoRenderingStateManager
         config(with: video)
     }
 
@@ -29,7 +30,7 @@ final class VideoEditorViewModel: ObservableObject {
         print("Deinit view model")
         subscriptions.forEach { $0.cancel() }
         subscriptions.removeAll()
-        fileManager.deleteFile()
+        fileManager.deleteFiles()
     }
 }
 
@@ -90,14 +91,19 @@ fileprivate extension VideoEditorViewModel {
             case .eraseBackground:
                 if editorState.isEraseEnabled {
                     Task.do {
+                        defer { self.videoRenderingStateManager.completeRenderProgress() }
+                        let progress = VideoRenderProgressState(title: "RENDER_ERASE_PROGRESS_TITLE")
+                        self.videoRenderingStateManager.beginRenderProgress(progress)
                         guard let url = self.fileManager.generateTemporaryURL(),
-                              let asset = try await self.previewState.processVideoFrames(to: url)
-                        else { return }
-                        print("Process completed", asset)
-                        print(try await asset.loadTracks(withMediaType: .audio))
+                              let asset = try await self.previewState.processVideoFrames(to: url, progress: progress)
+                        else {
+                            return
+                        }
                         self.configItems(asset)
                     } catch: { error in
                         print(error.localizedDescription)
+                        self.configItems(self.initialAsset)
+                        self.videoRenderingStateManager.completeRenderProgress()
                     }
                 } else {
                     configItems(initialAsset)

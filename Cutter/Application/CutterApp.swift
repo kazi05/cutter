@@ -10,15 +10,23 @@ import SwiftUI
 @main
 struct CutterApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject var navigationStateManager = AppNavigationStateManager()
-    
+    @StateObject private var navigationStateManager = AppNavigationStateManager()
+    @StateObject private var videoRenderingStateManager = VideoRenderingStateManager()
+
     var body: some Scene {
         WindowGroup {
             NavigationSplitView {
                 LibraryScreen()
             } detail: {
-                ContentDetailsScreen()
+                ContentDetailsScreen(videoRenderingStateManager: videoRenderingStateManager)
             }
+            .overlay(content: {
+                if let progressModel = videoRenderingStateManager.progressModel {
+                    VideoRenderProgressView(progressState: progressModel)
+                } else {
+                    Color.clear
+                }
+            })
             .environmentObject(navigationStateManager)
         }
     }

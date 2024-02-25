@@ -8,28 +8,18 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct RenderParameters {
-    bool convertToBGRA;
-    bool shouldRotate;
-};
-
 kernel void bg_erase(texture2d<float, access::read>  inputTexture  [[ texture(0) ]],
                      texture2d<float, access::read>  maskTexture   [[ texture(1) ]],
                      texture2d<float, access::write> outputTexture [[ texture(2) ]],
-                     constant RenderParameters& params [[buffer(0)]],
                      uint2 gid [[ thread_position_in_grid ]]) {
     // Чтение и применение маски аналогично, с использованием адаптированных координат rotatedGid
     float4 color = inputTexture.read(gid);
     float4 maskColor = maskTexture.read(gid);
 
-    if (maskColor.r > 0.4f) {
-        if (params.convertToBGRA) {
-            outputTexture.write(float4(color.b, color.g, color.r, color.a), gid);
-        } else {
-            outputTexture.write(color, gid);
-        }
+    if (maskColor.r > 0.01f) {
+        outputTexture.write(color, gid);
     } else {
-        outputTexture.write(float4(0.0, 1.0, 0.0, 1.0), gid); // Записываем прозрачный цвет
+        outputTexture.write(float4(0.6078431373, 1.0, 0.4705882353, 1.0), gid); // Цвет хромакея
     }
 }
 

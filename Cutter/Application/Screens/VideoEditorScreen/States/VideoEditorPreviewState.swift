@@ -46,7 +46,10 @@ final class VideoEditorPreviewState: ObservableObject {
         renderer.setEraseBackgroundEnabled(enabled)
     }
 
-    func processVideoFrames(to destinationURL: URL) async throws -> AVAsset? {
-        try await renderer.processVideoFrames(to: destinationURL)
+    func processVideoFrames(
+        to destinationURL: URL,
+        progress: VideoRenderProgressState
+    ) async throws -> AVAsset? {
+        try await renderer.processVideoFrames(to: destinationURL, progress: progress)
     }
 }

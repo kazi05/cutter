@@ -38,7 +38,7 @@ final class VideoLibraryServiceImpl: VideoLibraryService {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
-        let fetchResult = PHAsset.fetchAssets(with: .video, options: options)
+        let fetchResult = PHAsset.fetchAssets(with: .video, options: nil)
         
         guard fetchResult.count > 0 else {
             return []

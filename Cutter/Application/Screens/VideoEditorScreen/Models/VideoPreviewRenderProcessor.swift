@@ -13,13 +13,6 @@ final class VideoPreviewRenderProcessor {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
     private let pipelineState: MTLComputePipelineState
-    private let resizePipelineState: MTLComputePipelineState
-    private var textureCache: CVMetalTextureCache?
-
-    private struct RenderParameters {
-        let convertToBGRA: Bool
-        let shouldRotate: Bool
-    }
 
     init(device: MTLDevice) {
         self.device = device
@@ -27,17 +20,14 @@ final class VideoPreviewRenderProcessor {
         let library = device.makeDefaultLibrary()!
         let kernelFunction = library.makeFunction(name: "bg_erase")!
         self.pipelineState = try! device.makeComputePipelineState(function: kernelFunction)
-        let resizeFunction = library.makeFunction(name: "resize_image")!
-        self.resizePipelineState = try! device.makeComputePipelineState(function: resizeFunction)
-        CVMetalTextureCacheCreate(nil, nil, device, nil, &textureCache)
     }
 
-    public func eraseBackground(from image: CGImage, maskImage: CGImage) -> MTLTexture? {
-        let width = image.width
-        let height = image.height
+    public func eraseBackground(from frame: CVPixelBuffer, mask: CVPixelBuffer) -> MTLTexture? {
+        let width = CVPixelBufferGetWidth(frame)
+        let height = CVPixelBufferGetHeight(frame)
         // Создаем выходную текстуру
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(
-            pixelFormat: .rgba8Unorm,
+            pixelFormat: .bgra8Unorm,
             width: width,
             height: height,
             mipmapped: false
@@ -45,11 +35,13 @@ final class VideoPreviewRenderProcessor {
         descriptor.usage = [.shaderWrite, .shaderRead]
         let outputTexture = device.makeTexture(descriptor: descriptor)!
 
-        let textureLoader = MTKTextureLoader(device: device)
-        guard let originalTexture = try? textureLoader.newTexture(cgImage: image),
-              let maskTexture = try? textureLoader.newTexture(cgImage: maskImage)
+        let originalTexture = createTexture(from: frame)
+        let maskTexture = createTexture(from: mask)
+        
+        guard let originalTexture,
+              let maskTexture
         else { return nil }
-
+        
         // Обработка
         let commandBuffer = commandQueue.makeCommandBuffer()!
         let commandEncoder = commandBuffer.makeComputeCommandEncoder()!
@@ -57,10 +49,6 @@ final class VideoPreviewRenderProcessor {
         commandEncoder.setTexture(originalTexture, index: 0)
         commandEncoder.setTexture(maskTexture, index: 1)
         commandEncoder.setTexture(outputTexture, index: 2)
-
-        var renderParams = RenderParameters(convertToBGRA: false, shouldRotate: false)
-        let renderParamsBuffer = device.makeBuffer(bytes: &renderParams, length: MemoryLayout<RenderParameters>.size, options: [])
-        commandEncoder.setBuffer(renderParamsBuffer, offset: 0, index: 0)
 
         // Запуск шейдера
         let threadsPerGroup = MTLSize(width: 16, height: 16, depth: 1)
@@ -77,14 +65,13 @@ final class VideoPreviewRenderProcessor {
 
     public func eraseBackground(
         from image: CGImage,
-        maskImage: CGImage,
-        rotated: Bool
+        maskImage: CGImage
     ) -> CVPixelBuffer? {
         let width = image.width
         let height = image.height
         // Создаем выходную текстуру
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(
-            pixelFormat: .rgba8Unorm,
+            pixelFormat: .bgra8Unorm,
             width: width,
             height: height,
             mipmapped: false
@@ -105,10 +92,6 @@ final class VideoPreviewRenderProcessor {
         commandEncoder.setTexture(maskTexture, index: 1)
         commandEncoder.setTexture(outputTexture, index: 2)
 
-        var renderParams = RenderParameters(convertToBGRA: true, shouldRotate: rotated)
-        let renderParamsBuffer = device.makeBuffer(bytes: &renderParams, length: MemoryLayout<RenderParameters>.size, options: [])
-        commandEncoder.setBuffer(renderParamsBuffer, offset: 0, index: 0)
-
         // Запуск шейдера
         let threadsPerGroup = MTLSize(width: 16, height: 16, depth: 1)
         let numThreadgroups = MTLSize(width: (width + 15) / 16, height: (height + 15) / 16, depth: 1)
@@ -123,7 +106,37 @@ final class VideoPreviewRenderProcessor {
         guard convert(texture: outputTexture, toPixelBufferOut: &pixelBuffer) else {
             fatalError()
         }
-        return pixelBuffer?.rotate90PixelBuffer(factor: 3)
+        return pixelBuffer
+    }
+
+    private func createTexture(from pixelBuffer: CVPixelBuffer) -> MTLTexture? {
+        var textureCache: CVMetalTextureCache?
+        CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache)
+        guard let textureCache else {
+            return nil
+        }
+
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+
+        var cvMetalTexture: CVMetalTexture?
+        let result = CVMetalTextureCacheCreateTextureFromImage(
+            kCFAllocatorDefault,
+            textureCache,
+            pixelBuffer,
+            nil,
+            .bgra8Unorm,
+            width,
+            height,
+            0,
+            &cvMetalTexture
+        )
+
+        guard result == kCVReturnSuccess,
+              let cvMetalTexture = cvMetalTexture
+        else { return nil }
+
+        return CVMetalTextureGetTexture(cvMetalTexture)
     }
 
     func convert(texture: MTLTexture, toPixelBufferOut pixelBufferOut: inout CVPixelBuffer?) -> Bool {

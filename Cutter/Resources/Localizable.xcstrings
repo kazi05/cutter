@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%lld %%" : {
+
+    },
     "DETAILS_PICK_VIDEO" : {
       "localizations" : {
         "en" : {
@@ -87,6 +90,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unknown error"
+          }
+        }
+      }
+    },
+    "RENDER_ERASE_PROGRESS_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erasing the background from your video"
+          }
+        }
+      }
+    },
+    "RENDER_PROGRESS_CANCEL" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel rendering"
+          }
+        }
+      }
+    },
+    "RENDER_PROGRESS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rendering ..."
           }
         }
       }

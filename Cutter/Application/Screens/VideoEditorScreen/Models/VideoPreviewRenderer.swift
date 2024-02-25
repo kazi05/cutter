@@ -16,7 +16,7 @@ final class VideoPreviewRenderer {
     private let videoOutput: AVPlayerItemVideoOutput
     private var textureCache: CVMetalTextureCache?
     private var eraseBackgroundEnabled = false
-    private(set) var isNeedRotate = false
+    private var isNeedRotate = false
 
     let device: MTLDevice
 
@@ -52,14 +52,19 @@ final class VideoPreviewRenderer {
     public func setupVideoSize(_ videoSize: CGSize, isNeedRotate: Bool) {
         self.isNeedRotate = isNeedRotate
         let maxVideoSize = max(videoSize.width, videoSize.height)
-        if maxVideoSize > 1280 {
-            self.predictor = RVMPredictorFHD()
-        } else {
-            self.predictor = RVMPredictorHD()
+        let isPortrait = videoSize.width < videoSize.height
+        switch maxVideoSize {
+        case 1281...1920:
+            self.predictor = isPortrait ? RVMPredictorFHD_P() : RVMPredictorFHD()
+        case 1921...3840:
+            self.predictor = isPortrait ? RVMPredictor4K_P() : RVMPredictor4K()
+        default:
+            self.predictor = isPortrait ? RVMPredictorHD_P() : RVMPredictorHD()
         }
     }
 
     public func getCurrentFrameTexture() -> MTLTexture? {
+        var textureCache: CVMetalTextureCache?
         if textureCache == nil {
             var cache: CVMetalTextureCache?
             CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &cache)
@@ -75,8 +80,12 @@ final class VideoPreviewRenderer {
         }
         
         let currentTime = playerItem.currentTime()
-        guard let pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil) else {
+        guard var pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil) else {
             return nil
+        }
+
+        if isNeedRotate, let rotated = pixelBuffer.rotate90PixelBuffer(factor: 3) {
+            pixelBuffer = rotated
         }
 
         if eraseBackgroundEnabled, let processedTexture = processFrame(pixelBuffer) {
@@ -90,7 +99,10 @@ final class VideoPreviewRenderer {
         return texture
     }
 
-    func processVideoFrames(to destinationURL: URL) async throws -> AVAsset? {
+    func processVideoFrames(
+        to destinationURL: URL,
+        progress: VideoRenderProgressState
+    ) async throws -> AVAsset? {
         // Создаем AVAsset и AVAssetReader
         let asset = playerItem.asset
         guard let assetReader = try? AVAssetReader(asset: asset) else {
@@ -117,6 +129,7 @@ final class VideoPreviewRenderer {
         // Настройки для видеоинпута
         let transform = try await videoTrack.load(.preferredTransform)
         let videoSize = try await videoTrack.load(.naturalSize).applying(transform)
+        let videoDuration = try await asset.load(.duration)
         let writerInputSettings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
             AVVideoWidthKey: abs(videoSize.width),
@@ -153,6 +166,12 @@ final class VideoPreviewRenderer {
 
         let processingQueue = DispatchQueue(label: "processingQueue")
 
+        progress.handleCancel {
+            VideoOutputFileManager.shared.deleteFiles()
+            assetReader.cancelReading()
+            assetWriter.cancelWriting()
+        }
+
         return try await withCheckedThrowingContinuation { continuation in
             processingQueue.async {
                 var videoFinished = false
@@ -165,30 +184,26 @@ final class VideoPreviewRenderer {
                                 let presentationTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
                                 if let processedPixelBuffer = self.processFrame(sampleBuffer) {
                                     pixelBufferAdaptor.append(processedPixelBuffer, withPresentationTime: presentationTime)
-                                    print("Process video", presentationTime.seconds)
+                                    progress.updateProgress(presentationTime.seconds / videoDuration.seconds)
                                 }
                             } else {
                                 videoWriterInput.markAsFinished()
-                                print("Process video completed")
                                 videoFinished = true
                             }
                         }
                         
                         if audioWriterInput.isReadyForMoreMediaData, !audioFinished {
                             if let sampleBuffer = audioReaderOutput.copyNextSampleBuffer() {
-                                let presentationTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
                                 audioWriterInput.append(sampleBuffer)
-                                print("Process audio", presentationTime.seconds)
                             } else {
                                 audioWriterInput.markAsFinished()
-                                print("Process audio completed")
                                 audioFinished = true
                             }
                         }
                     }
                 }
                 
-                print(assetReader.status.rawValue, assetWriter.status.rawValue)
+
                 if assetReader.status == .completed {
                     assetWriter.finishWriting {
                         if assetWriter.status == .failed {
@@ -229,58 +244,31 @@ final class VideoPreviewRenderer {
     }
 
     private func processFrame(_ frame: CVPixelBuffer) -> MTLTexture? {
-        var resizedFrame = frame
-        let initialWidth = CVPixelBufferGetWidth(frame)
-        let initialHeight = CVPixelBufferGetHeight(frame)
-        let inputWidth = predictor.inputWidth
-        let inputHeight = predictor.inputHeight
-        let needResize = initialWidth < initialHeight || initialWidth > inputWidth
-        if needResize, let resized = frame.resizePixelBuffer(width: inputWidth, height: inputHeight) {
-            resizedFrame = resized
+        let (fgr, pha) = predictor.predict(src: frame)
+        guard let bgraPha = pha.toBGRApixelBuffer() else {
+            return nil
         }
-        var (fgr, pha) = predictor.predict(src: resizedFrame)
-        if needResize,
-           let originalFgr = fgr.resizePixelBuffer(width: initialWidth, height: initialHeight),
-           let originalPha = pha.resizePixelBuffer(width: initialWidth, height: initialHeight){
-            fgr = originalFgr
-            pha = originalPha
+        return processor.eraseBackground(
+            from: fgr,
+            mask: bgraPha
+        )
+    }
+
+    private func processFrame(_ frame: CMSampleBuffer) -> CVPixelBuffer? {
+        guard var frame = CMSampleBufferGetImageBuffer(frame) else {
+          return nil
         }
+        if isNeedRotate, let rotated = frame.rotate90PixelBuffer(factor: 3) {
+            frame = rotated
+        }
+        let (fgr, pha) = predictor.predict(src: frame)
+        
         guard let bgraPha = pha.toBGRApixelBuffer() else {
             return nil
         }
         return processor.eraseBackground(
             from: fgr.toCGImage(),
             maskImage: bgraPha.toCGImage()
-        )
-    }
-
-    private func processFrame(_ frame: CMSampleBuffer) -> CVPixelBuffer? {
-        guard let frame = CMSampleBufferGetImageBuffer(frame) else {
-          return nil
-        }
-        var resizedFrame = frame
-        let initialWidth = CVPixelBufferGetWidth(frame)
-        let initialHeight = CVPixelBufferGetHeight(frame)
-        let inputWidth = predictor.inputWidth
-        let inputHeight = predictor.inputHeight
-        let needResize = initialWidth < initialHeight || initialWidth > inputWidth
-        if needResize, let resized = frame.resizePixelBuffer(width: inputWidth, height: inputHeight) {
-            resizedFrame = resized
-        }
-        var (fgr, pha) = predictor.predict(src: resizedFrame)
-        if needResize,
-           let originalFgr = fgr.resizePixelBuffer(width: initialWidth, height: initialHeight),
-           let originalPha = pha.resizePixelBuffer(width: initialWidth, height: initialHeight){
-            fgr = originalFgr
-            pha = originalPha
-        }
-        guard let bgraPha = pha.toBGRApixelBuffer() else {
-            return nil
-        }
-        return processor.eraseBackground(
-            from: fgr.toCGImage(),
-            maskImage: bgraPha.toCGImage(),
-            rotated: isNeedRotate
         )
     }
 

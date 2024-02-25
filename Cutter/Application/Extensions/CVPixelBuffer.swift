@@ -19,20 +19,8 @@ extension CVPixelBuffer {
     func toBGRApixelBuffer() -> CVPixelBuffer? {
         let width = CVPixelBufferGetWidth(self)
         let height = CVPixelBufferGetHeight(self)
-        let frameSize = CGSize(width: width, height: height)
 
-        var pixelBuffer:CVPixelBuffer? = nil
-        let status = CVPixelBufferCreate(
-            kCFAllocatorDefault,
-            Int(frameSize.width),
-            Int(frameSize.height),
-            kCVPixelFormatType_32BGRA,
-            nil,
-            &pixelBuffer
-        )
-        if status != kCVReturnSuccess {
-            return nil
-        }
+        let pixelBuffer = createPixelBuffer(width: width, height: height, pixelFormat: kCVPixelFormatType_32BGRA)
 
         CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags.init(rawValue: 0))
         let data = CVPixelBufferGetBaseAddress(pixelBuffer!)
@@ -40,8 +28,8 @@ extension CVPixelBuffer {
         let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue)
         let context = CGContext(
             data: data,
-            width: Int(frameSize.width),
-            height: Int(frameSize.height),
+            width: width,
+            height: height,
             bitsPerComponent: 8,
             bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!),
             space: rgbColorSpace,

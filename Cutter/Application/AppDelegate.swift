@@ -19,6 +19,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        VideoOutputFileManager.shared.deleteFile()
+        VideoOutputFileManager.shared.deleteFiles()
     }
 }

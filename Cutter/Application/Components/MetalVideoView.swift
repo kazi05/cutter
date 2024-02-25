@@ -65,10 +65,6 @@ struct MetalVideoView: UIViewRepresentable {
             setupSamplerState(device: parent.device)
         }
 
-        private struct RenderParameters {
-            let shouldRotate: Bool
-        }
-
         private func setupPipelineState() {
             guard let device = MTLCreateSystemDefaultDevice(),
                   let library = device.makeDefaultLibrary() else { return }
@@ -117,18 +113,16 @@ struct MetalVideoView: UIViewRepresentable {
             else {
                 return
             }
-
-            var renderParams = RenderParameters(shouldRotate: renderer?.isNeedRotate ?? false)
-            let renderParamsBuffer = view.device?.makeBuffer(bytes: &renderParams, length: MemoryLayout<RenderParameters>.size, options: [])
-
-            commandEncoder.setRenderPipelineState(pipelineState)
-            commandEncoder.setVertexBuffer(renderParamsBuffer, offset: 0, index: 1)
-            commandEncoder.setFragmentTexture(texture, index: 0)
-            commandEncoder.setFragmentSamplerState(samplerState, index: 0)
-            commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
-            commandEncoder.endEncoding()
-            commandBuffer.present(drawable)
-            commandBuffer.commit()
+            
+            autoreleasepool {
+                commandEncoder.setRenderPipelineState(pipelineState)
+                commandEncoder.setFragmentTexture(texture, index: 0)
+                commandEncoder.setFragmentSamplerState(samplerState, index: 0)
+                commandEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+                commandEncoder.endEncoding()
+                commandBuffer.present(drawable)
+                commandBuffer.commit()
+            }
         }
     }
 }
