@@ -68,15 +68,19 @@ struct LibraryScreen: View {
             GridItem(.flexible(), spacing: 4),
             GridItem(.flexible(), spacing: 4),
         ]
-        LazyVGrid(columns: threeColumnGrid, spacing: 4, content: {
-            ForEach(models) { model in
-                LibraryVideoCard(video: model)
-                    .onTapGesture {
-                        navigationStateManager.openVideoEditing(model)
-                    }
+        LazyVGrid(columns: threeColumnGrid, spacing: 4, pinnedViews: [.sectionFooters], content: {
+            Section {
+                ForEach(models) { model in
+                    LibraryVideoCard(video: model)
+                        .onTapGesture {
+                            navigationStateManager.openVideoEditing(model)
+                        }
+                }
+                .frame(height: size.width / 3 * 1.60)
+                .clipped()
+            } footer: {
+                BannerView()
             }
-            .frame(height: size.width / 3 * 1.60)
-            .clipped()
         })
         .padding(8)
 

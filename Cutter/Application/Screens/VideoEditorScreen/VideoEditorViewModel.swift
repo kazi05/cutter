@@ -21,6 +21,7 @@ final class VideoEditorViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let fileManager = VideoOutputFileManager.shared
     private let videoRenderingStateManager: VideoRenderingStateManager
+    private let adCoordinator = AdCoordinator()
 
     init(video: VideoThumbnail, videoRenderingStateManager: VideoRenderingStateManager) {
         self.videoRenderingStateManager = videoRenderingStateManager
@@ -43,7 +44,7 @@ fileprivate extension VideoEditorViewModel {
         let imageManager = PHCachingImageManager()
         imageManager.requestAVAsset(forVideo: video.asset, options: options) { asset, _, _ in
             guard let asset else { return }
-            Task.do {
+            Task.do(priority: .userInitiated) {
                 guard let track = try await asset.loadTracks(withMediaType: .video).first else {
                     return
                 }
@@ -90,6 +91,7 @@ fileprivate extension VideoEditorViewModel {
                 isEraseEnabled: self.model.options.eraseBackground
             )
             assetUrlForSave = (model.renderedAsset as? AVURLAsset)?.url
+            adCoordinator.presentAd()
             bind()
         }
     }

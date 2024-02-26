@@ -22,6 +22,9 @@
 		E3388D6E2B89D43400DFBE93 /* RVM_4K_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6D2B89D43400DFBE93 /* RVM_4K_P.mlmodel */; };
 		E3388D702B89D6E600DFBE93 /* RVM_4K.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6F2B89D6E600DFBE93 /* RVM_4K.mlmodel */; };
 		E3388D722B89DB2100DFBE93 /* RVM_FHD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D712B89DB2100DFBE93 /* RVM_FHD.mlmodel */; };
+		E34E7BDF2B8C673B00B4EFC0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */; };
+		E34E7BE12B8C6AEA00B4EFC0 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E7BE02B8C6AEA00B4EFC0 /* BannerView.swift */; };
+		E34E7BE52B8C835400B4EFC0 /* AdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E7BE42B8C835400B4EFC0 /* AdCoordinator.swift */; };
 		E35EEF182B81B64800BC7ED6 /* VideoEditorPreviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */; };
 		E35EEF1D2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF1C2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift */; };
 		E35EEF1F2B81CE0300BC7ED6 /* VideoPreviewRenderProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF1E2B81CE0300BC7ED6 /* VideoPreviewRenderProcessor.swift */; };
@@ -84,6 +87,8 @@
 		E3388D6D2B89D43400DFBE93 /* RVM_4K_P.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_4K_P.mlmodel; sourceTree = "<group>"; };
 		E3388D6F2B89D6E600DFBE93 /* RVM_4K.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_4K.mlmodel; sourceTree = "<group>"; };
 		E3388D712B89DB2100DFBE93 /* RVM_FHD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD.mlmodel; sourceTree = "<group>"; };
+		E34E7BE02B8C6AEA00B4EFC0 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		E34E7BE42B8C835400B4EFC0 /* AdCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCoordinator.swift; sourceTree = "<group>"; };
 		E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorPreviewState.swift; sourceTree = "<group>"; };
 		E35EEF1C2B81C16E00BC7ED6 /* VideoEditorTimeLineState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditorTimeLineState.swift; sourceTree = "<group>"; };
 		E35EEF1E2B81CE0300BC7ED6 /* VideoPreviewRenderProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewRenderProcessor.swift; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 				E330EFEF2B3B0DD800E713A4 /* SwiftUINavigationCore in Frameworks */,
 				E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */,
 				E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */,
+				E34E7BDF2B8C673B00B4EFC0 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +383,7 @@
 				E3D935A02B3B292200CF6B12 /* VScrollView.swift */,
 				E3DDF5282B62A92D0049D303 /* MetalVideoView.swift */,
 				E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */,
+				E34E7BE02B8C6AEA00B4EFC0 /* BannerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -397,6 +404,7 @@
 				E3D935A82B3B303800CF6B12 /* AssetImageGenerator.swift */,
 				E3FE3B702B678B3000C5A63E /* VideoTimeLineGenerator.swift */,
 				E390C02D2B87136100311C17 /* VideoOutputFileManager.swift */,
+				E34E7BE42B8C835400B4EFC0 /* AdCoordinator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -453,6 +461,7 @@
 				E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */,
 				E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */,
 				E3DDF5242B62722F0049D303 /* SafeSFSymbols */,
+				E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */,
 			);
 			productName = Cutter;
 			productReference = E330EFC52B3B011B00E713A4 /* Cutter.app */;
@@ -485,6 +494,7 @@
 				E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 				E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 				E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */,
+				E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = E330EFC62B3B011B00E713A4 /* Products */;
 			projectDirPath = "";
@@ -516,6 +526,8 @@
 			files = (
 				E3FE3B802B6803CA00C5A63E /* CMTime.swift in Sources */,
 				E3802B242B8B8AAE00BEC211 /* VideoRenderProgressView.swift in Sources */,
+				E34E7BE12B8C6AEA00B4EFC0 /* BannerView.swift in Sources */,
+				E34E7BE52B8C835400B4EFC0 /* AdCoordinator.swift in Sources */,
 				E3678A252B3DE37700B0E1C2 /* AppNavigationSelectionState.swift in Sources */,
 				E3DDF5272B6276C40049D303 /* VideoEditorControlContainer.swift in Sources */,
 				E370C7242B6679090042839C /* RoundedCorner.swift in Sources */,
@@ -799,6 +811,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.1;
+			};
+		};
 		E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparrowcode/SafeSFSymbols";
@@ -829,6 +849,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
 			productName = SwiftUINavigationCore;
+		};
+		E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		E3DDF5242B62722F0049D303 /* SafeSFSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
