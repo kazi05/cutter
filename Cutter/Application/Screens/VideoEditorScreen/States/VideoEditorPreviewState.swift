@@ -13,6 +13,7 @@ final class VideoEditorPreviewState: ObservableObject {
     let renderer: VideoPreviewRenderer
     @Published var playerState: VideoPlayerState
     @Published var seekedTime: CMTime = .zero
+    @Published private(set) var sizeWarning: String? = nil
 
     private let videoNaturalSize: CGSize
 
@@ -36,7 +37,7 @@ final class VideoEditorPreviewState: ObservableObject {
     func getVideoSize() -> CGSize {
         let normalSize = CGSize(width: abs(videoNaturalSize.width), height: abs(videoNaturalSize.height))
         let needRotate = videoNaturalSize.width < normalSize.width
-        renderer.setupVideoSize(normalSize, isNeedRotate: needRotate)
+        sizeWarning = renderer.setupVideoSize(normalSize, isNeedRotate: needRotate)
         return normalSize
     }
 

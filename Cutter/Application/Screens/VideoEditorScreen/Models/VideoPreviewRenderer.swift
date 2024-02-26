@@ -70,7 +70,7 @@ final class VideoPreviewRenderer {
         }
     }
 
-    public func setupVideoSize(_ videoSize: CGSize, isNeedRotate: Bool) {
+    public func setupVideoSize(_ videoSize: CGSize, isNeedRotate: Bool) -> String? {
         self.isNeedRotate = isNeedRotate
         let maxVideoSize = max(videoSize.width, videoSize.height)
         let isPortrait = videoSize.width < videoSize.height
@@ -82,6 +82,7 @@ final class VideoPreviewRenderer {
         default:
             self.predictor = isPortrait ? RVMPredictorHD_P() : RVMPredictorHD()
         }
+        return Int(maxVideoSize) < max(predictor.inputWidth, predictor.inputHeight) ? "ERASING_SIZE_WARNING" : nil
     }
 
     public func getCurrentFrameTexture() -> MTLTexture? {
@@ -135,9 +136,7 @@ final class VideoPreviewRenderer {
             throw NSError(domain: "Error creating AVAssetReader", code: 0, userInfo: nil)
         }
 
-        guard let videoTrack = try await asset.loadTracks(withMediaType: .video).first,
-              let audioTrack = try await asset.loadTracks(withMediaType: .audio).first
-        else {
+        guard let videoTrack = try await asset.loadTracks(withMediaType: .video).first else {
             throw NSError(domain: "Video track not found", code: 1, userInfo: nil)
         }
 
@@ -165,25 +164,29 @@ final class VideoPreviewRenderer {
         assetWriter.add(videoWriterInput)
         let pixelBufferAdaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: videoWriterInput, sourcePixelBufferAttributes: nil)
 
-        // Создаем AVAssetWriterInput для аудио, если аудиотрек существует
-        let audioOutputSettings: [String: Any] = [
-            AVFormatIDKey: kAudioFormatLinearPCM
-        ]
-        let audioReaderOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: audioOutputSettings)
-        if assetReader.canAdd(audioReaderOutput) {
-            assetReader.add(audioReaderOutput)
-        }
+        var audioReaderOutput: AVAssetReaderTrackOutput? = nil
+        var audioWriterInput: AVAssetWriterInput? = nil
+        if let audioTrack = try await asset.loadTracks(withMediaType: .audio).first {
+            // Создаем AVAssetWriterInput для аудио, если аудиотрек существует
+            let audioOutputSettings: [String: Any] = [
+                AVFormatIDKey: kAudioFormatLinearPCM
+            ]
+            audioReaderOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: audioOutputSettings)
+            if assetReader.canAdd(audioReaderOutput!) {
+                assetReader.add(audioReaderOutput!)
+            }
 
-        // Настройка записи аудиодорожки
-        let audioInputSettings: [String : Any] = [
-            AVNumberOfChannelsKey: 2,
-            AVFormatIDKey: kAudioFormatMPEG4AAC,
-            AVSampleRateKey: 44100,
-            AVEncoderBitRateKey: 128000,
-        ]
-        let audioWriterInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioInputSettings)
-        if assetWriter.canAdd(audioWriterInput) {
-            assetWriter.add(audioWriterInput)
+            // Настройка записи аудиодорожки
+            let audioInputSettings: [String : Any] = [
+                AVNumberOfChannelsKey: 2,
+                AVFormatIDKey: kAudioFormatMPEG4AAC,
+                AVSampleRateKey: 44100,
+                AVEncoderBitRateKey: 128000,
+            ]
+            audioWriterInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioInputSettings)
+            if assetWriter.canAdd(audioWriterInput!) {
+                assetWriter.add(audioWriterInput!)
+            }
         }
 
         assetReader.startReading()
@@ -218,13 +221,17 @@ final class VideoPreviewRenderer {
                             }
                         }
                         
-                        if audioWriterInput.isReadyForMoreMediaData, !audioFinished {
-                            if let sampleBuffer = audioReaderOutput.copyNextSampleBuffer() {
-                                audioWriterInput.append(sampleBuffer)
-                            } else {
-                                audioWriterInput.markAsFinished()
-                                audioFinished = true
+                        if let audioWriterInput, let audioReaderOutput {
+                            if audioWriterInput.isReadyForMoreMediaData, !audioFinished {
+                                if let sampleBuffer = audioReaderOutput.copyNextSampleBuffer() {
+                                    audioWriterInput.append(sampleBuffer)
+                                } else {
+                                    audioWriterInput.markAsFinished()
+                                    audioFinished = true
+                                }
                             }
+                        } else {
+                            audioFinished = true
                         }
                     }
                 }

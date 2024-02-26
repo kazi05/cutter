@@ -39,6 +39,16 @@ struct VideoEditorPreview: View {
                     }
                     .frame(width: previewWidth, height: previewHeight)
                     .clipShape(RoundedRectangle(cornerSize: .init(width: 8, height: 8)))
+
+                if let warning = preview.sizeWarning {
+                    Text(LocalizedStringResource(stringLiteral: warning))
+                        .padding()
+                        .foregroundStyle(.accent)
+                        .multilineTextAlignment(.center)
+                        .font(.system(size: 12))
+                        .fontWeight(.light)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                }
             }
         }
         .id(Unmanaged.passUnretained(preview).toOpaque())

@@ -28,6 +28,17 @@
         }
       }
     },
+    "ERASING_SIZE_WARNING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For correct operation of background erase operation it is necessary that video size corresponds to the following formats: 720x1280, 1080x1920, 2160x3840."
+          }
+        }
+      }
+    },
     "LIBRARY_EMPTY_LIST" : {
       "extractionState" : "manual",
       "localizations" : {
