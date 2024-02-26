@@ -11,31 +11,41 @@ import CoreML
 
 final class VideoPreviewRenderer {
     private let playerItem: AVPlayerItem
+    private let renderedPlayerItem: AVPlayerItem?
     private let processor: VideoPreviewRenderProcessor
     private var predictor: RVMPredictable!
     private let videoOutput: AVPlayerItemVideoOutput
-    private var textureCache: CVMetalTextureCache?
-    private var eraseBackgroundEnabled = false
+    private let renderedVideoOutput: AVPlayerItemVideoOutput?
+    private var eraseBackgroundEnabled: Bool
     private var isNeedRotate = false
 
     let device: MTLDevice
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(playerItem: AVPlayerItem, device: MTLDevice) {
+    init(
+        playerItem: AVPlayerItem,
+        renderedPlayerItem: AVPlayerItem?,
+        erasingBackground: Bool,
+        device: MTLDevice
+    ) {
         self.playerItem = playerItem
         self.device = device
         self.processor = .init(device: device)
+        self.eraseBackgroundEnabled = erasingBackground
         let pixelBufferAttributes: [String: Any] = [
             kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA),
             kCVPixelBufferMetalCompatibilityKey as String: true
         ]
         self.videoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: pixelBufferAttributes)
+        if let renderedPlayerItem {
+            self.renderedPlayerItem = renderedPlayerItem
+            self.renderedVideoOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: pixelBufferAttributes)
+        } else {
+            self.renderedPlayerItem = nil
+            self.renderedVideoOutput = nil
+        }
         setupVideoOutput()
-    }
-
-    deinit {
-        print("Deinit preview renderer")
     }
 
     private func setupVideoOutput() {
@@ -47,6 +57,17 @@ final class VideoPreviewRenderer {
                 break
             }
         }.store(in: &subscriptions)
+
+        if let renderedPlayerItem, let renderedVideoOutput {
+            renderedPlayerItem.publisher(for: \.status).sink { status in
+                switch status {
+                case .readyToPlay:
+                    renderedPlayerItem.add(renderedVideoOutput)
+                default:
+                    break
+                }
+            }.store(in: &subscriptions)
+        }
     }
 
     public func setupVideoSize(_ videoSize: CGSize, isNeedRotate: Bool) {
@@ -80,15 +101,20 @@ final class VideoPreviewRenderer {
         }
         
         let currentTime = playerItem.currentTime()
-        guard var pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil) else {
+        let pixelBuffer = if let renderedVideoOutput, eraseBackgroundEnabled {
+            renderedVideoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil)
+        } else {
+            videoOutput.copyPixelBuffer(forItemTime: currentTime, itemTimeForDisplay: nil)
+        }
+        guard var pixelBuffer else {
             return nil
         }
 
-        if isNeedRotate, let rotated = pixelBuffer.rotate90PixelBuffer(factor: 3) {
+        if !(renderedVideoOutput != nil && eraseBackgroundEnabled) && isNeedRotate, let rotated = pixelBuffer.rotate90PixelBuffer(factor: 3) {
             pixelBuffer = rotated
         }
 
-        if eraseBackgroundEnabled, let processedTexture = processFrame(pixelBuffer) {
+        if eraseBackgroundEnabled && renderedVideoOutput == nil, let processedTexture = processFrame(pixelBuffer) {
             return processedTexture
         }
 

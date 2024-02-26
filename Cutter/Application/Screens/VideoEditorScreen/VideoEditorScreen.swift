@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import SafeSFSymbols
 
 struct VideoEditorScreen: View {
     @StateObject var viewModel: VideoEditorViewModel
@@ -18,6 +19,13 @@ struct VideoEditorScreen: View {
                 VideoEditorControlContainer(editorState: viewModel.editorState)
             }
             .ignoresSafeArea(edges: .bottom)
+            .toolbar {
+                if let url = viewModel.assetUrlForSave {
+                    ShareLink(item: url) {
+                        Image(.square.andArrowDownFill)
+                    }
+                }
+            }
         } else {
             ProgressView()
         }

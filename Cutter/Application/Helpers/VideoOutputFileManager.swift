@@ -38,24 +38,6 @@ final class VideoOutputFileManager {
         }
     }
 
-    func getFiles() {
-        do {
-            let rootFolderURL = try manager.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: false
-            )
-            let rootItems = try manager.contentsOfDirectory(atPath: rootFolderURL.absoluteString)
-            rootItems.forEach { print("Root folder item", $0) }
-            let nestedFolderURL = rootFolderURL.appendingPathComponent(folderName)
-            let items = try manager.contentsOfDirectory(atPath: nestedFolderURL.absoluteString)
-            items.forEach { print($0) }
-        } catch {
-            print("Ошибка при удалении файла: \(error)")
-        }
-    }
-
     func deleteFiles() {
         do {
             let rootFolderURL = try manager.url(
@@ -66,11 +48,9 @@ final class VideoOutputFileManager {
             )
 
             let nestedFolderURL = rootFolderURL.appendingPathComponent(folderName)
-            let items = try manager.contentsOfDirectory(atPath: nestedFolderURL.absoluteString)
-            items.forEach { print($0) }
             try manager.removeItem(at: nestedFolderURL)
         } catch {
-            print("Ошибка при удалении файла: \(error)")
+            print(error.localizedDescription)
         }
     }
 }

@@ -14,30 +14,28 @@ final class VideoEditorPreviewState: ObservableObject {
     @Published var playerState: VideoPlayerState
     @Published var seekedTime: CMTime = .zero
 
-    private let asset: AVAsset
+    private let videoNaturalSize: CGSize
 
     init(
         playerItem: AVPlayerItem,
-        asset: AVAsset,
-        playerState: VideoPlayerState
+        renderedPlayerItem: AVPlayerItem?,
+        videoNaturalSize: CGSize,
+        playerState: VideoPlayerState,
+        erasingBackground: Bool
     ) {
-        self.renderer = .init(playerItem: playerItem, device: MTLCreateSystemDefaultDevice()!)
-        self.asset = asset
+        self.renderer = .init(
+            playerItem: playerItem, 
+            renderedPlayerItem: renderedPlayerItem,
+            erasingBackground: erasingBackground,
+            device: MTLCreateSystemDefaultDevice()!
+        )
+        self.videoNaturalSize = videoNaturalSize
         self.playerState = playerState
     }
 
-    deinit {
-        print("Deinit preview state")
-    }
-
-    func getVideoSize() async throws -> CGSize {
-        guard let track = try await asset.loadTracks(withMediaType: .video).first else {
-            return .zero
-        }
-        let transform = try await track.load(.preferredTransform)
-        let size = try await track.load(.naturalSize).applying(transform)
-        let normalSize = CGSize(width: abs(size.width), height: abs(size.height))
-        let needRotate = size.width < normalSize.width
+    func getVideoSize() -> CGSize {
+        let normalSize = CGSize(width: abs(videoNaturalSize.width), height: abs(videoNaturalSize.height))
+        let needRotate = videoNaturalSize.width < normalSize.width
         renderer.setupVideoSize(normalSize, isNeedRotate: needRotate)
         return normalSize
     }

@@ -11,11 +11,12 @@ import Combine
 import Photos
 
 final class VideoEditorViewModel: ObservableObject {
-    private weak var initialAsset: AVAsset!
+    private var model: VideoEditingModel!
     private var player: VideoPreviewPlayer!
 
     @Published private(set) var previewState: VideoEditorPreviewState!
     @Published private(set) var editorState: VideoEditorState!
+    @Published private(set) var assetUrlForSave: URL? = nil
 
     private var subscriptions = Set<AnyCancellable>()
     private let fileManager = VideoOutputFileManager.shared
@@ -42,28 +43,54 @@ fileprivate extension VideoEditorViewModel {
         let imageManager = PHCachingImageManager()
         imageManager.requestAVAsset(forVideo: video.asset, options: options) { asset, _, _ in
             guard let asset else { return }
-            print(asset)
-            self.initialAsset = asset
-            self.configItems(asset)
+            Task.do {
+                guard let track = try await asset.loadTracks(withMediaType: .video).first else {
+                    return
+                }
+                let (transform, naturalSize) = try await track.load(.preferredTransform, .naturalSize)
+                let size = naturalSize.applying(transform)
+                self.model = VideoEditingModel(
+                    asset: asset,
+                    videoNaturalSize: size,
+                    options: .init(eraseBackground: false)
+                )
+                self.configItems()
+            } catch: { error in
+                print(error.localizedDescription)
+            }
         }
     }
 
-    func configItems(_ asset: AVAsset) {
+    func configItems() {
         DispatchQueue.main.async { [weak self] in
-            self?.subscriptions.forEach { $0.cancel() }
-            self?.subscriptions.removeAll()
-            self?.player = nil
-            self?.previewState = nil
-            self?.editorState = nil
+            guard let self else { return }
+            subscriptions.forEach { $0.cancel() }
+            subscriptions.removeAll()
+            player = nil
+            previewState = nil
+            editorState = nil
+            let asset = model.asset
+            let renderedAsset = model.renderedAsset
             let playerItem = AVPlayerItem(asset: asset)
-            self?.player = .init(playerItem: playerItem)
-            self?.previewState = .init(
-                playerItem: playerItem,
-                asset: asset,
-                playerState: .stop
+            let renderedPlayerItem: AVPlayerItem? = if let asset = model.renderedAsset {
+                AVPlayerItem(asset: asset)
+            } else {
+                nil
+            }
+            player = .init(playerItem: playerItem, renderedPlayerItem: renderedPlayerItem)
+            previewState = .init(
+                playerItem: playerItem, 
+                renderedPlayerItem: renderedPlayerItem,
+                videoNaturalSize: model.videoNaturalSize,
+                playerState: .stop,
+                erasingBackground: model.options.eraseBackground
             )
-            self?.editorState = .init(asset: asset)
-            self?.bind()
+            editorState = .init(
+                asset: renderedAsset ?? asset,
+                isEraseEnabled: self.model.options.eraseBackground
+            )
+            assetUrlForSave = (model.renderedAsset as? AVURLAsset)?.url
+            bind()
         }
     }
 
@@ -90,6 +117,9 @@ fileprivate extension VideoEditorViewModel {
             switch option {
             case .eraseBackground:
                 if editorState.isEraseEnabled {
+                    if model.options.eraseBackground {
+                        return
+                    }
                     Task.do {
                         defer { self.videoRenderingStateManager.completeRenderProgress() }
                         let progress = VideoRenderProgressState(title: "RENDER_ERASE_PROGRESS_TITLE")
@@ -99,14 +129,18 @@ fileprivate extension VideoEditorViewModel {
                         else {
                             return
                         }
-                        self.configItems(asset)
+                        self.model.renderedAsset = asset
+                        self.model.options.eraseBackground = true
+                        self.configItems()
                     } catch: { error in
                         print(error.localizedDescription)
-                        self.configItems(self.initialAsset)
+                        self.configItems()
                         self.videoRenderingStateManager.completeRenderProgress()
                     }
                 } else {
-                    configItems(initialAsset)
+                    self.model.renderedAsset = nil
+                    self.model.options.eraseBackground = false
+                    configItems()
                 }
             default:
                 break

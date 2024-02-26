@@ -24,7 +24,6 @@ final class VideoEditorTimeLineState: ObservableObject {
     }
 
     deinit {
-        print("Time line state deinited")
         subscriptions.forEach { $0.cancel() }
         subscriptions.removeAll()
     }

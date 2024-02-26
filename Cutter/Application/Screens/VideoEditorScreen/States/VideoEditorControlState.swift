@@ -22,8 +22,6 @@ final class VideoEditorControlState: ObservableObject {
     private let initialLeftOptions: [VideoEditorControlItem.Option] = []
     private let initialCenterItems: [VideoEditorControlItem.Interaction] = [.playPause]
     private let initialRightOptions: [VideoEditorControlItem.Option] = [
-        .trimCut,
-        .separate,
         .eraseBackground
     ]
     
@@ -34,7 +32,6 @@ final class VideoEditorControlState: ObservableObject {
     }
 
     deinit {
-        print("Editor control state deinited")
         subscriptions.forEach { $0.cancel() }
         subscriptions.removeAll()
     }

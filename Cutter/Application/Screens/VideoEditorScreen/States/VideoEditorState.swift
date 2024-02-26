@@ -11,7 +11,7 @@ import AVFoundation.AVAsset
 
 final class VideoEditorState: ObservableObject {
     @Published var isVideoPlaying: Bool = false
-    @Published var isEraseEnabled: Bool = false
+    @Published var isEraseEnabled: Bool
 
     @Published private(set) var controlState = VideoEditorControlState()
     @Published private(set) var timeLineState: VideoEditorTimeLineState
@@ -25,13 +25,13 @@ final class VideoEditorState: ObservableObject {
 
     var subscriptions = Set<AnyCancellable>()
 
-    init(asset: AVAsset) {
+    init(asset: AVAsset, isEraseEnabled: Bool = false) {
         self.timeLineState = .init(asset: asset)
+        self.isEraseEnabled = isEraseEnabled
         bind()
     }
 
     deinit {
-        print("Deinit editor state")
         subscriptions.forEach { $0.cancel() }
         subscriptions.removeAll()
     }

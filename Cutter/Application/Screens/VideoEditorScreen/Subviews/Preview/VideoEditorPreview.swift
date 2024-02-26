@@ -34,12 +34,8 @@ struct VideoEditorPreview: View {
                     device: preview.renderer.device
                 )
                     .onFirstAppear {
-                        Task.do {
-                            let size = try await preview.getVideoSize()
-                            videoSize = size
-                        } catch: { _ in
-                            videoSize = .zero
-                        }
+                        let size = preview.getVideoSize()
+                        videoSize = size
                     }
                     .frame(width: previewWidth, height: previewHeight)
                     .clipShape(RoundedRectangle(cornerSize: .init(width: 8, height: 8)))
