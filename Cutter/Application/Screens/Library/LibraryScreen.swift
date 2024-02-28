@@ -49,7 +49,7 @@ struct LibraryScreen: View {
     @ViewBuilder
     private var rejectedView: some View {
         VStack(spacing: 10) {
-            Text("PH_REJECTED")
+            Text(LocalizedStringResource(stringLiteral: "PH_REJECTED"))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(Color("textColor"))
             Button("LIBRARY_GO_SETTINGS") {
@@ -91,7 +91,8 @@ struct LibraryScreen: View {
     @ViewBuilder
     private func errorView(_ error: MediaAuthorizationError) -> some View {
         VStack {
-            Text(error.localizedDescription)
+            Text(LocalizedStringResource(stringLiteral: error.localizedDescription))
+                .multilineTextAlignment(.center)
             Button("LIBRARY_RELOAD") {
                 print("Reload")
             }

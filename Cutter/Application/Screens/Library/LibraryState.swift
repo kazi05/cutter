@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Dependencies
+import Combine
 
 final class LibraryState: ObservableObject {
     
@@ -17,14 +18,23 @@ final class LibraryState: ObservableObject {
     }
     
     @Published var state: State = .loading
-    
+
+    private var subscriptions = Set<AnyCancellable>()
+
     // MARK: - Services
     
     @Dependency(\.videoLibraryService) var videoLibraryService
     
     // MARK: - Init
     
-    init() {}
+    init() {
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+            .sink { [unowned self] _ in
+                state = .loading
+                fetchVideos()
+            }
+            .store(in: &subscriptions)
+    }
 }
 
 // MARK: - Internal methods

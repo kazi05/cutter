@@ -18,10 +18,6 @@ final class VideoRenderProgressState: ObservableObject {
         self.progress = progress
     }
 
-    deinit {
-        print("Deinit render progress stata")
-    }
-
     func updateProgress(_ value: CGFloat) {
         DispatchQueue.main.async {
             self.progress = value

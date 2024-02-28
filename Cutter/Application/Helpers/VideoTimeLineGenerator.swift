@@ -25,10 +25,6 @@ final class VideoTimeLineGenerator: ObservableObject {
         self.asset = asset
     }
 
-    deinit {
-        print("Time line generator deinited")
-    }
-
     @MainActor
     func generateThumbnails(
         at times: [CMTime],

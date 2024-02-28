@@ -15,7 +15,7 @@ struct CutterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationSplitView {
+            NavigationSplitView(columnVisibility: .constant(.all)) {
                 LibraryScreen()
             } detail: {
                 ContentDetailsScreen(videoRenderingStateManager: videoRenderingStateManager)

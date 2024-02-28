@@ -31,9 +31,6 @@ struct MetalVideoView: UIViewRepresentable {
     func makeUIView(context: Context) -> MTKView {
         let mtkView = MTKView()
         mtkView.device = device
-//        mtkView.isPaused = true
-//        mtkView.enableSetNeedsDisplay = false
-//        mtkView.framebufferOnly = false
         mtkView.delegate = context.coordinator
         return mtkView
     }

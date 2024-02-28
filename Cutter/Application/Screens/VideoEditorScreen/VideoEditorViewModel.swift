@@ -29,7 +29,6 @@ final class VideoEditorViewModel: ObservableObject {
     }
 
     deinit {
-        print("Deinit view model")
         subscriptions.forEach { $0.cancel() }
         subscriptions.removeAll()
         fileManager.deleteFiles()
@@ -44,20 +43,19 @@ fileprivate extension VideoEditorViewModel {
         let imageManager = PHCachingImageManager()
         imageManager.requestAVAsset(forVideo: video.asset, options: options) { asset, _, _ in
             guard let asset else { return }
-            Task.do(priority: .userInitiated) {
+            Task.detached {
                 guard let track = try await asset.loadTracks(withMediaType: .video).first else {
                     return
                 }
                 let (transform, naturalSize) = try await track.load(.preferredTransform, .naturalSize)
                 let size = naturalSize.applying(transform)
+                
                 self.model = VideoEditingModel(
                     asset: asset,
                     videoNaturalSize: size,
                     options: .init(eraseBackground: false)
                 )
                 self.configItems()
-            } catch: { error in
-                print(error.localizedDescription)
             }
         }
     }
@@ -80,7 +78,7 @@ fileprivate extension VideoEditorViewModel {
             }
             player = .init(playerItem: playerItem, renderedPlayerItem: renderedPlayerItem)
             previewState = .init(
-                playerItem: playerItem, 
+                playerItem: playerItem,
                 renderedPlayerItem: renderedPlayerItem,
                 videoNaturalSize: model.videoNaturalSize,
                 playerState: .stop,
@@ -97,7 +95,7 @@ fileprivate extension VideoEditorViewModel {
     }
 
     func bind() {
-        player.$state.sink { [unowned self] state in
+        player.$state.receive(on: DispatchQueue.main).sink { [unowned self] state in
             previewState.playerState = state
             editorState.isVideoPlaying = state == .play
         }.store(in: &player.subscriptions)

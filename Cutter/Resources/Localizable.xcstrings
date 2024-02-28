@@ -100,7 +100,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unknown error"
+            "value" : "Unknown error. Please try again"
           }
         }
       }
