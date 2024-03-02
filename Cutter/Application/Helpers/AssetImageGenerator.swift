@@ -10,9 +10,12 @@ import AVFoundation
 
 final class AssetThumbnailGenerator {
 
+    private let id: String
     private let asset: AVAsset
-    
-    init(asset: AVAsset) {
+    private let cache = VideoThumbnailCacheManager.shared
+
+    init(id: String, asset: AVAsset) {
+        self.id = id
         self.asset = asset
     }
 
@@ -27,6 +30,10 @@ final class AssetThumbnailGenerator {
         from startTime: CMTime = .init(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
     ) async -> UIImage {
         await withCheckedContinuation { continuation in
+            if let image = cache.fetch(at: id) {
+                continuation.resume(returning: image)
+                return
+            }
             DispatchQueue.global(qos: .userInitiated).async {
                 let imageGenerator = AVAssetImageGenerator(asset: self.asset)
                 imageGenerator.appliesPreferredTrackTransform = true
@@ -36,6 +43,7 @@ final class AssetThumbnailGenerator {
                 do {
                     let imageRef = try imageGenerator.copyCGImage(at: startTime, actualTime: nil)
                     let image = UIImage(cgImage: imageRef)
+                    self.cache.store(image, at: self.id)
                     continuation.resume(returning: image)
                 } catch {
                     continuation.resume(returning: UIImage())

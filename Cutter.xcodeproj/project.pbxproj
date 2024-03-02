@@ -51,6 +51,7 @@
 		E3A9E3972B8238F200F70276 /* RVMPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3962B8238F200F70276 /* RVMPredictor.swift */; };
 		E3A9E3992B82556800F70276 /* CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */; };
 		E3B126942B89BCFC003B86AC /* RVM_FHD_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */; };
+		E3B4C29F2B93843F00E825A2 /* VideoThumbnailCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */; };
 		E3C0BCCA2B830F6B0062673E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCC92B830F6B0062673E /* AppDelegate.swift */; };
 		E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */; };
 		E3D4A5602B837848001C4095 /* VideoThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */; };
@@ -115,6 +116,7 @@
 		E3A9E3962B8238F200F70276 /* RVMPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RVMPredictor.swift; sourceTree = "<group>"; };
 		E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVPixelBuffer.swift; sourceTree = "<group>"; };
 		E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD_P.mlmodel; sourceTree = "<group>"; };
+		E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailCacheManager.swift; sourceTree = "<group>"; };
 		E3C0BCC92B830F6B0062673E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditingModel.swift; sourceTree = "<group>"; };
 		E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailService.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				E3FE3B702B678B3000C5A63E /* VideoTimeLineGenerator.swift */,
 				E390C02D2B87136100311C17 /* VideoOutputFileManager.swift */,
 				E34E7BE42B8C835400B4EFC0 /* AdCoordinator.swift */,
+				E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				E39E7AB62B432EA3006A252B /* AVAsset+Size.swift in Sources */,
 				E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */,
 				E3802B272B8B8B0A00BEC211 /* VideoRenderProgress.swift in Sources */,
+				E3B4C29F2B93843F00E825A2 /* VideoThumbnailCacheManager.swift in Sources */,
 				E3D935A12B3B292200CF6B12 /* VScrollView.swift in Sources */,
 				E39E7AB22B4323CD006A252B /* VideoPreviewPlayer.swift in Sources */,
 				E370C7292B669F3E0042839C /* VideoEditorControlItem.swift in Sources */,
@@ -709,7 +713,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
@@ -717,7 +721,6 @@
 				INFOPLIST_FILE = Cutter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cutter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -743,7 +746,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
@@ -751,7 +754,6 @@
 				INFOPLIST_FILE = Cutter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cutter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

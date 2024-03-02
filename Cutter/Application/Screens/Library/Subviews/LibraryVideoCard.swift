@@ -8,6 +8,7 @@
 import SwiftUI
 import Dependencies
 import Photos
+import SafeSFSymbols
 
 struct LibraryVideoCard: View {
     let video: VideoThumbnail
@@ -57,7 +58,10 @@ struct LibraryVideoCard: View {
     func loadVideoData() {
         guard thumbnail == nil && videoDuration == nil else { return }
         requestID = videoThumbnailService.getAssetThumnail(from: video.asset) { asset in
-            guard let asset else { return }
+            guard let asset else {
+                thumbnail = UIImage(.photo.fill)
+                return
+            }
             Task {
                 thumbnail = await asset.generateImage()
                 videoDuration = try await asset.videoDuration

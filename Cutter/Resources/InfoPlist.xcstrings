@@ -31,18 +31,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow the app to access your library to receive videos"
-          }
-        }
-      }
-    },
-    "NSUserTrackingUsageDescription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This identifier will be used to deliver personalized ads to you."
+            "value" : "Allow the app to access your library to retrieve videos. This will allow us to process your video for you"
           }
         }
       }

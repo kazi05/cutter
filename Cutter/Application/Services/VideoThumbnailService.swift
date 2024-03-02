@@ -7,6 +7,7 @@
 
 import Photos
 import Dependencies
+import UIKit
 
 protocol VideoThumbnailService {
     func getAssetThumnail(
@@ -53,7 +54,7 @@ final class VideoThumbnailServiceImpl: VideoThumbnailService {
                 completion(nil)
                 return
             }
-            let model = AssetThumbnailGenerator(asset: avAsset)
+            let model = AssetThumbnailGenerator(id: asset.localIdentifier, asset: avAsset)
             completion(model)
         }
         return requestID

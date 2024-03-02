@@ -11,14 +11,15 @@ final class MediaLibraryPremission {
     func getMedialibraryAccesStatus() async -> MediaAuthorizationStatus {
         let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         switch status {
-        case .authorized:
+        case .authorized, .limited:
             return .success
             
         case .notDetermined:
             let newStatus = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
-            if newStatus ==  PHAuthorizationStatus.authorized {
+            switch newStatus {
+            case .authorized, .limited:
                 return .success
-            } else {
+            default:
                 return .error(.rejected)
             }
             
