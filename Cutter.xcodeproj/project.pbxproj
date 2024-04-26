@@ -17,12 +17,9 @@
 		E330EFE52B3B0C5F00E713A4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E330EFE42B3B0C5F00E713A4 /* Localizable.xcstrings */; };
 		E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFE72B3B0DB000E713A4 /* Dependencies */; };
 		E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFE92B3B0DB000E713A4 /* DependenciesMacros */; };
-		E330EFED2B3B0DD800E713A4 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */; };
-		E330EFEF2B3B0DD800E713A4 /* SwiftUINavigationCore in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */; };
 		E3388D6E2B89D43400DFBE93 /* RVM_4K_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6D2B89D43400DFBE93 /* RVM_4K_P.mlmodel */; };
 		E3388D702B89D6E600DFBE93 /* RVM_4K.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6F2B89D6E600DFBE93 /* RVM_4K.mlmodel */; };
 		E3388D722B89DB2100DFBE93 /* RVM_FHD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D712B89DB2100DFBE93 /* RVM_FHD.mlmodel */; };
-		E34E7BDF2B8C673B00B4EFC0 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */; };
 		E34E7BE12B8C6AEA00B4EFC0 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E7BE02B8C6AEA00B4EFC0 /* BannerView.swift */; };
 		E34E7BE52B8C835400B4EFC0 /* AdCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34E7BE42B8C835400B4EFC0 /* AdCoordinator.swift */; };
 		E35EEF182B81B64800BC7ED6 /* VideoEditorPreviewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35EEF172B81B64800BC7ED6 /* VideoEditorPreviewState.swift */; };
@@ -52,6 +49,9 @@
 		E3A9E3992B82556800F70276 /* CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */; };
 		E3B126942B89BCFC003B86AC /* RVM_FHD_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */; };
 		E3B4C29F2B93843F00E825A2 /* VideoThumbnailCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */; };
+		E3B76C5B2BC54C1A00B9B9E7 /* YandexMobileAdsPackage in Frameworks */ = {isa = PBXBuildFile; productRef = E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */; };
+		E3B76C5D2BC54CE200B9B9E7 /* MobileAdsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */; };
+		E3B76C5F2BC563D900B9B9E7 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B76C5E2BC563D900B9B9E7 /* UIApplication.swift */; };
 		E3C0BCCA2B830F6B0062673E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCC92B830F6B0062673E /* AppDelegate.swift */; };
 		E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */; };
 		E3D4A5602B837848001C4095 /* VideoThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */; };
@@ -117,6 +117,8 @@
 		E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVPixelBuffer.swift; sourceTree = "<group>"; };
 		E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD_P.mlmodel; sourceTree = "<group>"; };
 		E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailCacheManager.swift; sourceTree = "<group>"; };
+		E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MobileAdsBundle.bundle; sourceTree = "<group>"; };
+		E3B76C5E2BC563D900B9B9E7 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		E3C0BCC92B830F6B0062673E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditingModel.swift; sourceTree = "<group>"; };
 		E3D4A55F2B837848001C4095 /* VideoThumbnailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailService.swift; sourceTree = "<group>"; };
@@ -146,12 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3DDF5252B62722F0049D303 /* SafeSFSymbols in Frameworks */,
-				E330EFED2B3B0DD800E713A4 /* SwiftUINavigation in Frameworks */,
 				E330EFD82B3B01EF00E713A4 /* StoreKit.framework in Frameworks */,
-				E330EFEF2B3B0DD800E713A4 /* SwiftUINavigationCore in Frameworks */,
+				E3B76C5B2BC54C1A00B9B9E7 /* YandexMobileAdsPackage in Frameworks */,
 				E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */,
 				E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */,
-				E34E7BDF2B8C673B00B4EFC0 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +161,7 @@
 		E330EFBC2B3B011B00E713A4 = {
 			isa = PBXGroup;
 			children = (
+				E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */,
 				E330EFC72B3B011B00E713A4 /* Cutter */,
 				E330EFC62B3B011B00E713A4 /* Products */,
 				E330EFD62B3B01EF00E713A4 /* Frameworks */,
@@ -421,6 +422,7 @@
 				E3FE3B722B67991E00C5A63E /* SafeArea.swift */,
 				E3FE3B7F2B6803CA00C5A63E /* CMTime.swift */,
 				E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */,
+				E3B76C5E2BC563D900B9B9E7 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -461,10 +463,8 @@
 			packageProductDependencies = (
 				E330EFE72B3B0DB000E713A4 /* Dependencies */,
 				E330EFE92B3B0DB000E713A4 /* DependenciesMacros */,
-				E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */,
-				E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */,
 				E3DDF5242B62722F0049D303 /* SafeSFSymbols */,
-				E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */,
+				E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */,
 			);
 			productName = Cutter;
 			productReference = E330EFC52B3B011B00E713A4 /* Cutter.app */;
@@ -495,9 +495,8 @@
 			mainGroup = E330EFBC2B3B011B00E713A4;
 			packageReferences = (
 				E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
-				E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 				E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */,
-				E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
 			productRefGroup = E330EFC62B3B011B00E713A4 /* Products */;
 			projectDirPath = "";
@@ -513,6 +512,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3B76C5D2BC54CE200B9B9E7 /* MobileAdsBundle.bundle in Resources */,
 				E330EFD02B3B011C00E713A4 /* Preview Assets.xcassets in Resources */,
 				E330EFCD2B3B011C00E713A4 /* Assets.xcassets in Resources */,
 				E3D9359E2B3B223B00CF6B12 /* InfoPlist.xcstrings in Resources */,
@@ -535,6 +535,7 @@
 				E3DDF5272B6276C40049D303 /* VideoEditorControlContainer.swift in Sources */,
 				E370C7242B6679090042839C /* RoundedCorner.swift in Sources */,
 				E39E7AAD2B43214D006A252B /* VideoEditorViewModel.swift in Sources */,
+				E3B76C5F2BC563D900B9B9E7 /* UIApplication.swift in Sources */,
 				E3DDF52C2B62B3640049D303 /* render.metal in Sources */,
 				E3B126942B89BCFC003B86AC /* RVM_FHD_P.mlmodel in Sources */,
 				E3D4A5602B837848001C4095 /* VideoThumbnailService.swift in Sources */,
@@ -713,7 +714,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
@@ -731,7 +732,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.4;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -746,7 +748,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
@@ -764,7 +766,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.4;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -805,20 +808,12 @@
 				minimumVersion = 1.1.5;
 			};
 		};
-		E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
+		E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation.git";
+			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-		E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.1;
+				minimumVersion = 7.0.0;
 			};
 		};
 		E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */ = {
@@ -842,20 +837,10 @@
 			package = E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
 			productName = DependenciesMacros;
 		};
-		E330EFEC2B3B0DD800E713A4 /* SwiftUINavigation */ = {
+		E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
-			productName = SwiftUINavigation;
-		};
-		E330EFEE2B3B0DD800E713A4 /* SwiftUINavigationCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E330EFEB2B3B0DD800E713A4 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
-			productName = SwiftUINavigationCore;
-		};
-		E34E7BDE2B8C673B00B4EFC0 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E34E7BDD2B8C673B00B4EFC0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
+			package = E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
+			productName = YandexMobileAdsPackage;
 		};
 		E3DDF5242B62722F0049D303 /* SafeSFSymbols */ = {
 			isa = XCSwiftPackageProductDependency;

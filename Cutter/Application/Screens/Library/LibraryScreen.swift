@@ -12,6 +12,7 @@ struct LibraryScreen: View {
     
     @StateObject private var state = LibraryState()
     @EnvironmentObject private var navigationStateManager: AppNavigationStateManager
+    @Environment(\.screenSize) private var screenSize
 
     var body: some View {
         GeometryReader { gr in

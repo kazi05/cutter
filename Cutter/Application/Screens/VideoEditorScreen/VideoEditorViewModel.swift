@@ -21,7 +21,7 @@ final class VideoEditorViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let fileManager = VideoOutputFileManager.shared
     private let videoRenderingStateManager: VideoRenderingStateManager
-    private let adCoordinator = AdCoordinator()
+    private let adCoordinator = AdCoordinator.shared
 
     init(video: VideoThumbnail, videoRenderingStateManager: VideoRenderingStateManager) {
         self.videoRenderingStateManager = videoRenderingStateManager
@@ -89,7 +89,7 @@ fileprivate extension VideoEditorViewModel {
                 isEraseEnabled: self.model.options.eraseBackground
             )
             assetUrlForSave = (model.renderedAsset as? AVURLAsset)?.url
-            adCoordinator.presentAd()
+            adCoordinator.loadAd()
             bind()
         }
     }
