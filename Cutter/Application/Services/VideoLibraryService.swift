@@ -6,7 +6,7 @@
 //
 
 import Photos
-import Dependencies
+import SwiftUI
 
 protocol VideoLibraryService {
     func getStatus() async -> MediaAuthorizationStatus
@@ -15,15 +15,17 @@ protocol VideoLibraryService {
 
 //MARK: - DependencyValues
 
-extension DependencyValues {
+extension EnvironmentValues {
     
     var videoLibraryService: VideoLibraryService {
         get { self[VideoLibraryServiceKey.self] }
         set { self[VideoLibraryServiceKey.self] = newValue }
     }
-    
-    enum VideoLibraryServiceKey: DependencyKey {
-        public static let liveValue: VideoLibraryService = VideoLibraryServiceImpl()
+
+    private struct VideoLibraryServiceKey: EnvironmentKey {
+        static var defaultValue: VideoLibraryService {
+            VideoLibraryServiceImpl()
+        }
     }
 }
 

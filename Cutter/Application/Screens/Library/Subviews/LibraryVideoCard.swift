@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import Dependencies
 import Photos
 import SafeSFSymbols
 
 struct LibraryVideoCard: View {
     let video: VideoThumbnail
     
-    @Dependency(\.videoThumbnailService) private var videoThumbnailService
+    @Environment(\.videoThumbnailService) private var videoThumbnailService
     @State private var thumbnail: UIImage? = nil
     @State private var videoDuration: String? = nil
     @State private var requestID: PHImageRequestID?

@@ -1,4 +1,5 @@
 {
+  "originHash" : "db6e9b7ca1221d4b8e11db7efe2f8cb47173b776d5eaa5df4674218f812e8512",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -7,24 +8,6 @@
       "state" : {
         "revision" : "9dc9cbe4bc45c65164fa653a563d8d8db61b09bb",
         "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "divkit-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/divkit/divkit-ios",
-      "state" : {
-        "revision" : "8e44e1266f4325b382d18725c00d851d3143dafd",
-        "version" : "28.13.0"
-      }
-    },
-    {
-      "identity" : "metrica-sdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yandexmobile/metrica-sdk-ios",
-      "state" : {
-        "revision" : "13d8b11181a33938ef42759d49466a621df5e7db",
-        "version" : "4.5.2"
       }
     },
     {
@@ -73,15 +56,6 @@
       }
     },
     {
-      "identity" : "vgsl",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yandex/vgsl.git",
-      "state" : {
-        "revision" : "714e915e99764be5940b4da7e30ccf9aea931eb4",
-        "version" : "2.4.1"
-      }
-    },
-    {
       "identity" : "xctest-dynamic-overlay",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
@@ -89,16 +63,7 @@
         "revision" : "23cbf2294e350076ea4dbd7d5d047c1e76b03631",
         "version" : "1.0.2"
       }
-    },
-    {
-      "identity" : "yandex-ads-sdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/yandexmobile/yandex-ads-sdk-ios",
-      "state" : {
-        "revision" : "677882f1966e83f0592c5c825c38de4d34fffad4",
-        "version" : "7.0.0"
-      }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

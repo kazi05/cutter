@@ -1,0 +1,15 @@
+{
+  "originHash" : "e791ffc3d999683b82c2e8c222ea1232c235f9456ce1320fde3c156950269495",
+  "pins" : [
+    {
+      "identity" : "safesfsymbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparrowcode/SafeSFSymbols",
+      "state" : {
+        "revision" : "07f11f923b53f26cf9214800f8a397a87865f3ef",
+        "version" : "2.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}

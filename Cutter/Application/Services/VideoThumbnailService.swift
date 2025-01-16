@@ -6,8 +6,8 @@
 //
 
 import Photos
-import Dependencies
 import UIKit
+import SwiftUI
 
 protocol VideoThumbnailService {
     func getAssetThumnail(
@@ -20,15 +20,17 @@ protocol VideoThumbnailService {
 
 //MARK: - DependencyValues
 
-extension DependencyValues {
+extension EnvironmentValues {
 
     var videoThumbnailService: VideoThumbnailService {
         get { self[VideoThumbnailServiceKey.self] }
         set { self[VideoThumbnailServiceKey.self] = newValue }
     }
 
-    enum VideoThumbnailServiceKey: DependencyKey {
-        public static let liveValue: VideoThumbnailService = VideoThumbnailServiceImpl()
+    private struct VideoThumbnailServiceKey: EnvironmentKey {
+        static var defaultValue: VideoThumbnailService {
+            VideoThumbnailServiceImpl()
+        }
     }
 }
 

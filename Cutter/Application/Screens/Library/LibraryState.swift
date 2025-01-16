@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Dependencies
 import Combine
 
 final class LibraryState: ObservableObject {
@@ -23,7 +22,7 @@ final class LibraryState: ObservableObject {
 
     // MARK: - Services
     
-    @Dependency(\.videoLibraryService) var videoLibraryService
+    @Environment(\.videoLibraryService) var videoLibraryService
     
     // MARK: - Init
     

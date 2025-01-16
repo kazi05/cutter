@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B7CA238709162DBCA0DCF3 /* Pods_Cutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508F255FE29400A8F5901554 /* Pods_Cutter.framework */; };
 		E330EFC92B3B011B00E713A4 /* CutterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E330EFC82B3B011B00E713A4 /* CutterApp.swift */; };
 		E330EFCD2B3B011C00E713A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E330EFCC2B3B011C00E713A4 /* Assets.xcassets */; };
 		E330EFD02B3B011C00E713A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E330EFCF2B3B011C00E713A4 /* Preview Assets.xcassets */; };
@@ -15,8 +16,6 @@
 		E330EFE02B3B065900E713A4 /* LibraryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E330EFDF2B3B065900E713A4 /* LibraryState.swift */; };
 		E330EFE32B3B08B700E713A4 /* VideoThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E330EFE22B3B08B700E713A4 /* VideoThumbnail.swift */; };
 		E330EFE52B3B0C5F00E713A4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E330EFE42B3B0C5F00E713A4 /* Localizable.xcstrings */; };
-		E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFE72B3B0DB000E713A4 /* Dependencies */; };
-		E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */ = {isa = PBXBuildFile; productRef = E330EFE92B3B0DB000E713A4 /* DependenciesMacros */; };
 		E3388D6E2B89D43400DFBE93 /* RVM_4K_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6D2B89D43400DFBE93 /* RVM_4K_P.mlmodel */; };
 		E3388D702B89D6E600DFBE93 /* RVM_4K.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D6F2B89D6E600DFBE93 /* RVM_4K.mlmodel */; };
 		E3388D722B89DB2100DFBE93 /* RVM_FHD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3388D712B89DB2100DFBE93 /* RVM_FHD.mlmodel */; };
@@ -49,8 +48,6 @@
 		E3A9E3992B82556800F70276 /* CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */; };
 		E3B126942B89BCFC003B86AC /* RVM_FHD_P.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */; };
 		E3B4C29F2B93843F00E825A2 /* VideoThumbnailCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */; };
-		E3B76C5B2BC54C1A00B9B9E7 /* YandexMobileAdsPackage in Frameworks */ = {isa = PBXBuildFile; productRef = E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */; };
-		E3B76C5D2BC54CE200B9B9E7 /* MobileAdsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */; };
 		E3B76C5F2BC563D900B9B9E7 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B76C5E2BC563D900B9B9E7 /* UIApplication.swift */; };
 		E3C0BCCA2B830F6B0062673E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0BCC92B830F6B0062673E /* AppDelegate.swift */; };
 		E3D4A55E2B83764D001C4095 /* VideoEditingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */; };
@@ -76,6 +73,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39B398BDA026E0EC8655A4AA /* Pods-Cutter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cutter.release.xcconfig"; path = "Target Support Files/Pods-Cutter/Pods-Cutter.release.xcconfig"; sourceTree = "<group>"; };
+		508F255FE29400A8F5901554 /* Pods_Cutter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cutter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E330EFC52B3B011B00E713A4 /* Cutter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cutter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E330EFC82B3B011B00E713A4 /* CutterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutterApp.swift; sourceTree = "<group>"; };
 		E330EFCC2B3B011C00E713A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 		E3A9E3982B82556800F70276 /* CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVPixelBuffer.swift; sourceTree = "<group>"; };
 		E3B126932B89BCFC003B86AC /* RVM_FHD_P.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RVM_FHD_P.mlmodel; sourceTree = "<group>"; };
 		E3B4C29E2B93843F00E825A2 /* VideoThumbnailCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailCacheManager.swift; sourceTree = "<group>"; };
-		E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MobileAdsBundle.bundle; sourceTree = "<group>"; };
 		E3B76C5E2BC563D900B9B9E7 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		E3C0BCC92B830F6B0062673E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3D4A55D2B83764D001C4095 /* VideoEditingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditingModel.swift; sourceTree = "<group>"; };
@@ -140,6 +138,7 @@
 		E3FE3B722B67991E00C5A63E /* SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArea.swift; sourceTree = "<group>"; };
 		E3FE3B7D2B67DB2700C5A63E /* UIKScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKScrollView.swift; sourceTree = "<group>"; };
 		E3FE3B7F2B6803CA00C5A63E /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		F1FCEEEFBA3696BFB6CB1C67 /* Pods-Cutter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cutter.debug.xcconfig"; path = "Target Support Files/Pods-Cutter/Pods-Cutter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,22 +148,29 @@
 			files = (
 				E3DDF5252B62722F0049D303 /* SafeSFSymbols in Frameworks */,
 				E330EFD82B3B01EF00E713A4 /* StoreKit.framework in Frameworks */,
-				E3B76C5B2BC54C1A00B9B9E7 /* YandexMobileAdsPackage in Frameworks */,
-				E330EFE82B3B0DB000E713A4 /* Dependencies in Frameworks */,
-				E330EFEA2B3B0DB000E713A4 /* DependenciesMacros in Frameworks */,
+				10B7CA238709162DBCA0DCF3 /* Pods_Cutter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C680029C5CA35851D5BBD3B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1FCEEEFBA3696BFB6CB1C67 /* Pods-Cutter.debug.xcconfig */,
+				39B398BDA026E0EC8655A4AA /* Pods-Cutter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E330EFBC2B3B011B00E713A4 = {
 			isa = PBXGroup;
 			children = (
-				E3B76C5C2BC54CE200B9B9E7 /* MobileAdsBundle.bundle */,
 				E330EFC72B3B011B00E713A4 /* Cutter */,
 				E330EFC62B3B011B00E713A4 /* Products */,
 				E330EFD62B3B01EF00E713A4 /* Frameworks */,
+				2C680029C5CA35851D5BBD3B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				E330EFD72B3B01EF00E713A4 /* StoreKit.framework */,
+				508F255FE29400A8F5901554 /* Pods_Cutter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -451,9 +458,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E330EFD32B3B011C00E713A4 /* Build configuration list for PBXNativeTarget "Cutter" */;
 			buildPhases = (
+				EF0D8D7EC33A9C958D1A11EF /* [CP] Check Pods Manifest.lock */,
 				E330EFC12B3B011B00E713A4 /* Sources */,
 				E330EFC22B3B011B00E713A4 /* Frameworks */,
 				E330EFC32B3B011B00E713A4 /* Resources */,
+				51ADB4B28AFA15455725E212 /* [CP] Embed Pods Frameworks */,
+				B3345A95A04486AB41A110C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -461,10 +471,7 @@
 			);
 			name = Cutter;
 			packageProductDependencies = (
-				E330EFE72B3B0DB000E713A4 /* Dependencies */,
-				E330EFE92B3B0DB000E713A4 /* DependenciesMacros */,
 				E3DDF5242B62722F0049D303 /* SafeSFSymbols */,
-				E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */,
 			);
 			productName = Cutter;
 			productReference = E330EFC52B3B011B00E713A4 /* Cutter.app */;
@@ -478,7 +485,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					E330EFC42B3B011B00E713A4 = {
 						CreatedOnToolsVersion = 15.1;
@@ -494,9 +501,7 @@
 			);
 			mainGroup = E330EFBC2B3B011B00E713A4;
 			packageReferences = (
-				E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 				E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */,
-				E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */,
 			);
 			productRefGroup = E330EFC62B3B011B00E713A4 /* Products */;
 			projectDirPath = "";
@@ -512,7 +517,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3B76C5D2BC54CE200B9B9E7 /* MobileAdsBundle.bundle in Resources */,
 				E330EFD02B3B011C00E713A4 /* Preview Assets.xcassets in Resources */,
 				E330EFCD2B3B011C00E713A4 /* Assets.xcassets in Resources */,
 				E3D9359E2B3B223B00CF6B12 /* InfoPlist.xcstrings in Resources */,
@@ -521,6 +525,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		51ADB4B28AFA15455725E212 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3345A95A04486AB41A110C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cutter/Pods-Cutter-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF0D8D7EC33A9C958D1A11EF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cutter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E330EFC12B3B011B00E713A4 /* Sources */ = {
@@ -646,6 +709,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -702,6 +766,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -710,6 +775,7 @@
 		};
 		E330EFD42B3B011C00E713A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1FCEEEFBA3696BFB6CB1C67 /* Pods-Cutter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -718,6 +784,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cutter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cutter;
@@ -733,7 +800,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.4;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -744,6 +811,7 @@
 		};
 		E330EFD52B3B011C00E713A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39B398BDA026E0EC8655A4AA /* Pods-Cutter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -752,6 +820,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Cutter/Preview Content\"";
 				DEVELOPMENT_TEAM = 396KV6U5SX;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Cutter/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Cutter;
@@ -767,7 +836,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.4;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.land.InstaCut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -800,22 +869,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-dependencies.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.5;
-			};
-		};
-		E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yandexmobile/yandex-ads-sdk-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparrowcode/SafeSFSymbols";
@@ -827,21 +880,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E330EFE72B3B0DB000E713A4 /* Dependencies */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
-			productName = Dependencies;
-		};
-		E330EFE92B3B0DB000E713A4 /* DependenciesMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E330EFE62B3B0DB000E713A4 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
-			productName = DependenciesMacros;
-		};
-		E3B76C5A2BC54C1A00B9B9E7 /* YandexMobileAdsPackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E3B76C592BC54C1A00B9B9E7 /* XCRemoteSwiftPackageReference "yandex-ads-sdk-ios" */;
-			productName = YandexMobileAdsPackage;
-		};
 		E3DDF5242B62722F0049D303 /* SafeSFSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E3DDF5232B62722F0049D303 /* XCRemoteSwiftPackageReference "SafeSFSymbols" */;
